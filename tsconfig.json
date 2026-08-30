@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "lib": ["ES2022", "DOM", "DOM.Iterable"], "strict": true,
+    "skipLibCheck": true, "module": "ESNext", "moduleResolution": "Bundler", "resolveJsonModule": true,
+    "isolatedModules": true, "noEmit": true, "jsx": "react-jsx", "allowJs": false,
+    "types": ["vitest/globals", "@testing-library/jest-dom", "@cloudflare/workers-types"]
+  },
+  "include": ["app", "src", "db", "*.d.ts", "vite.config.ts", "next.config.ts"]
+}
