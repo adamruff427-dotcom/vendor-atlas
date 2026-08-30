@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vendoratlas.policyops.io/sitemap.xml
+Sitemap: https://vendor-atlas.adeewuff.chatgpt.site/sitemap.xml

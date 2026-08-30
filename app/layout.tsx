@@ -4,7 +4,7 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://vendoratlas.policyops.io"),
+  metadataBase: new URL("https://vendor-atlas.adeewuff.chatgpt.site"),
   title: { default: "Vendor Atlas | DSEAR assessment finder", template: "%s | Vendor Atlas" },
   description:
     "Check whether a DSEAR assessment may be relevant, see an indicative cost range and compare evidence-backed UK specialists.",
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     operatingSystem: "Web",
     description:
       "Decision support for procuring UK compliance services, beginning with DSEAR risk assessment.",
-    url: "https://vendoratlas.policyops.io/",
+    url: "https://vendor-atlas.adeewuff.chatgpt.site/",
   };
   return (
     <html lang="en-GB">

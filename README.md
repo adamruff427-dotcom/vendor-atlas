@@ -2,7 +2,7 @@
 
 Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The first vertical is a DSEAR risk-assessment finder, deterministic cost estimator, evidence-backed supplier comparison and comparable-quote intake.
 
-Public target: `https://vendoratlas.policyops.io/`
+Public site: `https://vendor-atlas.adeewuff.chatgpt.site/`
 
 The questionnaire is decision and procurement support. It does not conduct a legally suitable and sufficient DSEAR risk assessment, provide legal advice, certify compliance or approve suppliers.
 
@@ -144,7 +144,7 @@ npm run db:generate
 
 ## Deployment
 
-The repository is designed for OpenAI Sites/Cloudflare-compatible hosting. `.openai/hosting.json` declares the logical D1 binding. Production deployment packages the Worker/server output, static assets and Drizzle migration. The intended custom hostname is `vendoratlas.policyops.io`.
+The repository is designed for OpenAI Sites/Cloudflare-compatible hosting. `.openai/hosting.json` declares the logical D1 binding. Production deployment packages the Worker/server output, static assets and Drizzle migration. The public release uses the ChatGPT Sites hostname shown above; no custom domain is configured.
 
 Runtime secrets are not required for the MVP. Do not add credentials to the repository.
 
