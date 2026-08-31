@@ -443,6 +443,11 @@ function Results({
       <div className="results-grid">
         <section>
           <h4>Why this result</h4>
+          <p className="result-explanation">
+            These are the screening signals in your answers. The final decision also depends on
+            substance properties, quantities, release conditions, existing controls and who could
+            be affected.
+          </p>
           <ul className="check-list">
             {result.triggeredFactors.map((item) => (
               <li key={item}>{item}</li>
@@ -451,6 +456,10 @@ function Results({
         </section>
         <section>
           <h4>Likely assessment scope</h4>
+          <p className="result-explanation">
+            This is a starting scope for comparable quotations. A specialist may narrow or expand
+            it after reviewing safety data, layouts and the actual work on site.
+          </p>
           <ul>
             {result.scope.map((item) => (
               <li key={item}>{item}</li>
@@ -458,6 +467,31 @@ function Results({
           </ul>
         </section>
       </div>
+      <section className="result-resource" aria-labelledby="result-resource-heading">
+        <div>
+          <span className="eyebrow">Use the result carefully</span>
+          <h4 id="result-resource-heading">Check the underlying duty before acting</h4>
+          <p>
+            Regulation 5 is site-specific: it asks about the dangerous substance, supplier safety
+            information, work process, amount, storage, maintenance, explosive atmospheres,
+            ignition sources and possible effects. A short finder cannot verify those facts.
+          </p>
+        </div>
+        <div className="result-links">
+          <a href="https://www.hse.gov.uk/fireandexplosion/dsear.htm" target="_blank" rel="noreferrer">
+            HSE quick guide <span aria-hidden>↗</span>
+            <small>Plain-English duties and controls</small>
+          </a>
+          <a href="https://www.legislation.gov.uk/uksi/2002/2776/regulation/5" target="_blank" rel="noreferrer">
+            Regulation 5 <span aria-hidden>↗</span>
+            <small>The legal risk-assessment factors</small>
+          </a>
+          <a href="/dsear/do-i-need-a-dsear-assessment">
+            Read the decision guide
+            <small>Thresholds, uncertainties and escalation</small>
+          </a>
+        </div>
+      </section>
       <section className="price-card">
         <div>
           <span className="eyebrow">Indicative planning range</span>

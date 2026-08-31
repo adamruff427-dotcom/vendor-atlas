@@ -52,10 +52,24 @@ export default async function DsearPage({ params }: Props) {
       </header>
       <div className="shell article-grid">
         <div>
+          <section className="decision-panel" aria-labelledby="decision-heading">
+            <span className="eyebrow">Decision checkpoint</span>
+            <h2 id="decision-heading">{page.decision.heading}</h2>
+            <p>{page.decision.summary}</p>
+            <ul>
+              {page.decision.checks.map((check) => (
+                <li key={check}>{check}</li>
+              ))}
+            </ul>
+            <p className="decision-action">
+              <strong>What to do next:</strong> {page.decision.action}
+            </p>
+          </section>
           {page.sections.map((section) => (
             <section key={section.heading}>
               <h2>{section.heading}</h2>
               <p>{section.body}</p>
+              {section.detail && <p>{section.detail}</p>}
               {section.points && (
                 <ul>
                   {section.points.map((point) => (
@@ -67,13 +81,18 @@ export default async function DsearPage({ params }: Props) {
           ))}
         </div>
         <aside className="sources">
+          <span className="eyebrow">Go deeper</span>
           <strong>Primary sources and further reading</strong>
+          <p>Each link explains what it can help you verify. HSE and legislation remain the authority; Vendor Atlas provides the buying interpretation.</p>
           {page.sources.map((source) => (
-            <a href={source.url} target="_blank" rel="noreferrer" key={source.url}>
-              {source.label} <span aria-hidden>↗</span>
-            </a>
+            <div className="source-item" key={source.url}>
+              <a href={source.url} target="_blank" rel="noreferrer">
+                {source.label} <span aria-hidden>↗</span>
+              </a>
+              <p>{source.context}</p>
+            </div>
           ))}
-          <p>Vendor Atlas interpretation is decision support, not legal advice.</p>
+          <p className="source-disclaimer">External guidance can change. Check the source and publication status before relying on it.</p>
         </aside>
       </div>
       <script

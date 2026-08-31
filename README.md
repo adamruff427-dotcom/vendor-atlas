@@ -100,7 +100,7 @@ Regulatory explanations prefer:
 - [The Dangerous Substances and Explosive Atmospheres Regulations 2002](https://www.legislation.gov.uk/uksi/2002/2776/contents)
 - [HSE L138 Approved Code of Practice and guidance](https://www.hse.gov.uk/pubns/priced/l138.pdf)
 
-The interface distinguishes legislation/regulator material, Vendor Atlas interpretation and provider-source evidence. It avoids legal conclusions, official-approval language, unsupported qualifications, invented prices and inferred experience.
+The interface distinguishes legislation/regulator material, Vendor Atlas interpretation and provider-source evidence. Each decision guide has a practical checkpoint, explains what can change the answer and annotates every external reference with what it can help the reader verify. Sector and hazard pages add only relevant primary references rather than repeating a generic source list. The interface avoids legal conclusions, official-approval language, unsupported qualifications, invented prices and inferred experience.
 
 ## Analytics
 

@@ -88,6 +88,7 @@ export default function Home() {
               <Link href={page.path} key={page.path}>
                 <strong>{page.title}</strong>
                 <span>{page.description}</span>
+                <small><b>Use this to:</b> {page.cardPrompt}</small>
               </Link>
             ))}
           </div>
