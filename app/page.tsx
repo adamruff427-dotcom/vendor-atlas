@@ -7,9 +7,17 @@ import { pages } from "../src/content/pages";
 import { suppliers } from "../src/data/suppliers";
 
 export const metadata: Metadata = {
-  title: "DSEAR assessment finder and cost estimator",
+  title: "UK industrial compliance service finder",
+  description: "Check DSEAR, LEV, pressure-system and LOLER duties, estimate likely costs and compare evidenced UK specialists.",
   alternates: { canonical: "/" },
 };
+
+const serviceChoices = [
+  { href: "/#assessment", label: "DSEAR", question: "Do dangerous substances create a fire or explosion duty?", status: "Current assessment" },
+  { href: "/lev", label: "LEV", question: "Does extraction need a thorough examination and test?", status: "Assessment and quotes" },
+  { href: "/pressure-systems", label: "Pressure systems", question: "Does the system need a written scheme and examination?", status: "Assessment and quotes" },
+  { href: "/loler", label: "LOLER", question: "Which lifting assets need thorough examination?", status: "Assessment and quotes" },
+];
 
 export default function Home() {
   return (
@@ -35,6 +43,10 @@ export default function Home() {
       </section>
       <div className="shell">
         <AssessmentWizard />
+        <section className="service-estate" aria-labelledby="service-estate-heading">
+          <div className="section-head"><div><span className="eyebrow">Industrial compliance estate</span><h2 id="service-estate-heading">Four compulsory decisions, one buying standard</h2></div><p>Each route gives you a source-backed indication, transparent planning range, evidence-led shortlist and comparable quote brief.</p></div>
+          <div className="service-estate-grid">{serviceChoices.map((service) => <Link href={service.href} key={service.label}><span className="service-status">{service.status}</span><strong>{service.label}</strong><span>{service.question}</span><small>Open the decision tool →</small></Link>)}</div>
+        </section>
         <section className="explainer">
           <div>
             <span className="eyebrow">Built for a real buying decision</span>

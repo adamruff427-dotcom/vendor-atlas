@@ -7,14 +7,14 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://vendoratlas.artificiallyconfident.com"),
-  title: { default: "Vendor Atlas | DSEAR assessment finder", template: "%s | Vendor Atlas" },
+  title: { default: "Vendor Atlas | UK industrial compliance finder", template: "%s | Vendor Atlas" },
   description:
-    "Check whether a DSEAR assessment may be relevant, see an indicative cost range and compare evidence-backed UK specialists.",
+    "Check DSEAR, LEV, pressure-system and LOLER duties, see explainable planning ranges and compare evidence-backed UK specialists.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Vendor Atlas | DSEAR assessment finder",
+    title: "Vendor Atlas | UK industrial compliance finder",
     description:
-      "A two-minute DSEAR relevance check, explainable cost estimate and evidence-backed specialist comparison.",
+      "Decision support, explainable cost estimates and evidence-backed UK specialists for four industrial compliance services.",
     url: "/",
     siteName: "Vendor Atlas",
     locale: "en_GB",
@@ -22,16 +22,16 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/og.png",
-        width: 1536,
-        height: 910,
-        alt: "Vendor Atlas: Do I need a DSEAR assessment? Find out in about 2 minutes.",
+        width: 1728,
+        height: 912,
+        alt: "Vendor Atlas: DSEAR, LEV, pressure systems and LOLER compared carefully.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vendor Atlas | DSEAR assessment finder",
-    description: "A two-minute DSEAR relevance check and specialist comparison.",
+    title: "Vendor Atlas | UK industrial compliance finder",
+    description: "Decision support for DSEAR, LEV, pressure systems and LOLER.",
     images: ["/og.png"],
   },
   robots: { index: true, follow: true },
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description:
-      "Decision support for procuring UK compliance services, beginning with DSEAR risk assessment.",
+      "Decision support for procuring UK DSEAR, LEV, pressure-system and LOLER compliance services.",
     url: "https://vendoratlas.artificiallyconfident.com/",
   };
   return (
@@ -64,10 +64,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               </span>
             </Link>
             <nav aria-label="Main navigation">
-              <Link href="/dsear">DSEAR guide</Link>
-              <Link href="/dsear/cost">Costs</Link>
-              <Link href="/dsear/suppliers">Specialists</Link>
-              <Link href="/dsear/buying-toolkit">Buying toolkit</Link>
+              <Link href="/">DSEAR</Link>
+              <Link href="/lev">LEV</Link>
+              <Link href="/pressure-systems">Pressure systems</Link>
+              <Link href="/loler">LOLER</Link>
             </nav>
           </div>
           <div className="analytics-notice" role="note">
@@ -95,7 +95,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <strong>Evidence</strong>
               <p>
                 Regulatory claims link to primary sources. Supplier claims are provider-source
-                evidence, last checked 31 August 2026.
+                evidence with visible check dates and evidence gaps.
               </p>
               <Link href="/privacy">Privacy and analytics</Link>
             </div>

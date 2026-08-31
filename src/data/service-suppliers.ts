@@ -1,0 +1,222 @@
+import type { ServiceSupplier } from '../domain/types'
+
+const checkedOn = '2026-08-31'
+const unknownInsurance = 'No current project-specific insurance certificate was found on the checked page; request evidence before appointment.'
+const quoteRequired = 'No numeric public tariff was found on the checked service page; a scoped quotation is required.'
+
+export const serviceSuppliers: ServiceSupplier[] = [
+  {
+    id: 'rayalon-filter-services', name: 'Rayalon Filter Services UK', website: 'https://www.lev-testing.co.uk/',
+    serviceIds: ['lev'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'other'],
+    serviceCategories: ['lev-thorough-examination', 'lev-commissioning'],
+    capabilities: ['LEV thorough examination and test', 'extraction servicing', 'air-quality assessment', 'LEV design support'],
+    specialisms: ['wood-dust', 'welding-fume', 'metal-dust', 'spray-mist', 'fixed-ducted', 'portable'],
+    qualificationsAndMemberships: ['Provider states its LEV engineers hold BOHS P601 and P602 qualifications; verify the assigned engineer.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states it offers nationwide LEV testing and extraction-system servicing.', sourceUrl: 'https://www.lev-testing.co.uk/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider states its engineers hold BOHS P601 and P602 qualifications.', sourceUrl: 'https://www.lev-testing.co.uk/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'combined-air', name: 'Combined Air Limited', website: 'https://www.combined-air-limited.co.uk/',
+    serviceIds: ['lev'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'woodworking', 'automotive', 'chemicals', 'other'],
+    serviceCategories: ['lev-thorough-examination', 'lev-commissioning'],
+    capabilities: ['LEV thorough examination and test', 'servicing and maintenance', 'remedial work', 'installation support'],
+    specialisms: ['wood-dust', 'welding-fume', 'metal-dust', 'stone-dust', 'spray-mist', 'fixed-ducted', 'recirculating'],
+    qualificationsAndMemberships: ['Provider states BOHS P601, P602, P603, P604 and W201-qualified capability; verify the assigned engineer.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states it delivers LEV testing, servicing and maintenance across the UK.', sourceUrl: 'https://www.combined-air-limited.co.uk/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider names woodworking, welding, metalworking, masonry and spray-painting work.', sourceUrl: 'https://www.combined-air-limited.co.uk/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'apex-lev-services', name: 'Apex LEV Services', website: 'https://www.apexlevservices.co.uk/',
+    serviceIds: ['lev'], geographicalCoverage: ['south-west', 'wales'], sectors: ['manufacturing', 'woodworking', 'automotive', 'laboratory', 'other'],
+    serviceCategories: ['lev-thorough-examination', 'lev-commissioning'],
+    capabilities: ['LEV thorough examination and test', 'LEV maintenance', 'LEV installation'],
+    specialisms: ['wood-dust', 'welding-fume', 'metal-dust', 'spray-mist', 'laboratory-fume', 'fixed-ducted'],
+    qualificationsAndMemberships: ['Provider states all its engineers hold current BOHS P601 qualifications; verify the assigned engineer.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states coverage across Somerset, Dorset, Hampshire, Wiltshire, Devon and Cornwall, with wider England and Wales work.', sourceUrl: 'https://www.apexlevservices.co.uk/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider describes woodworking, fabrication, healthcare, education and defence experience.', sourceUrl: 'https://www.apexlevservices.co.uk/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'occupational-hygiene-services', name: 'Occupational Hygiene Services', website: 'https://occupational-hygiene.co.uk/lev-testing/',
+    serviceIds: ['lev'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'laboratory', 'other'],
+    serviceCategories: ['lev-thorough-examination'],
+    capabilities: ['LEV thorough examination and test', 'capture and duct measurements', 'control-effectiveness review', 'remedial-action reporting'],
+    specialisms: ['wood-dust', 'welding-fume', 'metal-dust', 'stone-dust', 'spray-mist', 'solvent-vapour', 'laboratory-fume'],
+    qualificationsAndMemberships: ['Provider states engineers meet HSG258 competence criteria and hold BOHS-recognised training such as P601; verify the assigned engineer.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes a UK-wide LEV TExT service with airflow, capture, duct, filter and fan checks.', sourceUrl: 'https://occupational-hygiene.co.uk/lev-testing/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider describes reports containing measured data, photographs, actions and the next-test date.', sourceUrl: 'https://occupational-hygiene.co.uk/lev-testing/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'impact-technical-services', name: 'Impact Technical Services', website: 'https://www.impacttechnicalservices.co.uk/services/lev-testing/',
+    serviceIds: ['lev'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'laboratory', 'other'],
+    serviceCategories: ['lev-thorough-examination'],
+    capabilities: ['LEV thorough examination and test', 'schematic reporting', 'airflow and pressure measurement'],
+    specialisms: ['wood-dust', 'welding-fume', 'metal-dust', 'stone-dust', 'spray-mist', 'solvent-vapour', 'fixed-ducted'],
+    qualificationsAndMemberships: ['Provider states BOHS-certified professionals; obtain the named engineer’s evidence.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes a starting point of £250 for a smaller single-point system; larger work is quoted.',
+    evidence: [
+      { claim: 'Provider states it has local engineers across the UK and supplies comprehensive LEV reports.', sourceUrl: 'https://www.impacttechnicalservices.co.uk/services/lev-testing/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider publishes smaller single-point testing from £250.', sourceUrl: 'https://www.impacttechnicalservices.co.uk/services/lev-testing/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'mandate-systems', name: 'Mandate Systems', website: 'https://mandatesystems.com/',
+    serviceIds: ['pressure-systems'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['pssr-written-scheme', 'pssr-examination'],
+    capabilities: ['Written scheme preparation', 'pressure-system examination', 'digital reports', 'multi-site programme support'],
+    specialisms: ['compressed-air', 'steam-boiler', 'gas-system', 'process-vessel', 'autoclave'],
+    qualificationsAndMemberships: ['Provider states it has an in-house chartered engineer; confirm responsibility and competence for the specific system.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states it offers written schemes and pressure-system examinations throughout the UK.', sourceUrl: 'https://mandatesystems.com/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider describes air, mixed-gas and steam examination capability.', sourceUrl: 'https://mandatesystems.com/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'bureau-veritas-uk', name: 'Bureau Veritas UK', website: 'https://www.bureauveritas.co.uk/buildings-infrastructure/engineering-inspections/pssr',
+    serviceIds: ['pressure-systems'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['pssr-written-scheme', 'pssr-examination'],
+    capabilities: ['Written scheme services', 'independent PSSR examination', 'multi-site engineering inspection'],
+    specialisms: ['compressed-air', 'steam-boiler', 'refrigeration', 'hot-water', 'process-vessel', 'gas-system'],
+    qualificationsAndMemberships: ['Provider describes competent independent engineer delivery; request the applicable inspection-body scope and assigned-person evidence.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states it delivers PSSR inspections, testing and written-scheme services across the UK.', sourceUrl: 'https://www.bureauveritas.co.uk/buildings-infrastructure/engineering-inspections/pssr', sourceType: 'provider', checkedOn },
+      { claim: 'Provider names compressed air, steam, refrigeration, HVAC and industrial-process vessels.', sourceUrl: 'https://www.bureauveritas.co.uk/buildings-infrastructure/engineering-inspections/pssr', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'allianz-engineering-inspection', name: 'Allianz Engineering Inspection Services', website: 'https://www.allianz.co.uk/engineering-services/inspection-services.html',
+    serviceIds: ['pressure-systems', 'loler'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['pssr-written-scheme', 'pssr-examination', 'loler-thorough-examination', 'examination-scheme'],
+    capabilities: ['Pressure-system inspection', 'written-scheme support', 'lifting-equipment thorough examination', 'digital reporting'],
+    specialisms: ['compressed-air', 'steam-boiler', 'refrigeration', 'autoclave', 'process-vessel', 'passenger-lift', 'goods-lift', 'forklift', 'mewp', 'crane-hoist', 'vehicle-lift', 'accessories'],
+    qualificationsAndMemberships: ['Provider states UKAS Type A inspection-body accreditation and SAFed membership; verify the current UKAS scope for the required equipment.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states nationwide pressure-system engineer coverage and lists common PSSR plant.', sourceUrl: 'https://www.allianz.co.uk/engineering-services/inspection-services/pressure-system-inspection-services.html', sourceType: 'provider', checkedOn },
+      { claim: 'Provider states UK-wide lifting-equipment examinations across lifts, plant and accessories.', sourceUrl: 'https://www.allianz.co.uk/engineering-services/inspection-services/lifts-and-lifting-equipment-inspection-services.html', sourceType: 'provider', checkedOn },
+      { claim: 'Provider states UKAS Type A inspection-body status on its lifting-service page.', sourceUrl: 'https://www.allianz.co.uk/engineering-services/inspection-services/lifts-and-lifting-equipment-inspection-services.html', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'zurich-engineering', name: 'Zurich Engineering', website: 'https://www.zurich.co.uk/engineering/pressure-systems/written-schemes',
+    serviceIds: ['pressure-systems'], geographicalCoverage: [], sectors: ['manufacturing', 'food-drink', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['pssr-written-scheme', 'pssr-examination'],
+    capabilities: ['Written scheme preparation', 'independent examination', 'online inspection reporting'],
+    specialisms: ['compressed-air', 'steam-boiler', 'refrigeration', 'autoclave', 'hot-water', 'process-vessel', 'gas-system'],
+    qualificationsAndMemberships: ['Provider links accreditation information but geographical coverage was not explicit on the checked page; verify both scope and location.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states its engineer surveyors prepare written schemes and carry out independent examinations.', sourceUrl: 'https://www.zurich.co.uk/engineering/pressure-systems/written-schemes', sourceType: 'provider', checkedOn },
+      { claim: 'Provider describes online reporting through its Crimson system.', sourceUrl: 'https://www.zurich.co.uk/engineering/pressure-systems/written-schemes', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'velocity-safety', name: 'Velocity Safety', website: 'https://velocitysafety.co.uk/services/pressure-systems-safety-regulations-pssr-2000-examinations/',
+    serviceIds: ['pressure-systems'], geographicalCoverage: ['scotland', 'north', 'midlands', 'south-east', 'south-west', 'uk-wide'], sectors: ['manufacturing', 'food-drink', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['pssr-written-scheme', 'pssr-examination'],
+    capabilities: ['PSSR examination', 'written-scheme support', 'multi-site programmes', 'fast-turnaround inspection'],
+    specialisms: ['compressed-air', 'steam-boiler', 'autoclave', 'process-vessel', 'coffee-boiler', 'gas-system'],
+    qualificationsAndMemberships: ['Provider states IOSH-certified PSSR examination training, Pressure Safe membership and chartered/incorporated engineer certification depending on system; verify the assigned team.'],
+    insuranceEvidence: 'Provider states it is fully insured; obtain current limits and certificates for the appointment.', deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states nationwide PSSR examination and written-scheme support.', sourceUrl: 'https://velocitysafety.co.uk/services/pressure-systems-safety-regulations-pssr-2000-examinations/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider lists regional support across Great Britain and both individual and multi-site work.', sourceUrl: 'https://velocitysafety.co.uk/services/pressure-systems-safety-regulations-pssr-2000-examinations/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'seis', name: 'SEIS', website: 'https://seis.engineering/',
+    serviceIds: ['lev', 'pressure-systems', 'loler'], geographicalCoverage: ['north', 'midlands', 'great-britain'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['lev-thorough-examination', 'pssr-written-scheme', 'pssr-examination', 'loler-thorough-examination', 'examination-scheme'],
+    capabilities: ['Independent statutory examinations', 'LEV TExT', 'written schemes', 'PSSR examination', 'LOLER examination'],
+    specialisms: ['wood-dust', 'welding-fume', 'fixed-ducted', 'compressed-air', 'steam-boiler', 'process-vessel', 'passenger-lift', 'goods-lift', 'forklift', 'mewp', 'crane-hoist', 'accessories'],
+    qualificationsAndMemberships: ['Provider describes independent and impartial inspection; request equipment-specific competence evidence for the assigned engineer.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider lists LEV, PSSR and LOLER statutory examinations.', sourceUrl: 'https://seis.engineering/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider states established coverage across 24 counties and nationwide capability for multi-site clients.', sourceUrl: 'https://seis.engineering/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider states it examines equipment but does not sell or maintain it.', sourceUrl: 'https://seis.engineering/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'certex-uk', name: 'Certex UK', website: 'https://www.certex.co.uk/services/thorough-examination/loler',
+    serviceIds: ['pressure-systems', 'loler'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'automotive', 'energy-waste', 'other'],
+    serviceCategories: ['pssr-written-scheme', 'pssr-examination', 'loler-thorough-examination', 'examination-scheme'],
+    capabilities: ['LOLER thorough examination', 'written-scheme development', 'PSSR examination', 'specialist testing support'],
+    specialisms: ['process-vessel', 'compressed-air', 'crane-hoist', 'mewp', 'accessories', 'goods-lift', 'unknown-lifting'],
+    qualificationsAndMemberships: ['Provider states competent-engineer delivery; request the relevant competence and accreditation scope.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states it examines lifting equipment and accessories and issues reports with defects and next dates.', sourceUrl: 'https://www.certex.co.uk/services/thorough-examination/loler', sourceType: 'provider', checkedOn },
+      { claim: 'Provider describes written-scheme work for complex LOLER equipment and PSSR pressure systems.', sourceUrl: 'https://www.certex.co.uk/services/thorough-examination', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'loler-examinations', name: 'LOLER Examinations', website: 'https://loler-examinations.co.uk/',
+    serviceIds: ['loler'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'automotive', 'other'],
+    serviceCategories: ['loler-thorough-examination'],
+    capabilities: ['Lift and lifting-equipment examination', 'digital certificates', 'scheduled examination programmes'],
+    specialisms: ['passenger-lift', 'goods-lift', 'forklift', 'mewp', 'crane-hoist', 'patient-hoist'],
+    qualificationsAndMemberships: ['Provider describes qualified, independent and impartial examiners; request named-person evidence.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states nationwide examination coverage for lifts and lifting equipment.', sourceUrl: 'https://loler-examinations.co.uk/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider lists passenger, platform and goods lifts, forklifts and cranes.', sourceUrl: 'https://loler-examinations.co.uk/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'qualitas-asset-compliance', name: 'Qualitas Asset Compliance', website: 'https://www.qualitascompliance.co.uk/our-services/',
+    serviceIds: ['loler'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'automotive', 'other'],
+    serviceCategories: ['loler-thorough-examination'],
+    capabilities: ['Mechanical-handling-equipment examination', 'LOLER and PUWER combined examination', 'digital reports'],
+    specialisms: ['forklift', 'mewp', 'goods-lift', 'vehicle-lift', 'unknown-lifting'],
+    qualificationsAndMemberships: ['Provider states inspectors are qualified engineers and IOSH trained; request equipment-specific records.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states UK-wide coverage including islands and Northern Ireland through its network.', sourceUrl: 'https://www.qualitascompliance.co.uk/our-services/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider describes independent LOLER and PUWER examination of mechanical-handling equipment.', sourceUrl: 'https://www.qualitascompliance.co.uk/our-services/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'robinsons-fs', name: 'Robinsons Facilities Services', website: 'https://www.robinsonsfs.com/services/lifting-and-hoisting-equipment/',
+    serviceIds: ['loler'], geographicalCoverage: ['north'], sectors: ['manufacturing', 'food-drink', 'automotive', 'other'],
+    serviceCategories: ['loler-thorough-examination'],
+    capabilities: ['Lifting and hoisting equipment examination', 'written reports', 'servicing and remedial work'],
+    specialisms: ['goods-lift', 'crane-hoist', 'vehicle-lift', 'accessories'],
+    qualificationsAndMemberships: ['No named individual competence evidence was extracted from the checked page; request it for the proposed examiner.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes inspection from £150 plus VAT per item, with a £180 minimum visit and stated multi-item discounts.',
+    evidence: [
+      { claim: 'Provider describes thorough examination with a written report for each item.', sourceUrl: 'https://www.robinsonsfs.com/services/lifting-and-hoisting-equipment/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider publishes from £150 plus VAT per item and a £180 minimum visit.', sourceUrl: 'https://www.robinsonsfs.com/services/lifting-and-hoisting-equipment/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'partially-verified', complexity: ['standard'],
+  },
+  {
+    id: 'safety-check-engineering', name: 'Safety Check Engineering', website: 'https://www.safetycheckengineering.co.uk/',
+    serviceIds: ['pressure-systems', 'loler'], geographicalCoverage: [], sectors: ['manufacturing', 'automotive', 'energy-waste', 'other'],
+    serviceCategories: ['pssr-written-scheme', 'pssr-examination', 'loler-thorough-examination'],
+    capabilities: ['LOLER examination', 'minor pressure-system examination', 'written schemes', 'magnetic rope testing'],
+    specialisms: ['compressed-air', 'crane-hoist', 'goods-lift', 'mewp', 'accessories'],
+    qualificationsAndMemberships: ['Provider states statutory-examination experience; request the equipment-specific competence and current certification of the proposed examiner.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider lists LOLER, PUWER and minor-pressure-system examination services.', sourceUrl: 'https://www.safetycheckengineering.co.uk/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider describes tower crane, construction hoist, lifting-accessory and minor-pressure-plant work.', sourceUrl: 'https://www.safetycheckengineering.co.uk/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
+  },
+]
+
+export function suppliersForService(serviceId: ServiceSupplier['serviceIds'][number]) {
+  return serviceSuppliers.filter((supplier) => supplier.serviceIds.includes(serviceId))
+}

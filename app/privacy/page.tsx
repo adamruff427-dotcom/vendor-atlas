@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <article className="content-page">
-      <header className="content-hero"><div className="shell narrow"><span className="eyebrow">Pilot notice</span><h1>Privacy and analytics</h1><p className="lead">Vendor Atlas is a product pilot operated by Cloudable Ltd. This notice explains the limited data used by the DSEAR finder.</p><AnalyticsSettingsButton /></div></header>
+      <header className="content-hero"><div className="shell narrow"><span className="eyebrow">Pilot notice</span><h1>Privacy and analytics</h1><p className="lead">Vendor Atlas is a product pilot operated by Cloudable Ltd. This notice explains the limited data used by its industrial-compliance finders.</p><AnalyticsSettingsButton /></div></header>
       <div className="shell article-grid">
         <div>
           <section><h2>Assessment answers</h2><p>Your questionnaire answers are used in your browser to calculate the qualification indication, estimate and supplier matches. They are included in a project brief only if you choose to submit one.</p></section>

@@ -20,6 +20,10 @@ const guideIcons: Record<string, LucideIcon> = {
   "Decision guide": Target,
   "Cost guide": BadgePoundSterling,
   "Supplier selection": UserSearch,
+  "Supplier guide": UserSearch,
+  "LEV overview": Workflow,
+  "PSSR overview": Workflow,
+  "LOLER overview": Workflow,
   "Sector guide": Factory,
   "Process guide": Workflow,
   "Hazard guide": TriangleAlert,
@@ -35,10 +39,10 @@ export function GuideIcon({ kind, size = "small" }: { kind: string; size?: "smal
   );
 }
 
-export function DecisionMap() {
+export function DecisionMap({ firstTitle = "Substances and processes", firstDetail = "What is present, produced or released?", signalDetail = "Which facts make DSEAR worth examining?" }: { firstTitle?: string; firstDetail?: string; signalDetail?: string } = {}) {
   const steps: Array<{ title: string; detail: string; icon: LucideIcon }> = [
-    { title: "Substances and processes", detail: "What is present, produced or released?", icon: Beaker },
-    { title: "Relevance signal", detail: "Which facts make DSEAR worth examining?", icon: Search },
+    { title: firstTitle, detail: firstDetail, icon: Beaker },
+    { title: "Relevance signal", detail: signalDetail, icon: Search },
     { title: "Scope and planning cost", detail: "What might competent work involve?", icon: FileText },
     { title: "Suitable specialists", detail: "Who has evidence that fits the project?", icon: ShieldCheck },
   ];
