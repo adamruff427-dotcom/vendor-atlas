@@ -39,7 +39,7 @@ nav a.active, nav a:hover { color: var(--green); text-decoration: underline; }
 .trust-card li { display: flex; gap: 12px; align-items: center; }
 .trust-card li span { border: 1px solid #789288; border-radius: 50%; width: 26px; height: 26px; display: grid; place-items: center; font-size: 12px; }
 .trust-card p { font-size: 12px; color: #bccac5; border-top: 1px solid #4a685e; padding-top: 18px; margin-bottom: 0; }
-.wizard-panel { position: relative; margin: -62px auto 88px; background: white; box-shadow: 0 14px 40px rgba(26, 51, 42, .11); border-radius: 9px; padding: clamp(25px, 4vw, 48px); }
+.wizard-panel { position: relative; margin: -62px auto 88px; background: white; box-shadow: 0 14px 40px rgba(26, 51, 42, .11); border-radius: 9px; padding: clamp(25px, 4vw, 48px); scroll-margin-top: 120px; }
 .wizard-head, .section-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 25px; }
 .wizard-head h2, .explainer h2, .guide-links h2 { margin: 4px 0; font-size: clamp(27px, 3vw, 39px); letter-spacing: -.04em; line-height: 1.1; }
 .step-count { color: var(--muted); font-size: 13px; white-space: nowrap; }
@@ -99,7 +99,7 @@ td:last-child { text-align: right; font-weight: 700; }
 .quote-cta { margin-top: 38px; background: var(--green); color: white; padding: 25px; display: flex; justify-content: space-between; align-items: center; gap: 25px; border-radius: 6px; }
 .quote-cta h3 { margin: 0; }.quote-cta p { margin: 5px 0 0; color: #cedbd6; }
 .disclaimer { color: #5c6661; font-size: 12px; padding: 21px 0 0; }
-.quote-form { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 33px; }
+.quote-form { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 33px; scroll-margin-top: 120px; }
 .consent { display: flex; flex-direction: row; align-items: flex-start; font-weight: 500; }
 .consent input { width: 18px; margin-top: 3px; accent-color: var(--green); }
 .success-box { background: #edf6e7; border: 1px solid #b7cea6; padding: 20px; margin-top: 30px; border-radius: 5px; }
