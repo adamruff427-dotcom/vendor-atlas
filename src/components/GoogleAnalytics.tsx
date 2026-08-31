@@ -110,7 +110,7 @@ export function GoogleAnalytics() {
       <div>
         <span className="eyebrow">Analytics choice</span>
         <h2 id="analytics-consent-heading">Help us measure whether this is useful?</h2>
-        <p>Vendor Atlas always counts a small set of anonymous funnel steps on its own server. With your permission, Google Analytics will also measure visits, traffic sources and the same non-contact funnel events. We do not send questionnaire answers, names, email addresses or phone numbers to Google, and advertising storage stays off.</p>
+        <p>Vendor Atlas always counts a small set of anonymous funnel steps on its own server. With your permission, Google Analytics will also measure visits, traffic sources, basic interactions such as scrolls and outbound links, and the same non-contact funnel events. We do not send questionnaire answers, names, email addresses or phone numbers to Google, and advertising storage stays off.</p>
         <a href="/privacy">Read the privacy and analytics notice</a>
       </div>
       <div className="analytics-consent-actions">
