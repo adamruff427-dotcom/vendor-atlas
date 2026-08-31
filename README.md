@@ -40,7 +40,7 @@ Public routes use one product hostname and path-based verticals: `/dsear`, `/lev
 - React 19 and TypeScript
 - Vinext/Vite application and server routes
 - Cloudflare Worker-compatible Sites deployment
-- Cloudflare D1 for submitted quote enquiries
+- Cloudflare D1 for submitted quote enquiries, first-party measurement and an append-only lead lifecycle history
 - Drizzle schema and generated SQLite migration
 - Vitest and Testing Library
 - Minimal hand-written CSS; no authentication, AI or supplier-email dependency
@@ -65,7 +65,9 @@ Supplier records include:
 
 Unknown evidence remains explicitly unknown. Provider-source evidence is not presented as Vendor Atlas approval.
 
-Quote enquiries store project answers, the resulting indication, estimate, shortlist identifiers, company/contact details, consent, timestamp and workflow status. No automated supplier email exists in this version. A person reviews the brief, aims to contact the buyer within two working days and seeks permission before sharing contact details with a supplier.
+Quote enquiries store project answers, the resulting indication, estimate, shortlist identifiers, company/contact details, consent, timestamp and workflow status. A separate append-only `lead_events` history records receipt, validation, buyer follow-up, sharing permission, supplier responses, introductions, quotes, awards, fees, refunds and closure without copying contact details or questionnaire answers into the event payload. New and duplicate submissions are recorded server-side. Later operational events must come from a trusted operator or integration; there is deliberately no public endpoint that can falsify commercial progress.
+
+No automated supplier email exists in this version. A person reviews the brief, aims to contact the buyer within two working days and seeks permission before sharing contact details with a supplier.
 
 ## Qualification models
 
@@ -180,6 +182,7 @@ Primary sources for the added services include:
 
 The application exposes a small adapter and these named events:
 
+- `page_view` (first-party only; Google receives its own standard consented page view)
 - `landing_page_view`
 - `assessment_started`
 - `assessment_completed`
@@ -187,10 +190,13 @@ The application exposes a small adapter and these named events:
 - `supplier_viewed`
 - `quote_request_started`
 - `quote_request_completed`
+- `quote_request_failed`
 
-The adapter always sends those events to a first-party `/api/events` endpoint backed by D1. Each record contains only the event name, server timestamp, page path and a small allowlist of non-contact metadata (`service`, result `status` or supplier identifier). It does not store questionnaire answers or contact details.
+The adapter always sends those events to a first-party `/api/events` endpoint backed by D1. Each record contains only the event name, server timestamp, page path and a small allowlist of non-contact metadata (`service`, result `status`, page type or supplier identifier). It does not store questionnaire answers or contact details. First-party page views cover all content routes even where a visitor declines Google Analytics.
 
-The site also has a dedicated Google Analytics 4 web stream (`G-R0FM31KWS7`) for visits, acquisition and the same named product events. The Google tag is not inserted until a visitor chooses “Allow Google Analytics”. Page views are emitted explicitly on initial load and client-side navigation. Advertising storage, Google Signals and ad-personalisation signals remain disabled. A persistent notice links to the privacy explanation and reopens the choice; withdrawing permission removes the tag and known first-party GA cookies. No questionnaire answers or contact fields are included in Google event payloads.
+The site also has a dedicated Google Analytics 4 web stream (`G-R0FM31KWS7`) for visits, acquisition and the same named funnel events. The Google tag is not inserted until a visitor chooses “Allow Google Analytics”. Exactly one standard GA page view is emitted on initial load and each client-side navigation; the service landing event comes from the landing component rather than being duplicated by the GA loader. Advertising storage, Google Signals and ad-personalisation signals remain disabled. A persistent notice links to the privacy explanation and reopens the choice; withdrawing permission removes the tag and known first-party GA cookies. No questionnaire answers or contact fields are included in Google event payloads.
+
+The commercial lifecycle is separate from anonymous product analytics. `lead_events` supports receipt, validation, buyer acknowledgement/contact, sharing permission, supplier offer/accept/decline, introduction, quote, award, lead-fee assessment/invoice/payment/refund and closure. Amounts are stored in pence with currency, and metadata is restricted to non-contact operational fields. This makes conversion and revenue reporting possible without sending commercial or buyer data to GA4.
 
 First-party event counts are directional rather than unique-user analytics and may contain repeated visits or automated traffic. GA4 reports only consented traffic, so it must not be treated as a complete traffic count. See [`docs/PILOT_OPERATIONS.md`](docs/PILOT_OPERATIONS.md) for the manual lead and funnel-review routine.
 

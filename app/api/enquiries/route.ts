@@ -1,6 +1,8 @@
 import { eq } from 'drizzle-orm'
 import { getDb } from '../../../db'
-import { enquiries } from '../../../db/schema'
+import { enquiries, leadEvents } from '../../../db/schema'
+import { leadEventRow } from '../../../src/domain/lead-lifecycle'
+import type { ServiceId } from '../../../src/domain/types'
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const serviceIds = new Set(['dsear', 'lev', 'pressure-systems', 'loler'])
@@ -17,7 +19,14 @@ export async function POST(request: Request) {
   if (JSON.stringify(input).length > 50_000) return Response.json({ error: 'Enquiry is too large' }, { status: 413, headers: noStore })
   const db = getDb()
   const existing = await db.select({ id: enquiries.id }).from(enquiries).where(eq(enquiries.id, id)).limit(1)
-  if (existing.length) return Response.json({ ok: true, id }, { headers: noStore })
-  await db.insert(enquiries).values({ id, createdAt: new Date().toISOString(), serviceId, companyName, contactName, businessEmail, phone: phone || null, consent: true, payload: JSON.stringify(input), status: 'received' })
+  if (existing.length) {
+    await db.insert(leadEvents).values(leadEventRow({ enquiryId: id, event: 'enquiry_duplicate', serviceId: serviceId as ServiceId, actorType: 'system' }))
+    return Response.json({ ok: true, id }, { headers: noStore })
+  }
+  const createdAt = new Date()
+  await db.batch([
+    db.insert(enquiries).values({ id, createdAt: createdAt.toISOString(), serviceId, companyName, contactName, businessEmail, phone: phone || null, consent: true, payload: JSON.stringify(input), status: 'received' }),
+    db.insert(leadEvents).values(leadEventRow({ enquiryId: id, event: 'enquiry_received', serviceId: serviceId as ServiceId, actorType: 'system' }, createdAt)),
+  ])
   return Response.json({ ok: true, id }, { status: 201, headers: noStore })
 }

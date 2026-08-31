@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { GoogleAnalytics } from '../components/GoogleAnalytics'
@@ -44,5 +44,14 @@ describe('Google Analytics consent boundary', () => {
     await user.click(await screen.findByRole('button', { name: 'Continue without Google Analytics' }))
     expect(document.querySelector(selector)).toBeNull()
     expect(localStorage.getItem('vendor-atlas:analytics-consent')).toBe('denied')
+  })
+
+  it('sends one GA page view without manufacturing a second landing event', async () => {
+    localStorage.setItem('vendor-atlas:analytics-consent', 'granted')
+    render(<GoogleAnalytics />)
+    await waitFor(() => expect(window.dataLayer).toBeDefined())
+    const calls = (window.dataLayer ?? []) as unknown[][]
+    expect(calls.some((args) => args[0] === 'event' && args[1] === 'page_view')).toBe(true)
+    expect(calls.some((args) => args[0] === 'event' && args[1] === 'landing_page_view')).toBe(false)
   })
 })

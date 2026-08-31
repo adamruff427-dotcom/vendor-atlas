@@ -72,7 +72,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
           <div className="analytics-notice" role="note">
             <div className="shell">
-              <strong>Measurement notice:</strong> First-party funnel counts are always on. Google
+              <strong>Measurement notice:</strong> First-party page and funnel counts are always on. Google
               Analytics loads only if you allow it; advertising storage stays off. <AnalyticsSettingsButton />
             </div>
           </div>

@@ -1,15 +1,13 @@
-import type { AnalyticsPayload, FunnelEvent } from './domain/funnel'
+import type { AnalyticsPayload, FunnelEvent, ProductAnalyticsEvent } from './domain/funnel'
 
-export type { AnalyticsPayload, FunnelEvent } from './domain/funnel'
+export type { AnalyticsPayload, FunnelEvent, ProductAnalyticsEvent } from './domain/funnel'
 type Adapter = (event: FunnelEvent, payload: AnalyticsPayload) => void
 
 const adapters: Adapter[] = []
 export function registerAnalyticsAdapter(adapter: Adapter) { adapters.push(adapter) }
-export function track(event: FunnelEvent, payload: AnalyticsPayload = {}) {
-  adapters.forEach((adapter) => adapter(event, payload))
+
+function sendFirstParty(event: ProductAnalyticsEvent, payload: AnalyticsPayload) {
   if (typeof window === 'undefined') return
-  window.dispatchEvent(new CustomEvent('vendor-atlas:analytics', { detail: { event, payload } }))
-  window.gtag?.('event', event, payload)
   if (['localhost', '127.0.0.1'].includes(location.hostname)) {
     console.info('[analytics]', event, payload)
     return
@@ -20,4 +18,16 @@ export function track(event: FunnelEvent, payload: AnalyticsPayload = {}) {
     body: JSON.stringify({ event, path: location.pathname, payload }),
     keepalive: true,
   }).catch(() => undefined)
+}
+
+export function trackFirstParty(event: ProductAnalyticsEvent, payload: AnalyticsPayload = {}) {
+  sendFirstParty(event, payload)
+}
+
+export function track(event: FunnelEvent, payload: AnalyticsPayload = {}) {
+  adapters.forEach((adapter) => adapter(event, payload))
+  if (typeof window === 'undefined') return
+  window.dispatchEvent(new CustomEvent('vendor-atlas:analytics', { detail: { event, payload } }))
+  window.gtag?.('event', event, payload)
+  sendFirstParty(event, payload)
 }

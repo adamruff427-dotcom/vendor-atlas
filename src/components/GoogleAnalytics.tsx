@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { trackFirstParty } from '../analytics'
+import { analyticsServiceForPath } from '../domain/funnel'
 
 const MEASUREMENT_ID = 'G-R0FM31KWS7'
 const CONSENT_KEY = 'vendor-atlas:analytics-consent'
@@ -77,6 +79,14 @@ export function GoogleAnalytics() {
   }, [])
 
   useEffect(() => {
+    if (!pathname) return
+    trackFirstParty('page_view', {
+      service: analyticsServiceForPath(pathname),
+      page_type: pathname === '/' || ['/lev', '/pressure-systems', '/loler'].includes(pathname) ? 'landing' : 'content',
+    })
+  }, [pathname])
+
+  useEffect(() => {
     if (consent !== 'granted' || !pathname) return
     loadGoogleAnalytics()
     window.gtag?.('event', 'page_view', {
@@ -84,7 +94,6 @@ export function GoogleAnalytics() {
       page_path: pathname,
       page_title: document.title,
     })
-    if (pathname === '/') window.gtag?.('event', 'landing_page_view', { service: 'dsear' })
   }, [consent, pathname])
 
   const choose = (next: Exclude<Consent, null>) => {
@@ -110,7 +119,7 @@ export function GoogleAnalytics() {
       <div>
         <span className="eyebrow">Analytics choice</span>
         <h2 id="analytics-consent-heading">Help us measure whether this is useful?</h2>
-        <p>Vendor Atlas always counts a small set of anonymous funnel steps on its own server. With your permission, Google Analytics will also measure visits, traffic sources, basic interactions such as scrolls and outbound links, and the same non-contact funnel events. We do not send questionnaire answers, names, email addresses or phone numbers to Google, and advertising storage stays off.</p>
+        <p>Vendor Atlas always counts page visits and a small set of anonymous funnel steps on its own server. With your permission, Google Analytics will also measure visits, traffic sources, basic interactions such as scrolls and outbound links, and the same non-contact funnel events. We do not send questionnaire answers, names, email addresses or phone numbers to Google, and advertising storage stays off.</p>
         <a href="/privacy">Read the privacy and analytics notice</a>
       </div>
       <div className="analytics-consent-actions">

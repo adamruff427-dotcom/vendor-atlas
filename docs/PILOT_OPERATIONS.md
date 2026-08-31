@@ -18,6 +18,7 @@ The Sites database viewer provides the same read-only table access when a manual
 
 Ask Codex to read the production `analytics_events` table and summarise counts for:
 
+- `page_view`
 - `landing_page_view`
 - `assessment_started`
 - `assessment_completed`
@@ -25,6 +26,7 @@ Ask Codex to read the production `analytics_events` table and summarise counts f
 - `supplier_viewed`
 - `quote_request_started`
 - `quote_request_completed`
+- `quote_request_failed`
 
 The event table intentionally contains no questionnaire answers, company names, contact names, email addresses or telephone numbers. Its counts are directional: they are not unique-user analytics and may include repeated visits or automated traffic.
 
@@ -39,6 +41,21 @@ For the weekly pilot note, record:
 5. obvious QA, bot or operator traffic that should be excluded from interpretation.
 
 Never send questionnaire answers, company names, contact names, email addresses or telephone numbers to GA4.
+
+## Lead and revenue review
+
+The production `lead_events` table is the operational audit trail. New enquiries and idempotent duplicate submissions are recorded by the server. Its event vocabulary also covers validation, buyer acknowledgement and contact, permission to share, supplier invitations and responses, introductions, quotes, awards, lead fees, refunds and closure.
+
+Use it to report the real commercial funnel separately from anonymous traffic:
+
+1. enquiries received, validated, rejected or identified as duplicates;
+2. acknowledgement and first-contact time;
+3. supplier invitations, acceptances and declines;
+4. buyer-authorised introductions released;
+5. quotations received and work awarded; and
+6. fees assessed, invoiced, paid or refunded.
+
+Do not expose a public endpoint for writing these states. Until a trusted operator interface or authenticated integration exists, record later lifecycle transitions only through a controlled operational process. Do not infer that a buyer was contacted, a supplier accepted or a fee was earned merely because the corresponding event type exists.
 
 ## Pricing calibration
 

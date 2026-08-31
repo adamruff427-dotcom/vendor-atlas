@@ -1,6 +1,6 @@
 import { getDb } from '../../../db'
 import { analyticsEvents } from '../../../db/schema'
-import { isFunnelEvent, sanitiseAnalyticsPayload } from '../../../src/domain/funnel'
+import { isProductAnalyticsEvent, sanitiseAnalyticsPayload } from '../../../src/domain/funnel'
 
 const noStore = { 'cache-control': 'no-store' }
 
@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     return Response.json({ error: 'Invalid JSON' }, { status: 400, headers: noStore })
   }
 
-  if (!isFunnelEvent(input.event)) {
+  if (!isProductAnalyticsEvent(input.event)) {
     return Response.json({ error: 'Unknown event' }, { status: 422, headers: noStore })
   }
 

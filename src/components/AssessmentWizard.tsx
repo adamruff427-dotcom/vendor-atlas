@@ -119,10 +119,10 @@ export function AssessmentWizard() {
   };
   const next = () => {
     if (!canContinue) return;
-    if (step === 0) track("assessment_started");
+    if (step === 0) track("assessment_started", { service: "dsear" });
     if (step === 2) {
-      track("assessment_completed", { status: result.status });
-      track("results_viewed", { status: result.status });
+      track("assessment_completed", { service: "dsear", status: result.status });
+      track("results_viewed", { service: "dsear", status: result.status });
     }
     setStep((value) => Math.min(3, value + 1));
     document.getElementById("assessment")?.scrollIntoView({ behavior: "smooth" });
@@ -371,7 +371,7 @@ export function AssessmentWizard() {
           quoteOpen={showQuote}
           onQuote={() => {
             setShowQuote(true);
-            track("quote_request_started");
+            track("quote_request_started", { service: "dsear" });
             window.setTimeout(() => document.getElementById("quote-request")?.scrollIntoView({ behavior: "smooth" }), 0);
           }}
         />
@@ -591,7 +591,7 @@ function SupplierCard({ match }: { match: SupplierMatch }) {
               href={evidence.sourceUrl}
               target="_blank"
               rel="noreferrer"
-              onClick={() => track("supplier_viewed", { supplier: supplier.id })}
+              onClick={() => track("supplier_viewed", { supplier: supplier.id, service: "dsear" })}
             >
               {evidence.claim}
             </a>
@@ -609,7 +609,7 @@ function SupplierCard({ match }: { match: SupplierMatch }) {
         href={supplier.website}
         target="_blank"
         rel="noreferrer"
-        onClick={() => track("supplier_viewed", { supplier: supplier.id })}
+        onClick={() => track("supplier_viewed", { supplier: supplier.id, service: "dsear" })}
       >
         Visit provider website <span aria-hidden>↗</span>
       </a>
@@ -661,6 +661,7 @@ function QuoteForm({
       track("quote_request_completed", { service: "dsear" });
       setSubmission("submitted");
     } catch {
+      track("quote_request_failed", { service: "dsear", status: "save_failed" });
       setSubmission("error");
     }
   };
