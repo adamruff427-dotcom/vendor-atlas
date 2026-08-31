@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { Compass } from "lucide-react";
+import { AnalyticsSettingsButton, GoogleAnalytics } from "../src/components/GoogleAnalytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en-GB">
       <body>
+        <GoogleAnalytics />
         <a className="skip-link" href="#main">
           Skip to main content
         </a>
@@ -64,13 +66,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <nav aria-label="Main navigation">
               <Link href="/dsear">DSEAR guide</Link>
               <Link href="/dsear/cost">Costs</Link>
-              <Link href="/dsear/who-can-carry-out-a-dsear-assessment">Choosing a specialist</Link>
+              <Link href="/dsear/suppliers">Specialists</Link>
+              <Link href="/dsear/buying-toolkit">Buying toolkit</Link>
             </nav>
           </div>
           <div className="analytics-notice" role="note">
             <div className="shell">
-              <strong>Pilot measurement:</strong> Limited first-party journey events only. No
-              advertising cookies or third-party analytics trackers.
+              <strong>Measurement notice:</strong> First-party funnel counts are always on. Google
+              Analytics loads only if you allow it; advertising storage stays off. <AnalyticsSettingsButton />
             </div>
           </div>
         </header>
@@ -92,7 +95,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <strong>Evidence</strong>
               <p>
                 Regulatory claims link to primary sources. Supplier claims are provider-source
-                evidence, last checked 30 August 2026.
+                evidence, last checked 31 August 2026.
               </p>
               <Link href="/privacy">Privacy and analytics</Link>
             </div>

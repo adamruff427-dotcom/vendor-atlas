@@ -86,6 +86,23 @@ export default async function DsearPage({ params }: Props) {
               )}
             </section>
           ))}
+          {page.path === "/dsear/cost" && (
+            <section className="market-evidence-panel">
+              <span className="eyebrow">Current calibration evidence</span>
+              <h2>Published ranges are a sense-check, not a market average</h2>
+              <p>Vendor Atlas recalibrated its first model on 31 August 2026 against three provider-published ranges. They are commercial sources and their inclusions differ, so the calculator uses them as an order-of-magnitude boundary—not as proof of the price a competitive tender will achieve.</p>
+              <ul>
+                <li><a href="https://otecsaconsulting.com/cost-of-dsear/" target="_blank" rel="noreferrer">OTECSA Consulting <span aria-hidden>↗</span></a>: publishes £1,500–£3,500 for a small/simple site, £3,000–£6,000 for mid-sized work and £5,000–£10,000 for complex work.</li>
+                <li><a href="https://dsearriskassessments.co.uk/pricing/" target="_blank" rel="noreferrer">DSEAR RA Ltd <span aria-hidden>↗</span></a>: publishes around £2,000–£3,000 for small single-site work, £3,500–£4,500 for most assessments and £5,000–£10,000 for larger/complex sites.</li>
+                <li><a href="https://www.yorkgreen.co.uk/services/dsear" target="_blank" rel="noreferrer">York Green Safety Partners <span aria-hidden>↗</span></a>: publishes £3,000–£15,000+ for a scope it says includes HAC drawings and an ATEX equipment audit.</li>
+              </ul>
+              <p><strong>What is still missing:</strong> awarded quote data normalised to the same brief. Vendor Atlas will not describe the model as a market benchmark until that evidence exists.</p>
+              <Link className="button secondary" href="/dsear/buying-toolkit">Use the comparable-quote standard</Link>
+            </section>
+          )}
+          {page.path === "/dsear/who-can-carry-out-a-dsear-assessment" && (
+            <section className="next-tools-panel"><h2>Put the selection rules into practice</h2><p>Use the directory to see exactly which public claims were found, then send each shortlisted provider the same brief and competence questions.</p><div className="hero-actions"><Link className="button primary" href="/dsear/suppliers">Browse the evidence directory</Link><Link className="button secondary" href="/dsear/buying-toolkit">Open the buying toolkit</Link></div></section>
+          )}
         </div>
         <aside className="sources">
           <span className="eyebrow">Go deeper</span>

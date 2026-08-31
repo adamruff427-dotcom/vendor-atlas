@@ -40,23 +40,39 @@ export function qualifyDsear(answers: AssessmentAnswers): QualificationResult {
   }
 }
 
-const SIZE_BASE = { micro: 850, small: 1200, medium: 1900, large: 3000 } as const
+export const DSEAR_PRICE_MODEL = {
+  version: 'published-provider-calibration-2026-08-31',
+  sizeBase: { micro: 1600, small: 2200, medium: 3500, large: 5500 },
+  additionalHazardAboveTwo: 300,
+  specialistProcessOrZoning: 900,
+  combustibleDust: 650,
+  newInstallation: 450,
+  additionalSite: 1100,
+  northernIrelandTravel: 500,
+  standardSpread: 0.22,
+  complexSpread: 0.3,
+  evidence: [
+    'https://otecsaconsulting.com/cost-of-dsear/',
+    'https://dsearriskassessments.co.uk/pricing/',
+    'https://www.yorkgreen.co.uk/services/dsear',
+  ],
+} as const
 
 export function estimateDsearPrice(answers: AssessmentAnswers, result = qualifyDsear(answers)): PriceEstimate {
-  const factors: PriceEstimate['factors'] = [{ label: `Base for a ${answers.size} site`, amount: SIZE_BASE[answers.size] }]
-  if (answers.hazards.length > 2) factors.push({ label: 'Multiple hazard types', amount: (answers.hazards.length - 2) * 225 })
-  if (answers.processes.some((p) => specialistProcesses.has(p))) factors.push({ label: 'Specialist process or zoning review', amount: 550 })
-  if (answers.hazards.includes('combustible-dust')) factors.push({ label: 'Combustible-dust complexity allowance', amount: 450 })
-  if (answers.projectReason === 'new-installation') factors.push({ label: 'Design-stage/new-installation review', amount: 350 })
-  if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site(s)`, amount: (answers.sites - 1) * 750 })
-  if (answers.region === 'northern-ireland') factors.push({ label: 'Travel allowance for a GB-based provider', amount: 500 })
+  const factors: PriceEstimate['factors'] = [{ label: `Base for a ${answers.size} site`, amount: DSEAR_PRICE_MODEL.sizeBase[answers.size] }]
+  if (answers.hazards.length > 2) factors.push({ label: 'Multiple hazard types', amount: (answers.hazards.length - 2) * DSEAR_PRICE_MODEL.additionalHazardAboveTwo })
+  if (answers.processes.some((p) => specialistProcesses.has(p))) factors.push({ label: 'Specialist process or zoning review', amount: DSEAR_PRICE_MODEL.specialistProcessOrZoning })
+  if (answers.hazards.includes('combustible-dust')) factors.push({ label: 'Combustible-dust complexity allowance', amount: DSEAR_PRICE_MODEL.combustibleDust })
+  if (answers.projectReason === 'new-installation') factors.push({ label: 'Design-stage/new-installation review', amount: DSEAR_PRICE_MODEL.newInstallation })
+  if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site(s)`, amount: (answers.sites - 1) * DSEAR_PRICE_MODEL.additionalSite })
+  if (answers.region === 'northern-ireland') factors.push({ label: 'Travel allowance for a GB-based provider', amount: DSEAR_PRICE_MODEL.northernIrelandTravel })
   const midpoint = factors.reduce((total, factor) => total + factor.amount, 0)
-  const spread = result.complexity === 'complex' ? 0.3 : 0.22
+  const spread = result.complexity === 'complex' ? DSEAR_PRICE_MODEL.complexSpread : DSEAR_PRICE_MODEL.standardSpread
   return {
     low: Math.round((midpoint * (1 - spread)) / 50) * 50,
     high: Math.round((midpoint * (1 + spread)) / 50) * 50,
     currency: 'GBP',
     factors,
-    assumptions: ['One visit per site during normal working hours', 'Useful site plans and substance information are available', 'VAT, laboratory testing, remedial design and travel exceptions are excluded', 'This is Vendor Atlas planning guidance, not a supplier quotation'],
+    assumptions: ['One visit per site during normal working hours', 'Useful site plans and substance information are available', 'VAT, laboratory testing, remedial design and travel exceptions are excluded', 'Calibrated against published provider ranges, not awarded-quote market data', 'This is Vendor Atlas planning guidance, not a supplier quotation'],
   }
 }

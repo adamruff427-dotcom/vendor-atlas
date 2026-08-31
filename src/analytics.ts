@@ -9,6 +9,7 @@ export function track(event: FunnelEvent, payload: AnalyticsPayload = {}) {
   adapters.forEach((adapter) => adapter(event, payload))
   if (typeof window === 'undefined') return
   window.dispatchEvent(new CustomEvent('vendor-atlas:analytics', { detail: { event, payload } }))
+  window.gtag?.('event', event, payload)
   if (['localhost', '127.0.0.1'].includes(location.hostname)) {
     console.info('[analytics]', event, payload)
     return

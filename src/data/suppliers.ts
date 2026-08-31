@@ -1,6 +1,6 @@
 import type { Supplier } from '../domain/types'
 
-const checkedOn = '2026-08-30'
+const checkedOn = '2026-08-31'
 
 export const suppliers: Supplier[] = [
   {
@@ -39,11 +39,12 @@ export const suppliers: Supplier[] = [
     capabilities: ['DSEAR risk assessment', 'hazardous area classification', 'prioritised action planning'],
     hazardExperience: ['flammable-liquids', 'solvents-paints', 'lpg-gases', 'combustible-dust', 'fuels'],
     qualificationsAndMemberships: [], insuranceEvidence: 'No public certificate verified; request evidence during pre-qualification.',
-    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider offers fixed-price quotations but publishes no numeric tariff.',
+    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes indicative ranges: small single-site work around £2,000–£3,000 + VAT; most assessments £3,500–£4,500 + VAT; larger/complex sites £5,000–£10,000 + VAT.',
     evidence: [
       { claim: 'Provider states it covers the whole UK.', sourceUrl: 'https://dsearriskassessments.co.uk/', sourceType: 'provider', checkedOn },
       { claim: 'Provider describes site survey, assessment, hazardous area classification and action-plan outputs.', sourceUrl: 'https://dsearriskassessments.co.uk/', sourceType: 'provider', checkedOn },
       { claim: 'A provider case study describes work at Adnams brewery involving gases, liquids, sprays and combustible dust.', sourceUrl: 'https://www.dsearriskassessments.co.uk/case-studies/adnams/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider publishes indicative assessment ranges and explains the scope factors behind them.', sourceUrl: 'https://dsearriskassessments.co.uk/pricing/', sourceType: 'provider', checkedOn },
     ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
   },
   {
@@ -53,10 +54,119 @@ export const suppliers: Supplier[] = [
     capabilities: ['DSEAR risk assessment', 'hazardous area classification', 'HAZOP', 'process safety engineering'],
     hazardExperience: ['flammable-liquids', 'solvents-paints', 'lpg-gases', 'combustible-dust', 'fuels', 'pressurised-gases'],
     qualificationsAndMemberships: [], insuranceEvidence: 'No public certificate verified; request evidence during pre-qualification.',
-    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'No public price list found; quotation required.',
+    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes broad ranges of £1,500–£3,500 for a small/simple site, £3,000–£6,000 for a mid-sized site and £5,000–£10,000 for complex work, with scope caveats.',
     evidence: [
       { claim: 'Provider lists DSEAR risk assessment and hazardous area classification services.', sourceUrl: 'https://www.dsearassessment.co.uk/services/dsear-and-hac', sourceType: 'provider', checkedOn },
       { claim: 'Provider lists process-safety capabilities including HAZOP and mechanical ignition risk assessment.', sourceUrl: 'https://www.dsearassessment.co.uk/services', sourceType: 'provider', checkedOn },
+      { claim: 'Provider publishes indicative ranges and identifies HAC, site complexity and starting information as cost drivers.', sourceUrl: 'https://otecsaconsulting.com/cost-of-dsear/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['complex'],
+  },
+  {
+    id: 'socotec-uk', name: 'SOCOTEC UK', website: 'https://www.socotec.co.uk/our-services/dsear-compliance',
+    geographicalCoverage: [], sectors: ['manufacturing', 'food-drink', 'chemicals', 'other'],
+    serviceCategories: ['dsear-assessment', 'hazardous-area-classification'],
+    capabilities: ['DSEAR risk assessment', 'hazardous area classification', 'prioritised risk-reduction planning'],
+    hazardExperience: ['flammable-liquids', 'solvents-paints', 'lpg-gases', 'combustible-dust', 'pressurised-gases'],
+    qualificationsAndMemberships: [], insuranceEvidence: 'No project-specific insurance certificate verified; request current evidence during pre-qualification.',
+    deliveryModes: ['on-site'], pricingEvidence: 'No numeric public tariff found on the checked service page; quotation required.',
+    evidence: [
+      { claim: 'Provider lists DSEAR risk assessment, risk-reduction planning and hazardous area classification.', sourceUrl: 'https://www.socotec.co.uk/our-services/dsear-compliance', sourceType: 'provider', checkedOn },
+      { claim: 'Provider names manufacturing, pharmaceutical, food-manufacturing and rail support on its DSEAR page.', sourceUrl: 'https://www.socotec.co.uk/our-services/dsear-compliance', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'pib-risk-management', name: 'PIB Risk Management', website: 'https://www.pib-riskmanagement.co.uk/consultancy/dsear',
+    geographicalCoverage: [], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'other'],
+    serviceCategories: ['dsear-assessment', 'hazardous-area-classification', 'training'],
+    capabilities: ['DSEAR risk assessment', 'hazardous area classification', 'equipment and inspection registers', 'training'],
+    hazardExperience: ['flammable-liquids', 'solvents-paints', 'lpg-gases', 'combustible-dust', 'fuels', 'pressurised-gases'],
+    qualificationsAndMemberships: [], insuranceEvidence: 'No project-specific insurance certificate verified; request current evidence during pre-qualification.',
+    deliveryModes: ['on-site'], pricingEvidence: 'No numeric public tariff found on the checked service page; quotation required.',
+    evidence: [
+      { claim: 'Provider lists DSEAR risk assessment, hazardous area classification, practical controls and training.', sourceUrl: 'https://www.pib-riskmanagement.co.uk/consultancy/dsear', sourceType: 'provider', checkedOn },
+      { claim: 'Provider states its outputs can include HAC schedules/drawings and equipment or inspection registers.', sourceUrl: 'https://www.pib-riskmanagement.co.uk/consultancy/dsear', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'york-green-safety-partners', name: 'York Green Safety Partners', website: 'https://www.yorkgreen.co.uk/services/dsear',
+    geographicalCoverage: [], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'other'],
+    serviceCategories: ['dsear-assessment', 'hazardous-area-classification'],
+    capabilities: ['DSEAR risk assessment', 'hazardous area classification', 'ATEX equipment audit', 'prioritised action planning'],
+    hazardExperience: ['flammable-liquids', 'solvents-paints', 'lpg-gases', 'combustible-dust', 'fuels', 'pressurised-gases'],
+    qualificationsAndMemberships: ['Provider states its consulting team includes CMIOSH, MCIEH, MIFSM, NFRAR and BSc (Hons) Environmental Health credentials; named-holder evidence was not checked.'],
+    insuranceEvidence: 'No project-specific insurance certificate verified; request current evidence during pre-qualification.',
+    deliveryModes: ['on-site'], pricingEvidence: 'Provider states a typical range of £3,000–£15,000+, including HAC drawings and an ATEX equipment audit; compare scope before comparing this figure with another quote.',
+    evidence: [
+      { claim: 'Provider lists a full site survey, DSEAR risk assessment, HAC drawings, equipment audit and action plan as standard scope.', sourceUrl: 'https://www.yorkgreen.co.uk/services/dsear', sourceType: 'provider', checkedOn },
+      { claim: 'Provider names food and drink, chemicals, woodworking, automotive, waste, fuel and warehousing among its DSEAR sectors.', sourceUrl: 'https://www.yorkgreen.co.uk/services/dsear', sourceType: 'provider', checkedOn },
+      { claim: 'Provider publishes a £3,000–£15,000+ range and states the included deliverables.', sourceUrl: 'https://www.yorkgreen.co.uk/services/dsear', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'epit-group', name: 'EPIT Group', website: 'https://www.epitgroup.com/consultancy/dsear-assessments/',
+    geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'chemicals', 'energy-waste', 'other'],
+    serviceCategories: ['dsear-assessment', 'hazardous-area-classification', 'dsear-verification', 'training'],
+    capabilities: ['DSEAR risk assessment', 'hazardous area classification', 'protection engineering', 'verification and training'],
+    hazardExperience: ['flammable-liquids', 'solvents-paints', 'lpg-gases', 'combustible-dust', 'fuels', 'pressurised-gases'],
+    qualificationsAndMemberships: ['Provider states its DSEAR assessors hold Ex certification; individual certificates were not checked.'],
+    insuranceEvidence: 'No project-specific insurance certificate verified; request current evidence during pre-qualification.',
+    deliveryModes: ['on-site'], pricingEvidence: 'No numeric public tariff found on the checked service page; quotation required.',
+    evidence: [
+      { claim: 'Provider states it conducts DSEAR surveys across Aberdeen, Scotland and the wider UK.', sourceUrl: 'https://www.epitgroup.com/consultancy/dsear-assessments/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider lists risk assessment, gap analysis, HAC, protection engineering, verification and training.', sourceUrl: 'https://www.epitgroup.com/consultancy/dsear-assessments/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider states all EPIT assessors hold Ex certification; Vendor Atlas has not checked named certificates.', sourceUrl: 'https://www.epitgroup.com/consultancy/dsear-assessments/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'sgs-united-kingdom', name: 'SGS United Kingdom', website: 'https://www.sgs.com/-/media/sgscorp/documents/corporate/technical-documents/baseefa-documents/technical-guides-and-wallcharts/dsear/bas-ps-025-sgs-crs-baseefa-dsear-services-brochure-en.cdn.en-GB.pdf',
+    geographicalCoverage: [], sectors: ['manufacturing', 'chemicals', 'energy-waste', 'other'],
+    serviceCategories: ['dsear-assessment', 'hazardous-area-classification', 'dsear-verification'],
+    capabilities: ['DSEAR site audit', 'hazardous area classification', 'electrical inspection', 'equipment risk assessment'],
+    hazardExperience: ['flammable-liquids', 'solvents-paints', 'lpg-gases', 'combustible-dust', 'fuels', 'pressurised-gases'],
+    qualificationsAndMemberships: [], insuranceEvidence: 'No project-specific insurance certificate verified; request current evidence during pre-qualification.',
+    deliveryModes: ['on-site'], pricingEvidence: 'No numeric public tariff found in the checked service brochure; quotation required.',
+    evidence: [
+      { claim: 'Provider brochure lists DSEAR site audit, area classification/risk assessment, electrical inspection and equipment risk assessment.', sourceUrl: 'https://www.sgs.com/-/media/sgscorp/documents/corporate/technical-documents/baseefa-documents/technical-guides-and-wallcharts/dsear/bas-ps-025-sgs-crs-baseefa-dsear-services-brochure-en.cdn.en-GB.pdf', sourceType: 'provider', checkedOn },
+      { claim: 'Provider brochure identifies its UK DSEAR service base in Buxton, Derbyshire.', sourceUrl: 'https://www.sgs.com/-/media/sgscorp/documents/corporate/technical-documents/baseefa-documents/technical-guides-and-wallcharts/dsear/bas-ps-025-sgs-crs-baseefa-dsear-services-brochure-en.cdn.en-GB.pdf', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['complex'],
+  },
+  {
+    id: 'pyroban', name: 'Pyroban', website: 'https://www.pyroban.com/wp-content/uploads/2025/07/EXS-brochure-2025-July.pdf',
+    geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'automotive', 'chemicals', 'energy-waste', 'other'],
+    serviceCategories: ['dsear-assessment', 'hazardous-area-classification', 'training'],
+    capabilities: ['DSEAR risk assessment', 'hazardous area classification', 'ignition hazard assessment', 'ATEX/DSEAR training'],
+    hazardExperience: ['flammable-liquids', 'solvents-paints', 'lpg-gases', 'combustible-dust', 'fuels', 'batteries', 'pressurised-gases'],
+    qualificationsAndMemberships: [], insuranceEvidence: 'No project-specific insurance certificate verified; request current evidence during pre-qualification.',
+    deliveryModes: ['on-site'], pricingEvidence: 'No numeric public tariff found in the checked service brochure; quotation required.',
+    evidence: [
+      { claim: 'Provider brochure lists DSEAR risk assessments, HAC, ignition hazard assessments and equipment inspection support.', sourceUrl: 'https://www.pyroban.com/wp-content/uploads/2025/07/EXS-brochure-2025-July.pdf', sourceType: 'provider', checkedOn },
+      { claim: 'Provider states its hazardous-area service focus is the UK and offers gas- or dust-specific ATEX/DSEAR training.', sourceUrl: 'https://www.pyroban.com/wp-content/uploads/2025/07/EXS-brochure-2025-July.pdf', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['complex'],
+  },
+  {
+    id: 'al23-safety', name: 'AL23 Safety', website: 'https://al23safety.com/dsear-risk-assessment/',
+    geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'other'],
+    serviceCategories: ['dsear-assessment', 'hazardous-area-classification'],
+    capabilities: ['DSEAR risk assessment', 'hazardous area classification', 'practical action planning'],
+    hazardExperience: ['flammable-liquids', 'solvents-paints', 'lpg-gases', 'combustible-dust', 'fuels', 'pressurised-gases'],
+    qualificationsAndMemberships: [], insuranceEvidence: 'No public certificate verified; request current evidence during pre-qualification.',
+    deliveryModes: ['on-site'], pricingEvidence: 'No numeric public tariff found on the checked service page; quotation required.',
+    evidence: [
+      { claim: 'Provider states it carries out DSEAR assessments and hazardous area classification across the UK.', sourceUrl: 'https://al23safety.com/dsear-risk-assessment/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider describes reviewing gases, vapours, liquids and combustible dusts and producing a practical route to action.', sourceUrl: 'https://al23safety.com/dsear-risk-assessment/', sourceType: 'provider', checkedOn },
+    ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'inglewood-engineering', name: 'Inglewood Engineering', website: 'https://www.inglewoodengineering.com/dsear-compliance/area-classification-and-risk-assessment/',
+    geographicalCoverage: [], sectors: ['manufacturing', 'chemicals', 'energy-waste', 'other'],
+    serviceCategories: ['dsear-assessment', 'hazardous-area-classification', 'dsear-verification'],
+    capabilities: ['area classification and risk assessment', 'hazardous-area electrical inspection', 'instrument and control design'],
+    hazardExperience: ['flammable-liquids', 'solvents-paints', 'lpg-gases', 'combustible-dust', 'fuels', 'pressurised-gases'],
+    qualificationsAndMemberships: [], insuranceEvidence: 'No public certificate verified; request current evidence during pre-qualification.',
+    deliveryModes: ['on-site'], pricingEvidence: 'No numeric public tariff found on the checked service page; quotation required.',
+    evidence: [
+      { claim: 'Provider lists IEC 60079 Part 10 area classification and risk assessment services.', sourceUrl: 'https://www.inglewoodengineering.com/dsear-compliance/area-classification-and-risk-assessment/', sourceType: 'provider', checkedOn },
+      { claim: 'Provider lists hazardous-area inspections and instrument, electrical and control design alongside DSEAR services.', sourceUrl: 'https://www.inglewoodengineering.com/', sourceType: 'provider', checkedOn },
     ], lastVerifiedDate: checkedOn, verificationStatus: 'provider-source-checked', complexity: ['complex'],
   },
 ]

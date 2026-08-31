@@ -28,6 +28,22 @@ Ask Codex to read the production `analytics_events` table and summarise counts f
 
 The event table intentionally contains no questionnaire answers, company names, contact names, email addresses or telephone numbers. Its counts are directional: they are not unique-user analytics and may include repeated visits or automated traffic.
 
+Review the dedicated **Vendor Atlas** Google Analytics 4 property separately for consented page views, acquisition sources and the same named product events. The web stream measurement ID is `G-R0FM31KWS7`. GA4 will undercount total traffic because it does not load until a visitor allows it; do not compare its total directly with the always-on first-party landing count as though they use the same denominator.
+
+For the weekly pilot note, record:
+
+1. first-party landing, assessment-start, result and completed-brief counts;
+2. GA4 consented users and sessions by source/medium;
+3. landing → assessment-start, start → result and result → completed-brief conversion;
+4. supplier-profile outbound clicks; and
+5. obvious QA, bot or operator traffic that should be excluded from interpretation.
+
+Never send questionnaire answers, company names, contact names, email addresses or telephone numbers to GA4.
+
+## Pricing calibration
+
+The current deterministic model is calibrated against three public provider price pages, not awarded quotes. For every genuine quote received, retain an anonymised record of the quoted fee, VAT/travel treatment, number of sites, size band, hazards, whether HAC calculations/drawings are included, other deliverables and material exclusions. Do not update the public model from a single outlier. Review only a scope-normalised set, version every change and keep the earlier configuration reproducible.
+
 ## Human review boundary
 
 - Do not tell a buyer that Vendor Atlas has approved a supplier.

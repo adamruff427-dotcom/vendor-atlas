@@ -5,7 +5,10 @@ export function matchSuppliers(suppliers: Supplier[], answers: AssessmentAnswers
     let score = 0
     const reasons: string[] = []
     const gaps: string[] = []
-    if (supplier.geographicalCoverage.includes('uk-wide') || supplier.geographicalCoverage.includes(answers.region)) { score += 4; reasons.push('Stated coverage includes your region') }
+    const coversRegion = supplier.geographicalCoverage.includes('uk-wide')
+      || supplier.geographicalCoverage.includes(answers.region)
+      || (supplier.geographicalCoverage.includes('great-britain') && answers.region !== 'northern-ireland')
+    if (coversRegion) { score += 4; reasons.push('Stated coverage includes your region') }
     else gaps.push('Regional coverage was not evidenced for your location')
     if (supplier.sectors.includes(answers.sector)) { score += 3; reasons.push(`Provider evidence includes ${answers.sector.replace('-', ' ')} work`) }
     const hazardMatches = answers.hazards.filter((hazard) => supplier.hazardExperience.includes(hazard))

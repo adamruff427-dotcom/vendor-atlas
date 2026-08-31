@@ -4,6 +4,7 @@ import { AssessmentWizard } from "../src/components/AssessmentWizard";
 import { LandingAnalytics } from "../src/components/LandingAnalytics";
 import { DecisionMap, GuideIcon, StageIcon } from "../src/components/VisualLanguage";
 import { pages } from "../src/content/pages";
+import { suppliers } from "../src/data/suppliers";
 
 export const metadata: Metadata = {
   title: "DSEAR assessment finder and cost estimator",
@@ -66,6 +67,13 @@ export default function Home() {
           </div>
         </section>
         <section className="guide-links">
+          <div className="resource-strip">
+            <div><span className="eyebrow">DSEAR buyer tools</span><h2>Use the same standard for every quote</h2><p>Move from a screening result to a documented brief, competence check and comparable supplier shortlist.</p></div>
+            <div className="resource-strip-links">
+              <Link href="/dsear/buying-toolkit"><strong>Buying toolkit</strong><span>Printable brief, evidence questions, quote scorecard and report acceptance check.</span></Link>
+              <Link href="/dsear/suppliers"><strong>UK specialist directory</strong><span>{suppliers.length} providers with sourced claims, public evidence gaps and no paid ranking.</span></Link>
+            </div>
+          </div>
           <div>
             <span className="eyebrow">Practical DSEAR guides</span>
             <h2>Read only what helps your decision</h2>
