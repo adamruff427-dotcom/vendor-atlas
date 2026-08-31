@@ -39,14 +39,14 @@ function loadGoogleAnalytics() {
     window.gtag?.('config', MEASUREMENT_ID, {
       allow_google_signals: false,
       allow_ad_personalization_signals: false,
-      send_page_view: true,
+      send_page_view: false,
     })
-    if (location.pathname === '/') window.gtag?.('event', 'landing_page_view', { service: 'dsear' })
   }
   document.head.appendChild(script)
 }
 
 export function GoogleAnalytics() {
+  const [pathname, setPathname] = useState('')
   const [consent, setConsent] = useState<Consent>(null)
   const [isChoosing, setIsChoosing] = useState(false)
 
@@ -60,6 +60,32 @@ export function GoogleAnalytics() {
     window.addEventListener('vendor-atlas:manage-analytics', manage)
     return () => window.removeEventListener('vendor-atlas:manage-analytics', manage)
   }, [])
+
+  useEffect(() => {
+    const updatePathname = () => setPathname(location.pathname)
+    const originalPushState = history.pushState
+    const originalReplaceState = history.replaceState
+    history.pushState = (...args) => { originalPushState.apply(history, args); updatePathname() }
+    history.replaceState = (...args) => { originalReplaceState.apply(history, args); updatePathname() }
+    window.addEventListener('popstate', updatePathname)
+    updatePathname()
+    return () => {
+      history.pushState = originalPushState
+      history.replaceState = originalReplaceState
+      window.removeEventListener('popstate', updatePathname)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (consent !== 'granted' || !pathname) return
+    loadGoogleAnalytics()
+    window.gtag?.('event', 'page_view', {
+      page_location: location.href,
+      page_path: pathname,
+      page_title: document.title,
+    })
+    if (pathname === '/') window.gtag?.('event', 'landing_page_view', { service: 'dsear' })
+  }, [consent, pathname])
 
   const choose = (next: Exclude<Consent, null>) => {
     localStorage.setItem(CONSENT_KEY, next)
