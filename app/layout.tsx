@@ -68,8 +68,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </div>
           <div className="analytics-notice" role="note">
             <div className="shell">
-              <strong>Analytics notice:</strong> Funnel events are instrumented for this pilot. No
-              third-party analytics or marketing tracker is connected in this release.
+              <strong>Pilot measurement:</strong> Limited first-party journey events only. No
+              advertising cookies or third-party analytics trackers.
             </div>
           </div>
         </header>

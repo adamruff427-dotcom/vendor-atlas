@@ -77,21 +77,47 @@ function ToggleCard({
 export function AssessmentWizard() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState(defaultAnswers);
+  const [confirmed, setConfirmed] = useState({
+    sector: false,
+    size: false,
+    existingAssessment: false,
+    projectReason: false,
+    region: false,
+    timescale: false,
+  });
+  const [noHazardsSelected, setNoHazardsSelected] = useState(false);
   const [showQuote, setShowQuote] = useState(false);
   const [submission, setSubmission] = useState<"idle" | "sending" | "submitted" | "error">("idle");
   const result = useMemo(() => qualifyDsear(answers), [answers]);
   const estimate = useMemo(() => estimateDsearPrice(answers, result), [answers, result]);
   const matches = useMemo(() => matchSuppliers(suppliers, answers, result), [answers, result]);
-  const steps = ["Your work", "Hazards", "Site and timing", "Result"];
+  const questionSteps = ["Your work", "Hazards", "Site and timing"];
+  const siteDetailsConfirmed =
+    confirmed.size &&
+    confirmed.existingAssessment &&
+    confirmed.projectReason &&
+    confirmed.region &&
+    confirmed.timescale;
+  const canContinue =
+    step === 0
+      ? confirmed.sector
+      : step === 1
+        ? answers.hazards.length > 0 || noHazardsSelected
+        : step === 2
+          ? siteDetailsConfirmed
+          : true;
 
-  const toggle = <T extends string>(key: "hazards" | "processes", value: T) =>
+  const toggle = <T extends string>(key: "hazards" | "processes", value: T) => {
+    if (key === "hazards") setNoHazardsSelected(false);
     setAnswers((current) => ({
       ...current,
       [key]: current[key].includes(value as never)
         ? current[key].filter((item) => item !== value)
         : [...current[key], value],
     }));
+  };
   const next = () => {
+    if (!canContinue) return;
     if (step === 0) track("assessment_started");
     if (step === 2) {
       track("assessment_completed", { status: result.status });
@@ -110,18 +136,18 @@ export function AssessmentWizard() {
           <h2 id="wizard-heading">Do I need a DSEAR assessment?</h2>
         </div>
         <span className="step-count">
-          {steps[step]} · {step + 1} of 4
+          {step === 3 ? "Assessment complete" : `${questionSteps[step]} · Question ${step + 1} of 3`}
         </span>
       </div>
       <div
         className="progress-compact"
-        aria-label={`Assessment progress: ${step + 1} of 4`}
+        aria-label={step === 3 ? "Assessment questions complete" : `Assessment progress: question ${step + 1} of 3`}
         role="progressbar"
-        aria-valuemin={1}
-        aria-valuemax={4}
-        aria-valuenow={step + 1}
+        aria-valuemin={0}
+        aria-valuemax={3}
+        aria-valuenow={Math.min(step + 1, 3)}
       >
-        <span style={{ width: `${((step + 1) / 4) * 100}%` }} />
+        <span style={{ width: `${(Math.min(step + 1, 3) / 3) * 100}%` }} />
       </div>
       {step === 0 && (
         <div className="wizard-step">
@@ -133,9 +159,14 @@ export function AssessmentWizard() {
             <label>
               Business or industry
               <select
-                value={answers.sector}
-                onChange={(e) => setAnswers({ ...answers, sector: e.target.value as Sector })}
+                required
+                value={confirmed.sector ? answers.sector : ""}
+                onChange={(e) => {
+                  setAnswers({ ...answers, sector: e.target.value as Sector });
+                  setConfirmed({ ...confirmed, sector: true });
+                }}
               >
+                <option value="" disabled>Choose the closest industry</option>
                 <option value="manufacturing">Manufacturing</option>
                 <option value="food-drink">Food, drink, brewery or distillery</option>
                 <option value="woodworking">Woodworking or joinery</option>
@@ -158,6 +189,7 @@ export function AssessmentWizard() {
                   />
                 ))}
               </div>
+              <p className="field-help">Select any that apply. Leave this blank if none of the listed processes apply.</p>
             </fieldset>
           </div>
         </div>
@@ -179,6 +211,15 @@ export function AssessmentWizard() {
                 detail={detail}
               />
             ))}
+            <ToggleCard
+              checked={noHazardsSelected}
+              onChange={() => {
+                setNoHazardsSelected((value) => !value);
+                setAnswers({ ...answers, hazards: [] });
+              }}
+              title="None of these"
+              detail="Select this only after checking the full list"
+            />
           </div>
           <div className="evidence-note">
             <strong>Why we ask</strong>
@@ -216,11 +257,14 @@ export function AssessmentWizard() {
             <label>
               Approximate site size
               <select
-                value={answers.size}
-                onChange={(e) =>
-                  setAnswers({ ...answers, size: e.target.value as AssessmentAnswers["size"] })
-                }
+                required
+                value={confirmed.size ? answers.size : ""}
+                onChange={(e) => {
+                  setAnswers({ ...answers, size: e.target.value as AssessmentAnswers["size"] });
+                  setConfirmed({ ...confirmed, size: true });
+                }}
               >
+                <option value="" disabled>Choose a site size</option>
                 <option value="micro">Micro workshop/unit</option>
                 <option value="small">Small site</option>
                 <option value="medium">Medium site</option>
@@ -230,14 +274,17 @@ export function AssessmentWizard() {
             <label>
               Existing DSEAR assessment
               <select
-                value={answers.existingAssessment}
-                onChange={(e) =>
+                required
+                value={confirmed.existingAssessment ? answers.existingAssessment : ""}
+                onChange={(e) => {
                   setAnswers({
                     ...answers,
                     existingAssessment: e.target.value as AssessmentAnswers["existingAssessment"],
-                  })
-                }
+                  });
+                  setConfirmed({ ...confirmed, existingAssessment: true });
+                }}
               >
+                <option value="" disabled>Choose the current position</option>
                 <option value="none">None</option>
                 <option value="current">Yes, believed current</option>
                 <option value="old-or-unknown">Old or status unknown</option>
@@ -246,14 +293,17 @@ export function AssessmentWizard() {
             <label>
               Reason for review
               <select
-                value={answers.projectReason}
-                onChange={(e) =>
+                required
+                value={confirmed.projectReason ? answers.projectReason : ""}
+                onChange={(e) => {
                   setAnswers({
                     ...answers,
                     projectReason: e.target.value as AssessmentAnswers["projectReason"],
-                  })
-                }
+                  });
+                  setConfirmed({ ...confirmed, projectReason: true });
+                }}
               >
+                <option value="" disabled>Choose the reason</option>
                 <option value="first-assessment">First assessment</option>
                 <option value="new-installation">New installation</option>
                 <option value="change">Material change</option>
@@ -263,9 +313,14 @@ export function AssessmentWizard() {
             <label>
               Region
               <select
-                value={answers.region}
-                onChange={(e) => setAnswers({ ...answers, region: e.target.value as Region })}
+                required
+                value={confirmed.region ? answers.region : ""}
+                onChange={(e) => {
+                  setAnswers({ ...answers, region: e.target.value as Region });
+                  setConfirmed({ ...confirmed, region: true });
+                }}
               >
+                <option value="" disabled>Choose a UK region</option>
                 <option value="scotland">Scotland</option>
                 <option value="north">North of England</option>
                 <option value="midlands">Midlands</option>
@@ -287,14 +342,17 @@ export function AssessmentWizard() {
             <label>
               Desired timescale
               <select
-                value={answers.timescale}
-                onChange={(e) =>
+                required
+                value={confirmed.timescale ? answers.timescale : ""}
+                onChange={(e) => {
                   setAnswers({
                     ...answers,
                     timescale: e.target.value as AssessmentAnswers["timescale"],
-                  })
-                }
+                  });
+                  setConfirmed({ ...confirmed, timescale: true });
+                }}
               >
+                <option value="" disabled>Choose a timescale</option>
                 <option value="urgent">Urgently</option>
                 <option value="one-month">Within one month</option>
                 <option value="three-months">Within three months</option>
@@ -309,9 +367,11 @@ export function AssessmentWizard() {
           result={result}
           estimate={estimate}
           matches={matches}
+          quoteOpen={showQuote}
           onQuote={() => {
             setShowQuote(true);
             track("quote_request_started");
+            window.setTimeout(() => document.getElementById("quote-request")?.scrollIntoView({ behavior: "smooth" }), 0);
           }}
         />
       )}
@@ -322,11 +382,20 @@ export function AssessmentWizard() {
           </button>
         )}
         {step < 3 && (
-          <button className="button primary" type="button" onClick={next}>
+          <button className="button primary" type="button" onClick={next} disabled={!canContinue}>
             {step === 2 ? "See my result" : "Continue"}
           </button>
         )}
       </div>
+      {step < 3 && !canContinue && (
+        <p className="completion-hint" role="status">
+          {step === 0
+            ? "Choose the closest industry to continue."
+            : step === 1
+              ? "Select at least one hazard, or confirm that none of the listed hazards apply."
+              : "Complete the required site and timing fields to see your result."}
+        </p>
+      )}
       {showQuote && (
         <QuoteForm
           answers={answers}
@@ -345,11 +414,13 @@ function Results({
   result,
   estimate,
   matches,
+  quoteOpen,
   onQuote,
 }: {
   result: ReturnType<typeof qualifyDsear>;
   estimate: ReturnType<typeof estimateDsearPrice>;
   matches: SupplierMatch[];
+  quoteOpen: boolean;
   onQuote: () => void;
 }) {
   const heading =
@@ -432,12 +503,15 @@ function Results({
         <div>
           <h3>Get comparable quotes</h3>
           <p>
-            Package your answers into one consistent brief. No supplier emails are sent in this MVP.
+            Send one consistent project brief for human review. We will contact you about the next
+            step and will not automatically share your details with suppliers.
           </p>
         </div>
-        <button className="button primary light" onClick={onQuote}>
-          Prepare my quote request
-        </button>
+        {!quoteOpen && (
+          <button className="button primary light" onClick={onQuote} aria-expanded="false">
+            Continue with my project brief
+          </button>
+        )}
       </div>
       <div className="disclaimer">
         <strong>This is not the legal assessment.</strong> {result.caveats.join(" ")}
@@ -546,20 +620,20 @@ function QuoteForm({
   if (submission === "submitted")
     return (
       <div className="success-box" role="status">
-        <strong>Your quote request has been received.</strong>
+        <strong>Your project brief has been received.</strong>
         <p>
-          Your project brief is safely recorded. No supplier has been contacted yet; Vendor Atlas
-          will use this pilot to validate demand and prepare the next human-reviewed step.
+          A person will review it and we aim to contact you within two working days. No supplier has
+          been contacted, and your details have not been automatically shared.
         </p>
       </div>
     );
   return (
-    <form className="quote-form" onSubmit={submit}>
+    <form id="quote-request" className="quote-form" onSubmit={submit}>
       <span className="eyebrow">Comparable quote brief</span>
-      <h3>Where should we attach this project?</h3>
+      <h3>Who should we contact about this project?</h3>
       <p>
-        Your assessment answers, estimate and shortlist will be securely recorded with these
-        details. Nothing is automatically sent to suppliers.
+        A person will review your assessment answers, estimate and shortlist. We aim to contact you
+        within two working days. Your details are not automatically sent to suppliers.
       </p>
       <div className="form-grid">
         <label>
@@ -585,18 +659,20 @@ function QuoteForm({
         <label className="consent full">
           <input name="consent" required type="checkbox" />
           <span>
-            I consent to Vendor Atlas storing this project brief and contact information to evaluate
-            and follow up this quote request. I understand it is not yet sent to suppliers.
+            I consent to Cloudable Ltd, operating Vendor Atlas, storing this project brief and my
+            contact information so it can review and follow up my request. I understand my details
+            are not automatically shared with suppliers.
           </span>
         </label>
       </div>
       {submission === "error" && (
         <p className="form-error" role="alert">
-          We could not save the request. Your details have not been submitted. Please try again.
+          We could not save the request. Your details have not been submitted. Please try again or
+          email <a href="mailto:hello@cloudable.biz">hello@cloudable.biz</a> if the problem continues.
         </p>
       )}
       <button className="button primary" disabled={submission === "sending"} type="submit">
-        {submission === "sending" ? "Saving…" : "Submit quote request"}
+        {submission === "sending" ? "Sending…" : "Send project brief for review"}
       </button>
     </form>
   );

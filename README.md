@@ -48,7 +48,7 @@ Supplier records include:
 
 Unknown evidence remains explicitly unknown. Provider-source evidence is not presented as Vendor Atlas approval.
 
-Quote enquiries store project answers, the resulting indication, estimate, shortlist identifiers, company/contact details, consent, timestamp and workflow status. No automated supplier email exists in this version.
+Quote enquiries store project answers, the resulting indication, estimate, shortlist identifiers, company/contact details, consent, timestamp and workflow status. No automated supplier email exists in this version. A person reviews the brief, aims to contact the buyer within two working days and seeks permission before sharing contact details with a supplier.
 
 ## Qualification model
 
@@ -114,7 +114,9 @@ The application exposes a small adapter and these named events:
 - `quote_request_started`
 - `quote_request_completed`
 
-No third-party analytics provider or marketing tracker is connected in this release. A visible notice states that activation boundary. Before connecting GA4, Plausible or another provider, update the privacy notice and implement any consent control required by the selected configuration.
+The adapter sends those events to a first-party `/api/events` endpoint backed by D1. Each record contains only the event name, server timestamp, page path and a small allowlist of non-contact metadata (`service`, result `status` or supplier identifier). It does not store questionnaire answers or contact details. No advertising cookie or third-party analytics tracker is connected.
+
+Event counts are directional rather than unique-user analytics and may contain repeated visits or automated traffic. See [`docs/PILOT_OPERATIONS.md`](docs/PILOT_OPERATIONS.md) for the manual lead and funnel-review routine.
 
 ## Local setup
 
