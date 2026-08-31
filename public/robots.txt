@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vendor-atlas.adeewuff.chatgpt.site/sitemap.xml
+Sitemap: https://vendoratlas.artificiallyconfident.com/sitemap.xml

@@ -36,7 +36,7 @@ export default async function DsearPage({ params }: Props) {
     description: page.description,
     author: { "@type": "Organization", name: "Vendor Atlas" },
     publisher: { "@type": "Organization", name: "Vendor Atlas" },
-    mainEntityOfPage: `https://vendor-atlas.adeewuff.chatgpt.site${page.path}`,
+    mainEntityOfPage: `https://vendoratlas.artificiallyconfident.com${page.path}`,
   };
   return (
     <article className="content-page">
