@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
+import { Compass } from "lucide-react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -55,7 +56,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <header className="site-header">
           <div className="shell header-inner">
             <Link className="brand" href="/">
-              <span className="brand-mark">VA</span>
+              <span className="brand-mark" aria-hidden="true"><Compass strokeWidth={1.8} /></span>
               <span>
                 Vendor Atlas<small>Compliance services, compared carefully</small>
               </span>

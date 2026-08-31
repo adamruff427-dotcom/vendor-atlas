@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { pages } from "../../../src/content/pages";
+import { DecisionMarker, GuideIcon } from "../../../src/components/VisualLanguage";
 
 type Props = { params: Promise<{ slug?: string[] }> };
 function resolvePage(slug?: string[]) {
@@ -42,7 +43,10 @@ export default async function DsearPage({ params }: Props) {
     <article className="content-page">
       <header className="content-hero">
         <div className="shell narrow">
-          <span className="eyebrow">{page.eyebrow}</span>
+          <div className="guide-hero-label">
+            <GuideIcon kind={page.eyebrow} size="large" />
+            <span className="eyebrow">{page.eyebrow}</span>
+          </div>
           <h1>{page.title}</h1>
           <p className="lead">{page.intro}</p>
           <Link className="button primary" href="/#assessment">
@@ -53,7 +57,10 @@ export default async function DsearPage({ params }: Props) {
       <div className="shell article-grid">
         <div>
           <section className="decision-panel" aria-labelledby="decision-heading">
-            <span className="eyebrow">Decision checkpoint</span>
+            <div className="decision-panel-label">
+              <DecisionMarker />
+              <span className="eyebrow">Decision checkpoint</span>
+            </div>
             <h2 id="decision-heading">{page.decision.heading}</h2>
             <p>{page.decision.summary}</p>
             <ul>

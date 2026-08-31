@@ -1,5 +1,6 @@
 "use client";
 import { useMemo, useState } from "react";
+import { CircleAlert, CircleCheckBig, CircleHelp } from "lucide-react";
 import { estimateDsearPrice, qualifyDsear } from "../domain/dsear";
 import { matchSuppliers } from "../domain/matching";
 import type {
@@ -429,16 +430,25 @@ function Results({
       : result.status === "may-be-relevant"
         ? "DSEAR may be relevant—get the process scoped"
         : "No obvious DSEAR trigger was identified";
+  const ResultIcon =
+    result.status === "likely-relevant"
+      ? CircleCheckBig
+      : result.status === "may-be-relevant"
+        ? CircleHelp
+        : CircleAlert;
   return (
     <div className="results">
       <div className={`result-banner ${result.status}`}>
-        <span className="eyebrow">Your initial indication</span>
-        <h3>{heading}</h3>
-        <p>
-          {result.status === "no-obvious-trigger"
-            ? "That does not prove DSEAR is irrelevant. Check substance labels, safety data sheets and processes with a competent person if anything was omitted or uncertain."
-            : "Your answers identify dangerous-substance or process indicators that warrant a competent, site-specific assessment or review."}
-        </p>
+        <span className="result-status-icon" aria-hidden="true"><ResultIcon strokeWidth={1.8} /></span>
+        <div>
+          <span className="eyebrow">Your initial indication</span>
+          <h3>{heading}</h3>
+          <p>
+            {result.status === "no-obvious-trigger"
+              ? "That does not prove DSEAR is irrelevant. Check substance labels, safety data sheets and processes with a competent person if anything was omitted or uncertain."
+              : "Your answers identify dangerous-substance or process indicators that warrant a competent, site-specific assessment or review."}
+          </p>
+        </div>
       </div>
       <div className="results-grid">
         <section>

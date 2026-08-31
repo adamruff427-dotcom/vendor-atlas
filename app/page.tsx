@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { AssessmentWizard } from "../src/components/AssessmentWizard";
 import { LandingAnalytics } from "../src/components/LandingAnalytics";
+import { DecisionMap, GuideIcon, StageIcon } from "../src/components/VisualLanguage";
 import { pages } from "../src/content/pages";
 
 export const metadata: Metadata = {
@@ -28,24 +29,7 @@ export default function Home() {
             </a>
             <p className="microcopy">Free · no account · no AI-generated prices</p>
           </div>
-          <aside className="trust-card">
-            <strong>What you will get</strong>
-            <ol>
-              <li>
-                <span>1</span>A cautious relevance indication
-              </li>
-              <li>
-                <span>2</span>The factors behind it
-              </li>
-              <li>
-                <span>3</span>An itemised cost range
-              </li>
-              <li>
-                <span>4</span>Three evidence-backed matches
-              </li>
-            </ol>
-            <p>Not a substitute for a suitable and sufficient risk assessment.</p>
-          </aside>
+          <DecisionMap />
         </div>
       </section>
       <div className="shell">
@@ -57,6 +41,7 @@ export default function Home() {
           </div>
           <div className="three-cols">
             <article>
+              <StageIcon stage="check" />
               <strong>1. Check relevance</strong>
               <p>
                 Map obvious dangerous-substance and process signals without pretending a
@@ -64,6 +49,7 @@ export default function Home() {
               </p>
             </article>
             <article>
+              <StageIcon stage="scope" />
               <strong>2. See the scope</strong>
               <p>
                 Understand the work a specialist may need to quote, from inventory and ignition
@@ -71,6 +57,7 @@ export default function Home() {
               </p>
             </article>
             <article>
+              <StageIcon stage="compare" />
               <strong>3. Compare evidence</strong>
               <p>
                 Match on region, sector, hazards, complexity and capabilities—not advertising spend.
@@ -86,6 +73,10 @@ export default function Home() {
           <div className="link-grid">
             {pages.slice(1).map((page) => (
               <Link href={page.path} key={page.path}>
+                <span className="guide-card-type">
+                  <GuideIcon kind={page.eyebrow} />
+                  {page.eyebrow}
+                </span>
                 <strong>{page.title}</strong>
                 <span>{page.description}</span>
                 <small><b>Use this to:</b> {page.cardPrompt}</small>
