@@ -58,7 +58,9 @@ export function matchServiceSuppliers(
           ? answers.inspectionStatus === 'none' || answers.inspectionStatus === 'new-system'
             ? 'Written scheme'
             : 'pressure-system examination'
-          : 'LOLER'
+          : answers.serviceId === 'loler'
+            ? 'LOLER'
+            : 'asbestos survey'
       if (supplier.capabilities.some((item) => item.toLowerCase().includes(capabilityNeed.toLowerCase()))) {
         score += 2
         reasons.push('The required core examination capability is stated')

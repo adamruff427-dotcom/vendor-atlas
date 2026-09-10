@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vendoratlas.artificiallyconfident.com"),
   title: { default: "Vendor Atlas | UK industrial compliance finder", template: "%s | Vendor Atlas" },
   description:
-    "Check DSEAR, LEV, pressure-system and LOLER duties, see explainable planning ranges and compare evidence-backed UK specialists.",
+    "Check DSEAR, LEV, pressure-system, LOLER and asbestos duties, see explainable planning ranges and compare evidence-backed UK specialists.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Vendor Atlas | UK industrial compliance finder",
     description:
-      "Decision support, explainable cost estimates and evidence-backed UK specialists for four industrial compliance services.",
+      "Decision support, explainable cost estimates and evidence-backed UK specialists for five industrial compliance services.",
     url: "/",
     siteName: "Vendor Atlas",
     locale: "en_GB",
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1728,
         height: 912,
-        alt: "Vendor Atlas: DSEAR, LEV, pressure systems and LOLER compared carefully.",
+        alt: "Vendor Atlas: industrial compliance services compared carefully.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Vendor Atlas | UK industrial compliance finder",
-    description: "Decision support for DSEAR, LEV, pressure systems and LOLER.",
+    description: "Decision support for DSEAR, LEV, pressure systems, LOLER and asbestos surveys.",
     images: ["/og.png"],
   },
   robots: { index: true, follow: true },
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description:
-      "Decision support for procuring UK DSEAR, LEV, pressure-system and LOLER compliance services.",
+      "Decision support for procuring UK DSEAR, LEV, pressure-system, LOLER and asbestos-survey services.",
     url: "https://vendoratlas.artificiallyconfident.com/",
   };
   return (
@@ -68,6 +68,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/lev">LEV</Link>
               <Link href="/pressure-systems">Pressure systems</Link>
               <Link href="/loler">LOLER</Link>
+              <Link href="/asbestos">Asbestos</Link>
             </nav>
           </div>
           <div className="analytics-notice" role="note">

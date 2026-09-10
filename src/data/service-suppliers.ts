@@ -3,6 +3,7 @@ import type { ServiceSupplier } from '../domain/types'
 const checkedOn = '2026-08-31'
 const unknownInsurance = 'No current project-specific insurance certificate was found on the checked page; request evidence before appointment.'
 const quoteRequired = 'No numeric public tariff was found on the checked service page; a scoped quotation is required.'
+const asbestosCheckedOn = '2026-09-10'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
@@ -214,6 +215,58 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider lists LOLER, PUWER and minor-pressure-system examination services.', sourceUrl: 'https://www.safetycheckengineering.co.uk/', sourceType: 'provider', checkedOn },
       { claim: 'Provider describes tower crane, construction hoist, lifting-accessory and minor-pressure-plant work.', sourceUrl: 'https://www.safetycheckengineering.co.uk/', sourceType: 'provider', checkedOn },
     ], lastVerifiedDate: checkedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'acms-uk', name: 'ACMS UK', website: 'https://www.acmsuk.com/solutions/asbestos-management-services/asbestos-surveys/',
+    serviceIds: ['asbestos'], geographicalCoverage: [], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['asbestos-management-survey', 'asbestos-refurbishment-demolition-survey', 'asbestos-reinspection'],
+    capabilities: ['Asbestos survey', 'management survey', 'refurbishment and demolition survey', 'asbestos reinspection', 'asbestos register support'],
+    specialisms: ['occupied-non-domestic', 'common-parts', 'maintenance-work', 'refurbishment', 'demolition', 'no-register', 'planned-disturbance', 'previous-findings'],
+    qualificationsAndMemberships: ['Provider states UKAS-accredited asbestos-survey capability; verify the current UKAS directory schedule and assigned surveyor before appointment.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes commercial management-survey examples, including £695 to £1,390 for a stated 1,000 m² example and higher ranges for larger premises.',
+    evidence: [
+      { claim: 'Provider describes management, refurbishment and demolition asbestos surveys.', sourceUrl: 'https://www.acmsuk.com/solutions/asbestos-management-services/asbestos-surveys/', sourceType: 'provider', checkedOn: asbestosCheckedOn },
+      { claim: 'Provider publishes size-banded commercial management-survey price examples.', sourceUrl: 'https://www.acmsuk.com/news/asbestos/asbestos-survey-cost/', sourceType: 'provider', checkedOn: asbestosCheckedOn },
+    ], lastVerifiedDate: asbestosCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'abp-associates', name: 'ABP Associates', website: 'https://www.abp.uk.com/surveys/',
+    serviceIds: ['asbestos'], geographicalCoverage: [], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['asbestos-management-survey', 'asbestos-refurbishment-demolition-survey', 'asbestos-reinspection'],
+    capabilities: ['Asbestos survey', 'management survey', 'refurbishment and demolition survey', 'asbestos reinspection', 'priority risk assessment'],
+    specialisms: ['occupied-non-domestic', 'common-parts', 'maintenance-work', 'refurbishment', 'demolition', 'suspect-material', 'planned-disturbance', 'previous-findings'],
+    qualificationsAndMemberships: ['Provider states it is UKAS accredited as inspection body 402 for listed asbestos-survey activities; verify the current UKAS directory schedule.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider lists management, refurbishment and demolition, reinspection and priority-risk-assessment services.', sourceUrl: 'https://www.abp.uk.com/surveys/', sourceType: 'provider', checkedOn: asbestosCheckedOn },
+      { claim: 'Provider states UKAS inspection-body accreditation number 402 on its survey page.', sourceUrl: 'https://www.abp.uk.com/surveys/', sourceType: 'provider', checkedOn: asbestosCheckedOn },
+    ], lastVerifiedDate: asbestosCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'elements-environmental', name: 'Elements Environmental', website: 'https://www.asbestossurveyingandtesting.com/',
+    serviceIds: ['asbestos'], geographicalCoverage: ['south-east'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'laboratory', 'other'],
+    serviceCategories: ['asbestos-management-survey', 'asbestos-refurbishment-demolition-survey', 'asbestos-reinspection'],
+    capabilities: ['Asbestos survey', 'management survey', 'refurbishment and demolition survey', 'asbestos sampling', 'asbestos management support'],
+    specialisms: ['occupied-non-domestic', 'common-parts', 'maintenance-work', 'refurbishment', 'demolition', 'property-acquisition', 'suspect-material', 'planned-disturbance'],
+    qualificationsAndMemberships: ['Provider states P402 and P405-qualified personnel and analysis through a UKAS-accredited laboratory; verify the proposed surveyor and laboratory.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes commercial management-survey guide ranges and states refurbishment and demolition surveys from £300 to £400 plus VAT.',
+    evidence: [
+      { claim: 'Provider states South East and East of England delivery for refurbishment and demolition surveys.', sourceUrl: 'https://www.asbestossurveyingandtesting.com/refurbishment-demolition-survey', sourceType: 'provider', checkedOn: asbestosCheckedOn },
+      { claim: 'Provider publishes size-banded commercial management-survey guidance.', sourceUrl: 'https://www.asbestossurveyingandtesting.com/knowledge-centre/guides/management-surveys', sourceType: 'provider', checkedOn: asbestosCheckedOn },
+    ], lastVerifiedDate: asbestosCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'supernova-asbestos-surveys', name: 'Supernova Asbestos Surveys', website: 'https://asbestos-surveys.org.uk/services',
+    serviceIds: ['asbestos'], geographicalCoverage: [], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'other'],
+    serviceCategories: ['asbestos-management-survey', 'asbestos-refurbishment-demolition-survey', 'asbestos-reinspection'],
+    capabilities: ['Asbestos survey', 'management survey', 'refurbishment and demolition survey', 'asbestos reinspection', 'asbestos sampling'],
+    specialisms: ['occupied-non-domestic', 'common-parts', 'maintenance-work', 'refurbishment', 'demolition', 'suspect-material', 'planned-disturbance'],
+    qualificationsAndMemberships: ['No current independent accreditation record was established from the checked service page; verify organisation and named-surveyor evidence before appointment.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes starting prices of £250 for management surveys, £295 for refurbishment surveys, £350 for demolition surveys and £150 for reinspections.',
+    evidence: [
+      { claim: 'Provider lists management, refurbishment, demolition, reinspection and sampling services.', sourceUrl: 'https://asbestos-surveys.org.uk/services', sourceType: 'provider', checkedOn: asbestosCheckedOn },
+      { claim: 'Provider publishes starting prices for its listed asbestos services.', sourceUrl: 'https://asbestos-surveys.org.uk/services', sourceType: 'provider', checkedOn: asbestosCheckedOn },
+    ], lastVerifiedDate: asbestosCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard'],
   },
 ]
 

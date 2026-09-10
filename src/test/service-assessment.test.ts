@@ -47,8 +47,23 @@ describe('LOLER qualification and pricing', () => {
   })
 })
 
+describe('asbestos survey qualification and pricing', () => {
+  it('treats planned refurbishment in pre-2000 premises as likely relevant', () => {
+    const answers = { ...defaultServiceAnswers('asbestos'), workTypes: ['refurbishment'], riskSignals: ['built-before-2000', 'planned-disturbance'], assetCount: 2, secondaryCount: 8 }
+    const result = qualifyService(answers)
+    const estimate = estimateServicePrice(answers, result)
+    expect(result.status).toBe('likely-relevant')
+    expect(result.scope.join(' ')).toMatch(/refurbishment|intrusive/i)
+    expect(estimate.factors).toEqual(expect.arrayContaining([expect.objectContaining({ amount: SERVICE_PRICE_MODELS.asbestos.intrusiveSurvey })]))
+  })
+
+  it('keeps an uncertain property review non-definitive', () => {
+    expect(qualifyService({ ...defaultServiceAnswers('asbestos'), workTypes: ['property-acquisition'], riskSignals: ['unknown-building-age'] }).status).toBe('may-be-relevant')
+  })
+})
+
 describe('generic industrial service invariants', () => {
-  for (const serviceId of ['lev', 'pressure-systems', 'loler'] as const) {
+  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos'] as const) {
     it(`${serviceId} stays deterministic, positive and evidence-linked`, () => {
       const definition = serviceDefinitions[serviceId]
       const answers = { ...defaultServiceAnswers(serviceId), workTypes: [definition.workOptions[0].value], riskSignals: [definition.signalOptions[0].value], assetCount: 4, secondaryCount: 8, sites: 2 }
@@ -73,7 +88,7 @@ describe('generic industrial service invariants', () => {
   }
 
   it('retains source URLs and explicit evidence status for every new supplier', () => {
-    const suppliers = ['lev', 'pressure-systems', 'loler'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler'))
+    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos'))
     for (const supplier of suppliers) {
       expect(supplier.evidence.length).toBeGreaterThan(0)
       expect(supplier.evidence.every((item) => item.sourceUrl.startsWith('https://') && item.checkedOn === supplier.lastVerifiedDate)).toBe(true)

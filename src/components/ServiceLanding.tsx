@@ -18,7 +18,9 @@ export function ServiceLanding({ serviceId }: { serviceId: IndustrialServiceId }
     ? { firstTitle: 'Contaminant and extraction', firstDetail: 'What is captured, by which systems and hoods?', signalDetail: 'Which facts point to a COSHH TExT duty?' }
     : serviceId === 'pressure-systems'
       ? { firstTitle: 'Fluid and pressure system', firstDetail: 'Which vessels, devices and operating conditions?', signalDetail: 'Which facts point to PSSR and a written scheme?' }
-      : { firstTitle: 'Equipment and lifting use', firstDetail: 'What lifts people, loads or connects them?', signalDetail: 'Which facts point to a LOLER examination?' }
+      : serviceId === 'loler'
+        ? { firstTitle: 'Equipment and lifting use', firstDetail: 'What lifts people, loads or connects them?', signalDetail: 'Which facts point to a LOLER examination?' }
+        : { firstTitle: 'Premises and planned work', firstDetail: 'Which buildings, areas and fabric may be disturbed?', signalDetail: 'Which facts point to a survey or register gap?' }
 
   return (
     <>

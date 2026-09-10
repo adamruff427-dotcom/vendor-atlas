@@ -238,6 +238,67 @@ export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> 
       { label: 'LOLER for Arborists', url: 'https://www.lolerforarborists.co.uk/pricing', note: 'Publishes £75 for an initial kit examination and £65 for re-examination within its stated kit limits.' },
     ],
   },
+  asbestos: {
+    id: 'asbestos',
+    name: 'asbestos survey and register support',
+    shortName: 'Asbestos surveys',
+    eyebrow: 'Asbestos survey finder',
+    question: 'Which asbestos survey does my building need?',
+    promise: 'Check the likely duty, survey type and quote scope in about 2 minutes.',
+    description: 'Screen the obvious duty-to-manage and planned-work signals, see what a suitable survey should cover, estimate a transparent planning range and compare evidenced UK providers.',
+    legalBasis: 'Regulation 4 of the Control of Asbestos Regulations 2012 places duties on those responsible for maintenance of non-domestic premises. The duty includes finding materials that may contain asbestos, assessing condition and managing the risk.',
+    legalSource: 'https://www.hse.gov.uk/asbestos/duty/index.htm',
+    guidePath: '/asbestos/do-i-need-an-asbestos-survey',
+    costPath: '/asbestos/cost',
+    supplierPath: '/asbestos/suppliers',
+    toolkitPath: '/asbestos/buying-toolkit',
+    workHeading: 'What premises or work are involved?',
+    workHelp: 'Choose every relevant situation. A management survey and an intrusive refurbishment or demolition survey answer different questions.',
+    workOptions: [
+      { value: 'occupied-non-domestic', label: 'Occupied non-domestic premises', detail: 'Workplace, shop, office, factory, school, warehouse or other commercial building' },
+      { value: 'common-parts', label: 'Common parts of domestic premises', detail: 'Shared corridors, plant rooms, lifts, roofs or service areas' },
+      { value: 'maintenance-work', label: 'Routine maintenance is planned', detail: 'Work may reach concealed building fabric or services' },
+      { value: 'refurbishment', label: 'Refurbishment or alteration', detail: 'Intrusive work will disturb part of the building' },
+      { value: 'demolition', label: 'Demolition', detail: 'All or a substantial part of the structure will be removed' },
+      { value: 'property-acquisition', label: 'Acquisition or lease review', detail: 'The buyer or tenant needs dependable building-risk information' },
+      { value: 'unknown-use', label: 'Premises or work scope uncertain', detail: 'The dutyholder, building use or planned work is not yet clear' },
+    ],
+    signalHeading: 'Which asbestos risk signals apply?',
+    signalHelp: 'Buildings constructed before 2000 may contain asbestos. Records and planned disturbance materially affect the survey brief.',
+    signalOptions: [
+      { value: 'built-before-2000', label: 'Built before 2000', detail: 'Asbestos-containing materials may be present' },
+      { value: 'suspect-material', label: 'Suspect material is present', detail: 'Material has not been reliably identified' },
+      { value: 'no-register', label: 'No usable asbestos register', detail: 'The live location and condition record is missing or incomplete' },
+      { value: 'planned-disturbance', label: 'Work will disturb building fabric', detail: 'Refurbishment, installation or demolition reaches the work area' },
+      { value: 'damaged-material', label: 'Material is damaged or deteriorating', detail: 'Condition may need prompt competent review' },
+      { value: 'previous-findings', label: 'Previous asbestos findings', detail: 'A survey or sample has identified asbestos-containing material' },
+      { value: 'unknown-building-age', label: 'Building age is unknown', detail: 'Construction information needs checking before exclusion' },
+      { value: 'post-2000-evidence', label: 'Reliable post-2000 construction evidence', detail: 'Records indicate the relevant structure was built after asbestos use was prohibited' },
+    ],
+    assetLabel: 'Buildings or separate blocks in scope',
+    secondaryLabel: 'Expected samples or suspect material locations',
+    documentationLabel: 'Existing survey, register and management plan',
+    documentationOptions: sharedDocumentation,
+    inspectionLabel: 'Current survey and reinspection position',
+    inspectionOptions: [
+      { value: 'none', label: 'No survey or register found' },
+      { value: 'in-date', label: 'Survey, register and reviews believed current' },
+      { value: 'overdue-or-unknown', label: 'Records exist but status is unclear or overdue' },
+      { value: 'new-system', label: 'New premises or newly planned work' },
+    ],
+    resultResourceHeading: 'Choose the survey for the decision being made',
+    resultResourceBody: 'A management survey supports normal occupation and routine maintenance. Refurbishment or demolition work needs a more intrusive survey of the parts that will be disturbed. The survey brief should define areas, access, exclusions, sampling and the format needed for the live register or project controls.',
+    primaryLinks: [
+      { label: 'HSE asbestos duty', detail: 'Who has the duty to manage and what it involves', url: 'https://www.hse.gov.uk/asbestos/duty/index.htm' },
+      { label: 'HSE survey guide', detail: 'Survey types, planning and choosing a surveyor', url: 'https://www.hse.gov.uk/asbestos/duty/arrange-asbestos-survey.htm' },
+      { label: 'Control of Asbestos Regulations 2012', detail: 'Regulation 4 duty to manage asbestos', url: 'https://www.legislation.gov.uk/uksi/2012/632/regulation/4' },
+    ],
+    priceEvidence: [
+      { label: 'ACMS UK', url: 'https://www.acmsuk.com/news/asbestos/asbestos-survey-cost/', note: 'Publishes commercial management-survey examples and explains major price drivers.' },
+      { label: 'Elements Environmental', url: 'https://www.asbestossurveyingandtesting.com/knowledge-centre/guides/management-surveys', note: 'Publishes size-banded commercial management-survey guidance.' },
+      { label: 'Supernova Asbestos Surveys', url: 'https://asbestos-surveys.org.uk/services', note: 'Publishes starting prices for management, refurbishment, demolition and reinspection work.' },
+    ],
+  },
 }
 
 const labelFor = (definition: ServiceDefinition, value: string) =>
@@ -270,12 +331,21 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
     if (positiveWork.length && !answers.workTypes.includes('unknown-lifting')) status = 'likely-relevant'
     else if (positiveWork.length || answers.riskSignals.includes('unknown-use')) status = 'may-be-relevant'
   }
+  if (answers.serviceId === 'asbestos') {
+    const intrusive = answers.workTypes.some((value) => ['refurbishment', 'demolition'].includes(value)) || answers.riskSignals.includes('planned-disturbance')
+    const asbestosRiskSignals = ['built-before-2000', 'suspect-material', 'no-register', 'damaged-material', 'previous-findings']
+    const dutySignals = answers.workTypes.some((value) => ['occupied-non-domestic', 'common-parts', 'maintenance-work'].includes(value)) && asbestosRiskSignals.some((value) => answers.riskSignals.includes(value))
+    if (intrusive || dutySignals) status = 'likely-relevant'
+    else if (answers.workTypes.includes('property-acquisition') || answers.workTypes.includes('unknown-use') || answers.riskSignals.includes('unknown-building-age')) status = 'may-be-relevant'
+  }
 
   const complexWork = answers.serviceId === 'lev'
     ? ['spray-booth', 'recirculating', 'laboratory-fume'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
     : answers.serviceId === 'pressure-systems'
       ? ['steam-boiler', 'refrigeration', 'process-vessel'].some((value) => answers.workTypes.includes(value))
-      : ['passenger-lift', 'mewp', 'crane-hoist'].some((value) => answers.workTypes.includes(value))
+      : answers.serviceId === 'loler'
+        ? ['passenger-lift', 'mewp', 'crane-hoist'].some((value) => answers.workTypes.includes(value))
+        : ['refurbishment', 'demolition'].some((value) => answers.workTypes.includes(value)) || ['planned-disturbance', 'damaged-material'].some((value) => answers.riskSignals.includes(value))
   const score = positiveWork.length * 2 + positiveSignals.length * 2 + Math.min(answers.assetCount, 5) + (answers.sites > 1 ? 2 : 0) + (complexWork ? 4 : 0)
   const complexity = score >= 10 || answers.sites > 2 || answers.assetCount > 8 || complexWork ? 'complex' : 'standard'
 
@@ -297,13 +367,20 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           'Examine the covered parts in accordance with the written scheme',
           'Issue reports, identify repairs and deal with any imminent-danger findings',
         ]
-      : [
+      : answers.serviceId === 'loler' ? [
           'Validate an itemised asset and lifting-accessory register',
           'Confirm examination triggers and intervals for each equipment group',
           'Systematic examination of safety-critical parts by an equipment-competent person',
           'Functional checks or supplementary tests where the competent person requires them',
           'Written Schedule 1 report, next due date and clearly graded defects',
           'Immediate escalation and enforcing-authority reporting where legally required',
+        ] : [
+          'Confirm the dutyholder, premises boundary, building age and available records',
+          'Select a management or refurbishment and demolition survey for the actual decision',
+          'Agree accessible areas, intrusive access, exclusions, sampling and reinstatement before attendance',
+          'Inspect relevant areas and arrange accredited laboratory analysis where samples are taken',
+          'Record locations, extent, condition and material or priority assessments as appropriate',
+          'Deliver a usable report, register information and clear actions for management or planned work',
         ]
 
   if (answers.documentationStatus !== 'available') scope.unshift('Reconstruct or verify missing equipment and baseline information before examination')
@@ -314,7 +391,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
     triggeredFactors: factors.length ? factors : ['No clear statutory trigger was selected from the information supplied'],
     caveats: [
       `This finder is an initial procurement aid, not a ${definition.name.toLowerCase()} or legal determination.`,
-      'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
+      answers.serviceId === 'asbestos'
+        ? 'A competent person must confirm the premises boundary, survey type, access, exclusions and project requirements.'
+        : 'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
     ],
     scope,
     complexity,
@@ -333,6 +412,10 @@ export const SERVICE_PRICE_MODELS = {
   loler: {
     version: 'published-provider-calibration-2026-08-31', baseVisit: 180, perMainItem: 82, perAccessory: 11,
     peopleLiftingItem: 35, complexEquipment: 95, additionalSite: 175, spread: 0.25,
+  },
+  asbestos: {
+    version: 'published-provider-calibration-2026-09-10', baseVisit: 350, perBuilding: 250, perSample: 35,
+    intrusiveSurvey: 250, complexPremises: 450, additionalSite: 300, spread: 0.28,
   },
 } as const
 
@@ -357,13 +440,21 @@ export function estimateServicePrice(
     if (answers.inspectionStatus === 'none' || answers.inspectionStatus === 'new-system') factors.push({ label: 'New written-scheme preparation allowance', amount: model.newWrittenScheme })
     if (result.complexity === 'complex') factors.push({ label: 'Complex pressure-system allowance', amount: model.complexSystem })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
-  } else {
+  } else if (answers.serviceId === 'loler') {
     const model = SERVICE_PRICE_MODELS.loler
     factors.push({ label: 'Minimum site attendance and reporting', amount: model.baseVisit })
     factors.push({ label: `${answers.assetCount} main lifting-equipment item${answers.assetCount === 1 ? '' : 's'}`, amount: answers.assetCount * model.perMainItem })
     if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} lifting accessor${answers.secondaryCount === 1 ? 'y' : 'ies'}`, amount: answers.secondaryCount * model.perAccessory })
     if (answers.riskSignals.includes('lifts-people')) factors.push({ label: 'People-lifting examination allowance', amount: answers.assetCount * model.peopleLiftingItem })
     if (result.complexity === 'complex') factors.push({ label: 'Complex equipment allowance', amount: model.complexEquipment })
+    if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
+  } else {
+    const model = SERVICE_PRICE_MODELS.asbestos
+    factors.push({ label: 'Survey planning, attendance and report setup', amount: model.baseVisit })
+    factors.push({ label: `${answers.assetCount} building or block${answers.assetCount === 1 ? '' : 's'} in scope`, amount: answers.assetCount * model.perBuilding })
+    if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} sample or suspect-location allowance`, amount: answers.secondaryCount * model.perSample })
+    if (answers.workTypes.some((value) => ['refurbishment', 'demolition'].includes(value)) || answers.riskSignals.includes('planned-disturbance')) factors.push({ label: 'Intrusive refurbishment or demolition survey allowance', amount: model.intrusiveSurvey })
+    if (result.complexity === 'complex') factors.push({ label: 'Complex premises, access or risk allowance', amount: model.complexPremises })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
   }
 
@@ -376,7 +467,7 @@ export function estimateServicePrice(
     factors,
     assumptions: [
       'One planned visit per site during normal working hours',
-      'Equipment is available, identifiable and safely accessible for examination',
+      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : 'Equipment is available, identifiable and safely accessible for examination',
       'VAT, repairs, replacement parts, specialist access and intrusive testing are excluded',
       'Calibration sources cover only some simple/common jobs and are not an awarded-quote market benchmark',
       'This is deterministic Vendor Atlas planning guidance, not a supplier quotation',
@@ -391,7 +482,7 @@ export function defaultServiceAnswers(serviceId: IndustrialServiceId): ServiceAs
     workTypes: [],
     riskSignals: [],
     assetCount: 1,
-    secondaryCount: serviceId === 'lev' ? 1 : 0,
+    secondaryCount: serviceId === 'lev' ? 1 : serviceId === 'asbestos' ? 4 : 0,
     sites: 1,
     size: 'small',
     documentationStatus: 'unknown',

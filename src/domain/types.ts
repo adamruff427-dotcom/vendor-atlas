@@ -1,4 +1,4 @@
-export type ServiceId = 'dsear' | 'lev' | 'pressure-systems' | 'loler'
+export type ServiceId = 'dsear' | 'lev' | 'pressure-systems' | 'loler' | 'asbestos'
 export type ServiceCategory =
   | 'dsear-assessment'
   | 'hazardous-area-classification'
@@ -10,6 +10,9 @@ export type ServiceCategory =
   | 'pssr-examination'
   | 'loler-thorough-examination'
   | 'examination-scheme'
+  | 'asbestos-management-survey'
+  | 'asbestos-refurbishment-demolition-survey'
+  | 'asbestos-reinspection'
 export type Hazard = 'flammable-liquids' | 'solvents-paints' | 'lpg-gases' | 'combustible-dust' | 'fuels' | 'batteries' | 'pressurised-gases'
 export type Sector = 'manufacturing' | 'food-drink' | 'woodworking' | 'automotive' | 'chemicals' | 'energy-waste' | 'laboratory' | 'other'
 export type Region = 'scotland' | 'north' | 'midlands' | 'wales' | 'south-west' | 'south-east' | 'london' | 'northern-ireland' | 'great-britain' | 'uk-wide'

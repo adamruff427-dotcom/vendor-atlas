@@ -55,6 +55,17 @@ const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; in
     ],
     evidence: ['Item identity and lifting use', 'Installation and event history', 'Equipment-specific competent person', 'Schedule 1 report and defect action'], source: 'https://www.hse.gov.uk/work-equipment-machinery/thorough-examinations-lifting-equipment.htm', sourceLabel: 'HSE thorough-examination guidance',
   },
+  asbestos: {
+    eyebrow: 'Survey route', title: 'The building decision sets the survey depth', intro: 'The dutyholder, premises records and planned disturbance determine what must be inspected and how the result will be used.',
+    nodes: [
+      { title: 'Premises', detail: 'Dutyholder, building age, areas and maintenance responsibility', icon: Factory },
+      { title: 'Decision', detail: 'Normal management, refurbishment, demolition or reinspection', icon: SearchCheck },
+      { title: 'Survey plan', detail: 'Access, exclusions, intrusion, samples and safe working method', icon: FileCheck2 },
+      { title: 'Findings', detail: 'Location, extent, condition, analysis and assessment', icon: PackageCheck },
+      { title: 'Control', detail: 'Live register, management actions or project work controls', icon: ShieldCheck },
+    ],
+    evidence: ['Defined scope and exclusions', 'Sample and laboratory traceability', 'Marked locations and assessments', 'Register or project actions'], source: 'https://www.hse.gov.uk/pubns/priced/hsg264.pdf', sourceLabel: 'HSE HSG264',
+  },
 }
 
 export function TechnicalDiagram({ serviceId }: { serviceId: IndustrialServiceId }) {
