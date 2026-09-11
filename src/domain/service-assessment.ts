@@ -299,6 +299,71 @@ export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> 
       { label: 'Supernova Asbestos Surveys', url: 'https://asbestos-surveys.org.uk/services', note: 'Publishes starting prices for management, refurbishment, demolition and reinspection work.' },
     ],
   },
+  'fire-risk-assessment': {
+    id: 'fire-risk-assessment',
+    name: 'fire risk assessment',
+    shortName: 'Fire risk assessments',
+    eyebrow: 'Fire risk assessment finder',
+    question: 'Does my premises need a fire risk assessment?',
+    promise: 'Check the likely duty, assessment scope and quote inputs in about 2 minutes.',
+    description: 'Identify the responsible-person and premises signals, see what a suitable assessment should cover, estimate a visible planning range and compare sourced providers.',
+    legalBasis: 'In England and Wales, the Regulatory Reform (Fire Safety) Order 2005 requires the responsible person to make a suitable and sufficient assessment of risks to relevant persons and keep it under review. Different legislation applies in Scotland and Northern Ireland.',
+    legalSource: 'https://www.gov.uk/workplace-fire-safety-your-responsibilities/fire-risk-assessments',
+    guidePath: '/fire-risk-assessment/do-i-need-a-fire-risk-assessment',
+    costPath: '/fire-risk-assessment/cost',
+    supplierPath: '/fire-risk-assessment/suppliers',
+    toolkitPath: '/fire-risk-assessment/buying-toolkit',
+    workHeading: 'What type of premises is involved?',
+    workHelp: 'Choose every relevant use. Mixed and shared premises can have more than one responsible person.',
+    workOptions: [
+      { value: 'office-retail', label: 'Office, shop or salon', detail: 'Non-domestic workplace or premises open to customers' },
+      { value: 'factory-warehouse', label: 'Factory or warehouse', detail: 'Industrial, storage or distribution premises' },
+      { value: 'hospitality', label: 'Restaurant, pub or venue', detail: 'Cooking, alcohol, public assembly or entertainment use' },
+      { value: 'sleeping-accommodation', label: 'Hotel, guest accommodation or HMO', detail: 'People sleep at the premises and may be unfamiliar with escape routes' },
+      { value: 'residential-common-parts', label: 'Block of flats common parts', detail: 'Shared areas, structure, external walls and flat entrance doors may need consideration' },
+      { value: 'care-education', label: 'Care, healthcare or education', detail: 'Children, patients or people needing assistance may be present' },
+      { value: 'construction-site', label: 'Construction or refurbishment site', detail: 'Temporary conditions, hot work and changing escape routes apply' },
+      { value: 'mixed-use', label: 'Mixed-use or multi-occupied building', detail: 'Several uses, occupiers or responsible persons share the premises' },
+      { value: 'none-private-home', label: 'Private home only', detail: 'A single private domestic dwelling with no business, paying guests or shared common parts' },
+      { value: 'unknown-premises', label: 'Premises use is uncertain', detail: 'Ownership, occupation or fire-safety responsibility needs checking' },
+    ],
+    signalHeading: 'Which fire-safety scope signals apply?',
+    signalHelp: 'These factors affect assessment depth, assessor competence and quotation effort. They do not determine the assessment outcome.',
+    signalOptions: [
+      { value: 'employees-public', label: 'Employees, customers or visitors attend', detail: 'Relevant persons use or may be near the premises' },
+      { value: 'sleeping-risk', label: 'People sleep at the premises', detail: 'Sleeping risk changes evacuation and detection considerations' },
+      { value: 'vulnerable-occupants', label: 'People may need assistance to escape', detail: 'Children, patients, residents or disabled people need suitable planning' },
+      { value: 'dangerous-substances', label: 'Dangerous substances or higher fire load', detail: 'Fuel, gases, chemicals, combustible stock or process hazards are present' },
+      { value: 'multiple-floors', label: 'Several floors or complex escape routes', detail: 'Travel distances, stairs, compartmentation and evacuation need closer review' },
+      { value: 'shared-responsibility', label: 'Several occupiers or dutyholders', detail: 'Co-operation and co-ordination arrangements need assessment' },
+      { value: 'material-change', label: 'Change, fire or near miss', detail: 'A change or event can trigger review of an existing assessment' },
+      { value: 'unknown-fire-scope', label: 'Fire-safety information is incomplete', detail: 'Plans, occupancy, systems or previous findings need checking' },
+      { value: 'no-complex-signals', label: 'None of these complexity signals', detail: 'The premises still needs its legal duty and assessment position checked' },
+    ],
+    assetLabel: 'Floors or distinct levels in scope',
+    secondaryLabel: 'Separate occupancies or tenant areas',
+    documentationLabel: 'Existing assessment, plans and fire-safety records',
+    documentationOptions: sharedDocumentation,
+    inspectionLabel: 'Current fire risk assessment position',
+    inspectionOptions: [
+      { value: 'none', label: 'No written assessment found' },
+      { value: 'in-date', label: 'Assessment is recorded and believed current' },
+      { value: 'overdue-or-unknown', label: 'Assessment exists but review status is unclear' },
+      { value: 'new-system', label: 'New premises, use or occupancy' },
+    ],
+    resultResourceHeading: 'The responsible person owns the duty',
+    resultResourceBody: 'A responsible person can carry out a straightforward assessment if competent, or appoint a competent assessor. Outsourcing the work does not transfer the legal responsibility. The brief should describe the premises, people, hazards, fire precautions, records, shared responsibilities and intended report.',
+    primaryLinks: [
+      { label: 'GOV.UK fire risk assessments', detail: 'Responsible-person duty and five assessment steps', url: 'https://www.gov.uk/workplace-fire-safety-your-responsibilities/fire-risk-assessments' },
+      { label: 'Home Office five-step checklist', detail: 'Hazards, people, action, records and review', url: 'https://www.gov.uk/government/publications/fire-safety-risk-assessment-5-step-checklist/fire-safety-risk-assessment-5-step-checklist-accessible' },
+      { label: 'Fire Safety Order article 9', detail: 'Legal risk-assessment and review requirement', url: 'https://www.legislation.gov.uk/uksi/2005/1541/article/9' },
+    ],
+    priceEvidence: [
+      { label: 'R&W Fire Solutions', url: 'https://www.rwfiresolutions.com/fire-risk-assessments', note: 'Publishes starting prices of £250 for small, £450 for medium and £750 for large or complex premises.' },
+      { label: 'MG Fire Safety Group', url: 'https://www.londonfireriskassessment.com/pricing/pricing', note: 'Publishes commercial-premises prices by stated floor-area band.' },
+      { label: 'Landlord Compliance London', url: 'https://landlordcompliancelondon.uk/services/commercial-fire-risk-assessment', note: 'Publishes prices by floor count for communal areas and full buildings.' },
+    ],
+  },
 }
 
 const labelFor = (definition: ServiceDefinition, value: string) =>
@@ -338,6 +403,11 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
     if (intrusive || dutySignals) status = 'likely-relevant'
     else if (answers.workTypes.includes('property-acquisition') || answers.workTypes.includes('unknown-use') || answers.riskSignals.includes('unknown-building-age')) status = 'may-be-relevant'
   }
+  if (answers.serviceId === 'fire-risk-assessment') {
+    const inScopePremises = positiveWork.filter((value) => value !== 'unknown-premises')
+    if (inScopePremises.length) status = 'likely-relevant'
+    else if (answers.workTypes.includes('unknown-premises')) status = 'may-be-relevant'
+  }
 
   const complexWork = answers.serviceId === 'lev'
     ? ['spray-booth', 'recirculating', 'laboratory-fume'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
@@ -345,7 +415,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
       ? ['steam-boiler', 'refrigeration', 'process-vessel'].some((value) => answers.workTypes.includes(value))
       : answers.serviceId === 'loler'
         ? ['passenger-lift', 'mewp', 'crane-hoist'].some((value) => answers.workTypes.includes(value))
-        : ['refurbishment', 'demolition'].some((value) => answers.workTypes.includes(value)) || ['planned-disturbance', 'damaged-material'].some((value) => answers.riskSignals.includes(value))
+        : answers.serviceId === 'asbestos'
+          ? ['refurbishment', 'demolition'].some((value) => answers.workTypes.includes(value)) || ['planned-disturbance', 'damaged-material'].some((value) => answers.riskSignals.includes(value))
+          : ['sleeping-accommodation', 'care-education', 'mixed-use', 'construction-site'].some((value) => answers.workTypes.includes(value)) || ['sleeping-risk', 'vulnerable-occupants', 'dangerous-substances', 'shared-responsibility'].some((value) => answers.riskSignals.includes(value))
   const score = positiveWork.length * 2 + positiveSignals.length * 2 + Math.min(answers.assetCount, 5) + (answers.sites > 1 ? 2 : 0) + (complexWork ? 4 : 0)
   const complexity = score >= 10 || answers.sites > 2 || answers.assetCount > 8 || complexWork ? 'complex' : 'standard'
 
@@ -374,13 +446,20 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           'Functional checks or supplementary tests where the competent person requires them',
           'Written Schedule 1 report, next due date and clearly graded defects',
           'Immediate escalation and enforcing-authority reporting where legally required',
-        ] : [
+        ] : answers.serviceId === 'asbestos' ? [
           'Confirm the dutyholder, premises boundary, building age and available records',
           'Select a management or refurbishment and demolition survey for the actual decision',
           'Agree accessible areas, intrusive access, exclusions, sampling and reinstatement before attendance',
           'Inspect relevant areas and arrange accredited laboratory analysis where samples are taken',
           'Record locations, extent, condition and material or priority assessments as appropriate',
           'Deliver a usable report, register information and clear actions for management or planned work',
+        ] : [
+          'Confirm the responsible person, premises boundary, use, occupiers and shared responsibilities',
+          'Identify fire hazards, ignition sources, fuel sources and people at risk',
+          'Evaluate escape, detection, warning, firefighting, compartmentation and management measures',
+          'Consider vulnerable people, dangerous substances and relevant fire-safety systems',
+          'Record significant findings, prioritised actions and the emergency-plan implications',
+          'Set review triggers and provide a written record the responsible person can maintain',
         ]
 
   if (answers.documentationStatus !== 'available') scope.unshift('Reconstruct or verify missing equipment and baseline information before examination')
@@ -393,7 +472,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
       `This finder is an initial procurement aid, not a ${definition.name.toLowerCase()} or legal determination.`,
       answers.serviceId === 'asbestos'
         ? 'A competent person must confirm the premises boundary, survey type, access, exclusions and project requirements.'
-        : 'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
+        : answers.serviceId === 'fire-risk-assessment'
+          ? 'The responsible person must confirm that the assessment is suitable and sufficient for the premises, people and risks.'
+          : 'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
     ],
     scope,
     complexity,
@@ -416,6 +497,10 @@ export const SERVICE_PRICE_MODELS = {
   asbestos: {
     version: 'published-provider-calibration-2026-09-10', baseVisit: 350, perBuilding: 250, perSample: 35,
     intrusiveSurvey: 250, complexPremises: 450, additionalSite: 300, spread: 0.28,
+  },
+  'fire-risk-assessment': {
+    version: 'published-provider-calibration-2026-09-11', baseVisit: 200, perFloor: 65, perOccupancy: 45,
+    sleepingOrVulnerable: 250, complexPremises: 350, additionalSite: 200, spread: 0.3,
   },
 } as const
 
@@ -448,13 +533,21 @@ export function estimateServicePrice(
     if (answers.riskSignals.includes('lifts-people')) factors.push({ label: 'People-lifting examination allowance', amount: answers.assetCount * model.peopleLiftingItem })
     if (result.complexity === 'complex') factors.push({ label: 'Complex equipment allowance', amount: model.complexEquipment })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
-  } else {
+  } else if (answers.serviceId === 'asbestos') {
     const model = SERVICE_PRICE_MODELS.asbestos
     factors.push({ label: 'Survey planning, attendance and report setup', amount: model.baseVisit })
     factors.push({ label: `${answers.assetCount} building or block${answers.assetCount === 1 ? '' : 's'} in scope`, amount: answers.assetCount * model.perBuilding })
     if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} sample or suspect-location allowance`, amount: answers.secondaryCount * model.perSample })
     if (answers.workTypes.some((value) => ['refurbishment', 'demolition'].includes(value)) || answers.riskSignals.includes('planned-disturbance')) factors.push({ label: 'Intrusive refurbishment or demolition survey allowance', amount: model.intrusiveSurvey })
     if (result.complexity === 'complex') factors.push({ label: 'Complex premises, access or risk allowance', amount: model.complexPremises })
+    if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
+  } else {
+    const model = SERVICE_PRICE_MODELS['fire-risk-assessment']
+    factors.push({ label: 'Assessment planning, attendance and report setup', amount: model.baseVisit })
+    factors.push({ label: `${answers.assetCount} floor or level${answers.assetCount === 1 ? '' : 's'} in scope`, amount: answers.assetCount * model.perFloor })
+    if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} separate occupanc${answers.secondaryCount === 1 ? 'y' : 'ies'}`, amount: answers.secondaryCount * model.perOccupancy })
+    if (answers.riskSignals.some((value) => ['sleeping-risk', 'vulnerable-occupants'].includes(value))) factors.push({ label: 'Sleeping or vulnerable-occupant assessment allowance', amount: model.sleepingOrVulnerable })
+    if (result.complexity === 'complex') factors.push({ label: 'Complex premises or fire-risk allowance', amount: model.complexPremises })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
   }
 
@@ -467,7 +560,7 @@ export function estimateServicePrice(
     factors,
     assumptions: [
       'One planned visit per site during normal working hours',
-      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : 'Equipment is available, identifiable and safely accessible for examination',
+      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : 'Equipment is available, identifiable and safely accessible for examination',
       'VAT, repairs, replacement parts, specialist access and intrusive testing are excluded',
       'Calibration sources cover only some simple/common jobs and are not an awarded-quote market benchmark',
       'This is deterministic Vendor Atlas planning guidance, not a supplier quotation',
@@ -482,7 +575,7 @@ export function defaultServiceAnswers(serviceId: IndustrialServiceId): ServiceAs
     workTypes: [],
     riskSignals: [],
     assetCount: 1,
-    secondaryCount: serviceId === 'lev' ? 1 : serviceId === 'asbestos' ? 4 : 0,
+    secondaryCount: serviceId === 'lev' ? 1 : serviceId === 'asbestos' ? 4 : serviceId === 'fire-risk-assessment' ? 1 : 0,
     sites: 1,
     size: 'small',
     documentationStatus: 'unknown',

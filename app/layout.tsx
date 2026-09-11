@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vendoratlas.artificiallyconfident.com"),
   title: { default: "Vendor Atlas | UK industrial compliance finder", template: "%s | Vendor Atlas" },
   description:
-    "Check DSEAR, LEV, pressure-system, LOLER and asbestos duties, see explainable planning ranges and compare evidence-backed UK specialists.",
+    "Check six UK compliance duties, see itemised planning ranges and compare sourced specialists without paid ranking.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Vendor Atlas | UK industrial compliance finder",
     description:
-      "Decision support, explainable cost estimates and evidence-backed UK specialists for five industrial compliance services.",
+      "Decision support, itemised cost estimates and sourced UK specialists for six compulsory compliance services.",
     url: "/",
     siteName: "Vendor Atlas",
     locale: "en_GB",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Vendor Atlas | UK industrial compliance finder",
-    description: "Decision support for DSEAR, LEV, pressure systems, LOLER and asbestos surveys.",
+    description: "Decision support for six UK compliance-service buying decisions.",
     images: ["/og.png"],
   },
   robots: { index: true, follow: true },
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description:
-      "Decision support for procuring UK DSEAR, LEV, pressure-system, LOLER and asbestos-survey services.",
+      "Decision support for procuring six UK compliance services, including DSEAR, statutory examinations, asbestos surveys and fire risk assessments.",
     url: "https://vendoratlas.artificiallyconfident.com/",
   };
   return (
@@ -69,6 +69,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/pressure-systems">Pressure systems</Link>
               <Link href="/loler">LOLER</Link>
               <Link href="/asbestos">Asbestos</Link>
+              <Link href="/fire-risk-assessment">Fire risk</Link>
             </nav>
           </div>
           <div className="analytics-notice" role="note">

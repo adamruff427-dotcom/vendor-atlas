@@ -1,6 +1,6 @@
 # Vendor Atlas
 
-Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The live industrial-compliance estate covers DSEAR assessment, LEV thorough examination and test, pressure-system written schemes/examinations under PSSR, LOLER thorough examinations, and asbestos surveys and register support.
+Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The live service directory covers DSEAR assessment, LEV thorough examination and test, pressure-system written schemes and examinations under PSSR, LOLER thorough examinations, asbestos surveys and register support, and fire risk assessments for premises in England and Wales.
 
 Public site: `https://vendoratlas.artificiallyconfident.com/`
 
@@ -33,7 +33,7 @@ LEV, pressure systems, LOLER and asbestos surveys each have the same product sta
 8. durable quote-intent capture through the same D1 enquiry workflow; and
 9. substantive overview, decision, cost, supplier and comparison guides based on HSE and legislation.
 
-Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems` and `/loler`. This consolidates the Vendor Atlas evidence and buying standard without coupling the qualification rules.
+Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos` and `/fire-risk-assessment`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
 
 ## Architecture
 
@@ -81,7 +81,7 @@ Pressure systems returns `likely-relevant` for explicit relevant-fluid indicator
 
 LOLER returns `likely-relevant` for identified lifting equipment or accessories and keeps unclassified equipment at `may-be-relevant`. Its scope covers itemised assets, first-use/installation/periodic/exceptional triggers, equipment-specific competent examination, Schedule 1 reporting and defect escalation.
 
-All five models explicitly state that the finder is not the legal determination, survey or statutory work. Tests cover positive, uncertain and no-obvious-trigger states and ensure the models never produce contradictory result, scope or price combinations.
+All six models state that the finder is not the legal determination, survey, assessment or statutory work. Tests cover positive, uncertain and no-obvious-trigger states and prevent contradictory result, scope or price combinations.
 
 ## Pricing models
 
@@ -102,6 +102,7 @@ The other models are also deterministic and versioned:
 - Pressure systems: competent-person attendance + pressure plant items + protective devices + new written-scheme allowance + system complexity + additional sites. Public calibration is limited mainly to simpler individual pressure vessels and coffee boilers, so the range is deliberately wider and explicitly unsuitable as an industrial market average.
 - LOLER: minimum attendance + main lifting-equipment items + accessories + people-lifting allowance + complex equipment + additional sites. Public calibration includes per-item, plant and arborist-kit examples with materially different inclusions.
 - Asbestos: survey attendance + buildings or blocks + expected samples + intrusive-work allowance + premises complexity + additional sites. Calibration uses provider-published commercial examples and starting prices, not a national tariff.
+- Fire risk assessment: assessment setup + floors + separate occupancies + sleeping or vulnerable occupants + premises complexity + additional sites. Calibration uses provider-published price schedules and remains planning guidance.
 
 Every result shows the arithmetic, assumptions, excluded work and exact provider-price sources. All models exclude VAT, repairs, replacement parts, unusual access and specialist testing unless stated. The priority calibration input is scope-normalised awarded quote data collected through real projects.
 
@@ -146,7 +147,7 @@ The evidence directory contains 12 real providers, checked against their own pub
 
 The app retains the individual provider page supporting each displayed coverage, sector, hazard, capability or published-price claim. Unsupported coverage is displayed as “not evidenced publicly”. Public qualification and insurance details that could not be verified are not invented; the buyer is told to request them during pre-qualification. Directory inclusion and “provider source checked” are not Vendor Atlas approval.
 
-The industrial examination directory adds real provider-source-checked records including Rayalon Filter Services, Combined Air, Apex LEV Services, Occupational Hygiene Services, Impact Technical Services, Mandate Systems, Bureau Veritas UK, Allianz Engineering Inspection Services, Zurich Engineering, Velocity Safety, SEIS, Certex UK, LOLER Examinations, Qualitas Asset Compliance, Robinsons Facilities Services, Safety Check Engineering, ACMS UK, ABP Associates, Elements Environmental and Supernova Asbestos Surveys.
+The supplier directory includes provider-source-checked records for the five earlier verticals plus R&W Fire Solutions, MG Fire Safety Group, Landlord Compliance London and Fire Risk Specialists for fire risk assessment.
 
 Some providers appear in more than one vertical only where a checked source supports each service. The directory records exact coverage wording, equipment or process capabilities, provider-stated qualifications or accreditation, price evidence, insurance gaps and the public URL supporting every material claim. Accreditation and competence statements remain provider evidence until the buyer verifies the current scope and named person.
 

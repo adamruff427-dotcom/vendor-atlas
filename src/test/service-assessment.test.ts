@@ -62,8 +62,27 @@ describe('asbestos survey qualification and pricing', () => {
   })
 })
 
+describe('fire risk assessment qualification and pricing', () => {
+  it('recognises covered premises and adds the sleeping-risk allowance', () => {
+    const answers = { ...defaultServiceAnswers('fire-risk-assessment'), workTypes: ['sleeping-accommodation'], riskSignals: ['sleeping-risk', 'vulnerable-occupants'], assetCount: 3, secondaryCount: 2 }
+    const result = qualifyService(answers)
+    const estimate = estimateServicePrice(answers, result)
+    expect(result.status).toBe('likely-relevant')
+    expect(result.scope.join(' ')).toMatch(/people at risk|escape/i)
+    expect(estimate.factors).toEqual(expect.arrayContaining([expect.objectContaining({ amount: SERVICE_PRICE_MODELS['fire-risk-assessment'].sleepingOrVulnerable })]))
+  })
+
+  it('does not treat an uncertain premises boundary as an exemption', () => {
+    expect(qualifyService({ ...defaultServiceAnswers('fire-risk-assessment'), workTypes: ['unknown-premises'], riskSignals: ['unknown-fire-scope'] }).status).toBe('may-be-relevant')
+  })
+
+  it('does not invent a fire-safety-order trigger for a private home only', () => {
+    expect(qualifyService({ ...defaultServiceAnswers('fire-risk-assessment'), workTypes: ['none-private-home'], riskSignals: ['no-complex-signals'], documentationStatus: 'available', inspectionStatus: 'in-date' }).status).toBe('no-obvious-trigger')
+  })
+})
+
 describe('generic industrial service invariants', () => {
-  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos'] as const) {
+  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment'] as const) {
     it(`${serviceId} stays deterministic, positive and evidence-linked`, () => {
       const definition = serviceDefinitions[serviceId]
       const answers = { ...defaultServiceAnswers(serviceId), workTypes: [definition.workOptions[0].value], riskSignals: [definition.signalOptions[0].value], assetCount: 4, secondaryCount: 8, sites: 2 }
@@ -88,7 +107,7 @@ describe('generic industrial service invariants', () => {
   }
 
   it('retains source URLs and explicit evidence status for every new supplier', () => {
-    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos'))
+    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment'))
     for (const supplier of suppliers) {
       expect(supplier.evidence.length).toBeGreaterThan(0)
       expect(supplier.evidence.every((item) => item.sourceUrl.startsWith('https://') && item.checkedOn === supplier.lastVerifiedDate)).toBe(true)

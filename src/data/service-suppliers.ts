@@ -4,6 +4,7 @@ const checkedOn = '2026-08-31'
 const unknownInsurance = 'No current project-specific insurance certificate was found on the checked page; request evidence before appointment.'
 const quoteRequired = 'No numeric public tariff was found on the checked service page; a scoped quotation is required.'
 const asbestosCheckedOn = '2026-09-10'
+const fireCheckedOn = '2026-09-11'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
@@ -267,6 +268,58 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider lists management, refurbishment, demolition, reinspection and sampling services.', sourceUrl: 'https://asbestos-surveys.org.uk/services', sourceType: 'provider', checkedOn: asbestosCheckedOn },
       { claim: 'Provider publishes starting prices for its listed asbestos services.', sourceUrl: 'https://asbestos-surveys.org.uk/services', sourceType: 'provider', checkedOn: asbestosCheckedOn },
     ], lastVerifiedDate: asbestosCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard'],
+  },
+  {
+    id: 'rw-fire-solutions', name: 'R&W Fire Solutions', website: 'https://www.rwfiresolutions.com/fire-risk-assessments',
+    serviceIds: ['fire-risk-assessment'], geographicalCoverage: ['london', 'south-east'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['fire-risk-assessment', 'fire-risk-assessment-review', 'residential-fire-risk-assessment'],
+    capabilities: ['Fire risk assessment', 'commercial premises assessment', 'residential block assessment', 'written action plan'],
+    specialisms: ['office-retail', 'factory-warehouse', 'hospitality', 'sleeping-accommodation', 'residential-common-parts', 'mixed-use', 'sleeping-risk', 'multiple-floors'],
+    qualificationsAndMemberships: ['Provider states Level 3 and Level 4 qualifications and IFE and IFSM affiliations; verify the named assessor and current register entries.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes starting prices of £250 for small, £450 for medium and £750 for large or complex premises.',
+    evidence: [
+      { claim: 'Provider states commercial and residential fire risk assessment coverage across London and the South East.', sourceUrl: 'https://www.rwfiresolutions.com/fire-risk-assessments', sourceType: 'provider', checkedOn: fireCheckedOn },
+      { claim: 'Provider publishes three premises-size starting prices and describes the included written report.', sourceUrl: 'https://www.rwfiresolutions.com/fire-risk-assessments', sourceType: 'provider', checkedOn: fireCheckedOn },
+    ], lastVerifiedDate: fireCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'mg-fire-safety-group', name: 'MG Fire Safety Group', website: 'https://www.londonfireriskassessment.com/pricing/pricing',
+    serviceIds: ['fire-risk-assessment'], geographicalCoverage: ['london'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'laboratory', 'other'],
+    serviceCategories: ['fire-risk-assessment', 'fire-risk-assessment-review', 'residential-fire-risk-assessment'],
+    capabilities: ['Fire risk assessment', 'commercial premises assessment', 'HMO assessment', 'purpose-built flats assessment', 'evacuation management review'],
+    specialisms: ['office-retail', 'hospitality', 'sleeping-accommodation', 'residential-common-parts', 'care-education', 'mixed-use', 'sleeping-risk', 'vulnerable-occupants'],
+    qualificationsAndMemberships: ['Provider describes ex-fire-service fire safety officers; request the named assessor’s current competence and register evidence.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes £450 for stated commercial premises of 185 to 465 m² and £950 for premises up to 930 m².',
+    evidence: [
+      { claim: 'Provider publishes pricing for commercial premises, HMOs and purpose-built blocks of flats.', sourceUrl: 'https://www.londonfireriskassessment.com/pricing/pricing', sourceType: 'provider', checkedOn: fireCheckedOn },
+      { claim: 'Provider lists London boroughs and areas served on its pricing page.', sourceUrl: 'https://www.londonfireriskassessment.com/pricing/pricing', sourceType: 'provider', checkedOn: fireCheckedOn },
+    ], lastVerifiedDate: fireCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'landlord-compliance-london', name: 'Landlord Compliance London', website: 'https://landlordcompliancelondon.uk/services/commercial-fire-risk-assessment',
+    serviceIds: ['fire-risk-assessment'], geographicalCoverage: ['london'], sectors: ['food-drink', 'automotive', 'other'],
+    serviceCategories: ['fire-risk-assessment', 'fire-risk-assessment-review', 'residential-fire-risk-assessment'],
+    capabilities: ['Fire risk assessment', 'commercial premises assessment', 'communal-area assessment', 'written risk-rated action plan'],
+    specialisms: ['office-retail', 'hospitality', 'sleeping-accommodation', 'residential-common-parts', 'mixed-use', 'multiple-floors', 'shared-responsibility'],
+    qualificationsAndMemberships: ['Provider states assessments are completed by qualified assessors; request named-person qualification and register evidence.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes VAT-inclusive prices from £159.99 for communal areas and £259.99 for full buildings, with bands based on floor count.',
+    evidence: [
+      { claim: 'Provider describes commercial assessments for offices, retail, hospitality, warehouses and mixed-use premises.', sourceUrl: 'https://landlordcompliancelondon.uk/services/commercial-fire-risk-assessment', sourceType: 'provider', checkedOn: fireCheckedOn },
+      { claim: 'Provider publishes floor-count pricing with a written report and risk-rated action plan.', sourceUrl: 'https://landlordcompliancelondon.uk/services/commercial-fire-risk-assessment', sourceType: 'provider', checkedOn: fireCheckedOn },
+    ], lastVerifiedDate: fireCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'fire-risk-specialists', name: 'Fire Risk Specialists', website: 'https://fireriskspecialists.co.uk/commercial-fire-risk-assessment',
+    serviceIds: ['fire-risk-assessment'], geographicalCoverage: ['london', 'south-east'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['fire-risk-assessment', 'fire-risk-assessment-review', 'residential-fire-risk-assessment'],
+    capabilities: ['Fire risk assessment', 'commercial premises assessment', 'residential portfolio assessment', 'prioritised action plan'],
+    specialisms: ['office-retail', 'factory-warehouse', 'hospitality', 'sleeping-accommodation', 'residential-common-parts', 'care-education', 'mixed-use', 'multiple-floors'],
+    qualificationsAndMemberships: ['Provider states IFSM and NFRAR registration; verify the named assessor’s current entry and premises competence.'],
+    insuranceEvidence: 'Provider states £5 million cover; obtain the current certificate, scope and expiry date before appointment.', deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider advertises commercial fire risk assessments from £99; the final fee depends on premises scope.',
+    evidence: [
+      { claim: 'Provider states London and surrounding-area delivery for commercial fire risk assessments.', sourceUrl: 'https://fireriskspecialists.co.uk/commercial-fire-risk-assessment', sourceType: 'provider', checkedOn: fireCheckedOn },
+      { claim: 'Provider publishes a £99 starting price and states IFSM and NFRAR registration.', sourceUrl: 'https://fireriskspecialists.co.uk/commercial-fire-risk-assessment', sourceType: 'provider', checkedOn: fireCheckedOn },
+    ], lastVerifiedDate: fireCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
   },
 ]
 

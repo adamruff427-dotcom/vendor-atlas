@@ -66,6 +66,17 @@ const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; in
     ],
     evidence: ['Defined scope and exclusions', 'Sample and laboratory traceability', 'Marked locations and assessments', 'Register or project actions'], source: 'https://www.hse.gov.uk/pubns/priced/hsg264.pdf', sourceLabel: 'HSE HSG264',
   },
+  'fire-risk-assessment': {
+    eyebrow: 'Assessment sequence', title: 'Five steps connect hazards to managed action', intro: 'The Home Office sequence starts with the real premises and people, then records evaluated precautions, actions and review triggers.',
+    nodes: [
+      { title: 'Fire hazards', detail: 'Ignition, fuel, oxygen, processes and dangerous substances', icon: Factory },
+      { title: 'People at risk', detail: 'Occupants, visitors, lone workers and people needing assistance', icon: UserRound },
+      { title: 'Evaluate and act', detail: 'Escape, warning, protection and risk reduction', icon: SearchCheck },
+      { title: 'Record and plan', detail: 'Significant findings, emergency plan, information and training', icon: FileCheck2 },
+      { title: 'Review', detail: 'Recheck after change, doubt, fire, near miss or other trigger', icon: ShieldCheck },
+    ],
+    evidence: ['Premises and responsible-person scope', 'People and hazard findings', 'Evaluated fire precautions', 'Prioritised actions and review record'], source: 'https://www.gov.uk/government/publications/fire-safety-risk-assessment-5-step-checklist/fire-safety-risk-assessment-5-step-checklist-accessible', sourceLabel: 'Home Office five-step checklist',
+  },
 }
 
 export function TechnicalDiagram({ serviceId }: { serviceId: IndustrialServiceId }) {
