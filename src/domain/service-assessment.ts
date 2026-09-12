@@ -364,6 +364,71 @@ export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> 
       { label: 'Landlord Compliance London', url: 'https://landlordcompliancelondon.uk/services/commercial-fire-risk-assessment', note: 'Publishes prices by floor count for communal areas and full buildings.' },
     ],
   },
+  legionella: {
+    id: 'legionella',
+    name: 'legionella risk assessment',
+    shortName: 'Legionella risk assessments',
+    eyebrow: 'Legionella duty finder',
+    question: 'Does my water system need a legionella risk assessment?',
+    promise: 'Check the duty, water-system scope and quote inputs in about 2 minutes.',
+    description: 'Identify the water-system and exposed-person signals, see what an assessment should cover, calculate a visible planning range and compare sourced UK providers.',
+    legalBasis: 'UK employers and people in control of premises must assess and control legionella exposure risks under health and safety law and COSHH. HSE ACOP L8 explains how those duties apply to water systems.',
+    legalSource: 'https://www.hse.gov.uk/pubns/priced/l8.pdf',
+    guidePath: '/legionella/do-i-need-a-legionella-risk-assessment',
+    costPath: '/legionella/cost',
+    supplierPath: '/legionella/suppliers',
+    toolkitPath: '/legionella/buying-toolkit',
+    workHeading: 'Which water systems or premises are involved?',
+    workHelp: 'Choose every relevant system or use. The assessment must cover the real water assets and people who can be exposed.',
+    workOptions: [
+      { value: 'commercial-hot-cold', label: 'Commercial hot and cold water', detail: 'Offices, shops, factories, warehouses or public buildings' },
+      { value: 'rented-housing', label: 'Rented housing or HMO', detail: 'A landlord or managing agent controls the domestic water system' },
+      { value: 'care-healthcare', label: 'Care or healthcare premises', detail: 'Residents or patients can have greater susceptibility' },
+      { value: 'hotel-hospitality', label: 'Hotel, hospitality or guest accommodation', detail: 'Bedrooms, showers and variable occupancy increase the asset count' },
+      { value: 'leisure-spa', label: 'Leisure, pool or spa system', detail: 'Spa pools and wet leisure systems need specialist assessment' },
+      { value: 'cooling-system', label: 'Cooling tower or evaporative condenser', detail: 'An evaporative cooling system has a separate HSG274 control route' },
+      { value: 'process-water', label: 'Other risk water system', detail: 'Vehicle wash, humidifier, misting, dental, industrial or process system' },
+      { value: 'none-no-water-system', label: 'No water system under our control', detail: 'Use only after confirming no premises or work activity creates exposure responsibility' },
+      { value: 'unknown-water-system', label: 'Water system is uncertain', detail: 'Ownership, assets or system layout needs checking' },
+    ],
+    signalHeading: 'Which water-risk signals apply?',
+    signalHelp: 'These factors affect the risk assessment depth and provider competence. They do not mean legionella is present.',
+    signalOptions: [
+      { value: 'stored-hot-water', label: 'Stored hot water or calorifiers', detail: 'Water is heated and stored rather than produced only at the outlet' },
+      { value: 'cold-water-storage', label: 'Cold-water storage tanks', detail: 'Stored water condition, turnover and temperature need assessment' },
+      { value: 'recirculation', label: 'Recirculating hot-water system', detail: 'Flow, return, temperature and balance affect control' },
+      { value: 'showers-spray', label: 'Showers or aerosol-producing outlets', detail: 'Spray can create an exposure route if the system is contaminated' },
+      { value: 'vulnerable-users', label: 'People with increased susceptibility', detail: 'Age, illness or reduced immunity changes consequence and control needs' },
+      { value: 'little-used-outlets', label: 'Little-used outlets or vacant areas', detail: 'Low turnover and stagnation need to be identified' },
+      { value: 'temperature-concerns', label: 'Temperature or control concerns', detail: 'Monitoring indicates control targets are missed or uncertain' },
+      { value: 'previous-positive', label: 'Previous positive sample or case concern', detail: 'Investigation and specialist control review may be required' },
+      { value: 'unknown-controls', label: 'Controls and records are uncertain', detail: 'Responsibility, monitoring or the written scheme needs checking' },
+      { value: 'no-complex-water-signals', label: 'None of these complexity signals', detail: 'A simple system still needs a suitable dutyholder assessment' },
+    ],
+    assetLabel: 'Water outlets in scope',
+    secondaryLabel: 'Tanks, calorifiers or other main assets',
+    documentationLabel: 'Existing assessment, schematic and control records',
+    documentationOptions: sharedDocumentation,
+    inspectionLabel: 'Current risk-assessment position',
+    inspectionOptions: [
+      { value: 'none', label: 'No assessment found' },
+      { value: 'in-date', label: 'Assessment is recorded and believed current' },
+      { value: 'overdue-or-unknown', label: 'Assessment exists but review status is unclear' },
+      { value: 'new-system', label: 'New premises or water system' },
+    ],
+    resultResourceHeading: 'Assessment comes before the control programme',
+    resultResourceBody: 'The assessment identifies the system, sources of risk, people exposed and controls required. Its findings should drive a written scheme with responsibilities, monitoring, maintenance and review. Routine sampling is not an automatic substitute for assessing and controlling the system.',
+    primaryLinks: [
+      { label: 'HSE ACOP L8', detail: 'Legal duties, risk assessment and control principles', url: 'https://www.hse.gov.uk/pubns/priced/l8.pdf' },
+      { label: 'HSE HSG274', detail: 'Technical guidance for cooling, hot and cold, and other water systems', url: 'https://www.hse.gov.uk/pubns/books/hsg274.htm' },
+      { label: 'HSE employer responsibilities', detail: 'Practical dutyholder steps and competence', url: 'https://www.hse.gov.uk/legionnaires/employers-responsibilities.htm' },
+    ],
+    priceEvidence: [
+      { label: 'Birmingham Water Solutions', url: 'https://birminghamwatersolutions.com/pages/resources/legionella-risk-assessment-cost', note: 'Publishes £250 to £450 for a stated small low-complexity building and higher bands for larger systems.' },
+      { label: 'Aqua Legion UK', url: 'https://www.aqualegion.com/', note: 'Publishes set-price packages from £295 plus VAT based on location, complexity and time.' },
+      { label: 'uRisk', url: 'https://www.urisk.co.uk/how-much-does-a-legionella-risk-assessment-cost/', note: 'Publishes commercial assessments from £300 plus VAT and a stated range for larger or more complex sites.' },
+    ],
+  },
 }
 
 const labelFor = (definition: ServiceDefinition, value: string) =>
@@ -408,6 +473,11 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
     if (inScopePremises.length) status = 'likely-relevant'
     else if (answers.workTypes.includes('unknown-premises')) status = 'may-be-relevant'
   }
+  if (answers.serviceId === 'legionella') {
+    const inScopeSystems = positiveWork.filter((value) => value !== 'unknown-water-system')
+    if (inScopeSystems.length && answers.assetCount > 0) status = 'likely-relevant'
+    else if (answers.workTypes.includes('unknown-water-system') || positiveSignals.length) status = 'may-be-relevant'
+  }
 
   const complexWork = answers.serviceId === 'lev'
     ? ['spray-booth', 'recirculating', 'laboratory-fume'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
@@ -417,7 +487,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
         ? ['passenger-lift', 'mewp', 'crane-hoist'].some((value) => answers.workTypes.includes(value))
         : answers.serviceId === 'asbestos'
           ? ['refurbishment', 'demolition'].some((value) => answers.workTypes.includes(value)) || ['planned-disturbance', 'damaged-material'].some((value) => answers.riskSignals.includes(value))
-          : ['sleeping-accommodation', 'care-education', 'mixed-use', 'construction-site'].some((value) => answers.workTypes.includes(value)) || ['sleeping-risk', 'vulnerable-occupants', 'dangerous-substances', 'shared-responsibility'].some((value) => answers.riskSignals.includes(value))
+          : answers.serviceId === 'fire-risk-assessment'
+            ? ['sleeping-accommodation', 'care-education', 'mixed-use', 'construction-site'].some((value) => answers.workTypes.includes(value)) || ['sleeping-risk', 'vulnerable-occupants', 'dangerous-substances', 'shared-responsibility'].some((value) => answers.riskSignals.includes(value))
+            : ['care-healthcare', 'leisure-spa', 'cooling-system', 'process-water'].some((value) => answers.workTypes.includes(value)) || ['recirculation', 'vulnerable-users', 'previous-positive'].some((value) => answers.riskSignals.includes(value))
   const score = positiveWork.length * 2 + positiveSignals.length * 2 + Math.min(answers.assetCount, 5) + (answers.sites > 1 ? 2 : 0) + (complexWork ? 4 : 0)
   const complexity = score >= 10 || answers.sites > 2 || answers.assetCount > 8 || complexWork ? 'complex' : 'standard'
 
@@ -453,13 +525,20 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           'Inspect relevant areas and arrange accredited laboratory analysis where samples are taken',
           'Record locations, extent, condition and material or priority assessments as appropriate',
           'Deliver a usable report, register information and clear actions for management or planned work',
-        ] : [
+        ] : answers.serviceId === 'fire-risk-assessment' ? [
           'Confirm the responsible person, premises boundary, use, occupiers and shared responsibilities',
           'Identify fire hazards, ignition sources, fuel sources and people at risk',
           'Evaluate escape, detection, warning, firefighting, compartmentation and management measures',
           'Consider vulnerable people, dangerous substances and relevant fire-safety systems',
           'Record significant findings, prioritised actions and the emergency-plan implications',
           'Set review triggers and provide a written record the responsible person can maintain',
+        ] : [
+          'Confirm the dutyholder, responsible person, premises and water-system boundaries',
+          'Build or verify a water-system schematic and asset or outlet inventory',
+          'Identify conditions supporting growth, aerosol exposure routes and susceptible people',
+          'Evaluate existing temperature, turnover, cleaning, monitoring and maintenance controls',
+          'Define a written control scheme with responsibilities, tasks, limits and corrective actions',
+          'Record findings, priorities, competence needs and triggers for assessment review',
         ]
 
   if (answers.documentationStatus !== 'available') scope.unshift('Reconstruct or verify missing equipment and baseline information before examination')
@@ -474,7 +553,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
         ? 'A competent person must confirm the premises boundary, survey type, access, exclusions and project requirements.'
         : answers.serviceId === 'fire-risk-assessment'
           ? 'The responsible person must confirm that the assessment is suitable and sufficient for the premises, people and risks.'
-          : 'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
+          : answers.serviceId === 'legionella'
+            ? 'A competent person must confirm the water-system boundary, exposure risks, controls and responsible-person arrangements.'
+            : 'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
     ],
     scope,
     complexity,
@@ -501,6 +582,10 @@ export const SERVICE_PRICE_MODELS = {
   'fire-risk-assessment': {
     version: 'published-provider-calibration-2026-09-11', baseVisit: 200, perFloor: 65, perOccupancy: 45,
     sleepingOrVulnerable: 250, complexPremises: 350, additionalSite: 200, spread: 0.3,
+  },
+  legionella: {
+    version: 'published-provider-calibration-2026-09-12', baseVisit: 250, perOutlet: 8, perMainAsset: 45,
+    higherRiskSystem: 300, complexSystem: 400, additionalSite: 225, spread: 0.28,
   },
 } as const
 
@@ -541,13 +626,21 @@ export function estimateServicePrice(
     if (answers.workTypes.some((value) => ['refurbishment', 'demolition'].includes(value)) || answers.riskSignals.includes('planned-disturbance')) factors.push({ label: 'Intrusive refurbishment or demolition survey allowance', amount: model.intrusiveSurvey })
     if (result.complexity === 'complex') factors.push({ label: 'Complex premises, access or risk allowance', amount: model.complexPremises })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
-  } else {
+  } else if (answers.serviceId === 'fire-risk-assessment') {
     const model = SERVICE_PRICE_MODELS['fire-risk-assessment']
     factors.push({ label: 'Assessment planning, attendance and report setup', amount: model.baseVisit })
     factors.push({ label: `${answers.assetCount} floor or level${answers.assetCount === 1 ? '' : 's'} in scope`, amount: answers.assetCount * model.perFloor })
     if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} separate occupanc${answers.secondaryCount === 1 ? 'y' : 'ies'}`, amount: answers.secondaryCount * model.perOccupancy })
     if (answers.riskSignals.some((value) => ['sleeping-risk', 'vulnerable-occupants'].includes(value))) factors.push({ label: 'Sleeping or vulnerable-occupant assessment allowance', amount: model.sleepingOrVulnerable })
     if (result.complexity === 'complex') factors.push({ label: 'Complex premises or fire-risk allowance', amount: model.complexPremises })
+    if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
+  } else {
+    const model = SERVICE_PRICE_MODELS.legionella
+    factors.push({ label: 'Assessment planning, attendance and report setup', amount: model.baseVisit })
+    factors.push({ label: `${answers.assetCount} water outlet${answers.assetCount === 1 ? '' : 's'} in scope`, amount: answers.assetCount * model.perOutlet })
+    if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} tank, calorifier or main asset${answers.secondaryCount === 1 ? '' : 's'}`, amount: answers.secondaryCount * model.perMainAsset })
+    if (answers.workTypes.some((value) => ['care-healthcare', 'leisure-spa', 'cooling-system'].includes(value)) || answers.riskSignals.includes('vulnerable-users')) factors.push({ label: 'Higher-risk system or susceptible-person allowance', amount: model.higherRiskSystem })
+    if (result.complexity === 'complex') factors.push({ label: 'Complex water-system allowance', amount: model.complexSystem })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
   }
 
@@ -560,7 +653,7 @@ export function estimateServicePrice(
     factors,
     assumptions: [
       'One planned visit per site during normal working hours',
-      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : 'Equipment is available, identifiable and safely accessible for examination',
+      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : answers.serviceId === 'legionella' ? 'Water outlets, plant areas and available records are accessible during the assessment' : 'Equipment is available, identifiable and safely accessible for examination',
       'VAT, repairs, replacement parts, specialist access and intrusive testing are excluded',
       'Calibration sources cover only some simple/common jobs and are not an awarded-quote market benchmark',
       'This is deterministic Vendor Atlas planning guidance, not a supplier quotation',
@@ -575,7 +668,7 @@ export function defaultServiceAnswers(serviceId: IndustrialServiceId): ServiceAs
     workTypes: [],
     riskSignals: [],
     assetCount: 1,
-    secondaryCount: serviceId === 'lev' ? 1 : serviceId === 'asbestos' ? 4 : serviceId === 'fire-risk-assessment' ? 1 : 0,
+    secondaryCount: serviceId === 'lev' ? 1 : serviceId === 'asbestos' ? 4 : serviceId === 'fire-risk-assessment' ? 1 : serviceId === 'legionella' ? 1 : 0,
     sites: 1,
     size: 'small',
     documentationStatus: 'unknown',

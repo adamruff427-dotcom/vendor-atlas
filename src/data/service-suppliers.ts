@@ -5,6 +5,7 @@ const unknownInsurance = 'No current project-specific insurance certificate was 
 const quoteRequired = 'No numeric public tariff was found on the checked service page; a scoped quotation is required.'
 const asbestosCheckedOn = '2026-09-10'
 const fireCheckedOn = '2026-09-11'
+const legionellaCheckedOn = '2026-09-12'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
@@ -320,6 +321,58 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider states London and surrounding-area delivery for commercial fire risk assessments.', sourceUrl: 'https://fireriskspecialists.co.uk/commercial-fire-risk-assessment', sourceType: 'provider', checkedOn: fireCheckedOn },
       { claim: 'Provider publishes a £99 starting price and states IFSM and NFRAR registration.', sourceUrl: 'https://fireriskspecialists.co.uk/commercial-fire-risk-assessment', sourceType: 'provider', checkedOn: fireCheckedOn },
     ], lastVerifiedDate: fireCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'legionella-uk', name: 'Legionella UK', website: 'https://legionellauk.com/',
+    serviceIds: ['legionella'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['legionella-risk-assessment', 'legionella-control-scheme', 'legionella-review-monitoring'],
+    capabilities: ['Legionella risk assessment', 'water sampling', 'commercial water-system assessment', 'domestic landlord assessment'],
+    specialisms: ['commercial-hot-cold', 'rented-housing', 'care-healthcare', 'hotel-hospitality', 'process-water', 'stored-hot-water', 'cold-water-storage', 'showers-spray'],
+    qualificationsAndMemberships: ['Provider describes trained assessors and technicians; request the named assessor’s training, experience and current competence evidence.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes commercial risk assessments from £95 and domestic assessments from £45.',
+    evidence: [
+      { claim: 'Provider states UK-wide commercial and domestic legionella risk assessment and testing services.', sourceUrl: 'https://legionellauk.com/', sourceType: 'provider', checkedOn: legionellaCheckedOn },
+      { claim: 'Provider publishes starting prices for commercial, domestic and testing services.', sourceUrl: 'https://legionellauk.com/', sourceType: 'provider', checkedOn: legionellaCheckedOn },
+    ], lastVerifiedDate: legionellaCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'aqua-legion-uk', name: 'Aqua Legion UK', website: 'https://www.aqualegion.com/',
+    serviceIds: ['legionella'], geographicalCoverage: [], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['legionella-risk-assessment', 'legionella-control-scheme', 'legionella-review-monitoring'],
+    capabilities: ['Legionella risk assessment', 'water hygiene monitoring', 'water sampling', 'control-programme review', 'legionella training'],
+    specialisms: ['commercial-hot-cold', 'rented-housing', 'care-healthcare', 'hotel-hospitality', 'leisure-spa', 'cooling-system', 'process-water', 'recirculation', 'previous-positive'],
+    qualificationsAndMemberships: ['Provider states trained and experienced consultants working to ACOP L8, HSG274 and BS 8580; verify the named consultant and relevant system experience.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes set-price packages from £295 plus VAT, with the final package based on location, complexity and time.',
+    evidence: [
+      { claim: 'Provider describes independent legionella risk assessment, monitoring, sampling and training services.', sourceUrl: 'https://www.aqualegion.com/', sourceType: 'provider', checkedOn: legionellaCheckedOn },
+      { claim: 'Provider publishes set-price packages from £295 plus VAT.', sourceUrl: 'https://www.aqualegion.com/', sourceType: 'provider', checkedOn: legionellaCheckedOn },
+    ], lastVerifiedDate: legionellaCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'urisk', name: 'uRisk', website: 'https://www.urisk.co.uk/how-much-does-a-legionella-risk-assessment-cost/',
+    serviceIds: ['legionella'], geographicalCoverage: [], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['legionella-risk-assessment', 'legionella-control-scheme', 'legionella-review-monitoring'],
+    capabilities: ['Legionella risk assessment', 'commercial water-system assessment', 'landlord assessment', 'water hygiene support'],
+    specialisms: ['commercial-hot-cold', 'rented-housing', 'care-healthcare', 'hotel-hospitality', 'leisure-spa', 'process-water', 'stored-hot-water', 'recirculation', 'vulnerable-users'],
+    qualificationsAndMemberships: ['Provider states experience with commercial and higher-risk environments; request named-person competence and current professional or scheme evidence.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes commercial assessments from £300 plus VAT and states £350 to £1,000 plus VAT for larger and more complex sites.',
+    evidence: [
+      { claim: 'Provider describes commercial assessments for gyms, care homes, hotels and factories.', sourceUrl: 'https://www.urisk.co.uk/how-much-does-a-legionella-risk-assessment-cost/', sourceType: 'provider', checkedOn: legionellaCheckedOn },
+      { claim: 'Provider publishes commercial starting and larger-site price ranges.', sourceUrl: 'https://www.urisk.co.uk/how-much-does-a-legionella-risk-assessment-cost/', sourceType: 'provider', checkedOn: legionellaCheckedOn },
+    ], lastVerifiedDate: legionellaCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'birmingham-water-solutions', name: 'Birmingham Water Solutions', website: 'https://birminghamwatersolutions.com/pages/resources/legionella-risk-assessment-cost',
+    serviceIds: ['legionella'], geographicalCoverage: ['midlands'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['legionella-risk-assessment', 'legionella-control-scheme', 'legionella-review-monitoring'],
+    capabilities: ['Legionella risk assessment', 'commercial water-system assessment', 'asset-register review', 'fixed-scope quotation'],
+    specialisms: ['commercial-hot-cold', 'care-healthcare', 'hotel-hospitality', 'cooling-system', 'stored-hot-water', 'cold-water-storage', 'recirculation', 'little-used-outlets'],
+    qualificationsAndMemberships: ['Provider describes engineer-led assessment scoping; request the named assessor’s qualifications, system experience and current competence evidence.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes £250 to £450 for a stated small low-complexity building and £450 to £900 for a stated medium commercial building.',
+    evidence: [
+      { claim: 'Provider identifies outlet and water-asset counts, system complexity and records as commercial price drivers.', sourceUrl: 'https://birminghamwatersolutions.com/pages/resources/legionella-risk-assessment-cost', sourceType: 'provider', checkedOn: legionellaCheckedOn },
+      { claim: 'Provider publishes price bands for small, medium and larger commercial water systems.', sourceUrl: 'https://birminghamwatersolutions.com/pages/resources/legionella-risk-assessment-cost', sourceType: 'provider', checkedOn: legionellaCheckedOn },
+    ], lastVerifiedDate: legionellaCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
   },
 ]
 

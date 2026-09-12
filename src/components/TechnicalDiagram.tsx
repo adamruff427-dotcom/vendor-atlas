@@ -77,6 +77,17 @@ const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; in
     ],
     evidence: ['Premises and responsible-person scope', 'People and hazard findings', 'Evaluated fire precautions', 'Prioritised actions and review record'], source: 'https://www.gov.uk/government/publications/fire-safety-risk-assessment-5-step-checklist/fire-safety-risk-assessment-5-step-checklist-accessible', sourceLabel: 'Home Office five-step checklist',
   },
+  legionella: {
+    eyebrow: 'Control sequence', title: 'Assessment connects water assets to operating controls', intro: 'The responsible person needs a mapped system, evidence of risk conditions and a written scheme that defines what happens between assessments.',
+    nodes: [
+      { title: 'Water source', detail: 'Mains, storage, heating, cooling or process supply', icon: Factory },
+      { title: 'System assets', detail: 'Tanks, calorifiers, loops, pipework and outlets', icon: Link2 },
+      { title: 'Exposure', detail: 'Aerosols, system users and susceptible people', icon: UserRound },
+      { title: 'Controls', detail: 'Temperature, turnover, cleaning, monitoring and action limits', icon: ShieldCheck },
+      { title: 'Written scheme', detail: 'Named duties, tasks, records, corrective action and review', icon: FileCheck2 },
+    ],
+    evidence: ['System schematic and asset register', 'Risk and exposure findings', 'Control measurements and records', 'Written scheme and corrective actions'], source: 'https://www.hse.gov.uk/pubns/priced/l8.pdf', sourceLabel: 'HSE ACOP L8',
+  },
 }
 
 export function TechnicalDiagram({ serviceId }: { serviceId: IndustrialServiceId }) {

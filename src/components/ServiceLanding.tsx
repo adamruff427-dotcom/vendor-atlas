@@ -22,7 +22,9 @@ export function ServiceLanding({ serviceId }: { serviceId: IndustrialServiceId }
         ? { firstTitle: 'Equipment and lifting use', firstDetail: 'What lifts people, loads or connects them?', signalDetail: 'Which facts point to a LOLER examination?' }
         : serviceId === 'asbestos'
           ? { firstTitle: 'Premises and planned work', firstDetail: 'Which buildings, areas and fabric may be disturbed?', signalDetail: 'Which facts point to a survey or register gap?' }
-          : { firstTitle: 'Premises and responsible people', firstDetail: 'Who controls which buildings, floors and occupancies?', signalDetail: 'Which facts set the fire assessment depth?' }
+          : serviceId === 'fire-risk-assessment'
+            ? { firstTitle: 'Premises and responsible people', firstDetail: 'Who controls which buildings, floors and occupancies?', signalDetail: 'Which facts set the fire assessment depth?' }
+            : { firstTitle: 'Water systems and people', firstDetail: 'Which outlets, assets and users are exposed?', signalDetail: 'Which facts set the legionella assessment depth?' }
 
   return (
     <>

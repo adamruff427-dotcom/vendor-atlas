@@ -81,8 +81,27 @@ describe('fire risk assessment qualification and pricing', () => {
   })
 })
 
+describe('legionella qualification and pricing', () => {
+  it('recognises a managed hot and cold water system and prices visible system factors', () => {
+    const answers = { ...defaultServiceAnswers('legionella'), workTypes: ['commercial-hot-cold'], riskSignals: ['stored-hot-water', 'showers-spray'], assetCount: 18, secondaryCount: 2 }
+    const result = qualifyService(answers)
+    const estimate = estimateServicePrice(answers, result)
+    expect(result.status).toBe('likely-relevant')
+    expect(result.scope.join(' ')).toMatch(/schematic|control scheme/i)
+    expect(estimate.factors).toEqual(expect.arrayContaining([expect.objectContaining({ amount: SERVICE_PRICE_MODELS.legionella.perOutlet * 18 })]))
+  })
+
+  it('keeps an unknown water-system boundary non-definitive', () => {
+    expect(qualifyService({ ...defaultServiceAnswers('legionella'), workTypes: ['unknown-water-system'], riskSignals: ['unknown-controls'] }).status).toBe('may-be-relevant')
+  })
+
+  it('does not create a trigger where no controlled water system is identified', () => {
+    expect(qualifyService({ ...defaultServiceAnswers('legionella'), workTypes: ['none-no-water-system'], riskSignals: ['no-complex-water-signals'], documentationStatus: 'available', inspectionStatus: 'in-date' }).status).toBe('no-obvious-trigger')
+  })
+})
+
 describe('generic industrial service invariants', () => {
-  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment'] as const) {
+  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella'] as const) {
     it(`${serviceId} stays deterministic, positive and evidence-linked`, () => {
       const definition = serviceDefinitions[serviceId]
       const answers = { ...defaultServiceAnswers(serviceId), workTypes: [definition.workOptions[0].value], riskSignals: [definition.signalOptions[0].value], assetCount: 4, secondaryCount: 8, sites: 2 }
@@ -107,7 +126,7 @@ describe('generic industrial service invariants', () => {
   }
 
   it('retains source URLs and explicit evidence status for every new supplier', () => {
-    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment'))
+    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment' | 'legionella'))
     for (const supplier of suppliers) {
       expect(supplier.evidence.length).toBeGreaterThan(0)
       expect(supplier.evidence.every((item) => item.sourceUrl.startsWith('https://') && item.checkedOn === supplier.lastVerifiedDate)).toBe(true)
