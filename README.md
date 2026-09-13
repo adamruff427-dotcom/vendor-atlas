@@ -1,6 +1,6 @@
 # Vendor Atlas
 
-Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The live service directory covers DSEAR assessment, LEV thorough examination and test, pressure-system written schemes and examinations under PSSR, LOLER thorough examinations, asbestos surveys and register support, fire risk assessments for premises in England and Wales, and UK legionella risk assessment.
+Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The live service directory covers DSEAR, LEV, pressure systems under PSSR, LOLER, asbestos surveys, fire risk assessment, legionella risk assessment and risk-based portable electrical equipment inspection and testing.
 
 Public site: `https://vendoratlas.artificiallyconfident.com/`
 
@@ -15,13 +15,13 @@ The MVP helps a UK business:
 3. understand likely assessment scope;
 4. obtain an explainable planning cost range;
 5. compare three providers against the same deterministic matching criteria;
-6. inspect a 12-provider evidence directory;
+6. inspect provider evidence with claim-level source links;
 7. prepare a comparable brief, competence check and quote scorecard; and
 8. submit one consistent project brief without automatically contacting suppliers.
 
 Decision-support pages cover the DSEAR duty, likely cost drivers, specialist selection, manufacturing, breweries/distilleries, woodworking, spray booths, combustible dust, lithium batteries and DSEAR versus COSHH.
 
-LEV, pressure systems, LOLER and asbestos surveys each have the same product standard:
+Every added service vertical follows the same product standard:
 
 1. a three-question-stage qualification journey with an explicit uncertain state;
 2. source-backed explanations of the factors behind the result;
@@ -33,7 +33,7 @@ LEV, pressure systems, LOLER and asbestos surveys each have the same product sta
 8. durable quote-intent capture through the same D1 enquiry workflow; and
 9. substantive overview, decision, cost, supplier and comparison guides based on HSE and legislation.
 
-Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos`, `/fire-risk-assessment` and `/legionella`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
+Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos`, `/fire-risk-assessment`, `/legionella` and `/pat-testing`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
 
 ## Architecture
 
@@ -81,11 +81,11 @@ Pressure systems returns `likely-relevant` for explicit relevant-fluid indicator
 
 LOLER returns `likely-relevant` for identified lifting equipment or accessories and keeps unclassified equipment at `may-be-relevant`. Its scope covers itemised assets, first-use/installation/periodic/exceptional triggers, equipment-specific competent examination, Schedule 1 reporting and defect escalation.
 
-All seven models state that the finder is not the legal determination, survey, assessment or statutory work. Tests cover positive, uncertain and no-obvious-trigger states and prevent contradictory result, scope or price combinations.
+All eight models state that the finder is not the legal determination, survey, assessment or statutory work. Tests cover positive, uncertain and no-obvious-trigger states and prevent contradictory result, scope or price combinations.
 
 ## Pricing models
 
-Pricing does not use an LLM. The current visible configuration is calibrated against three published provider price pages and starts from site size:
+Pricing does not use an LLM. The DSEAR configuration is calibrated against three published provider price pages and starts from site size:
 
 - micro: £1,600
 - small: £2,200
@@ -104,6 +104,7 @@ The other models are also deterministic and versioned:
 - Asbestos: survey attendance + buildings or blocks + expected samples + intrusive-work allowance + premises complexity + additional sites. Calibration uses provider-published commercial examples and starting prices, not a national tariff.
 - Fire risk assessment: assessment setup + floors + separate occupancies + sleeping or vulnerable occupants + premises complexity + additional sites. Calibration uses provider-published price schedules and remains planning guidance.
 - Legionella: assessment setup + water outlets + tanks or calorifiers + higher-risk systems or susceptible people + system complexity + additional sites. Calibration uses provider-published commercial examples and starting prices.
+- PAT testing: minimum attendance and register + ordinary items + fixed, specialist or shutdown-sensitive items + site complexity + additional sites. Calibration uses published item-count and minimum-charge schedules from three regional providers.
 
 Every result shows the arithmetic, assumptions, excluded work and exact provider-price sources. All models exclude VAT, repairs, replacement parts, unusual access and specialist testing unless stated. The priority calibration input is scope-normalised awarded quote data collected through real projects.
 
@@ -119,7 +120,7 @@ Supplier matching is deterministic and unpaid:
 
 The highest three scores are returned with human-readable reasons and evidence gaps. Name order is the stable tie-breaker. Qualifications, marketing claims and prices are not silently inferred or used in ranking.
 
-LEV, pressure systems and LOLER use a parallel deterministic model:
+The service-neutral verticals use a parallel deterministic model:
 
 - evidenced region coverage: 4 points;
 - evidenced sector relevance: 3 points;
@@ -131,7 +132,7 @@ The service is filtered before scoring. Missing region, sector or equipment evid
 
 ## Supplier evidence
 
-The evidence directory contains 12 real providers, checked against their own public pages on 31 August 2026:
+The DSEAR evidence directory contains 12 real providers, checked against their own public pages on 31 August 2026:
 
 - [DW Consulting Services](https://www.dsearuk.com/)
 - [DSEAR Assessments](https://dsearassessments.co.uk/)
@@ -148,13 +149,13 @@ The evidence directory contains 12 real providers, checked against their own pub
 
 The app retains the individual provider page supporting each displayed coverage, sector, hazard, capability or published-price claim. Unsupported coverage is displayed as “not evidenced publicly”. Public qualification and insurance details that could not be verified are not invented; the buyer is told to request them during pre-qualification. Directory inclusion and “provider source checked” are not Vendor Atlas approval.
 
-The supplier directory includes provider-source-checked records for the earlier verticals plus Legionella UK, Aqua Legion UK and uRisk for legionella risk assessment.
+The supplier directory includes provider-source-checked records for every vertical. PAT testing sources added on 13 September 2026 are Safety-PAT, PAT Checked, London PAT and Arnold Pat Testing.
 
 Some providers appear in more than one vertical only where a checked source supports each service. The directory records exact coverage wording, equipment or process capabilities, provider-stated qualifications or accreditation, price evidence, insurance gaps and the public URL supporting every material claim. Accreditation and competence statements remain provider evidence until the buyer verifies the current scope and named person.
 
 ## Buyer toolkit
 
-Each of `/dsear/buying-toolkit`, `/lev/buying-toolkit`, `/pressure-systems/buying-toolkit` and `/loler/buying-toolkit` is a printable procurement pack containing:
+Every service route includes a printable buying toolkit containing:
 
 - an information-preparation checklist;
 - a common project-brief format;

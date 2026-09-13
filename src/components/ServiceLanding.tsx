@@ -24,7 +24,9 @@ export function ServiceLanding({ serviceId }: { serviceId: IndustrialServiceId }
           ? { firstTitle: 'Premises and planned work', firstDetail: 'Which buildings, areas and fabric may be disturbed?', signalDetail: 'Which facts point to a survey or register gap?' }
           : serviceId === 'fire-risk-assessment'
             ? { firstTitle: 'Premises and responsible people', firstDetail: 'Who controls which buildings, floors and occupancies?', signalDetail: 'Which facts set the fire assessment depth?' }
-            : { firstTitle: 'Water systems and people', firstDetail: 'Which outlets, assets and users are exposed?', signalDetail: 'Which facts set the legionella assessment depth?' }
+            : serviceId === 'legionella'
+              ? { firstTitle: 'Water systems and people', firstDetail: 'Which outlets, assets and users are exposed?', signalDetail: 'Which facts set the legionella assessment depth?' }
+              : { firstTitle: 'Equipment and use', firstDetail: 'Which items, users and environments need control?', signalDetail: 'Which facts justify inspection or testing?' }
 
   return (
     <>

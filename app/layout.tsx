@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vendoratlas.artificiallyconfident.com"),
   title: { default: "Vendor Atlas | UK industrial compliance finder", template: "%s | Vendor Atlas" },
   description:
-    "Check seven UK compliance duties, see itemised planning ranges and compare sourced specialists without paid ranking.",
+    "Check eight UK compliance duties, see itemised planning ranges and compare sourced specialists without paid ranking.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Vendor Atlas | UK industrial compliance finder",
     description:
-      "Decision support, itemised cost estimates and sourced UK specialists for seven compulsory compliance services.",
+      "Decision support, itemised cost estimates and sourced UK specialists for eight compulsory compliance services.",
     url: "/",
     siteName: "Vendor Atlas",
     locale: "en_GB",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Vendor Atlas | UK industrial compliance finder",
-    description: "Decision support for seven UK compliance-service buying decisions.",
+    description: "Decision support for eight UK compliance-service buying decisions.",
     images: ["/og.png"],
   },
   robots: { index: true, follow: true },
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description:
-      "Decision support for procuring seven UK compliance services, including DSEAR, statutory examinations, asbestos surveys, fire risk assessments and legionella assessment.",
+      "Decision support for procuring eight UK compliance services, including DSEAR, statutory examinations, asbestos surveys, fire risk assessments, legionella assessment and electrical equipment testing.",
     url: "https://vendoratlas.artificiallyconfident.com/",
   };
   return (
@@ -71,6 +71,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/asbestos">Asbestos</Link>
               <Link href="/fire-risk-assessment">Fire risk</Link>
               <Link href="/legionella">Legionella</Link>
+              <Link href="/pat-testing">PAT testing</Link>
             </nav>
           </div>
           <div className="analytics-notice" role="note">

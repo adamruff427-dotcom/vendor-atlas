@@ -88,6 +88,17 @@ const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; in
     ],
     evidence: ['System schematic and asset register', 'Risk and exposure findings', 'Control measurements and records', 'Written scheme and corrective actions'], source: 'https://www.hse.gov.uk/pubns/priced/l8.pdf', sourceLabel: 'HSE ACOP L8',
   },
+  'pat-testing': {
+    eyebrow: 'Maintenance sequence', title: 'Equipment risk sets the check and interval', intro: 'The maintenance decision starts with equipment, use and environment, then selects checks capable of finding the foreseeable defects.',
+    nodes: [
+      { title: 'Inventory', detail: 'Owner, location, equipment type, class and condition', icon: PackageCheck },
+      { title: 'Risk group', detail: 'Movement, environment, users and fault history', icon: SearchCheck },
+      { title: 'User check', detail: 'Visible damage and safe reporting before or during use', icon: UserRound },
+      { title: 'Inspect or test', detail: 'Formal visual checks and suitable measurements where needed', icon: Gauge },
+      { title: 'Act and review', detail: 'Isolate defects, keep records and change intervals using results', icon: ShieldCheck },
+    ],
+    evidence: ['Equipment scope and risk groups', 'Inspection and test method', 'Itemised results and exclusions', 'Defect actions and reviewed intervals'], source: 'https://www.hse.gov.uk/electricity/faq-portable-appliance-testing.htm', sourceLabel: 'HSE PAT guidance',
+  },
 }
 
 export function TechnicalDiagram({ serviceId }: { serviceId: IndustrialServiceId }) {

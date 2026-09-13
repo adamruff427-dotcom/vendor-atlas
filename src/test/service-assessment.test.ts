@@ -100,8 +100,29 @@ describe('legionella qualification and pricing', () => {
   })
 })
 
+describe('PAT testing qualification and pricing', () => {
+  it('recommends combined inspection and testing for moved earthed equipment in a harsh environment', () => {
+    const answers = { ...defaultServiceAnswers('pat-testing'), workTypes: ['tools-construction'], riskSignals: ['frequently-moved', 'harsh-environment', 'earthed-equipment'], assetCount: 80, secondaryCount: 4 }
+    const result = qualifyService(answers)
+    const estimate = estimateServicePrice(answers, result)
+    expect(result.status).toBe('likely-relevant')
+    expect(result.scope).toContain('Define user checks, formal visual inspection and combined test requirements by risk')
+    expect(estimate.factors).toEqual(expect.arrayContaining([expect.objectContaining({ amount: SERVICE_PRICE_MODELS['pat-testing'].perItem * 80 })]))
+  })
+
+  it('does not turn stable low-risk office equipment into an automatic annual testing duty', () => {
+    const result = qualifyService({ ...defaultServiceAnswers('pat-testing'), workTypes: ['office-it'], riskSignals: ['no-higher-risk-signals'], documentationStatus: 'available', inspectionStatus: 'in-date' })
+    expect(result.status).toBe('may-be-relevant')
+    expect(result.caveats.join(' ')).toContain('user checks')
+  })
+
+  it('returns no obvious testing trigger when no controlled equipment is identified', () => {
+    expect(qualifyService({ ...defaultServiceAnswers('pat-testing'), workTypes: ['none-controlled-equipment'], riskSignals: ['no-higher-risk-signals'], documentationStatus: 'available', inspectionStatus: 'in-date' }).status).toBe('no-obvious-trigger')
+  })
+})
+
 describe('generic industrial service invariants', () => {
-  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella'] as const) {
+  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing'] as const) {
     it(`${serviceId} stays deterministic, positive and evidence-linked`, () => {
       const definition = serviceDefinitions[serviceId]
       const answers = { ...defaultServiceAnswers(serviceId), workTypes: [definition.workOptions[0].value], riskSignals: [definition.signalOptions[0].value], assetCount: 4, secondaryCount: 8, sites: 2 }
@@ -126,7 +147,7 @@ describe('generic industrial service invariants', () => {
   }
 
   it('retains source URLs and explicit evidence status for every new supplier', () => {
-    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment' | 'legionella'))
+    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment' | 'legionella' | 'pat-testing'))
     for (const supplier of suppliers) {
       expect(supplier.evidence.length).toBeGreaterThan(0)
       expect(supplier.evidence.every((item) => item.sourceUrl.startsWith('https://') && item.checkedOn === supplier.lastVerifiedDate)).toBe(true)

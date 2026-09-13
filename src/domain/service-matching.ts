@@ -64,7 +64,9 @@ export function matchServiceSuppliers(
               ? 'asbestos survey'
               : answers.serviceId === 'fire-risk-assessment'
                 ? 'fire risk assessment'
-                : 'legionella risk assessment'
+                : answers.serviceId === 'legionella'
+                  ? 'legionella risk assessment'
+                  : 'portable appliance testing'
       if (supplier.capabilities.some((item) => item.toLowerCase().includes(capabilityNeed.toLowerCase()))) {
         score += 2
         reasons.push('The required core examination capability is stated')

@@ -6,6 +6,7 @@ const quoteRequired = 'No numeric public tariff was found on the checked service
 const asbestosCheckedOn = '2026-09-10'
 const fireCheckedOn = '2026-09-11'
 const legionellaCheckedOn = '2026-09-12'
+const patCheckedOn = '2026-09-13'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
@@ -373,6 +374,61 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider identifies outlet and water-asset counts, system complexity and records as commercial price drivers.', sourceUrl: 'https://birminghamwatersolutions.com/pages/resources/legionella-risk-assessment-cost', sourceType: 'provider', checkedOn: legionellaCheckedOn },
       { claim: 'Provider publishes price bands for small, medium and larger commercial water systems.', sourceUrl: 'https://birminghamwatersolutions.com/pages/resources/legionella-risk-assessment-cost', sourceType: 'provider', checkedOn: legionellaCheckedOn },
     ], lastVerifiedDate: legionellaCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'safety-pat', name: 'Safety-PAT', website: 'https://safetypat.co.uk/prices-pat-testing/',
+    serviceIds: ['pat-testing'], geographicalCoverage: ['north', 'midlands'], sectors: ['other'],
+    serviceCategories: ['portable-appliance-inspection', 'portable-appliance-testing', 'electrical-equipment-register'],
+    capabilities: ['Portable appliance testing', 'visual inspection', 'appliance labelling', 'equipment register and test report'],
+    specialisms: ['office-it', 'hospitality-kitchen', 'tools-construction', 'rented-appliances', 'care-education', 'frequently-moved', 'public-or-hired', 'earthed-equipment'],
+    qualificationsAndMemberships: [],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes a £25 site rate for 1 to 10 appliances, then £1 per appliance plus the site rate for 11 to 250 items in its stated area.',
+    evidence: [
+      { claim: 'Provider states that its published prices cover Manchester, Cheshire, Stoke-on-Trent and surrounding areas.', sourceUrl: 'https://safetypat.co.uk/prices-pat-testing/', sourceType: 'provider', checkedOn: patCheckedOn },
+      { claim: 'Provider says its price includes appliance labelling, test reports and an equipment register.', sourceUrl: 'https://safetypat.co.uk/prices-pat-testing/', sourceType: 'provider', checkedOn: patCheckedOn },
+    ], lastVerifiedDate: patCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
+    id: 'pat-checked', name: 'PAT Checked', website: 'https://www.patchecked.co.uk/pricing/',
+    serviceIds: ['pat-testing'], geographicalCoverage: ['midlands'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'other'],
+    serviceCategories: ['portable-appliance-inspection', 'portable-appliance-testing', 'electrical-equipment-register'],
+    capabilities: ['Portable appliance testing', 'visual inspection', 'electrical safety testing', 'digital test report'],
+    specialisms: ['office-it', 'hospitality-kitchen', 'tools-construction', 'rented-appliances', 'care-education', 'fixed-stationary', 'frequently-moved', 'harsh-environment', 'earthed-equipment'],
+    qualificationsAndMemberships: [],
+    insuranceEvidence: 'Provider states it is insured; obtain the current certificate, scope and expiry date before appointment.', deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes a £70 minimum call-out, £1.20 per item for 1 to 50 items, £1 for 51 to 200 and 85p for larger batches.',
+    evidence: [
+      { claim: 'Provider lists Birmingham, Coventry, Leicester, Nottingham, Derby, Wolverhampton and surrounding Midlands areas.', sourceUrl: 'https://www.patchecked.co.uk/pricing/', sourceType: 'provider', checkedOn: patCheckedOn },
+      { claim: 'Provider states that visual inspection, electrical testing, labelling and a digital report are included.', sourceUrl: 'https://www.patchecked.co.uk/pricing/', sourceType: 'provider', checkedOn: patCheckedOn },
+      { claim: 'Provider states that it is insured but does not show a policy certificate on the checked page.', sourceUrl: 'https://www.patchecked.co.uk/pricing/', sourceType: 'provider', checkedOn: patCheckedOn },
+    ], lastVerifiedDate: patCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'london-pat', name: 'London PAT', website: 'https://www.londonpat.com/',
+    serviceIds: ['pat-testing'], geographicalCoverage: ['london', 'south-east'], sectors: ['food-drink', 'laboratory', 'other'],
+    serviceCategories: ['portable-appliance-inspection', 'portable-appliance-testing', 'electrical-equipment-register'],
+    capabilities: ['Portable appliance testing', 'commercial premises testing', 'microwave emissions testing', 'equipment results and labelling'],
+    specialisms: ['office-it', 'hospitality-kitchen', 'tools-construction', 'rented-appliances', 'care-education', 'frequently-moved', 'public-or-hired', 'earthed-equipment', 'cannot-disconnect'],
+    qualificationsAndMemberships: [],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes £80 plus VAT for up to 50 items, £140 plus VAT for up to 100 and 85p per additional item after the first 100 for Inner London during normal hours.',
+    evidence: [
+      { claim: 'Provider states delivery across London, Greater London and surrounding areas.', sourceUrl: 'https://www.londonpat.com/', sourceType: 'provider', checkedOn: patCheckedOn },
+      { claim: 'Provider lists shops, hospitality, offices, education, healthcare and construction among premises served.', sourceUrl: 'https://www.londonpat.com/', sourceType: 'provider', checkedOn: patCheckedOn },
+      { claim: 'Provider publishes item-count packages and separate conditions for construction, larger sites and out-of-hours work.', sourceUrl: 'https://www.londonpat.com/', sourceType: 'provider', checkedOn: patCheckedOn },
+    ], lastVerifiedDate: patCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'arnold-pat-testing', name: 'Arnold Pat Testing', website: 'https://www.arnoldpattesting.co.uk/pricing',
+    serviceIds: ['pat-testing'], geographicalCoverage: ['scotland'], sectors: ['other'],
+    serviceCategories: ['portable-appliance-inspection', 'portable-appliance-testing', 'electrical-equipment-register'],
+    capabilities: ['Portable appliance testing', 'rental property testing', 'office equipment testing', 'digital certificate and item register'],
+    specialisms: ['office-it', 'rented-appliances', 'care-education', 'frequently-moved', 'public-or-hired', 'earthed-equipment'],
+    qualificationsAndMemberships: [],
+    insuranceEvidence: 'Provider states £5 million public liability and professional indemnity insurance; obtain current certificates and verify scope before appointment.', deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes example fixed-fee ranges from £50 to £95 for rental properties and small offices, with higher bands for larger offices.',
+    evidence: [
+      { claim: 'Provider states PAT testing delivery in Edinburgh, Glasgow and across Scotland.', sourceUrl: 'https://www.arnoldpattesting.co.uk/pricing', sourceType: 'provider', checkedOn: patCheckedOn },
+      { claim: 'Provider publishes fixed-fee examples for rental properties and offices.', sourceUrl: 'https://www.arnoldpattesting.co.uk/pricing', sourceType: 'provider', checkedOn: patCheckedOn },
+      { claim: 'Provider states £5 million public liability and professional indemnity insurance on the checked page.', sourceUrl: 'https://www.arnoldpattesting.co.uk/pricing', sourceType: 'provider', checkedOn: patCheckedOn },
+    ], lastVerifiedDate: patCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
   },
 ]
 

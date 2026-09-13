@@ -429,6 +429,71 @@ export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> 
       { label: 'uRisk', url: 'https://www.urisk.co.uk/how-much-does-a-legionella-risk-assessment-cost/', note: 'Publishes commercial assessments from £300 plus VAT and a stated range for larger or more complex sites.' },
     ],
   },
+  'pat-testing': {
+    id: 'pat-testing',
+    name: 'portable electrical equipment inspection and testing',
+    shortName: 'PAT and electrical equipment checks',
+    eyebrow: 'Electrical equipment maintenance finder',
+    question: 'Does my workplace equipment need PAT testing?',
+    promise: 'Check whether testing fits the maintenance risk in about 2 minutes.',
+    description: 'Separate the legal maintenance duty from the annual-PAT myth, estimate a visible inspection and testing range, and compare sourced UK providers.',
+    legalBasis: 'The Electricity at Work Regulations 1989 require electrical equipment that may cause danger to be maintained so far as is reasonably practicable. They do not prescribe annual PAT testing. Inspection and test frequency should follow equipment type, use and environment.',
+    legalSource: 'https://www.hse.gov.uk/electricity/faq-portable-appliance-testing.htm',
+    guidePath: '/pat-testing/do-i-need-pat-testing',
+    costPath: '/pat-testing/cost',
+    supplierPath: '/pat-testing/suppliers',
+    toolkitPath: '/pat-testing/buying-toolkit',
+    workHeading: 'Which electrical equipment is under your control?',
+    workHelp: 'Include movable, portable, stationary and fixed equipment supplied for work. A plug is not the legal boundary.',
+    workOptions: [
+      { value: 'office-it', label: 'Office and IT equipment', detail: 'Computers, monitors, chargers, printers, kettles and extension leads' },
+      { value: 'hospitality-kitchen', label: 'Hospitality or kitchen equipment', detail: 'Portable and stationary appliances used by staff or guests' },
+      { value: 'tools-construction', label: 'Tools or construction equipment', detail: 'Hand tools, transformers, leads and equipment used in harsher conditions' },
+      { value: 'hire-equipment', label: 'Equipment supplied for hire', detail: 'Items inspected before issue or after return under a risk-based regime' },
+      { value: 'rented-appliances', label: 'Appliances supplied with rented premises', detail: 'Electrical equipment provided for tenants, guests or residents' },
+      { value: 'care-education', label: 'Care, education or public-use equipment', detail: 'Equipment used by staff, residents, pupils, patients or visitors' },
+      { value: 'fixed-stationary', label: 'Fixed or stationary electrical equipment', detail: 'Equipment that is not portable but still needs maintenance planning' },
+      { value: 'repaired-secondhand', label: 'Repaired, second-hand or returned equipment', detail: 'Equipment whose condition or repair history needs verification' },
+      { value: 'none-controlled-equipment', label: 'No electrical equipment under our control', detail: 'Use only after checking employer, landlord and equipment-supply responsibilities' },
+      { value: 'unknown-equipment', label: 'Equipment scope is uncertain', detail: 'Ownership, location or equipment categories need an inventory' },
+    ],
+    signalHeading: 'Which risk and use signals apply?',
+    signalHelp: 'These signals help decide whether user checks, formal visual inspection, combined testing or specialist inspection is proportionate.',
+    signalOptions: [
+      { value: 'frequently-moved', label: 'Frequently moved or handled', detail: 'Leads, plugs and casings receive more wear than static office equipment' },
+      { value: 'harsh-environment', label: 'Wet, dusty, outdoor or harsh use', detail: 'The environment raises the chance or consequence of damage' },
+      { value: 'visible-damage', label: 'Damage or user concerns reported', detail: 'Damaged equipment should be removed from use and assessed promptly' },
+      { value: 'public-or-hired', label: 'Used by the public or hired out', detail: 'Control, condition and user familiarity can vary between uses' },
+      { value: 'earthed-equipment', label: 'Class I or earthed equipment', detail: 'Combined inspection and electrical tests may be needed to verify protection' },
+      { value: 'repair-or-change', label: 'Repair, modification or change of use', detail: 'The maintenance regime should address the changed condition' },
+      { value: 'cannot-disconnect', label: 'Business-critical or difficult to disconnect', detail: 'Access, shutdown and test method must be agreed before attendance' },
+      { value: 'unknown-maintenance', label: 'Maintenance regime is unknown', detail: 'No clear inspection frequency, ownership or defect process is recorded' },
+      { value: 'no-higher-risk-signals', label: 'None of these higher-risk signals', detail: 'Low-risk equipment may still need user checks or formal visual inspection' },
+    ],
+    assetLabel: 'Electrical equipment items in scope',
+    secondaryLabel: 'Fixed, specialist or shutdown-sensitive items',
+    documentationLabel: 'Equipment inventory, previous results and defect records',
+    documentationOptions: sharedDocumentation,
+    inspectionLabel: 'Current maintenance and inspection position',
+    inspectionOptions: [
+      { value: 'none', label: 'No inspection or maintenance regime found' },
+      { value: 'in-date', label: 'Risk-based regime is recorded and current' },
+      { value: 'overdue-or-unknown', label: 'Last checks or next review are unclear' },
+      { value: 'new-system', label: 'New site, equipment batch or maintenance regime' },
+    ],
+    resultResourceHeading: 'PAT is one maintenance tool, not an annual legal certificate',
+    resultResourceBody: 'HSE says the law requires equipment to be maintained to prevent danger, but does not prescribe an annual portable appliance test. A suitable regime can combine user checks, formal visual inspection, combined inspection and testing, repair controls and records according to risk.',
+    primaryLinks: [
+      { label: 'HSE PAT frequently asked questions', detail: 'Legal position, competence, records and risk-based frequency', url: 'https://www.hse.gov.uk/electricity/faq-portable-appliance-testing.htm' },
+      { label: 'HSE INDG236', detail: 'Low-risk equipment checks and suggested initial frequencies', url: 'https://www.hse.gov.uk/pubns/indg236.htm' },
+      { label: 'Electricity at Work Regulations regulation 4', detail: 'Legal maintenance duty for electrical systems and equipment', url: 'https://www.legislation.gov.uk/uksi/1989/635/regulation/4' },
+    ],
+    priceEvidence: [
+      { label: 'Safety-PAT', url: 'https://safetypat.co.uk/prices-pat-testing/', note: 'Publishes a £25 site rate for up to ten appliances and a per-appliance structure for larger batches in its stated area.' },
+      { label: 'PAT Checked', url: 'https://www.patchecked.co.uk/pricing/', note: 'Publishes a £70 minimum call-out and item rates by volume for its Midlands service.' },
+      { label: 'London PAT', url: 'https://www.londonpat.com/', note: 'Publishes £80 plus VAT for up to 50 items and volume pricing for Inner London.' },
+    ],
+  },
 }
 
 const labelFor = (definition: ServiceDefinition, value: string) =>
@@ -442,9 +507,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
 
   positiveWork.forEach((value) => factors.push(`${labelFor(definition, value)} was selected`))
   positiveSignals.forEach((value) => factors.push(`${labelFor(definition, value)} affects the duty or examination scope`))
-  if (answers.inspectionStatus === 'none') factors.push('No previous statutory examination record was identified')
-  if (answers.inspectionStatus === 'overdue-or-unknown') factors.push('The examination position is overdue or uncertain')
-  if (answers.inspectionStatus === 'new-system') factors.push('New, installed or assembled equipment needs pre-use consideration')
+  if (answers.inspectionStatus === 'none') factors.push(answers.serviceId === 'pat-testing' ? 'No recorded electrical-equipment inspection or maintenance regime was identified' : 'No previous statutory examination record was identified')
+  if (answers.inspectionStatus === 'overdue-or-unknown') factors.push(answers.serviceId === 'pat-testing' ? 'The inspection and maintenance position is uncertain' : 'The examination position is overdue or uncertain')
+  if (answers.inspectionStatus === 'new-system') factors.push(answers.serviceId === 'pat-testing' ? 'New equipment or a new site needs visual checking and a maintenance decision' : 'New, installed or assembled equipment needs pre-use consideration')
   if (answers.projectReason === 'change') factors.push('A material change, repair or relocation was identified')
   if (answers.documentationStatus !== 'available') factors.push('Supporting records are missing, incomplete or uncertain')
 
@@ -478,6 +543,14 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
     if (inScopeSystems.length && answers.assetCount > 0) status = 'likely-relevant'
     else if (answers.workTypes.includes('unknown-water-system') || positiveSignals.length) status = 'may-be-relevant'
   }
+  if (answers.serviceId === 'pat-testing') {
+    const knownEquipment = positiveWork.filter((value) => value !== 'unknown-equipment')
+    const strongTestSignals = ['harsh-environment', 'visible-damage', 'public-or-hired', 'earthed-equipment', 'repair-or-change']
+    const testSignalSelected = strongTestSignals.some((value) => answers.riskSignals.includes(value))
+    const highExposureWork = ['tools-construction', 'hire-equipment', 'repaired-secondhand'].some((value) => answers.workTypes.includes(value))
+    if (knownEquipment.length && answers.assetCount > 0 && (testSignalSelected || highExposureWork)) status = 'likely-relevant'
+    else if (knownEquipment.length || answers.workTypes.includes('unknown-equipment') || answers.riskSignals.includes('unknown-maintenance')) status = 'may-be-relevant'
+  }
 
   const complexWork = answers.serviceId === 'lev'
     ? ['spray-booth', 'recirculating', 'laboratory-fume'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
@@ -489,7 +562,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           ? ['refurbishment', 'demolition'].some((value) => answers.workTypes.includes(value)) || ['planned-disturbance', 'damaged-material'].some((value) => answers.riskSignals.includes(value))
           : answers.serviceId === 'fire-risk-assessment'
             ? ['sleeping-accommodation', 'care-education', 'mixed-use', 'construction-site'].some((value) => answers.workTypes.includes(value)) || ['sleeping-risk', 'vulnerable-occupants', 'dangerous-substances', 'shared-responsibility'].some((value) => answers.riskSignals.includes(value))
-            : ['care-healthcare', 'leisure-spa', 'cooling-system', 'process-water'].some((value) => answers.workTypes.includes(value)) || ['recirculation', 'vulnerable-users', 'previous-positive'].some((value) => answers.riskSignals.includes(value))
+            : answers.serviceId === 'legionella'
+              ? ['care-healthcare', 'leisure-spa', 'cooling-system', 'process-water'].some((value) => answers.workTypes.includes(value)) || ['recirculation', 'vulnerable-users', 'previous-positive'].some((value) => answers.riskSignals.includes(value))
+              : ['tools-construction', 'hire-equipment', 'care-education', 'fixed-stationary'].some((value) => answers.workTypes.includes(value)) || ['harsh-environment', 'visible-damage', 'public-or-hired', 'cannot-disconnect'].some((value) => answers.riskSignals.includes(value))
   const score = positiveWork.length * 2 + positiveSignals.length * 2 + Math.min(answers.assetCount, 5) + (answers.sites > 1 ? 2 : 0) + (complexWork ? 4 : 0)
   const complexity = score >= 10 || answers.sites > 2 || answers.assetCount > 8 || complexWork ? 'complex' : 'standard'
 
@@ -532,13 +607,20 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           'Consider vulnerable people, dangerous substances and relevant fire-safety systems',
           'Record significant findings, prioritised actions and the emergency-plan implications',
           'Set review triggers and provide a written record the responsible person can maintain',
-        ] : [
+        ] : answers.serviceId === 'legionella' ? [
           'Confirm the dutyholder, responsible person, premises and water-system boundaries',
           'Build or verify a water-system schematic and asset or outlet inventory',
           'Identify conditions supporting growth, aerosol exposure routes and susceptible people',
           'Evaluate existing temperature, turnover, cleaning, monitoring and maintenance controls',
           'Define a written control scheme with responsibilities, tasks, limits and corrective actions',
           'Record findings, priorities, competence needs and triggers for assessment review',
+        ] : [
+          'Confirm who controls the equipment, premises, users and maintenance decisions',
+          'Build or verify an itemised electrical-equipment inventory and risk groups',
+          'Define user checks, formal visual inspection and combined test requirements by risk',
+          'Agree shutdowns, access, exclusions and treatment of fixed or specialist equipment',
+          'Inspect and test the agreed items with recorded results and clear pass or fail status',
+          'Deliver the register, defects, removed-from-use actions and risk-based next-review plan',
         ]
 
   if (answers.documentationStatus !== 'available') scope.unshift('Reconstruct or verify missing equipment and baseline information before examination')
@@ -555,7 +637,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           ? 'The responsible person must confirm that the assessment is suitable and sufficient for the premises, people and risks.'
           : answers.serviceId === 'legionella'
             ? 'A competent person must confirm the water-system boundary, exposure risks, controls and responsible-person arrangements.'
-            : 'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
+            : answers.serviceId === 'pat-testing'
+              ? 'A competent person must confirm the equipment boundary and decide which user checks, visual inspections and electrical tests are proportionate to risk.'
+              : 'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
     ],
     scope,
     complexity,
@@ -586,6 +670,10 @@ export const SERVICE_PRICE_MODELS = {
   legionella: {
     version: 'published-provider-calibration-2026-09-12', baseVisit: 250, perOutlet: 8, perMainAsset: 45,
     higherRiskSystem: 300, complexSystem: 400, additionalSite: 225, spread: 0.28,
+  },
+  'pat-testing': {
+    version: 'published-provider-calibration-2026-09-13', baseVisit: 55, perItem: 1.2, perSpecialistItem: 6,
+    complexSite: 65, additionalSite: 50, spread: 0.25,
   },
 } as const
 
@@ -634,7 +722,7 @@ export function estimateServicePrice(
     if (answers.riskSignals.some((value) => ['sleeping-risk', 'vulnerable-occupants'].includes(value))) factors.push({ label: 'Sleeping or vulnerable-occupant assessment allowance', amount: model.sleepingOrVulnerable })
     if (result.complexity === 'complex') factors.push({ label: 'Complex premises or fire-risk allowance', amount: model.complexPremises })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
-  } else {
+  } else if (answers.serviceId === 'legionella') {
     const model = SERVICE_PRICE_MODELS.legionella
     factors.push({ label: 'Assessment planning, attendance and report setup', amount: model.baseVisit })
     factors.push({ label: `${answers.assetCount} water outlet${answers.assetCount === 1 ? '' : 's'} in scope`, amount: answers.assetCount * model.perOutlet })
@@ -642,18 +730,27 @@ export function estimateServicePrice(
     if (answers.workTypes.some((value) => ['care-healthcare', 'leisure-spa', 'cooling-system'].includes(value)) || answers.riskSignals.includes('vulnerable-users')) factors.push({ label: 'Higher-risk system or susceptible-person allowance', amount: model.higherRiskSystem })
     if (result.complexity === 'complex') factors.push({ label: 'Complex water-system allowance', amount: model.complexSystem })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
+  } else {
+    const model = SERVICE_PRICE_MODELS['pat-testing']
+    factors.push({ label: 'Minimum attendance, setup and register', amount: model.baseVisit })
+    factors.push({ label: `${answers.assetCount} electrical equipment item${answers.assetCount === 1 ? '' : 's'}`, amount: answers.assetCount * model.perItem })
+    if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} fixed, specialist or shutdown-sensitive item${answers.secondaryCount === 1 ? '' : 's'}`, amount: answers.secondaryCount * model.perSpecialistItem })
+    if (result.complexity === 'complex') factors.push({ label: 'Complex access, equipment or scheduling allowance', amount: model.complexSite })
+    if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
   }
 
   const midpoint = factors.reduce((total, factor) => total + factor.amount, 0)
   const spread = SERVICE_PRICE_MODELS[answers.serviceId].spread
+  const lowFloor = answers.serviceId === 'pat-testing' ? 50 : 150
+  const highFloor = answers.serviceId === 'pat-testing' ? 75 : 200
   return {
-    low: Math.max(150, Math.round((midpoint * (1 - spread)) / 25) * 25),
-    high: Math.max(200, Math.round((midpoint * (1 + spread)) / 25) * 25),
+    low: Math.max(lowFloor, Math.round((midpoint * (1 - spread)) / 25) * 25),
+    high: Math.max(highFloor, Math.round((midpoint * (1 + spread)) / 25) * 25),
     currency: 'GBP',
     factors,
     assumptions: [
       'One planned visit per site during normal working hours',
-      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : answers.serviceId === 'legionella' ? 'Water outlets, plant areas and available records are accessible during the assessment' : 'Equipment is available, identifiable and safely accessible for examination',
+      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : answers.serviceId === 'legionella' ? 'Water outlets, plant areas and available records are accessible during the assessment' : answers.serviceId === 'pat-testing' ? 'Equipment is available, identifiable, safely accessible and can be disconnected as agreed' : 'Equipment is available, identifiable and safely accessible for examination',
       'VAT, repairs, replacement parts, specialist access and intrusive testing are excluded',
       'Calibration sources cover only some simple/common jobs and are not an awarded-quote market benchmark',
       'This is deterministic Vendor Atlas planning guidance, not a supplier quotation',
