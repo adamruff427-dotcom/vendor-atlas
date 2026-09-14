@@ -494,6 +494,69 @@ export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> 
       { label: 'London PAT', url: 'https://www.londonpat.com/', note: 'Publishes £80 plus VAT for up to 50 items and volume pricing for Inner London.' },
     ],
   },
+  tm44: {
+    id: 'tm44',
+    name: 'TM44 air-conditioning inspection',
+    shortName: 'TM44 inspections',
+    eyebrow: 'Air-conditioning inspection finder',
+    question: 'Does my air-conditioning system need a TM44 inspection?',
+    promise: 'Check the 12 kW threshold and build a comparable inspection brief in about 2 minutes.',
+    description: 'Check likely TM44 relevance in England and Wales, understand the inspection and report, estimate a planning range and compare sourced providers.',
+    legalBasis: 'In England and Wales, air-conditioning systems with a combined effective rated output above 12 kW must be inspected by an accredited energy assessor at intervals not exceeding five years.',
+    legalSource: 'https://www.gov.uk/government/publications/air-conditioning-inspections-for-buildings/a-guide-to-air-conditioning-inspections',
+    guidePath: '/tm44/do-i-need-a-tm44-inspection',
+    costPath: '/tm44/cost',
+    supplierPath: '/tm44/suppliers',
+    toolkitPath: '/tm44/buying-toolkit',
+    workHeading: 'What air-conditioning equipment is controlled as part of the building system?',
+    workHelp: 'Count the combined effective rated output of systems under the same control. Several smaller units can together exceed 12 kW.',
+    workOptions: [
+      { value: 'split-multisplit', label: 'Split or multi-split systems', detail: 'Wall, cassette, ducted or floor units connected to outdoor units' },
+      { value: 'vrf-vrv', label: 'VRF or VRV system', detail: 'Multi-zone variable refrigerant flow equipment and controls' },
+      { value: 'chiller-ahu', label: 'Chiller or air-handling plant', detail: 'Central cooling plant, chilled water and associated AHUs' },
+      { value: 'mixed-comfort-cooling', label: 'Mixed comfort-cooling systems', detail: 'Several equipment types serving offices, retail, hospitality or public premises' },
+      { value: 'server-room-cooling', label: 'Server-room cooling', detail: 'Dedicated comfort or close-control cooling serving IT spaces' },
+      { value: 'process-cooling', label: 'Process or production cooling', detail: 'Cooling connected to industrial or production activity' },
+      { value: 'multiple-buildings', label: 'Systems across several buildings', detail: 'A portfolio or site with separate system boundaries' },
+      { value: 'none-air-conditioning', label: 'No air-conditioning system', detail: 'Ventilation or heating only, with no mechanical cooling' },
+      { value: 'unknown-air-conditioning', label: 'Equipment scope is uncertain', detail: 'The plant list, system boundary or cooling function is unclear' },
+    ],
+    signalHeading: 'Which capacity and inspection signals apply?',
+    signalHelp: 'Use equipment labels, maintenance records or a plant schedule where available. Unknown capacity is a reason to verify, not proof that the duty applies.',
+    signalOptions: [
+      { value: 'combined-over-12kw', label: 'Combined capacity above 12 kW', detail: 'Several units under the same control together exceed the threshold' },
+      { value: 'single-system-over-12kw', label: 'A system is above 12 kW', detail: 'One system has an effective rated output over 12 kW' },
+      { value: 'single-control', label: 'Several units under one control', detail: 'Units serve one building or are managed as one system' },
+      { value: 'report-over-five-years', label: 'Report is more than five years old', detail: 'The previous inspection date is outside the normal maximum interval' },
+      { value: 'no-report', label: 'No TM44 report found', detail: 'No inspection report or register reference is available' },
+      { value: 'new-system', label: 'New or altered system', detail: 'New plant, controls or capacity may change the system boundary' },
+      { value: 'unknown-capacity', label: 'Capacity is unknown', detail: 'Nameplates, schedules or rated outputs need checking' },
+      { value: 'no-over-12kw', label: 'Confirmed at or below 12 kW', detail: 'Combined effective rated output has been checked and does not exceed 12 kW' },
+    ],
+    assetLabel: 'Indoor or outdoor air-conditioning units in scope',
+    secondaryLabel: 'Chillers, AHUs or central plant items',
+    documentationLabel: 'Plant list, previous TM44 report and maintenance or control records',
+    documentationOptions: sharedDocumentation,
+    inspectionLabel: 'Current TM44 inspection position',
+    inspectionOptions: [
+      { value: 'none', label: 'No report or register reference found' },
+      { value: 'in-date', label: 'Report is less than five years old' },
+      { value: 'overdue-or-unknown', label: 'Report is older than five years or date unknown' },
+      { value: 'new-system', label: 'New or materially changed system' },
+    ],
+    resultResourceHeading: 'TM44 is an energy assessment, not routine maintenance',
+    resultResourceBody: 'The inspection reviews accessible equipment, controls, sizing and operating efficiency, then records recommendations. It does not replace servicing, refrigerant leak checks, repairs or workplace safety duties.',
+    primaryLinks: [
+      { label: 'GOV.UK TM44 inspection guide', detail: 'Scope, 12 kW threshold, inspection cycle and responsibilities', url: 'https://www.gov.uk/government/publications/air-conditioning-inspections-for-buildings/a-guide-to-air-conditioning-inspections' },
+      { label: 'GOV.UK inspection summary', detail: 'Accredited assessor, report contents and enforcement information', url: 'https://www.gov.uk/get-your-air-conditioning-system-inspected' },
+      { label: 'Energy Performance of Buildings Regulations', detail: 'The England and Wales regulatory framework', url: 'https://www.legislation.gov.uk/uksi/2012/3118/contents' },
+    ],
+    priceEvidence: [
+      { label: 'AccuTemp', url: 'https://accutemp.co.uk/tm44-inspections', note: 'Publishes a fixed price from £450 plus VAT and a stated range of £450 to £1,800 plus VAT for most single-site work.' },
+      { label: 'Robinsons Facilities Services', url: 'https://www.robinsonsfs.com/services/tm44-inspection/', note: 'Publishes smaller split-system inspections from £300 plus VAT and larger or central-plant work typically from £400 to £1,000 plus VAT.' },
+      { label: 'Heat Pump Installers London', url: 'https://heatpumpinstallerslondon.com/f-gas/tm44-air-conditioning-inspection', note: 'Publishes TM44 inspections from £245 plus VAT for London and the Home Counties.' },
+    ],
+  },
 }
 
 const labelFor = (definition: ServiceDefinition, value: string) =>
@@ -551,6 +614,12 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
     if (knownEquipment.length && answers.assetCount > 0 && (testSignalSelected || highExposureWork)) status = 'likely-relevant'
     else if (knownEquipment.length || answers.workTypes.includes('unknown-equipment') || answers.riskSignals.includes('unknown-maintenance')) status = 'may-be-relevant'
   }
+  if (answers.serviceId === 'tm44') {
+    const knownCooling = positiveWork.filter((value) => value !== 'unknown-air-conditioning')
+    const overThreshold = answers.riskSignals.some((value) => ['combined-over-12kw', 'single-system-over-12kw'].includes(value))
+    if (knownCooling.length && overThreshold) status = 'likely-relevant'
+    else if (answers.workTypes.includes('unknown-air-conditioning') || answers.riskSignals.includes('unknown-capacity') || (knownCooling.length && !answers.riskSignals.includes('no-over-12kw'))) status = 'may-be-relevant'
+  }
 
   const complexWork = answers.serviceId === 'lev'
     ? ['spray-booth', 'recirculating', 'laboratory-fume'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
@@ -564,7 +633,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
             ? ['sleeping-accommodation', 'care-education', 'mixed-use', 'construction-site'].some((value) => answers.workTypes.includes(value)) || ['sleeping-risk', 'vulnerable-occupants', 'dangerous-substances', 'shared-responsibility'].some((value) => answers.riskSignals.includes(value))
             : answers.serviceId === 'legionella'
               ? ['care-healthcare', 'leisure-spa', 'cooling-system', 'process-water'].some((value) => answers.workTypes.includes(value)) || ['recirculation', 'vulnerable-users', 'previous-positive'].some((value) => answers.riskSignals.includes(value))
-              : ['tools-construction', 'hire-equipment', 'care-education', 'fixed-stationary'].some((value) => answers.workTypes.includes(value)) || ['harsh-environment', 'visible-damage', 'public-or-hired', 'cannot-disconnect'].some((value) => answers.riskSignals.includes(value))
+              : answers.serviceId === 'pat-testing'
+                ? ['tools-construction', 'hire-equipment', 'care-education', 'fixed-stationary'].some((value) => answers.workTypes.includes(value)) || ['harsh-environment', 'visible-damage', 'public-or-hired', 'cannot-disconnect'].some((value) => answers.riskSignals.includes(value))
+                : ['vrf-vrv', 'chiller-ahu', 'mixed-comfort-cooling', 'process-cooling', 'multiple-buildings'].some((value) => answers.workTypes.includes(value))
   const score = positiveWork.length * 2 + positiveSignals.length * 2 + Math.min(answers.assetCount, 5) + (answers.sites > 1 ? 2 : 0) + (complexWork ? 4 : 0)
   const complexity = score >= 10 || answers.sites > 2 || answers.assetCount > 8 || complexWork ? 'complex' : 'standard'
 
@@ -614,13 +685,20 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           'Evaluate existing temperature, turnover, cleaning, monitoring and maintenance controls',
           'Define a written control scheme with responsibilities, tasks, limits and corrective actions',
           'Record findings, priorities, competence needs and triggers for assessment review',
-        ] : [
+        ] : answers.serviceId === 'pat-testing' ? [
           'Confirm who controls the equipment, premises, users and maintenance decisions',
           'Build or verify an itemised electrical-equipment inventory and risk groups',
           'Define user checks, formal visual inspection and combined test requirements by risk',
           'Agree shutdowns, access, exclusions and treatment of fixed or specialist equipment',
           'Inspect and test the agreed items with recorded results and clear pass or fail status',
           'Deliver the register, defects, removed-from-use actions and risk-based next-review plan',
+        ] : [
+          'Confirm the person in control, building boundary and systems counted together',
+          'Verify effective rated output from plant schedules, labels and available records',
+          'Review accessible equipment, refrigerant and air systems, controls and maintenance information',
+          'Assess sizing, operating efficiency and opportunities to reduce energy use',
+          'Record faults, recommendations, limitations and supporting evidence in the inspection report',
+          'Lodge the report and keep its reference, inspection date and next due date available',
         ]
 
   if (answers.documentationStatus !== 'available') scope.unshift('Reconstruct or verify missing equipment and baseline information before examination')
@@ -639,7 +717,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
             ? 'A competent person must confirm the water-system boundary, exposure risks, controls and responsible-person arrangements.'
             : answers.serviceId === 'pat-testing'
               ? 'A competent person must confirm the equipment boundary and decide which user checks, visual inspections and electrical tests are proportionate to risk.'
-              : 'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
+              : answers.serviceId === 'tm44'
+                ? 'This finder covers the England and Wales TM44 rules. An accredited energy assessor must confirm the system boundary, rated output and inspection requirement.'
+                : 'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
     ],
     scope,
     complexity,
@@ -674,6 +754,10 @@ export const SERVICE_PRICE_MODELS = {
   'pat-testing': {
     version: 'published-provider-calibration-2026-09-13', baseVisit: 55, perItem: 1.2, perSpecialistItem: 6,
     complexSite: 65, additionalSite: 50, spread: 0.25,
+  },
+  tm44: {
+    version: 'published-provider-calibration-2026-09-14', baseVisit: 300, perUnit: 40, perCentralPlant: 150,
+    complexSystem: 300, missingRecords: 100, additionalSite: 250, spread: 0.25,
   },
 } as const
 
@@ -730,12 +814,20 @@ export function estimateServicePrice(
     if (answers.workTypes.some((value) => ['care-healthcare', 'leisure-spa', 'cooling-system'].includes(value)) || answers.riskSignals.includes('vulnerable-users')) factors.push({ label: 'Higher-risk system or susceptible-person allowance', amount: model.higherRiskSystem })
     if (result.complexity === 'complex') factors.push({ label: 'Complex water-system allowance', amount: model.complexSystem })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
-  } else {
+  } else if (answers.serviceId === 'pat-testing') {
     const model = SERVICE_PRICE_MODELS['pat-testing']
     factors.push({ label: 'Minimum attendance, setup and register', amount: model.baseVisit })
     factors.push({ label: `${answers.assetCount} electrical equipment item${answers.assetCount === 1 ? '' : 's'}`, amount: answers.assetCount * model.perItem })
     if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} fixed, specialist or shutdown-sensitive item${answers.secondaryCount === 1 ? '' : 's'}`, amount: answers.secondaryCount * model.perSpecialistItem })
     if (result.complexity === 'complex') factors.push({ label: 'Complex access, equipment or scheduling allowance', amount: model.complexSite })
+    if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
+  } else {
+    const model = SERVICE_PRICE_MODELS.tm44
+    factors.push({ label: 'Accredited-assessor attendance, report and lodgement', amount: model.baseVisit })
+    factors.push({ label: `${answers.assetCount} air-conditioning unit${answers.assetCount === 1 ? '' : 's'} in scope`, amount: answers.assetCount * model.perUnit })
+    if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} chiller, AHU or central plant item${answers.secondaryCount === 1 ? '' : 's'}`, amount: answers.secondaryCount * model.perCentralPlant })
+    if (result.complexity === 'complex') factors.push({ label: 'Complex system or controls allowance', amount: model.complexSystem })
+    if (answers.documentationStatus !== 'available') factors.push({ label: 'Missing plant or control records allowance', amount: model.missingRecords })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
   }
 
@@ -750,7 +842,7 @@ export function estimateServicePrice(
     factors,
     assumptions: [
       'One planned visit per site during normal working hours',
-      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : answers.serviceId === 'legionella' ? 'Water outlets, plant areas and available records are accessible during the assessment' : answers.serviceId === 'pat-testing' ? 'Equipment is available, identifiable, safely accessible and can be disconnected as agreed' : 'Equipment is available, identifiable and safely accessible for examination',
+      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : answers.serviceId === 'legionella' ? 'Water outlets, plant areas and available records are accessible during the assessment' : answers.serviceId === 'pat-testing' ? 'Equipment is available, identifiable, safely accessible and can be disconnected as agreed' : answers.serviceId === 'tm44' ? 'Air-conditioning equipment, controls and available plant records are safely accessible' : 'Equipment is available, identifiable and safely accessible for examination',
       'VAT, repairs, replacement parts, specialist access and intrusive testing are excluded',
       'Calibration sources cover only some simple/common jobs and are not an awarded-quote market benchmark',
       'This is deterministic Vendor Atlas planning guidance, not a supplier quotation',

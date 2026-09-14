@@ -121,8 +121,27 @@ describe('PAT testing qualification and pricing', () => {
   })
 })
 
+describe('TM44 qualification and pricing', () => {
+  it('recognises an air-conditioning system above the combined threshold', () => {
+    const answers = { ...defaultServiceAnswers('tm44'), workTypes: ['vrf-vrv'], riskSignals: ['combined-over-12kw'], assetCount: 8, secondaryCount: 1 }
+    const result = qualifyService(answers)
+    const estimate = estimateServicePrice(answers, result)
+    expect(result.status).toBe('likely-relevant')
+    expect(result.scope.join(' ')).toMatch(/effective rated output|lodg/i)
+    expect(estimate.factors).toEqual(expect.arrayContaining([expect.objectContaining({ amount: SERVICE_PRICE_MODELS.tm44.perUnit * 8 })]))
+  })
+
+  it('keeps unknown capacity non-definitive', () => {
+    expect(qualifyService({ ...defaultServiceAnswers('tm44'), workTypes: ['split-multisplit'], riskSignals: ['unknown-capacity'] }).status).toBe('may-be-relevant')
+  })
+
+  it('does not create a trigger where there is no air conditioning', () => {
+    expect(qualifyService({ ...defaultServiceAnswers('tm44'), workTypes: ['none-air-conditioning'], riskSignals: ['no-over-12kw'], documentationStatus: 'available', inspectionStatus: 'in-date' }).status).toBe('no-obvious-trigger')
+  })
+})
+
 describe('generic industrial service invariants', () => {
-  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing'] as const) {
+  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44'] as const) {
     it(`${serviceId} stays deterministic, positive and evidence-linked`, () => {
       const definition = serviceDefinitions[serviceId]
       const answers = { ...defaultServiceAnswers(serviceId), workTypes: [definition.workOptions[0].value], riskSignals: [definition.signalOptions[0].value], assetCount: 4, secondaryCount: 8, sites: 2 }
@@ -147,7 +166,7 @@ describe('generic industrial service invariants', () => {
   }
 
   it('retains source URLs and explicit evidence status for every new supplier', () => {
-    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment' | 'legionella' | 'pat-testing'))
+    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment' | 'legionella' | 'pat-testing' | 'tm44'))
     for (const supplier of suppliers) {
       expect(supplier.evidence.length).toBeGreaterThan(0)
       expect(supplier.evidence.every((item) => item.sourceUrl.startsWith('https://') && item.checkedOn === supplier.lastVerifiedDate)).toBe(true)

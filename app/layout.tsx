@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description:
-      "Decision support for procuring eight UK compliance services, including DSEAR, statutory examinations, asbestos surveys, fire risk assessments, legionella assessment and electrical equipment testing.",
+      "Decision support for procuring nine UK compliance services, including DSEAR, statutory examinations, asbestos surveys, fire risk assessments, legionella, electrical equipment testing and TM44 inspections.",
     url: "https://vendoratlas.artificiallyconfident.com/",
   };
   return (
@@ -72,6 +72,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/fire-risk-assessment">Fire risk</Link>
               <Link href="/legionella">Legionella</Link>
               <Link href="/pat-testing">PAT testing</Link>
+              <Link href="/tm44">TM44</Link>
             </nav>
           </div>
           <div className="analytics-notice" role="note">

@@ -66,7 +66,9 @@ export function matchServiceSuppliers(
                 ? 'fire risk assessment'
                 : answers.serviceId === 'legionella'
                   ? 'legionella risk assessment'
-                  : 'portable appliance testing'
+                  : answers.serviceId === 'pat-testing'
+                    ? 'portable appliance testing'
+                    : 'TM44 inspection'
       if (supplier.capabilities.some((item) => item.toLowerCase().includes(capabilityNeed.toLowerCase()))) {
         score += 2
         reasons.push('The required core examination capability is stated')

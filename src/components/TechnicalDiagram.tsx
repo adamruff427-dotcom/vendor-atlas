@@ -99,6 +99,17 @@ const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; in
     ],
     evidence: ['Equipment scope and risk groups', 'Inspection and test method', 'Itemised results and exclusions', 'Defect actions and reviewed intervals'], source: 'https://www.hse.gov.uk/electricity/faq-portable-appliance-testing.htm', sourceLabel: 'HSE PAT guidance',
   },
+  tm44: {
+    eyebrow: 'Inspection sequence', title: 'System boundaries turn units into one inspection duty', intro: 'The assessor groups equipment under common control, verifies effective rated output and examines the energy performance of the complete air-conditioning system.',
+    nodes: [
+      { title: 'Plant inventory', detail: 'Indoor units, outdoor units, chillers, AHUs and rated outputs', icon: PackageCheck },
+      { title: 'Control boundary', detail: 'The person, building and units managed as one system', icon: Link2 },
+      { title: '12 kW threshold', detail: 'Combined effective rated output, not only one unit rating', icon: Gauge },
+      { title: 'Inspection', detail: 'Accessible plant, controls, sizing, records and operation', icon: SearchCheck },
+      { title: 'Lodged report', detail: 'Findings, recommendations, limitations and next due date', icon: FileCheck2 },
+    ],
+    evidence: ['Plant and system schedule', 'Capacity and grouping rationale', 'Accredited assessor details', 'Lodged report and recommendations'], source: 'https://www.gov.uk/government/publications/air-conditioning-inspections-for-buildings/a-guide-to-air-conditioning-inspections', sourceLabel: 'GOV.UK inspection guide',
+  },
 }
 
 export function TechnicalDiagram({ serviceId }: { serviceId: IndustrialServiceId }) {

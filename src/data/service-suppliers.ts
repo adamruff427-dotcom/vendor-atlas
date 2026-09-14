@@ -7,6 +7,7 @@ const asbestosCheckedOn = '2026-09-10'
 const fireCheckedOn = '2026-09-11'
 const legionellaCheckedOn = '2026-09-12'
 const patCheckedOn = '2026-09-13'
+const tm44CheckedOn = '2026-09-14'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
@@ -429,6 +430,58 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider publishes fixed-fee examples for rental properties and offices.', sourceUrl: 'https://www.arnoldpattesting.co.uk/pricing', sourceType: 'provider', checkedOn: patCheckedOn },
       { claim: 'Provider states £5 million public liability and professional indemnity insurance on the checked page.', sourceUrl: 'https://www.arnoldpattesting.co.uk/pricing', sourceType: 'provider', checkedOn: patCheckedOn },
     ], lastVerifiedDate: patCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
+    id: 'accutemp-tm44', name: 'AccuTemp', website: 'https://accutemp.co.uk/tm44-inspections',
+    serviceIds: ['tm44'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['tm44-air-conditioning-inspection', 'air-conditioning-energy-assessment', 'tm44-report-lodgement'],
+    capabilities: ['TM44 inspection', 'air-conditioning energy assessment', 'inspection report and lodgement'],
+    specialisms: ['split-multisplit', 'vrf-vrv', 'chiller-ahu', 'mixed-comfort-cooling', 'server-room-cooling', 'process-cooling', 'multiple-buildings', 'combined-over-12kw', 'single-system-over-12kw'],
+    qualificationsAndMemberships: ['Provider states that inspections are completed by accredited assessors; verify the named assessor on the applicable accreditation register before appointment.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes a fixed price from £450 plus VAT and states most single-site inspections cost £450 to £1,800 plus VAT.',
+    evidence: [
+      { claim: 'Provider states UK-wide TM44 inspection coverage and report lodgement.', sourceUrl: 'https://accutemp.co.uk/tm44-inspections', sourceType: 'provider', checkedOn: tm44CheckedOn },
+      { claim: 'Provider publishes a starting price and a stated range for most single-site inspections.', sourceUrl: 'https://accutemp.co.uk/tm44-inspections', sourceType: 'provider', checkedOn: tm44CheckedOn },
+    ], lastVerifiedDate: tm44CheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'robinsons-tm44', name: 'Robinsons Facilities Services', website: 'https://www.robinsonsfs.com/services/tm44-inspection/',
+    serviceIds: ['tm44'], geographicalCoverage: ['north'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['tm44-air-conditioning-inspection', 'air-conditioning-energy-assessment', 'tm44-report-lodgement'],
+    capabilities: ['TM44 inspection', 'split-system inspection', 'central-plant inspection', 'inspection report and lodgement'],
+    specialisms: ['split-multisplit', 'vrf-vrv', 'chiller-ahu', 'mixed-comfort-cooling', 'server-room-cooling', 'combined-over-12kw', 'single-system-over-12kw'],
+    qualificationsAndMemberships: ['Provider states that qualified accredited energy assessors complete the service; verify the assigned assessor and current accreditation.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes smaller split-system inspections from £300 plus VAT and larger or central-plant inspections typically from £400 to £1,000 plus VAT.',
+    evidence: [
+      { claim: 'Provider states TM44 delivery across Yorkshire, the Humber and surrounding areas.', sourceUrl: 'https://www.robinsonsfs.com/services/tm44-inspection/', sourceType: 'provider', checkedOn: tm44CheckedOn },
+      { claim: 'Provider publishes starting and typical price bands by system type.', sourceUrl: 'https://www.robinsonsfs.com/services/tm44-inspection/', sourceType: 'provider', checkedOn: tm44CheckedOn },
+    ], lastVerifiedDate: tm44CheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'heat-pump-installers-london-tm44', name: 'Heat Pump Installers London', website: 'https://heatpumpinstallerslondon.com/f-gas/tm44-air-conditioning-inspection',
+    serviceIds: ['tm44'], geographicalCoverage: ['london', 'south-east'], sectors: ['food-drink', 'laboratory', 'other'],
+    serviceCategories: ['tm44-air-conditioning-inspection', 'air-conditioning-energy-assessment', 'tm44-report-lodgement'],
+    capabilities: ['TM44 inspection', 'air-conditioning controls review', 'inspection report and lodgement'],
+    specialisms: ['split-multisplit', 'vrf-vrv', 'mixed-comfort-cooling', 'server-room-cooling', 'combined-over-12kw', 'single-system-over-12kw'],
+    qualificationsAndMemberships: ['Provider states Level 3 and Level 4 accredited energy-assessor capability; verify the named assessor and current scheme entry.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider publishes inspections from £245 plus VAT.',
+    evidence: [
+      { claim: 'Provider states TM44 delivery across London and the Home Counties.', sourceUrl: 'https://heatpumpinstallerslondon.com/f-gas/tm44-air-conditioning-inspection', sourceType: 'provider', checkedOn: tm44CheckedOn },
+      { claim: 'Provider publishes a starting price and describes records, controls, sizing and report-lodgement work.', sourceUrl: 'https://heatpumpinstallerslondon.com/f-gas/tm44-air-conditioning-inspection', sourceType: 'provider', checkedOn: tm44CheckedOn },
+    ], lastVerifiedDate: tm44CheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'tm44-direct', name: 'TM44 Direct', website: 'https://www.tm44inspect.co.uk/get-a-quote',
+    serviceIds: ['tm44'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['tm44-air-conditioning-inspection', 'air-conditioning-energy-assessment', 'tm44-report-lodgement'],
+    capabilities: ['TM44 inspection', 'air-conditioning energy assessment', 'inspection report and lodgement'],
+    specialisms: ['split-multisplit', 'vrf-vrv', 'chiller-ahu', 'mixed-comfort-cooling', 'server-room-cooling', 'process-cooling', 'multiple-buildings'],
+    qualificationsAndMemberships: ['Provider states accredited energy-assessor delivery; verify the named assessor on the applicable register before appointment.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states nationwide TM44 inspection coverage through its service and location pages.', sourceUrl: 'https://www.tm44inspect.co.uk/get-a-quote', sourceType: 'provider', checkedOn: tm44CheckedOn },
+      { claim: 'Provider offers quote scoping for air-conditioning systems and premises.', sourceUrl: 'https://www.tm44inspect.co.uk/get-a-quote', sourceType: 'provider', checkedOn: tm44CheckedOn },
+    ], lastVerifiedDate: tm44CheckedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
   },
 ]
 
