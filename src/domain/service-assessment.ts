@@ -622,10 +622,10 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
   const positiveSignals = answers.riskSignals.filter((value) => !value.startsWith('no-') && !value.startsWith('unknown-'))
 
   positiveWork.forEach((value) => factors.push(`${labelFor(definition, value)} was selected`))
-  positiveSignals.forEach((value) => factors.push(`${labelFor(definition, value)} affects the duty or examination scope`))
-  if (answers.inspectionStatus === 'none') factors.push(answers.serviceId === 'pat-testing' ? 'No recorded electrical-equipment inspection or maintenance regime was identified' : 'No previous statutory examination record was identified')
-  if (answers.inspectionStatus === 'overdue-or-unknown') factors.push(answers.serviceId === 'pat-testing' ? 'The inspection and maintenance position is uncertain' : 'The examination position is overdue or uncertain')
-  if (answers.inspectionStatus === 'new-system') factors.push(answers.serviceId === 'pat-testing' ? 'New equipment or a new site needs visual checking and a maintenance decision' : 'New, installed or assembled equipment needs pre-use consideration')
+  positiveSignals.forEach((value) => factors.push(`${labelFor(definition, value)} affects the assessment or service scope`))
+  if (answers.inspectionStatus === 'none') factors.push(answers.serviceId === 'pat-testing' ? 'No recorded electrical-equipment inspection or maintenance regime was identified' : answers.serviceId === 'workplace-noise' ? 'No current workplace noise assessment was identified' : 'No previous statutory examination record was identified')
+  if (answers.inspectionStatus === 'overdue-or-unknown') factors.push(answers.serviceId === 'pat-testing' ? 'The inspection and maintenance position is uncertain' : answers.serviceId === 'workplace-noise' ? 'The existing noise assessment may not reflect current work' : 'The examination position is overdue or uncertain')
+  if (answers.inspectionStatus === 'new-system') factors.push(answers.serviceId === 'pat-testing' ? 'New equipment or a new site needs visual checking and a maintenance decision' : answers.serviceId === 'workplace-noise' ? 'New or changed work patterns need noise-exposure consideration' : 'New, installed or assembled equipment needs pre-use consideration')
   if (answers.projectReason === 'change') factors.push('A material change, repair or relocation was identified')
   if (answers.documentationStatus !== 'available') factors.push('Supporting records are missing, incomplete or uncertain')
 
@@ -770,7 +770,7 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           'Provide a written risk assessment with uncertainty, priorities, owners and review triggers',
         ]
 
-  if (answers.documentationStatus !== 'available') scope.unshift('Reconstruct or verify missing equipment and baseline information before examination')
+  if (answers.documentationStatus !== 'available') scope.unshift(answers.serviceId === 'workplace-noise' ? 'Reconstruct task durations, worker groups and available noise information before estimating exposure' : 'Reconstruct or verify missing equipment and baseline information before examination')
 
   return {
     status,

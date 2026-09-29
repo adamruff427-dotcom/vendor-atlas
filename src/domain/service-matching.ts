@@ -73,7 +73,7 @@ export function matchServiceSuppliers(
                       : 'workplace noise risk assessment'
       if (supplier.capabilities.some((item) => item.toLowerCase().includes(capabilityNeed.toLowerCase()))) {
         score += 2
-        reasons.push('The required core examination capability is stated')
+        reasons.push('The required core service capability is stated')
       }
 
       return { supplier, score, reasons, gaps }
