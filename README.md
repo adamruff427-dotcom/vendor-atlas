@@ -1,6 +1,6 @@
 # Vendor Atlas
 
-Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The live service directory covers DSEAR, LEV, pressure systems under PSSR, LOLER, asbestos surveys, fire risk assessment, legionella risk assessment, risk-based portable electrical equipment inspection and testing, and TM44 air-conditioning inspections in England and Wales.
+Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The live service directory covers DSEAR, LEV, pressure systems under PSSR, LOLER, asbestos surveys, fire risk assessment, legionella risk assessment, risk-based portable electrical equipment inspection and testing, TM44 air-conditioning inspections in England and Wales, and workplace noise risk assessment in Great Britain.
 
 Public site: `https://vendoratlas.artificiallyconfident.com/`
 
@@ -33,7 +33,7 @@ Every added service vertical follows the same product standard:
 8. durable quote-intent capture through the same D1 enquiry workflow; and
 9. substantive overview, decision, cost, supplier and comparison guides based on HSE and legislation.
 
-Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos`, `/fire-risk-assessment`, `/legionella`, `/pat-testing` and `/tm44`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
+Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos`, `/fire-risk-assessment`, `/legionella`, `/pat-testing`, `/tm44` and `/workplace-noise`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
 
 ## Architecture
 
@@ -81,7 +81,7 @@ Pressure systems returns `likely-relevant` for explicit relevant-fluid indicator
 
 LOLER returns `likely-relevant` for identified lifting equipment or accessories and keeps unclassified equipment at `may-be-relevant`. Its scope covers itemised assets, first-use/installation/periodic/exceptional triggers, equipment-specific competent examination, Schedule 1 reporting and defect escalation.
 
-All eight models state that the finder is not the legal determination, survey, assessment or statutory work. Tests cover positive, uncertain and no-obvious-trigger states and prevent contradictory result, scope or price combinations.
+All service models state that the finder is not the legal determination, survey, assessment or statutory work. Tests cover positive, uncertain and no-obvious-trigger states and prevent contradictory result, scope or price combinations.
 
 ## Pricing models
 

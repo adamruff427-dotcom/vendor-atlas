@@ -557,6 +557,59 @@ export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> 
       { label: 'Heat Pump Installers London', url: 'https://heatpumpinstallerslondon.com/f-gas/tm44-air-conditioning-inspection', note: 'Publishes TM44 inspections from £245 plus VAT for London and the Home Counties.' },
     ],
   },
+  'workplace-noise': {
+    id: 'workplace-noise', name: 'workplace noise risk assessment', shortName: 'Workplace noise', eyebrow: 'Noise exposure assessment finder',
+    question: 'Do I need a workplace noise risk assessment?',
+    promise: 'Check exposure signals and prepare a comparable survey brief in about 2 minutes.',
+    description: 'Identify when employee noise exposure calls for assessment, see what the work should cover, estimate a planning range and compare sourced providers.',
+    legalBasis: 'Under the Control of Noise at Work Regulations 2005, employers must assess risks when employees are likely to be exposed at or above the lower exposure action value: 80 dB(A) daily or weekly exposure, or 135 dB(C) peak sound pressure. This is a Great Britain guide.',
+    legalSource: 'https://www.hse.gov.uk/noise/employers.htm',
+    guidePath: '/workplace-noise/do-i-need-a-noise-assessment', costPath: '/workplace-noise/cost', supplierPath: '/workplace-noise/suppliers', toolkitPath: '/workplace-noise/buying-toolkit',
+    workHeading: 'Which work exposes employees to noise?',
+    workHelp: 'Select the tasks and processes, including intermittent or impact noise. The risk depends on level, duration and worker exposure.',
+    workOptions: [
+      { value: 'machining', label: 'Machining or metal fabrication', detail: 'CNC work, grinding, cutting, presses or fabrication' },
+      { value: 'woodworking-noise', label: 'Woodworking machinery', detail: 'Sawing, planing, routing or sanding' },
+      { value: 'construction-tools', label: 'Construction or maintenance tools', detail: 'Drilling, breaking, cutting or powered hand tools' },
+      { value: 'food-production', label: 'Food or drink production', detail: 'Processing, filling, packaging or bottling lines' },
+      { value: 'vehicle-workshop', label: 'Vehicle workshop', detail: 'Compressed air, impact tools, testing or repair work' },
+      { value: 'entertainment-music', label: 'Music or entertainment work', detail: 'Amplified sound affecting employees or performers' },
+      { value: 'variable-shifts', label: 'Variable tasks or shifts', detail: 'Employees move between noisy and quieter activities' },
+      { value: 'none-noisy-work', label: 'No potentially noisy work identified', detail: 'Employees are not exposed to intrusive or impact noise at work' },
+      { value: 'unknown-noise-work', label: 'Unsure what work is in scope', detail: 'Tasks or employee exposure have not been mapped' },
+    ],
+    signalHeading: 'What exposure indicators apply?',
+    signalHelp: 'Conversation tests are screening clues from HSE, not sound measurements or a personal exposure calculation.',
+    signalOptions: [
+      { value: 'intrusive-six-hours', label: 'Intrusive noise for much of a shift', detail: 'Normal conversation is possible, but noise is intrusive for around six hours' },
+      { value: 'shout-two-metres', label: 'Shouting at two metres', detail: 'Workers need to shout to speak clearly at two metres for around two hours' },
+      { value: 'impact-noise', label: 'Short loud impacts', detail: 'Hammering, presses, explosions or other peak noise' },
+      { value: 'existing-80db', label: 'Existing evidence near 80 dB(A) exposure', detail: 'Earlier measurements or reliable data suggest the lower action value' },
+      { value: 'hearing-concern', label: 'Worker hearing concerns', detail: 'Reports of ringing ears, hearing difficulty or noise complaints' },
+      { value: 'changed-process', label: 'Plant or work pattern changed', detail: 'New machinery, production rate, layout or shift duration' },
+      { value: 'unknown-exposure', label: 'Exposure is unknown', detail: 'No reliable task duration or noise data is available' },
+      { value: 'no-exposure-signal', label: 'No listed indicator', detail: 'No intrusive, impact or measured concern identified' },
+    ],
+    assetLabel: 'Noisy tasks or process areas to assess', secondaryLabel: 'Worker groups or shifts needing exposure estimates',
+    documentationLabel: 'Machine data, earlier surveys and task-duration records', documentationOptions: sharedDocumentation,
+    inspectionLabel: 'Current workplace noise assessment',
+    inspectionOptions: [
+      { value: 'none', label: 'No assessment recorded' }, { value: 'in-date', label: 'Assessment reflects current work' },
+      { value: 'overdue-or-unknown', label: 'Assessment status or validity uncertain' }, { value: 'new-system', label: 'New or changed work pattern' },
+    ],
+    resultResourceHeading: 'A risk assessment is more than a noise reading',
+    resultResourceBody: 'HSE expects a reliable estimate of employees’ daily or weekly exposures, comparison with action and limit values, identified controls and an action plan. Measurement is useful where existing information cannot establish exposure.',
+    primaryLinks: [
+      { label: 'HSE employer duties', detail: 'Action values and employer requirements', url: 'https://www.hse.gov.uk/noise/employers.htm' },
+      { label: 'HSE assessing noise risks', detail: 'Exposure estimates, records, controls and competence', url: 'https://www.hse.gov.uk/noise/risks.htm' },
+      { label: 'Control of Noise at Work Regulations 2005', detail: 'Legal text for risk assessment and exposure controls', url: 'https://www.legislation.gov.uk/uksi/2005/1643/regulation/5' },
+    ],
+    priceEvidence: [
+      { label: 'NOVA Acoustics', url: 'https://www.novaacoustics.co.uk/noise-at-work-surveys-and-assessments/', note: 'Publishes £800 to £900 plus VAT for smaller straightforward workplace assessments.' },
+      { label: 'The Safety Effect', url: 'https://www.consultmesh.co.uk/service/workplace-noise-assessments/', note: 'Publishes £595 to £1,975 as the range of work undertaken in 2025.' },
+      { label: 'LESH Safety', url: 'https://www.leshonline.co.uk/costofworkplacenoisesurvey', note: 'Publishes £850 to £1,500 for smaller straightforward assessments and higher prices for complex sites.' },
+    ],
+  },
 }
 
 const labelFor = (definition: ServiceDefinition, value: string) =>
@@ -620,6 +673,13 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
     if (knownCooling.length && overThreshold) status = 'likely-relevant'
     else if (answers.workTypes.includes('unknown-air-conditioning') || answers.riskSignals.includes('unknown-capacity') || (knownCooling.length && !answers.riskSignals.includes('no-over-12kw'))) status = 'may-be-relevant'
   }
+  if (answers.serviceId === 'workplace-noise') {
+    const knownWork = positiveWork.filter((value) => value !== 'unknown-noise-work')
+    const exposureClue = ['intrusive-six-hours', 'shout-two-metres', 'impact-noise', 'existing-80db', 'hearing-concern'].some((value) => answers.riskSignals.includes(value))
+    if (knownWork.length && exposureClue) status = 'likely-relevant'
+    else if (knownWork.length || answers.workTypes.includes('unknown-noise-work') || answers.riskSignals.includes('unknown-exposure')) status = 'may-be-relevant'
+    if (answers.region === 'northern-ireland' && status === 'likely-relevant') status = 'may-be-relevant'
+  }
 
   const complexWork = answers.serviceId === 'lev'
     ? ['spray-booth', 'recirculating', 'laboratory-fume'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
@@ -635,7 +695,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
               ? ['care-healthcare', 'leisure-spa', 'cooling-system', 'process-water'].some((value) => answers.workTypes.includes(value)) || ['recirculation', 'vulnerable-users', 'previous-positive'].some((value) => answers.riskSignals.includes(value))
               : answers.serviceId === 'pat-testing'
                 ? ['tools-construction', 'hire-equipment', 'care-education', 'fixed-stationary'].some((value) => answers.workTypes.includes(value)) || ['harsh-environment', 'visible-damage', 'public-or-hired', 'cannot-disconnect'].some((value) => answers.riskSignals.includes(value))
-                : ['vrf-vrv', 'chiller-ahu', 'mixed-comfort-cooling', 'process-cooling', 'multiple-buildings'].some((value) => answers.workTypes.includes(value))
+                : answers.serviceId === 'tm44'
+                  ? ['vrf-vrv', 'chiller-ahu', 'mixed-comfort-cooling', 'process-cooling', 'multiple-buildings'].some((value) => answers.workTypes.includes(value))
+                  : ['impact-noise', 'variable-shifts', 'entertainment-music'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
   const score = positiveWork.length * 2 + positiveSignals.length * 2 + Math.min(answers.assetCount, 5) + (answers.sites > 1 ? 2 : 0) + (complexWork ? 4 : 0)
   const complexity = score >= 10 || answers.sites > 2 || answers.assetCount > 8 || complexWork ? 'complex' : 'standard'
 
@@ -692,13 +754,20 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           'Agree shutdowns, access, exclusions and treatment of fixed or specialist equipment',
           'Inspect and test the agreed items with recorded results and clear pass or fail status',
           'Deliver the register, defects, removed-from-use actions and risk-based next-review plan',
-        ] : [
+        ] : answers.serviceId === 'tm44' ? [
           'Confirm the person in control, building boundary and systems counted together',
           'Verify effective rated output from plant schedules, labels and available records',
           'Review accessible equipment, refrigerant and air systems, controls and maintenance information',
           'Assess sizing, operating efficiency and opportunities to reduce energy use',
           'Record faults, recommendations, limitations and supporting evidence in the inspection report',
           'Lodge the report and keep its reference, inspection date and next due date available',
+        ] : [
+          'Map noisy tasks, process areas, worker groups and time spent on each activity',
+          'Review existing machine data and earlier surveys; take representative measurements where needed',
+          'Estimate personal daily or weekly exposure and relevant peak levels',
+          'Compare exposures with the action and limit values in the GB regulations',
+          'Review noise reduction at source, work organisation, hearing protection and health-surveillance needs',
+          'Provide a written risk assessment with uncertainty, priorities, owners and review triggers',
         ]
 
   if (answers.documentationStatus !== 'available') scope.unshift('Reconstruct or verify missing equipment and baseline information before examination')
@@ -719,6 +788,8 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
               ? 'A competent person must confirm the equipment boundary and decide which user checks, visual inspections and electrical tests are proportionate to risk.'
               : answers.serviceId === 'tm44'
                 ? 'This finder covers the England and Wales TM44 rules. An accredited energy assessor must confirm the system boundary, rated output and inspection requirement.'
+                : answers.serviceId === 'workplace-noise'
+                  ? answers.region === 'northern-ireland' ? 'This guide describes Great Britain rules. Northern Ireland has separate legislation; confirm the applicable duty with a competent adviser.' : 'A competent person must confirm exposure estimates, whether measurements are necessary and proportionate controls.'
                 : 'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
     ],
     scope,
@@ -758,6 +829,10 @@ export const SERVICE_PRICE_MODELS = {
   tm44: {
     version: 'published-provider-calibration-2026-09-14', baseVisit: 300, perUnit: 40, perCentralPlant: 150,
     complexSystem: 300, missingRecords: 100, additionalSite: 250, spread: 0.25,
+  },
+  'workplace-noise': {
+    version: 'published-provider-calibration-2026-09-29', baseVisit: 500, perTask: 65, perWorkerGroup: 45,
+    complexSurvey: 350, missingRecords: 80, additionalSite: 400, spread: 0.25,
   },
 } as const
 
@@ -821,13 +896,21 @@ export function estimateServicePrice(
     if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} fixed, specialist or shutdown-sensitive item${answers.secondaryCount === 1 ? '' : 's'}`, amount: answers.secondaryCount * model.perSpecialistItem })
     if (result.complexity === 'complex') factors.push({ label: 'Complex access, equipment or scheduling allowance', amount: model.complexSite })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
-  } else {
+  } else if (answers.serviceId === 'tm44') {
     const model = SERVICE_PRICE_MODELS.tm44
     factors.push({ label: 'Accredited-assessor attendance, report and lodgement', amount: model.baseVisit })
     factors.push({ label: `${answers.assetCount} air-conditioning unit${answers.assetCount === 1 ? '' : 's'} in scope`, amount: answers.assetCount * model.perUnit })
     if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} chiller, AHU or central plant item${answers.secondaryCount === 1 ? '' : 's'}`, amount: answers.secondaryCount * model.perCentralPlant })
     if (result.complexity === 'complex') factors.push({ label: 'Complex system or controls allowance', amount: model.complexSystem })
     if (answers.documentationStatus !== 'available') factors.push({ label: 'Missing plant or control records allowance', amount: model.missingRecords })
+    if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
+  } else {
+    const model = SERVICE_PRICE_MODELS['workplace-noise']
+    factors.push({ label: 'Survey planning, attendance and written assessment', amount: model.baseVisit })
+    factors.push({ label: `${answers.assetCount} task or process area${answers.assetCount === 1 ? '' : 's'}`, amount: answers.assetCount * model.perTask })
+    if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} worker group${answers.secondaryCount === 1 ? '' : 's'} or shift${answers.secondaryCount === 1 ? '' : 's'}`, amount: answers.secondaryCount * model.perWorkerGroup })
+    if (result.complexity === 'complex') factors.push({ label: 'Variable, impact or complex-exposure allowance', amount: model.complexSurvey })
+    if (answers.documentationStatus !== 'available') factors.push({ label: 'Missing task-duration or prior-survey records', amount: model.missingRecords })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
   }
 
@@ -842,7 +925,7 @@ export function estimateServicePrice(
     factors,
     assumptions: [
       'One planned visit per site during normal working hours',
-      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : answers.serviceId === 'legionella' ? 'Water outlets, plant areas and available records are accessible during the assessment' : answers.serviceId === 'pat-testing' ? 'Equipment is available, identifiable, safely accessible and can be disconnected as agreed' : answers.serviceId === 'tm44' ? 'Air-conditioning equipment, controls and available plant records are safely accessible' : 'Equipment is available, identifiable and safely accessible for examination',
+      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : answers.serviceId === 'legionella' ? 'Water outlets, plant areas and available records are accessible during the assessment' : answers.serviceId === 'pat-testing' ? 'Equipment is available, identifiable, safely accessible and can be disconnected as agreed' : answers.serviceId === 'tm44' ? 'Air-conditioning equipment, controls and available plant records are safely accessible' : answers.serviceId === 'workplace-noise' ? 'Representative tasks and shifts are accessible; unusual, night or weekend work may need separate attendance' : 'Equipment is available, identifiable and safely accessible for examination',
       'VAT, repairs, replacement parts, specialist access and intrusive testing are excluded',
       'Calibration sources cover only some simple/common jobs and are not an awarded-quote market benchmark',
       'This is deterministic Vendor Atlas planning guidance, not a supplier quotation',

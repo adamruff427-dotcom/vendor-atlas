@@ -1,4 +1,4 @@
-export type ServiceId = 'dsear' | 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment' | 'legionella' | 'pat-testing' | 'tm44'
+export type ServiceId = 'dsear' | 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment' | 'legionella' | 'pat-testing' | 'tm44' | 'workplace-noise'
 export type ServiceCategory =
   | 'dsear-assessment'
   | 'hazardous-area-classification'
@@ -25,6 +25,9 @@ export type ServiceCategory =
   | 'tm44-air-conditioning-inspection'
   | 'air-conditioning-energy-assessment'
   | 'tm44-report-lodgement'
+  | 'workplace-noise-risk-assessment'
+  | 'workplace-noise-exposure-survey'
+  | 'workplace-noise-dosimetry'
 export type Hazard = 'flammable-liquids' | 'solvents-paints' | 'lpg-gases' | 'combustible-dust' | 'fuels' | 'batteries' | 'pressurised-gases'
 export type Sector = 'manufacturing' | 'food-drink' | 'woodworking' | 'automotive' | 'chemicals' | 'energy-waste' | 'laboratory' | 'other'
 export type Region = 'scotland' | 'north' | 'midlands' | 'wales' | 'south-west' | 'south-east' | 'london' | 'northern-ireland' | 'great-britain' | 'uk-wide'

@@ -28,7 +28,9 @@ export function ServiceLanding({ serviceId }: { serviceId: IndustrialServiceId }
               ? { firstTitle: 'Water systems and people', firstDetail: 'Which outlets, assets and users are exposed?', signalDetail: 'Which facts set the legionella assessment depth?' }
               : serviceId === 'pat-testing'
                 ? { firstTitle: 'Equipment and use', firstDetail: 'Which items, users and environments need control?', signalDetail: 'Which facts justify inspection or testing?' }
-                : { firstTitle: 'Air-conditioning system', firstDetail: 'Which units and plant are controlled together?', signalDetail: 'Which facts set the 12 kW threshold and inspection date?' }
+                : serviceId === 'tm44'
+                  ? { firstTitle: 'Air-conditioning system', firstDetail: 'Which units and plant are controlled together?', signalDetail: 'Which facts set the 12 kW threshold and inspection date?' }
+                  : { firstTitle: 'Noisy work and people', firstDetail: 'Which tasks, shifts and workers are exposed?', signalDetail: 'Which clues suggest action values may be reached?' }
 
   return (
     <>

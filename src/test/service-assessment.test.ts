@@ -140,8 +140,28 @@ describe('TM44 qualification and pricing', () => {
   })
 })
 
+describe('workplace noise qualification and pricing', () => {
+  it('recognises a noisy task with a strong exposure clue and prices tasks and worker groups', () => {
+    const answers = { ...defaultServiceAnswers('workplace-noise'), workTypes: ['machining'], riskSignals: ['shout-two-metres'], assetCount: 3, secondaryCount: 2 }
+    const result = qualifyService(answers)
+    const estimate = estimateServicePrice(answers, result)
+    expect(result.status).toBe('likely-relevant')
+    expect(result.scope.join(' ')).toMatch(/exposure|measurements/i)
+    expect(estimate.factors).toEqual(expect.arrayContaining([expect.objectContaining({ amount: SERVICE_PRICE_MODELS['workplace-noise'].perTask * 3 })]))
+  })
+  it('keeps unknown exposure and Northern Ireland non-definitive', () => {
+    expect(qualifyService({ ...defaultServiceAnswers('workplace-noise'), workTypes: ['unknown-noise-work'], riskSignals: ['unknown-exposure'] }).status).toBe('may-be-relevant')
+    const ni = qualifyService({ ...defaultServiceAnswers('workplace-noise'), workTypes: ['machining'], riskSignals: ['shout-two-metres'], region: 'northern-ireland' })
+    expect(ni.status).toBe('may-be-relevant')
+    expect(ni.caveats.join(' ')).toMatch(/Northern Ireland/)
+  })
+  it('does not create a trigger without noisy work or signals', () => {
+    expect(qualifyService({ ...defaultServiceAnswers('workplace-noise'), workTypes: ['none-noisy-work'], riskSignals: ['no-exposure-signal'], documentationStatus: 'available', inspectionStatus: 'in-date' }).status).toBe('no-obvious-trigger')
+  })
+})
+
 describe('generic industrial service invariants', () => {
-  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44'] as const) {
+  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44', 'workplace-noise'] as const) {
     it(`${serviceId} stays deterministic, positive and evidence-linked`, () => {
       const definition = serviceDefinitions[serviceId]
       const answers = { ...defaultServiceAnswers(serviceId), workTypes: [definition.workOptions[0].value], riskSignals: [definition.signalOptions[0].value], assetCount: 4, secondaryCount: 8, sites: 2 }
@@ -166,7 +186,7 @@ describe('generic industrial service invariants', () => {
   }
 
   it('retains source URLs and explicit evidence status for every new supplier', () => {
-    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment' | 'legionella' | 'pat-testing' | 'tm44'))
+    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44', 'workplace-noise'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment' | 'legionella' | 'pat-testing' | 'tm44' | 'workplace-noise'))
     for (const supplier of suppliers) {
       expect(supplier.evidence.length).toBeGreaterThan(0)
       expect(supplier.evidence.every((item) => item.sourceUrl.startsWith('https://') && item.checkedOn === supplier.lastVerifiedDate)).toBe(true)

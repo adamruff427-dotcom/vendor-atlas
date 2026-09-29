@@ -80,6 +80,16 @@ const toolkitData = {
     acceptance: ['Correct person in control, site and building boundary', 'Every included system and unit is identifiable', 'Effective rated output and grouping are explained', 'Accessible equipment and controls inspected are recorded', 'Sizing, operation and maintenance evidence are addressed', 'Recommendations are specific and understandable', 'Limitations and inaccessible plant remain visible', 'Lodged report reference and next due date are supplied'],
     source: 'https://www.gov.uk/government/publications/air-conditioning-inspections-for-buildings/a-guide-to-air-conditioning-inspections', sourceLabel: 'GOV.UK air-conditioning inspection guide',
   },
+  'workplace-noise': {
+    title: 'Buy a workplace noise risk assessment on comparable terms',
+    lead: 'Give each provider the same task, worker-group and shift map. Compare exposure method, controls advice and written output, not only the number of measurements.',
+    standard: ['Which tasks, worker groups and shifts are included?', 'Who is the named assessor and what comparable experience can they evidence?', 'When will measurements or dosimetry be used, and how will exposure be estimated?', 'Will the report compare action values and specify controls, actions and limitations?', 'What travel, unusual shifts, return visits, health surveillance and VAT are excluded?'],
+    assemble: ['Site addresses, access and operating hours', 'Noisy tasks, process areas, machines and typical durations', 'Worker groups, job rotation and shift patterns', 'Earlier surveys, machine information and hearing-concern reports', 'Existing noise controls and hearing protection', 'Recent plant or process changes and desired report date'],
+    competence: ['Who will perform and interpret the work?', 'What relevant occupational-noise training and experience does that person have?', 'How will representative work and exposure uncertainty be handled?', 'Which calibrated instruments and methods will be used?', 'Can you show a redacted report with exposure and controls?', 'What current insurance applies?'],
+    comparison: ['Named assessor', 'Tasks and worker groups', 'Shift coverage', 'Measurement and dosimetry method', 'Personal exposure and peak assessment', 'Action-value comparison', 'Controls and priorities', 'Limitations and review triggers', 'Travel, VAT and exclusions', 'Total comparable fee'],
+    acceptance: ['Actual work and workers are traceable', 'Task durations and sampled conditions are stated', 'Exposure estimation method is understandable', 'Relevant peaks and action values are addressed', 'Uncertainty and exclusions are visible', 'Controls are practical and prioritised', 'Health-surveillance and hearing-protection implications are stated', 'Review triggers and owners are clear'],
+    source: 'https://www.hse.gov.uk/noise/risks.htm', sourceLabel: 'HSE assessing noise risks',
+  },
 } as const
 
 export function ServiceBuyingToolkit({ serviceId }: { serviceId: IndustrialServiceId }) {

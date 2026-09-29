@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vendoratlas.artificiallyconfident.com"),
   title: { default: "Vendor Atlas | UK industrial compliance finder", template: "%s | Vendor Atlas" },
   description:
-    "Check eight UK compliance duties, see itemised planning ranges and compare sourced specialists without paid ranking.",
+    "Check ten UK compliance duties, see itemised planning ranges and compare sourced specialists without paid ranking.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Vendor Atlas | UK industrial compliance finder",
     description:
-      "Decision support, itemised cost estimates and sourced UK specialists for eight compulsory compliance services.",
+      "Decision support, itemised cost estimates and sourced UK specialists for ten compliance services.",
     url: "/",
     siteName: "Vendor Atlas",
     locale: "en_GB",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Vendor Atlas | UK industrial compliance finder",
-    description: "Decision support for eight UK compliance-service buying decisions.",
+    description: "Decision support for ten UK compliance-service buying decisions.",
     images: ["/og.png"],
   },
   robots: { index: true, follow: true },
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description:
-      "Decision support for procuring nine UK compliance services, including DSEAR, statutory examinations, asbestos surveys, fire risk assessments, legionella, electrical equipment testing and TM44 inspections.",
+      "Decision support for procuring ten UK compliance services, including DSEAR, statutory examinations, asbestos surveys, fire risk assessments, legionella, electrical equipment testing, TM44 inspections and workplace noise assessments.",
     url: "https://vendoratlas.artificiallyconfident.com/",
   };
   return (
@@ -73,6 +73,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/legionella">Legionella</Link>
               <Link href="/pat-testing">PAT testing</Link>
               <Link href="/tm44">TM44</Link>
+              <Link href="/workplace-noise">Noise</Link>
             </nav>
           </div>
           <div className="analytics-notice" role="note">

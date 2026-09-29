@@ -8,6 +8,7 @@ const fireCheckedOn = '2026-09-11'
 const legionellaCheckedOn = '2026-09-12'
 const patCheckedOn = '2026-09-13'
 const tm44CheckedOn = '2026-09-14'
+const noiseCheckedOn = '2026-09-29'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
@@ -482,6 +483,45 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider states nationwide TM44 inspection coverage through its service and location pages.', sourceUrl: 'https://www.tm44inspect.co.uk/get-a-quote', sourceType: 'provider', checkedOn: tm44CheckedOn },
       { claim: 'Provider offers quote scoping for air-conditioning systems and premises.', sourceUrl: 'https://www.tm44inspect.co.uk/get-a-quote', sourceType: 'provider', checkedOn: tm44CheckedOn },
     ], lastVerifiedDate: tm44CheckedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'nova-acoustics', name: 'NOVA Acoustics', website: 'https://www.novaacoustics.co.uk/noise-at-work-surveys-and-assessments/',
+    serviceIds: ['workplace-noise'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'other'],
+    serviceCategories: ['workplace-noise-risk-assessment', 'workplace-noise-exposure-survey'],
+    capabilities: ['Workplace noise risk assessment', 'noise-at-work survey', 'personal exposure assessment'],
+    specialisms: ['machining', 'woodworking-noise', 'food-production', 'vehicle-workshop', 'intrusive-six-hours', 'shout-two-metres'],
+    qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'],
+    pricingEvidence: 'Provider publishes £800–£900 plus VAT for smaller straightforward assessments; obtain a scoped quote.',
+    evidence: [
+      { claim: 'Provider describes UK-wide workplace noise surveys, source measurements, personal exposure and reporting.', sourceUrl: 'https://www.novaacoustics.co.uk/noise-at-work-surveys-and-assessments/', sourceType: 'provider', checkedOn: noiseCheckedOn },
+      { claim: 'Provider publishes £800–£900 plus VAT for smaller straightforward assessments.', sourceUrl: 'https://www.novaacoustics.co.uk/noise-at-work-surveys-and-assessments/', sourceType: 'provider', checkedOn: noiseCheckedOn },
+    ], lastVerifiedDate: noiseCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'the-safety-effect-noise', name: 'The Safety Effect', website: 'https://www.consultmesh.co.uk/service/workplace-noise-assessments/',
+    serviceIds: ['workplace-noise'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'other'],
+    serviceCategories: ['workplace-noise-risk-assessment', 'workplace-noise-exposure-survey'],
+    capabilities: ['Workplace noise risk assessment', 'full or task-specific noise survey', 'noise maps'],
+    specialisms: ['machining', 'woodworking-noise', 'food-production', 'variable-shifts', 'changed-process'],
+    qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'],
+    pricingEvidence: 'Provider says its 2025 workplace-noise projects cost £595–£1,975; not a current fixed tariff.',
+    evidence: [
+      { claim: 'Provider describes UK-wide full or task-specific workplace noise surveys and assessments.', sourceUrl: 'https://www.consultmesh.co.uk/service/workplace-noise-assessments/', sourceType: 'provider', checkedOn: noiseCheckedOn },
+      { claim: 'Provider reports a £595–£1,975 fee range for its 2025 work.', sourceUrl: 'https://www.consultmesh.co.uk/service/workplace-noise-assessments/', sourceType: 'provider', checkedOn: noiseCheckedOn },
+    ], lastVerifiedDate: noiseCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'lesh-safety-noise', name: 'LESH Safety', website: 'https://www.leshonline.co.uk/costofworkplacenoisesurvey',
+    serviceIds: ['workplace-noise'], geographicalCoverage: ['midlands'], sectors: ['manufacturing', 'woodworking', 'automotive', 'other'],
+    serviceCategories: ['workplace-noise-risk-assessment', 'workplace-noise-exposure-survey'],
+    capabilities: ['Workplace noise risk assessment', 'noise survey', 'daily exposure assessment'],
+    specialisms: ['machining', 'woodworking-noise', 'vehicle-workshop', 'intrusive-six-hours'],
+    qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'],
+    pricingEvidence: 'Provider publishes £850–£1,500 for smaller straightforward work and £850–£4,000+ for broader projects; obtain a scoped quote.',
+    evidence: [
+      { claim: 'Provider states service in Nottinghamshire, Derbyshire and the wider Midlands, with on-site assessment and exposure advice.', sourceUrl: 'https://www.leshonline.co.uk/costofworkplacenoisesurvey', sourceType: 'provider', checkedOn: noiseCheckedOn },
+      { claim: 'Provider publishes smaller straightforward work at £850–£1,500.', sourceUrl: 'https://www.leshonline.co.uk/costofworkplacenoisesurvey', sourceType: 'provider', checkedOn: noiseCheckedOn },
+    ], lastVerifiedDate: noiseCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
   },
 ]
 

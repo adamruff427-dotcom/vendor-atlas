@@ -110,6 +110,17 @@ const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; in
     ],
     evidence: ['Plant and system schedule', 'Capacity and grouping rationale', 'Accredited assessor details', 'Lodged report and recommendations'], source: 'https://www.gov.uk/government/publications/air-conditioning-inspections-for-buildings/a-guide-to-air-conditioning-inspections', sourceLabel: 'GOV.UK inspection guide',
   },
+  'workplace-noise': {
+    eyebrow: 'Exposure sequence', title: 'A sound reading is only one part of the assessment', intro: 'Noise risk depends on what each worker hears and for how long. A useful assessment connects tasks and shifts to exposure, controls and action.',
+    nodes: [
+      { title: 'Task map', detail: 'Processes, equipment, people and shift patterns', icon: Factory },
+      { title: 'Sound evidence', detail: 'Existing data or representative measurements when needed', icon: Gauge },
+      { title: 'Exposure', detail: 'Personal daily or weekly exposure and relevant peaks', icon: UserRound },
+      { title: 'Compare', detail: 'Action and limit values, with uncertainty visible', icon: SearchCheck },
+      { title: 'Control plan', detail: 'Reduce noise, protect workers and review after change', icon: ShieldCheck },
+    ],
+    evidence: ['Tasks and worker groups', 'Measurements and exposure method', 'Action-value comparison', 'Prioritised controls and review'], source: 'https://www.hse.gov.uk/noise/risks.htm', sourceLabel: 'HSE noise risk guidance',
+  },
 }
 
 export function TechnicalDiagram({ serviceId }: { serviceId: IndustrialServiceId }) {
