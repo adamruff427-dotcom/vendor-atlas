@@ -121,6 +121,17 @@ const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; in
     ],
     evidence: ['Tasks and worker groups', 'Measurements and exposure method', 'Action-value comparison', 'Prioritised controls and review'], source: 'https://www.hse.gov.uk/noise/risks.htm', sourceLabel: 'HSE noise risk guidance',
   },
+  'hand-arm-vibration': {
+    eyebrow: 'Exposure sequence', title: 'Tool data and trigger time form the exposure estimate', intro: 'The assessment follows the work each person does, rather than assigning one vibration reading to a whole shift.',
+    nodes: [
+      { title: 'Tool inventory', detail: 'Hand-held and hand-guided tools and the work they do', icon: PackageCheck },
+      { title: 'Trigger time', detail: 'Actual hands-on time for each tool and task', icon: Gauge },
+      { title: 'Vibration data', detail: 'Representative source data or competent measurement', icon: SearchCheck },
+      { title: 'Daily exposure', detail: 'Combine tasks against action and limit values', icon: UserRound },
+      { title: 'Control plan', detail: 'Reduce exposure, train, review and consider surveillance', icon: ShieldCheck },
+    ],
+    evidence: ['Tool and worker scope', 'Trigger-time basis', 'Vibration-data source and uncertainty', 'Exposure calculation and controls'], source: 'https://www.hse.gov.uk/vibration/hav/assessrisks.htm', sourceLabel: 'HSE vibration risk guidance',
+  },
 }
 
 export function TechnicalDiagram({ serviceId }: { serviceId: IndustrialServiceId }) {

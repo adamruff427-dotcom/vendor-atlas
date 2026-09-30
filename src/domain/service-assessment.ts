@@ -610,6 +610,58 @@ export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> 
       { label: 'LESH Safety', url: 'https://www.leshonline.co.uk/costofworkplacenoisesurvey', note: 'Publishes £850 to £1,500 for smaller straightforward assessments and higher prices for complex sites.' },
     ],
   },
+  'hand-arm-vibration': {
+    id: 'hand-arm-vibration', name: 'hand-arm vibration risk assessment', shortName: 'Hand-arm vibration', eyebrow: 'Vibration exposure assessment finder',
+    question: 'Do I need a hand-arm vibration risk assessment?',
+    promise: 'Check tool-use signals and prepare a comparable assessment brief in about 2 minutes.',
+    description: 'Map powered-tool use, trigger time and existing vibration data; see likely scope, a planning range and sourced providers.',
+    legalBasis: 'The Control of Vibration at Work Regulations 2005 require Great Britain employers to assess and control risks from hand-arm vibration. The daily exposure action value is 2.5 m/s² A(8) and the limit value is 5 m/s² A(8). HSE says an initial assessment can use representative existing data and trigger time; measurement is not automatically necessary.',
+    legalSource: 'https://www.hse.gov.uk/vibration/hav/responsibilities.htm',
+    guidePath: '/hand-arm-vibration/do-i-need-a-vibration-assessment', costPath: '/hand-arm-vibration/cost', supplierPath: '/hand-arm-vibration/suppliers', toolkitPath: '/hand-arm-vibration/buying-toolkit',
+    workHeading: 'Which vibrating tools or processes are used?',
+    workHelp: 'Include powered tools held or guided by hand. This guide does not assess whole-body vibration from vehicle seats.',
+    workOptions: [
+      { value: 'hammer-tools', label: 'Hammer-action tools', detail: 'Breakers, hammer drills, chipping hammers or needle scalers' },
+      { value: 'grinders-cutters', label: 'Grinders or cutters', detail: 'Angle grinders, cut-off tools, saws or polishers' },
+      { value: 'rotary-tools', label: 'Rotary and drilling tools', detail: 'Drills, sanders, routers or similar powered tools' },
+      { value: 'forestry-landscape', label: 'Forestry or grounds tools', detail: 'Chainsaws, strimmers, hedge trimmers or mowers guided by hand' },
+      { value: 'impact-assembly', label: 'Impact assembly or repair', detail: 'Impact wrenches, riveters or other vibrating workshop tools' },
+      { value: 'multiple-tools', label: 'Several tools in a worker’s day', detail: 'Exposure from more than one tool or task must be combined' },
+      { value: 'none-vibrating-tools', label: 'No relevant hand-held tools identified', detail: 'No regular hand-transmitted vibration from work equipment' },
+      { value: 'unknown-vibrating-work', label: 'Unsure what is in scope', detail: 'Tool inventory or worker tasks have not been mapped' },
+    ],
+    signalHeading: 'What exposure clues apply?',
+    signalHelp: 'HSE’s time examples are rough screening guides, not legal pass/fail cut-offs for every tool.',
+    signalOptions: [
+      { value: 'hammer-fifteen-minutes', label: 'Hammer tools around 15 minutes or more daily', detail: 'HSE flags this as a possible action-value exposure' },
+      { value: 'rotary-one-hour', label: 'Some rotary tools around one hour or more daily', detail: 'A rough HSE action-value signal for some tools' },
+      { value: 'manufacturer-warning', label: 'Tool handbook warns of vibration risk', detail: 'Manufacturer data or warnings need checking against actual use' },
+      { value: 'existing-eav', label: 'Previous estimate near or above the action value', detail: 'Earlier data or exposure points suggest controls may be needed' },
+      { value: 'worker-concern', label: 'Worker reports a vibration-related concern', detail: 'Do not enter personal medical information here; arrange appropriate advice' },
+      { value: 'changed-tools', label: 'Tools or work pattern changed', detail: 'New equipment, materials, duration or maintenance condition' },
+      { value: 'unknown-trigger-time', label: 'Actual trigger time is unknown', detail: 'Hours on site are not the same as hands-on vibrating time' },
+      { value: 'no-vibration-signal', label: 'No listed exposure clue', detail: 'No warning, duration or prior evidence selected' },
+    ],
+    assetLabel: 'Distinct tool or process groups', secondaryLabel: 'Worker groups or tasks needing exposure estimates',
+    documentationLabel: 'Tool data, trigger-time records and earlier assessments', documentationOptions: sharedDocumentation,
+    inspectionLabel: 'Current vibration risk assessment',
+    inspectionOptions: [
+      { value: 'none', label: 'No assessment recorded' }, { value: 'in-date', label: 'Assessment reflects current work' },
+      { value: 'overdue-or-unknown', label: 'Assessment status uncertain' }, { value: 'new-system', label: 'New tools or changed work pattern' },
+    ],
+    resultResourceHeading: 'Trigger time and vibration magnitude both matter',
+    resultResourceBody: 'HSE expects a reasonable estimate of each worker’s daily exposure, using representative tool vibration data and actual hands-on trigger time. A competent person should decide whether direct measurement is needed, then identify controls and health-surveillance implications.',
+    primaryLinks: [
+      { label: 'HSE employer responsibilities', detail: 'Duties and exposure action and limit values', url: 'https://www.hse.gov.uk/vibration/hav/responsibilities.htm' },
+      { label: 'HSE vibration risk assessment', detail: 'Tool inventory, trigger time and exposure estimation', url: 'https://www.hse.gov.uk/vibration/hav/assessrisks.htm' },
+      { label: 'HSE measurement guidance', detail: 'When direct tool measurement is warranted', url: 'https://www.hse.gov.uk/vibration/hav/measurement-monitoring.htm' },
+    ],
+    priceEvidence: [
+      { label: 'Air Dust Odour', url: 'https://www.airdustodour.co.uk/noise-assessment-cost-uk.html', note: 'Publishes around £600–£1,000 plus VAT for a single-site HAV risk-assessment method, or £900–£1,500 plus VAT with direct tool measurement. One provider example, not a market median.' },
+      { label: 'SGS United Kingdom', url: 'https://www.sgs.com/en-gb/services/hand-arm-vibration-assessments', note: 'Describes tailored assessment and measurement; no numeric public tariff on the checked page.' },
+      { label: 'SOCOTEC UK', url: 'https://www.socotec.co.uk/our-services/occupational-hygiene/hand-arm-and-whole-body-vibration-assessments', note: 'Describes on-site assessment and control advice; no numeric public tariff on the checked page.' },
+    ],
+  },
 }
 
 const labelFor = (definition: ServiceDefinition, value: string) =>
@@ -623,9 +675,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
 
   positiveWork.forEach((value) => factors.push(`${labelFor(definition, value)} was selected`))
   positiveSignals.forEach((value) => factors.push(`${labelFor(definition, value)} affects the assessment or service scope`))
-  if (answers.inspectionStatus === 'none') factors.push(answers.serviceId === 'pat-testing' ? 'No recorded electrical-equipment inspection or maintenance regime was identified' : answers.serviceId === 'workplace-noise' ? 'No current workplace noise assessment was identified' : 'No previous statutory examination record was identified')
-  if (answers.inspectionStatus === 'overdue-or-unknown') factors.push(answers.serviceId === 'pat-testing' ? 'The inspection and maintenance position is uncertain' : answers.serviceId === 'workplace-noise' ? 'The existing noise assessment may not reflect current work' : 'The examination position is overdue or uncertain')
-  if (answers.inspectionStatus === 'new-system') factors.push(answers.serviceId === 'pat-testing' ? 'New equipment or a new site needs visual checking and a maintenance decision' : answers.serviceId === 'workplace-noise' ? 'New or changed work patterns need noise-exposure consideration' : 'New, installed or assembled equipment needs pre-use consideration')
+  if (answers.inspectionStatus === 'none') factors.push(answers.serviceId === 'pat-testing' ? 'No recorded electrical-equipment inspection or maintenance regime was identified' : answers.serviceId === 'workplace-noise' ? 'No current workplace noise assessment was identified' : answers.serviceId === 'hand-arm-vibration' ? 'No current hand-arm vibration assessment was identified' : 'No previous statutory examination record was identified')
+  if (answers.inspectionStatus === 'overdue-or-unknown') factors.push(answers.serviceId === 'pat-testing' ? 'The inspection and maintenance position is uncertain' : answers.serviceId === 'workplace-noise' ? 'The existing noise assessment may not reflect current work' : answers.serviceId === 'hand-arm-vibration' ? 'The existing vibration assessment may not reflect current tool use' : 'The examination position is overdue or uncertain')
+  if (answers.inspectionStatus === 'new-system') factors.push(answers.serviceId === 'pat-testing' ? 'New equipment or a new site needs visual checking and a maintenance decision' : answers.serviceId === 'workplace-noise' ? 'New or changed work patterns need noise-exposure consideration' : answers.serviceId === 'hand-arm-vibration' ? 'New tools or changed trigger times need vibration-exposure consideration' : 'New, installed or assembled equipment needs pre-use consideration')
   if (answers.projectReason === 'change') factors.push('A material change, repair or relocation was identified')
   if (answers.documentationStatus !== 'available') factors.push('Supporting records are missing, incomplete or uncertain')
 
@@ -680,6 +732,13 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
     else if (knownWork.length || answers.workTypes.includes('unknown-noise-work') || answers.riskSignals.includes('unknown-exposure')) status = 'may-be-relevant'
     if (answers.region === 'northern-ireland' && status === 'likely-relevant') status = 'may-be-relevant'
   }
+  if (answers.serviceId === 'hand-arm-vibration') {
+    const knownTools = positiveWork.filter((value) => value !== 'unknown-vibrating-work')
+    const exposureClue = ['hammer-fifteen-minutes', 'rotary-one-hour', 'manufacturer-warning', 'existing-eav', 'worker-concern'].some((value) => answers.riskSignals.includes(value))
+    if (knownTools.length && exposureClue) status = 'likely-relevant'
+    else if (knownTools.length || answers.workTypes.includes('unknown-vibrating-work') || answers.riskSignals.includes('unknown-trigger-time')) status = 'may-be-relevant'
+    if (answers.region === 'northern-ireland' && status === 'likely-relevant') status = 'may-be-relevant'
+  }
 
   const complexWork = answers.serviceId === 'lev'
     ? ['spray-booth', 'recirculating', 'laboratory-fume'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
@@ -697,7 +756,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
                 ? ['tools-construction', 'hire-equipment', 'care-education', 'fixed-stationary'].some((value) => answers.workTypes.includes(value)) || ['harsh-environment', 'visible-damage', 'public-or-hired', 'cannot-disconnect'].some((value) => answers.riskSignals.includes(value))
                 : answers.serviceId === 'tm44'
                   ? ['vrf-vrv', 'chiller-ahu', 'mixed-comfort-cooling', 'process-cooling', 'multiple-buildings'].some((value) => answers.workTypes.includes(value))
-                  : ['impact-noise', 'variable-shifts', 'entertainment-music'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
+                  : answers.serviceId === 'workplace-noise'
+                    ? ['impact-noise', 'variable-shifts', 'entertainment-music'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
+                    : ['hammer-tools', 'multiple-tools', 'forestry-landscape'].some((value) => answers.workTypes.includes(value)) || answers.riskSignals.includes('worker-concern')
   const score = positiveWork.length * 2 + positiveSignals.length * 2 + Math.min(answers.assetCount, 5) + (answers.sites > 1 ? 2 : 0) + (complexWork ? 4 : 0)
   const complexity = score >= 10 || answers.sites > 2 || answers.assetCount > 8 || complexWork ? 'complex' : 'standard'
 
@@ -761,16 +822,23 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           'Assess sizing, operating efficiency and opportunities to reduce energy use',
           'Record faults, recommendations, limitations and supporting evidence in the inspection report',
           'Lodge the report and keep its reference, inspection date and next due date available',
-        ] : [
+        ] : answers.serviceId === 'workplace-noise' ? [
           'Map noisy tasks, process areas, worker groups and time spent on each activity',
           'Review existing machine data and earlier surveys; take representative measurements where needed',
           'Estimate personal daily or weekly exposure and relevant peak levels',
           'Compare exposures with the action and limit values in the GB regulations',
           'Review noise reduction at source, work organisation, hearing protection and health-surveillance needs',
           'Provide a written risk assessment with uncertainty, priorities, owners and review triggers',
+        ] : [
+          'Inventory hand-held or hand-guided tools, tasks, users and tool condition',
+          'Determine actual hands-on trigger time for each tool and worker group',
+          'Review representative manufacturer or field vibration data and its limitations',
+          'Estimate combined daily A(8) exposure or exposure points against action and limit values',
+          'Decide whether competent direct measurement is needed because suitable data is unavailable',
+          'Record controls, training, health-surveillance implications, owners and review triggers',
         ]
 
-  if (answers.documentationStatus !== 'available') scope.unshift(answers.serviceId === 'workplace-noise' ? 'Reconstruct task durations, worker groups and available noise information before estimating exposure' : 'Reconstruct or verify missing equipment and baseline information before examination')
+  if (answers.documentationStatus !== 'available') scope.unshift(answers.serviceId === 'workplace-noise' ? 'Reconstruct task durations, worker groups and available noise information before estimating exposure' : answers.serviceId === 'hand-arm-vibration' ? 'Reconstruct tool data and trigger times before estimating exposure' : 'Reconstruct or verify missing equipment and baseline information before examination')
 
   return {
     status,
@@ -790,6 +858,8 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
                 ? 'This finder covers the England and Wales TM44 rules. An accredited energy assessor must confirm the system boundary, rated output and inspection requirement.'
                 : answers.serviceId === 'workplace-noise'
                   ? answers.region === 'northern-ireland' ? 'This guide describes Great Britain rules. Northern Ireland has separate legislation; confirm the applicable duty with a competent adviser.' : 'A competent person must confirm exposure estimates, whether measurements are necessary and proportionate controls.'
+                  : answers.serviceId === 'hand-arm-vibration'
+                    ? answers.region === 'northern-ireland' ? 'This guide describes Great Britain rules. Confirm the applicable Northern Ireland duty with a competent adviser.' : 'A competent person must confirm actual trigger times, representative vibration data, exposure estimates and whether direct measurement is needed.'
                 : 'A competent person must confirm the equipment boundary, operating conditions, exclusions and examination requirements.',
     ],
     scope,
@@ -833,6 +903,10 @@ export const SERVICE_PRICE_MODELS = {
   'workplace-noise': {
     version: 'published-provider-calibration-2026-09-29', baseVisit: 500, perTask: 65, perWorkerGroup: 45,
     complexSurvey: 350, missingRecords: 80, additionalSite: 400, spread: 0.25,
+  },
+  'hand-arm-vibration': {
+    version: 'single-provider-anchor-2026-09-30', baseVisit: 600, perToolGroup: 50, perWorkerGroup: 40,
+    directMeasurement: 350, missingRecords: 80, additionalSite: 400, spread: 0.25,
   },
 } as const
 
@@ -904,13 +978,21 @@ export function estimateServicePrice(
     if (result.complexity === 'complex') factors.push({ label: 'Complex system or controls allowance', amount: model.complexSystem })
     if (answers.documentationStatus !== 'available') factors.push({ label: 'Missing plant or control records allowance', amount: model.missingRecords })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
-  } else {
+  } else if (answers.serviceId === 'workplace-noise') {
     const model = SERVICE_PRICE_MODELS['workplace-noise']
     factors.push({ label: 'Survey planning, attendance and written assessment', amount: model.baseVisit })
     factors.push({ label: `${answers.assetCount} task or process area${answers.assetCount === 1 ? '' : 's'}`, amount: answers.assetCount * model.perTask })
     if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} worker group${answers.secondaryCount === 1 ? '' : 's'} or shift${answers.secondaryCount === 1 ? '' : 's'}`, amount: answers.secondaryCount * model.perWorkerGroup })
     if (result.complexity === 'complex') factors.push({ label: 'Variable, impact or complex-exposure allowance', amount: model.complexSurvey })
     if (answers.documentationStatus !== 'available') factors.push({ label: 'Missing task-duration or prior-survey records', amount: model.missingRecords })
+    if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
+  } else {
+    const model = SERVICE_PRICE_MODELS['hand-arm-vibration']
+    factors.push({ label: 'Tool inventory, exposure assessment and written action plan', amount: model.baseVisit })
+    factors.push({ label: `${answers.assetCount} tool or process group${answers.assetCount === 1 ? '' : 's'}`, amount: answers.assetCount * model.perToolGroup })
+    if (answers.secondaryCount) factors.push({ label: `${answers.secondaryCount} worker group${answers.secondaryCount === 1 ? '' : 's'} or task pattern${answers.secondaryCount === 1 ? '' : 's'}`, amount: answers.secondaryCount * model.perWorkerGroup })
+    if (result.complexity === 'complex') factors.push({ label: 'Specialist measurement planning allowance for a complex brief', amount: model.directMeasurement })
+    if (answers.documentationStatus !== 'available') factors.push({ label: 'Missing tool or trigger-time records allowance', amount: model.missingRecords })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
   }
 
@@ -925,7 +1007,7 @@ export function estimateServicePrice(
     factors,
     assumptions: [
       'One planned visit per site during normal working hours',
-      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : answers.serviceId === 'legionella' ? 'Water outlets, plant areas and available records are accessible during the assessment' : answers.serviceId === 'pat-testing' ? 'Equipment is available, identifiable, safely accessible and can be disconnected as agreed' : answers.serviceId === 'tm44' ? 'Air-conditioning equipment, controls and available plant records are safely accessible' : answers.serviceId === 'workplace-noise' ? 'Representative tasks and shifts are accessible; unusual, night or weekend work may need separate attendance' : 'Equipment is available, identifiable and safely accessible for examination',
+      answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : answers.serviceId === 'legionella' ? 'Water outlets, plant areas and available records are accessible during the assessment' : answers.serviceId === 'pat-testing' ? 'Equipment is available, identifiable, safely accessible and can be disconnected as agreed' : answers.serviceId === 'tm44' ? 'Air-conditioning equipment, controls and available plant records are safely accessible' : answers.serviceId === 'workplace-noise' ? 'Representative tasks and shifts are accessible; unusual, night or weekend work may need separate attendance' : answers.serviceId === 'hand-arm-vibration' ? 'Tool inventory, representative use and hands-on trigger times are available; measurement is separately scoped where needed' : 'Equipment is available, identifiable and safely accessible for examination',
       'VAT, repairs, replacement parts, specialist access and intrusive testing are excluded',
       'Calibration sources cover only some simple/common jobs and are not an awarded-quote market benchmark',
       'This is deterministic Vendor Atlas planning guidance, not a supplier quotation',

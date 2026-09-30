@@ -70,7 +70,9 @@ export function matchServiceSuppliers(
                     ? 'portable appliance testing'
                     : answers.serviceId === 'tm44'
                       ? 'TM44 inspection'
-                      : 'workplace noise risk assessment'
+                      : answers.serviceId === 'workplace-noise'
+                        ? 'workplace noise risk assessment'
+                        : 'hand-arm vibration assessment'
       if (supplier.capabilities.some((item) => item.toLowerCase().includes(capabilityNeed.toLowerCase()))) {
         score += 2
         reasons.push('The required core service capability is stated')

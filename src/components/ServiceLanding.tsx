@@ -30,7 +30,9 @@ export function ServiceLanding({ serviceId }: { serviceId: IndustrialServiceId }
                 ? { firstTitle: 'Equipment and use', firstDetail: 'Which items, users and environments need control?', signalDetail: 'Which facts justify inspection or testing?' }
                 : serviceId === 'tm44'
                   ? { firstTitle: 'Air-conditioning system', firstDetail: 'Which units and plant are controlled together?', signalDetail: 'Which facts set the 12 kW threshold and inspection date?' }
-                  : { firstTitle: 'Noisy work and people', firstDetail: 'Which tasks, shifts and workers are exposed?', signalDetail: 'Which clues suggest action values may be reached?' }
+                  : serviceId === 'workplace-noise'
+                    ? { firstTitle: 'Noisy work and people', firstDetail: 'Which tasks, shifts and workers are exposed?', signalDetail: 'Which clues suggest action values may be reached?' }
+                    : { firstTitle: 'Tools and trigger time', firstDetail: 'Which vibrating tools are used, and for how long?', signalDetail: 'Which clues point to action-value exposure?' }
 
   return (
     <>
@@ -55,7 +57,7 @@ export function ServiceLanding({ serviceId }: { serviceId: IndustrialServiceId }
           <div><span className="eyebrow">Built for a real appointment</span><h2>From uncertain duty to a comparable brief</h2></div>
           <div className="three-cols">
             <article><StageIcon stage="check" /><strong>1. Check relevance</strong><p>Use the equipment, operating and record signals without pretending a short finder makes the legal determination.</p></article>
-            <article><StageIcon stage="scope" /><strong>2. See the likely scope</strong><p>Understand the examination, documentation and preparation that providers need to price on the same basis.</p></article>
+            <article><StageIcon stage="scope" /><strong>2. See the likely scope</strong><p>Understand the assessment, examination or survey work and preparation that providers need to price on the same basis.</p></article>
             <article><StageIcon stage="compare" /><strong>3. Compare evidence</strong><p>Match on location, sector, equipment, complexity and required capability—not advertising spend.</p></article>
           </div>
         </section>

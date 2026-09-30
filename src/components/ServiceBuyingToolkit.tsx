@@ -90,6 +90,16 @@ const toolkitData = {
     acceptance: ['Actual work and workers are traceable', 'Task durations and sampled conditions are stated', 'Exposure estimation method is understandable', 'Relevant peaks and action values are addressed', 'Uncertainty and exclusions are visible', 'Controls are practical and prioritised', 'Health-surveillance and hearing-protection implications are stated', 'Review triggers and owners are clear'],
     source: 'https://www.hse.gov.uk/noise/risks.htm', sourceLabel: 'HSE assessing noise risks',
   },
+  'hand-arm-vibration': {
+    title: 'Buy a hand-arm vibration assessment on comparable terms',
+    lead: 'Give each provider the same tool inventory, task pattern and trigger-time information. Ask them to explain when source data is enough and when measurements are needed.',
+    standard: ['Which tools, tasks, worker groups and sites are included?', 'Who is the named assessor and what comparable tool-use experience can they show?', 'How will trigger times and representative vibration magnitudes be established?', 'Which tools, if any, will be measured directly and at what additional fee?', 'Will the report include combined daily exposure, controls, uncertainty and VAT or travel exclusions?'],
+    assemble: ['Tool list with make, model, age, condition and use', 'Tasks, materials and typical hands-on trigger times', 'Worker groups and combinations of tools used in one day', 'Manufacturer vibration data and past survey reports', 'Maintenance, substitution and exposure-control records', 'Site addresses, shift patterns and access constraints'],
+    competence: ['Who will assess exposure and who will measure tools if needed?', 'What occupational-vibration training and relevant experience can they evidence?', 'How will representative use, material and operator variability be handled?', 'What instrument and calibration evidence applies to measurements?', 'Can they show a redacted exposure report and action plan?', 'What current insurance covers the project?'],
+    comparison: ['Named assessor', 'Tool and task inventory', 'Trigger-time method', 'Source-data suitability', 'Direct measurement inclusions', 'Combined A(8) or point calculations', 'Action and limit comparison', 'Practical controls and surveillance implications', 'Travel, VAT and exclusions', 'Total comparable fee'],
+    acceptance: ['Actual tools and processes are identifiable', 'Worker groups and trigger times are traceable', 'Vibration data source and representativeness are stated', 'Multiple tools are combined per worker day', 'Action and limit values are compared', 'Uncertainty and measurement limits are visible', 'Controls have owners and priorities', 'Review triggers and surveillance implications are clear'],
+    source: 'https://www.hse.gov.uk/vibration/hav/assessrisks.htm', sourceLabel: 'HSE vibration risk assessment',
+  },
 } as const
 
 export function ServiceBuyingToolkit({ serviceId }: { serviceId: IndustrialServiceId }) {

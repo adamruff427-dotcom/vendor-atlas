@@ -9,6 +9,7 @@ const legionellaCheckedOn = '2026-09-12'
 const patCheckedOn = '2026-09-13'
 const tm44CheckedOn = '2026-09-14'
 const noiseCheckedOn = '2026-09-29'
+const vibrationCheckedOn = '2026-09-30'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
@@ -522,6 +523,43 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider states service in Nottinghamshire, Derbyshire and the wider Midlands, with on-site assessment and exposure advice.', sourceUrl: 'https://www.leshonline.co.uk/costofworkplacenoisesurvey', sourceType: 'provider', checkedOn: noiseCheckedOn },
       { claim: 'Provider publishes smaller straightforward work at £850–£1,500.', sourceUrl: 'https://www.leshonline.co.uk/costofworkplacenoisesurvey', sourceType: 'provider', checkedOn: noiseCheckedOn },
     ], lastVerifiedDate: noiseCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'sgs-uk-hav', name: 'SGS United Kingdom', website: 'https://www.sgs.com/en-gb/services/hand-arm-vibration-assessments',
+    serviceIds: ['hand-arm-vibration'], geographicalCoverage: [], sectors: [],
+    serviceCategories: ['hand-arm-vibration-risk-assessment', 'hand-arm-vibration-measurement'],
+    capabilities: ['Hand-arm vibration assessment', 'field tool-vibration measurement', 'trigger-time exposure calculation'],
+    specialisms: ['hammer-tools', 'rotary-tools', 'manufacturer-warning', 'existing-eav'],
+    qualificationsAndMemberships: ['Provider states its occupational hygienists are BOHS members; verify the named assessor and current status.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes tool-handle measurement during real use and finger-on-trigger time calculations.', sourceUrl: 'https://www.sgs.com/en-gb/services/hand-arm-vibration-assessments', sourceType: 'provider', checkedOn: vibrationCheckedOn },
+      { claim: 'Provider states its occupational hygienists are BOHS members; service-area coverage was not established on the checked page.', sourceUrl: 'https://www.sgs.com/en-gb/services/hand-arm-vibration-assessments', sourceType: 'provider', checkedOn: vibrationCheckedOn },
+    ], lastVerifiedDate: vibrationCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'socotec-uk-hav', name: 'SOCOTEC UK', website: 'https://www.socotec.co.uk/our-services/occupational-hygiene/hand-arm-and-whole-body-vibration-assessments',
+    serviceIds: ['hand-arm-vibration'], geographicalCoverage: ['uk-wide'], sectors: [],
+    serviceCategories: ['hand-arm-vibration-risk-assessment', 'hand-arm-vibration-measurement'],
+    capabilities: ['Hand-arm vibration assessment', 'on-site tri-axial measurement', 'daily use calculation', 'control strategy advice'],
+    specialisms: ['hammer-tools', 'grinders-cutters', 'rotary-tools', 'multiple-tools'],
+    qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states on-site occupational hygiene services throughout the country, including hand-arm vibration assessment.', sourceUrl: 'https://www.socotec.co.uk/our-services/occupational-hygiene/hand-arm-and-whole-body-vibration-assessments', sourceType: 'provider', checkedOn: vibrationCheckedOn },
+      { claim: 'Provider describes tri-axial measurement, daily usage calculations and control advice.', sourceUrl: 'https://www.socotec.co.uk/our-services/occupational-hygiene/hand-arm-and-whole-body-vibration-assessments', sourceType: 'provider', checkedOn: vibrationCheckedOn },
+    ], lastVerifiedDate: vibrationCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'iom-consulting-hav', name: 'IOM Consulting', website: 'https://www.iom-world.org/services/occupational-hygiene/workplace-vibration-assessment/',
+    serviceIds: ['hand-arm-vibration'], geographicalCoverage: [], sectors: [],
+    serviceCategories: ['hand-arm-vibration-risk-assessment', 'hand-arm-vibration-measurement'],
+    capabilities: ['Hand-arm vibration assessment', 'measure or calculate employee exposure', 'control recommendations'],
+    specialisms: ['hammer-tools', 'grinders-cutters', 'rotary-tools', 'multiple-tools', 'changed-tools'],
+    qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes assessment of tools, tasks, work patterns and exposure against action and limit values.', sourceUrl: 'https://www.iom-world.org/services/occupational-hygiene/workplace-vibration-assessment/', sourceType: 'provider', checkedOn: vibrationCheckedOn },
+      { claim: 'Provider describes measurement or calculation, control recommendations and health-surveillance implications; coverage requires confirmation.', sourceUrl: 'https://www.iom-world.org/services/occupational-hygiene/workplace-vibration-assessment/', sourceType: 'provider', checkedOn: vibrationCheckedOn },
+    ], lastVerifiedDate: vibrationCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
   },
 ]
 
