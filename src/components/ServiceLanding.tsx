@@ -32,7 +32,9 @@ export function ServiceLanding({ serviceId }: { serviceId: IndustrialServiceId }
                   ? { firstTitle: 'Air-conditioning system', firstDetail: 'Which units and plant are controlled together?', signalDetail: 'Which facts set the 12 kW threshold and inspection date?' }
                   : serviceId === 'workplace-noise'
                     ? { firstTitle: 'Noisy work and people', firstDetail: 'Which tasks, shifts and workers are exposed?', signalDetail: 'Which clues suggest action values may be reached?' }
-                    : { firstTitle: 'Tools and trigger time', firstDetail: 'Which vibrating tools are used, and for how long?', signalDetail: 'Which clues point to action-value exposure?' }
+                    : serviceId === 'hand-arm-vibration'
+                      ? { firstTitle: 'Tools and trigger time', firstDetail: 'Which vibrating tools are used, and for how long?', signalDetail: 'Which clues point to action-value exposure?' }
+                      : { firstTitle: 'Fixed wiring and responsibility', firstDetail: 'Which boards and circuits need condition evidence?', signalDetail: 'Which faults, changes or record gaps justify inspection?' }
 
   return (
     <>

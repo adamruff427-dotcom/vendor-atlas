@@ -1,7 +1,9 @@
-import { render, screen } from '@testing-library/react'
+import { cleanup, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 import { ServiceAssessmentWizard } from '../components/ServiceAssessmentWizard'
+
+afterEach(cleanup)
 
 describe('industrial service wizard', () => {
   it('completes the LEV journey and shows an explainable result, price and shortlist', async () => {
@@ -44,5 +46,27 @@ describe('industrial service wizard', () => {
     expect(next).toBeDisabled()
     await user.click(screen.getByText('Pressure or fluid details unknown'))
     expect(next).toBeEnabled()
+  })
+
+  it('completes the commercial EICR journey with a sourced price and provider shortlist', async () => {
+    const user = userEvent.setup()
+    render(<ServiceAssessmentWizard serviceId="commercial-eicr" />)
+    await user.selectOptions(screen.getByLabelText('Business or industry'), 'manufacturing')
+    await user.click(screen.getByText('Industrial or workshop installation'))
+    await user.click(screen.getByRole('button', { name: 'Continue' }))
+    await user.click(screen.getByText('Damage, fault or overheating is reported'))
+    await user.click(screen.getByRole('button', { name: 'Continue' }))
+    await user.selectOptions(screen.getByLabelText('Approximate site size'), 'small')
+    await user.selectOptions(screen.getByLabelText('Circuit schedules, previous EICR and maintenance records'), 'partial')
+    await user.selectOptions(screen.getByLabelText('Current fixed-wiring inspection position'), 'overdue-or-unknown')
+    await user.selectOptions(screen.getByLabelText('Reason for commissioning'), 'first-examination')
+    await user.selectOptions(screen.getByLabelText('Region'), 'midlands')
+    await user.selectOptions(screen.getByLabelText('Desired timescale'), 'one-month')
+    await user.click(screen.getByRole('button', { name: 'See my result' }))
+    expect(screen.getByRole('heading', { name: /Commercial EICR is likely to be relevant/i })).toBeInTheDocument()
+    expect(screen.getByText(/Two published provider tariff examples/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/Evidence found/i)).toHaveLength(3)
+    await user.click(screen.getByRole('button', { name: 'Continue with my project brief' }))
+    expect(screen.getByRole('heading', { name: 'Who should we contact about this project?' })).toBeInTheDocument()
   })
 })

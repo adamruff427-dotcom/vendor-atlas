@@ -662,6 +662,56 @@ export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> 
       { label: 'SOCOTEC UK', url: 'https://www.socotec.co.uk/our-services/occupational-hygiene/hand-arm-and-whole-body-vibration-assessments', note: 'Describes on-site assessment and control advice; no numeric public tariff on the checked page.' },
     ],
   },
+  'commercial-eicr': {
+    id: 'commercial-eicr', name: 'commercial electrical installation condition report', shortName: 'Commercial EICR', eyebrow: 'Fixed wiring inspection finder',
+    question: 'Does my workplace need a fixed wiring inspection?',
+    promise: 'Check the maintenance signals and build an EICR quote brief in about 2 minutes.',
+    description: 'Identify fixed-installation risks, understand what an EICR covers, estimate a source-linked planning range and compare evidenced providers.',
+    legalBasis: 'The Electricity at Work Regulations 1989 require electrical systems to be maintained to prevent danger so far as reasonably practicable. HSE advises arranging inspection and testing of fixed wiring. The Regulations do not impose a universal five-year EICR interval for commercial premises.',
+    legalSource: 'https://www.hse.gov.uk/electricity/introduction.htm',
+    guidePath: '/commercial-eicr/do-i-need-a-commercial-eicr', costPath: '/commercial-eicr/cost', supplierPath: '/commercial-eicr/suppliers', toolkitPath: '/commercial-eicr/buying-toolkit',
+    workHeading: 'Which fixed electrical installations are in scope?',
+    workHelp: 'Count distribution boards and final circuits later. Portable plug-in appliances are a separate service.',
+    workOptions: [
+      { value: 'office-retail', label: 'Office or retail fixed wiring', detail: 'Distribution boards, lighting, sockets and wired-in equipment' },
+      { value: 'industrial', label: 'Industrial or workshop installation', detail: 'Three-phase distribution, machinery supplies or harsh conditions' },
+      { value: 'hospitality', label: 'Hospitality or leisure premises', detail: 'Customer areas, kitchens, plant and back-of-house circuits' },
+      { value: 'multi-site', label: 'Several premises', detail: 'A comparable programme needs a board and circuit schedule for each site' },
+      { value: 'special-location', label: 'Wet or other special location', detail: 'Pools, washdown areas or locations needing specialist inspection planning' },
+      { value: 'none-fixed', label: 'No controlled fixed installation identified', detail: 'The premises boundary or responsibility may still need confirmation' },
+      { value: 'unknown-installation', label: 'Unsure what is controlled', detail: 'Lease or asset records do not establish the installation boundary' },
+    ],
+    signalHeading: 'Why is inspection being considered?',
+    signalHelp: 'These are risk and procurement clues, not a statutory interval calculator.',
+    signalOptions: [
+      { value: 'damage-fault', label: 'Damage, fault or overheating is reported', detail: 'Dangerous conditions need competent attention now, not a routine booking queue' },
+      { value: 'deterioration', label: 'Age or environment may have caused deterioration', detail: 'Wet, dusty, corrosive or mechanically demanding conditions' },
+      { value: 'no-current-report', label: 'No useful current installation report', detail: 'The scope and condition of the fixed wiring are not evidenced' },
+      { value: 'change-of-use', label: 'Use, tenancy or installation changed', detail: 'A material change can affect the safety basis and inspection plan' },
+      { value: 'insurer-request', label: 'Insurer or client requests an EICR', detail: 'A contractual request is distinct from a universal statutory interval' },
+      { value: 'unknown-condition', label: 'Installation condition is unknown', detail: 'A competent person should help set inspection scope and timing' },
+      { value: 'no-electrical-signal', label: 'No listed concern', detail: 'No trigger selected does not prove the installation is safe' },
+    ],
+    assetLabel: 'Distribution boards or consumer units', secondaryLabel: 'Approximate final circuits',
+    documentationLabel: 'Circuit schedules, previous EICR and maintenance records', documentationOptions: sharedDocumentation,
+    inspectionLabel: 'Current fixed-wiring inspection position',
+    inspectionOptions: [
+      { value: 'none', label: 'No EICR or equivalent record found' }, { value: 'in-date', label: 'Current report and actions reviewed' },
+      { value: 'overdue-or-unknown', label: 'Due date or condition uncertain' }, { value: 'new-system', label: 'New or materially changed installation' },
+    ],
+    resultResourceHeading: 'Maintenance duty is not a universal five-year certificate rule',
+    resultResourceBody: 'HSE says electrical installations must be maintained to prevent danger and fixed wiring should be inspected and tested. A competent person sets the scope and risk-based interval. An EICR records condition, limitations and coded observations; it does not itself repair defects.',
+    primaryLinks: [
+      { label: 'HSE electrical safety', detail: 'Maintenance and fixed-wiring inspection advice', url: 'https://www.hse.gov.uk/electricity/introduction.htm' },
+      { label: 'Electricity at Work regulation 4', detail: 'Legal system-maintenance duty', url: 'https://www.legislation.gov.uk/uksi/1989/635/regulation/4' },
+      { label: 'HSE inspection interval clarification', detail: 'No universal statutory interval; competent-person judgement', url: 'https://www.hse.gov.uk/healthservices/faqs.htm' },
+    ],
+    priceEvidence: [
+      { label: 'Hexo Electrical Testing', url: 'https://hexoelectricaltesting.co.uk/prices/fixed-wire-testing-prices/', note: 'London and South East weekday tariff: £169 + VAT for up to ten circuits, then £10 + VAT per additional circuit. Larger premises require a bespoke quote.' },
+      { label: 'District Group Services', url: 'https://www.districtgroupservices.co.uk/wp-content/uploads/District-Group-Prices.pdf', note: 'Its 2024/25 commercial schedule lists £50 + VAT per main switch and £19 + VAT per circuit. Historical provider tariff, not a current national quote.' },
+      { label: 'Dale Montague Electrical', url: 'https://www.dme-ltd.co.uk/pricing-structure', note: 'Publishes a £168 minimum, £60 per board and £18 per circuit, excluding VAT. Confirm the date and local applicability.' },
+    ],
+  },
 }
 
 const labelFor = (definition: ServiceDefinition, value: string) =>
@@ -675,9 +725,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
 
   positiveWork.forEach((value) => factors.push(`${labelFor(definition, value)} was selected`))
   positiveSignals.forEach((value) => factors.push(`${labelFor(definition, value)} affects the assessment or service scope`))
-  if (answers.inspectionStatus === 'none') factors.push(answers.serviceId === 'pat-testing' ? 'No recorded electrical-equipment inspection or maintenance regime was identified' : answers.serviceId === 'workplace-noise' ? 'No current workplace noise assessment was identified' : answers.serviceId === 'hand-arm-vibration' ? 'No current hand-arm vibration assessment was identified' : 'No previous statutory examination record was identified')
-  if (answers.inspectionStatus === 'overdue-or-unknown') factors.push(answers.serviceId === 'pat-testing' ? 'The inspection and maintenance position is uncertain' : answers.serviceId === 'workplace-noise' ? 'The existing noise assessment may not reflect current work' : answers.serviceId === 'hand-arm-vibration' ? 'The existing vibration assessment may not reflect current tool use' : 'The examination position is overdue or uncertain')
-  if (answers.inspectionStatus === 'new-system') factors.push(answers.serviceId === 'pat-testing' ? 'New equipment or a new site needs visual checking and a maintenance decision' : answers.serviceId === 'workplace-noise' ? 'New or changed work patterns need noise-exposure consideration' : answers.serviceId === 'hand-arm-vibration' ? 'New tools or changed trigger times need vibration-exposure consideration' : 'New, installed or assembled equipment needs pre-use consideration')
+  if (answers.inspectionStatus === 'none') factors.push(answers.serviceId === 'pat-testing' ? 'No recorded electrical-equipment inspection or maintenance regime was identified' : answers.serviceId === 'commercial-eicr' ? 'No previous fixed-installation condition report was identified' : answers.serviceId === 'workplace-noise' ? 'No current workplace noise assessment was identified' : answers.serviceId === 'hand-arm-vibration' ? 'No current hand-arm vibration assessment was identified' : 'No previous statutory examination record was identified')
+  if (answers.inspectionStatus === 'overdue-or-unknown') factors.push(answers.serviceId === 'pat-testing' ? 'The inspection and maintenance position is uncertain' : answers.serviceId === 'commercial-eicr' ? 'The fixed-wiring inspection and maintenance position is uncertain' : answers.serviceId === 'workplace-noise' ? 'The existing noise assessment may not reflect current work' : answers.serviceId === 'hand-arm-vibration' ? 'The existing vibration assessment may not reflect current tool use' : 'The examination position is overdue or uncertain')
+  if (answers.inspectionStatus === 'new-system') factors.push(answers.serviceId === 'pat-testing' ? 'New equipment or a new site needs visual checking and a maintenance decision' : answers.serviceId === 'commercial-eicr' ? 'A new or changed installation needs its certification and inspection plan checked' : answers.serviceId === 'workplace-noise' ? 'New or changed work patterns need noise-exposure consideration' : answers.serviceId === 'hand-arm-vibration' ? 'New tools or changed trigger times need vibration-exposure consideration' : 'New, installed or assembled equipment needs pre-use consideration')
   if (answers.projectReason === 'change') factors.push('A material change, repair or relocation was identified')
   if (answers.documentationStatus !== 'available') factors.push('Supporting records are missing, incomplete or uncertain')
 
@@ -739,6 +789,13 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
     else if (knownTools.length || answers.workTypes.includes('unknown-vibrating-work') || answers.riskSignals.includes('unknown-trigger-time')) status = 'may-be-relevant'
     if (answers.region === 'northern-ireland' && status === 'likely-relevant') status = 'may-be-relevant'
   }
+  if (answers.serviceId === 'commercial-eicr') {
+    const knownInstallation = positiveWork.some((value) => value !== 'unknown-installation')
+    const riskClue = ['damage-fault', 'deterioration', 'no-current-report', 'change-of-use'].some((value) => answers.riskSignals.includes(value))
+    if (knownInstallation && (riskClue || answers.inspectionStatus === 'none')) status = 'likely-relevant'
+    else if (knownInstallation || riskClue || answers.workTypes.includes('unknown-installation') || answers.riskSignals.includes('unknown-condition') || answers.riskSignals.includes('insurer-request')) status = 'may-be-relevant'
+    if (answers.region === 'northern-ireland' && status === 'likely-relevant') status = 'may-be-relevant'
+  }
 
   const complexWork = answers.serviceId === 'lev'
     ? ['spray-booth', 'recirculating', 'laboratory-fume'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
@@ -756,6 +813,8 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
                 ? ['tools-construction', 'hire-equipment', 'care-education', 'fixed-stationary'].some((value) => answers.workTypes.includes(value)) || ['harsh-environment', 'visible-damage', 'public-or-hired', 'cannot-disconnect'].some((value) => answers.riskSignals.includes(value))
                 : answers.serviceId === 'tm44'
                   ? ['vrf-vrv', 'chiller-ahu', 'mixed-comfort-cooling', 'process-cooling', 'multiple-buildings'].some((value) => answers.workTypes.includes(value))
+                  : answers.serviceId === 'commercial-eicr'
+                    ? ['industrial', 'special-location', 'multi-site'].some((value) => answers.workTypes.includes(value)) || answers.riskSignals.includes('damage-fault')
                   : answers.serviceId === 'workplace-noise'
                     ? ['impact-noise', 'variable-shifts', 'entertainment-music'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
                     : ['hammer-tools', 'multiple-tools', 'forestry-landscape'].some((value) => answers.workTypes.includes(value)) || answers.riskSignals.includes('worker-concern')
@@ -822,6 +881,13 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           'Assess sizing, operating efficiency and opportunities to reduce energy use',
           'Record faults, recommendations, limitations and supporting evidence in the inspection report',
           'Lodge the report and keep its reference, inspection date and next due date available',
+        ] : answers.serviceId === 'commercial-eicr' ? [
+          'Agree the premises boundary, distribution boards, main switches and final circuits',
+          'Review previous EICR, installation certificates, circuit schedules and defect actions',
+          'Plan safe isolation, access, operating restrictions and any agreed sampling limitations',
+          'Inspect and test the fixed installation using a competent person and suitable instruments',
+          'Issue an EICR with circuit results, coded observations, overall outcome and limitations',
+          'Separate urgent make-safe action, remedial quotations and later reinspection from the inspection fee',
         ] : answers.serviceId === 'workplace-noise' ? [
           'Map noisy tasks, process areas, worker groups and time spent on each activity',
           'Review existing machine data and earlier surveys; take representative measurements where needed',
@@ -838,7 +904,7 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           'Record controls, training, health-surveillance implications, owners and review triggers',
         ]
 
-  if (answers.documentationStatus !== 'available') scope.unshift(answers.serviceId === 'workplace-noise' ? 'Reconstruct task durations, worker groups and available noise information before estimating exposure' : answers.serviceId === 'hand-arm-vibration' ? 'Reconstruct tool data and trigger times before estimating exposure' : 'Reconstruct or verify missing equipment and baseline information before examination')
+  if (answers.documentationStatus !== 'available') scope.unshift(answers.serviceId === 'commercial-eicr' ? 'Confirm board and circuit counts and recover missing installation records before agreeing the testing boundary' : answers.serviceId === 'workplace-noise' ? 'Reconstruct task durations, worker groups and available noise information before estimating exposure' : answers.serviceId === 'hand-arm-vibration' ? 'Reconstruct tool data and trigger times before estimating exposure' : 'Reconstruct or verify missing equipment and baseline information before examination')
 
   return {
     status,
@@ -856,6 +922,8 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
               ? 'A competent person must confirm the equipment boundary and decide which user checks, visual inspections and electrical tests are proportionate to risk.'
               : answers.serviceId === 'tm44'
                 ? 'This finder covers the England and Wales TM44 rules. An accredited energy assessor must confirm the system boundary, rated output and inspection requirement.'
+                : answers.serviceId === 'commercial-eicr'
+                  ? answers.region === 'northern-ireland' ? 'This guide cites Great Britain regulations. Confirm the applicable Northern Ireland duties and inspection approach with a competent electrician.' : 'The law requires safe maintenance, not a universal commercial EICR interval. A competent electrician must confirm the inspection scope, timing and response to defects.'
                 : answers.serviceId === 'workplace-noise'
                   ? answers.region === 'northern-ireland' ? 'This guide describes Great Britain rules. Northern Ireland has separate legislation; confirm the applicable duty with a competent adviser.' : 'A competent person must confirm exposure estimates, whether measurements are necessary and proportionate controls.'
                   : answers.serviceId === 'hand-arm-vibration'
@@ -907,6 +975,10 @@ export const SERVICE_PRICE_MODELS = {
   'hand-arm-vibration': {
     version: 'single-provider-anchor-2026-09-30', baseVisit: 600, perToolGroup: 50, perWorkerGroup: 40,
     directMeasurement: 350, missingRecords: 80, additionalSite: 400, spread: 0.25,
+  },
+  'commercial-eicr': {
+    version: 'published-provider-tariff-curves-2026-10-01', tenCircuitVisit: 169, extraCircuit: 10,
+    districtPerBoard: 50, districtPerCircuit: 19, spread: 0,
   },
 } as const
 
@@ -978,6 +1050,14 @@ export function estimateServicePrice(
     if (result.complexity === 'complex') factors.push({ label: 'Complex system or controls allowance', amount: model.complexSystem })
     if (answers.documentationStatus !== 'available') factors.push({ label: 'Missing plant or control records allowance', amount: model.missingRecords })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
+  } else if (answers.serviceId === 'commercial-eicr') {
+    const model = SERVICE_PRICE_MODELS['commercial-eicr']
+    const circuits = Math.max(1, answers.secondaryCount)
+    const sites = Math.max(1, answers.sites)
+    const hexo = model.tenCircuitVisit * sites + Math.max(0, circuits - 10 * sites) * model.extraCircuit
+    const district = Math.max(1, answers.assetCount) * model.districtPerBoard + circuits * model.districtPerCircuit
+    factors.push({ label: `Hexo weekday example: ${sites} visit${sites === 1 ? '' : 's'}, ${circuits} circuits`, amount: hexo })
+    factors.push({ label: `District 2024/25 example: ${Math.max(1, answers.assetCount)} board${answers.assetCount === 1 ? '' : 's'}, ${circuits} circuits`, amount: district })
   } else if (answers.serviceId === 'workplace-noise') {
     const model = SERVICE_PRICE_MODELS['workplace-noise']
     factors.push({ label: 'Survey planning, attendance and written assessment', amount: model.baseVisit })
@@ -997,6 +1077,19 @@ export function estimateServicePrice(
   }
 
   const midpoint = factors.reduce((total, factor) => total + factor.amount, 0)
+  if (answers.serviceId === 'commercial-eicr') {
+    return {
+      low: Math.min(...factors.map((factor) => factor.amount)), high: Math.max(...factors.map((factor) => factor.amount)), currency: 'GBP', factors,
+      assumptions: [
+        'This is a comparison of two published provider tariff formulas, not a national market range or supplier quotation',
+        'Hexo tariff covers weekday visits in London and the South East; its larger-premises work requires a bespoke quotation',
+        'For multiple sites the Hexo example assumes circuits are distributed evenly enough for the ten-circuit inclusion at each site; obtain per-site counts before relying on it',
+        'District Group Services upper comparison uses its published 2024/25 schedule, not a confirmed current tariff',
+        'Approximate total circuit count and board count are correct; costs for complex, inaccessible or three-phase installations may be higher',
+        'VAT, parking, travel, out-of-hours work, remedial repairs, repeat tests and specialist access are excluded',
+      ],
+    }
+  }
   const spread = SERVICE_PRICE_MODELS[answers.serviceId].spread
   const lowFloor = answers.serviceId === 'pat-testing' ? 50 : 150
   const highFloor = answers.serviceId === 'pat-testing' ? 75 : 200
@@ -1022,7 +1115,7 @@ export function defaultServiceAnswers(serviceId: IndustrialServiceId): ServiceAs
     workTypes: [],
     riskSignals: [],
     assetCount: 1,
-    secondaryCount: serviceId === 'lev' ? 1 : serviceId === 'asbestos' ? 4 : serviceId === 'fire-risk-assessment' ? 1 : serviceId === 'legionella' ? 1 : 0,
+    secondaryCount: serviceId === 'lev' ? 1 : serviceId === 'asbestos' ? 4 : serviceId === 'fire-risk-assessment' ? 1 : serviceId === 'legionella' ? 1 : serviceId === 'commercial-eicr' ? 10 : 0,
     sites: 1,
     size: 'small',
     documentationStatus: 'unknown',

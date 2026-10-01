@@ -10,6 +10,7 @@ const patCheckedOn = '2026-09-13'
 const tm44CheckedOn = '2026-09-14'
 const noiseCheckedOn = '2026-09-29'
 const vibrationCheckedOn = '2026-09-30'
+const eicrCheckedOn = '2026-10-01'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
@@ -560,6 +561,44 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider describes assessment of tools, tasks, work patterns and exposure against action and limit values.', sourceUrl: 'https://www.iom-world.org/services/occupational-hygiene/workplace-vibration-assessment/', sourceType: 'provider', checkedOn: vibrationCheckedOn },
       { claim: 'Provider describes measurement or calculation, control recommendations and health-surveillance implications; coverage requires confirmation.', sourceUrl: 'https://www.iom-world.org/services/occupational-hygiene/workplace-vibration-assessment/', sourceType: 'provider', checkedOn: vibrationCheckedOn },
     ], lastVerifiedDate: vibrationCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'bureau-veritas-eicr', name: 'Bureau Veritas UK', website: 'https://www.bureauveritas.co.uk/buildings-infrastructure/electrical-inspections-testing/fixed-wire-testing',
+    serviceIds: ['commercial-eicr'], geographicalCoverage: ['uk-wide'], sectors: [],
+    serviceCategories: ['commercial-eicr', 'fixed-wire-inspection'],
+    capabilities: ['fixed wire testing', 'EICR reporting', 'multi-site inspection programme'],
+    specialisms: ['office-retail', 'multi-site', 'industrial'], qualificationsAndMemberships: [],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes fixed-wire inspections, EICR reports and a nationwide engineer team.', sourceUrl: 'https://www.bureauveritas.co.uk/buildings-infrastructure/electrical-inspections-testing/fixed-wire-testing', sourceType: 'provider', checkedOn: eicrCheckedOn },
+      { claim: 'Provider says it supports multi-site operations and provides digital EICR reports.', sourceUrl: 'https://www.bureauveritas.co.uk/buildings-infrastructure/electrical-inspections-testing/fixed-wire-testing', sourceType: 'provider', checkedOn: eicrCheckedOn },
+    ], lastVerifiedDate: eicrCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'hawkesworth-eicr', name: 'Hawkesworth', website: 'https://hawkesworth.co.uk/commercial-eicr-testing/',
+    serviceIds: ['commercial-eicr'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'other'],
+    serviceCategories: ['commercial-eicr', 'fixed-wire-inspection'],
+    capabilities: ['fixed wire testing', 'commercial EICR reporting', 'planned isolation and shutdown'],
+    specialisms: ['office-retail', 'industrial', 'multi-site', 'damage-fault'],
+    qualificationsAndMemberships: ['Provider states its inspectors hold 18th Edition and 2391 qualifications; confirm the assigned person and current evidence.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states nationwide commercial and multi-site EICR service across the UK and Ireland.', sourceUrl: 'https://hawkesworth.co.uk/commercial-eicr-testing/', sourceType: 'provider', checkedOn: eicrCheckedOn },
+      { claim: 'Provider describes 18th Edition and 2391 qualified inspectors, circuit testing, coded observations and planned isolation.', sourceUrl: 'https://hawkesworth.co.uk/commercial-eicr-testing/', sourceType: 'provider', checkedOn: eicrCheckedOn },
+    ], lastVerifiedDate: eicrCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'ets-eicr', name: 'Electrical Testing Surveyors', website: 'https://www.electrical-testing.co.uk/',
+    serviceIds: ['commercial-eicr'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'automotive', 'other'],
+    serviceCategories: ['commercial-eicr', 'fixed-wire-inspection'],
+    capabilities: ['fixed wire testing', 'electrical installation testing', 'EICR reporting'],
+    specialisms: ['office-retail', 'industrial', 'multi-site', 'hospitality'],
+    qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance,
+    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes nationwide EICR and fixed-wire inspection for commercial, industrial and multi-site organisations.', sourceUrl: 'https://www.electrical-testing.co.uk/', sourceType: 'provider', checkedOn: eicrCheckedOn },
+      { claim: 'Provider lists manufacturing, food production, retail, healthcare and automotive sectors and says it provides detailed reports.', sourceUrl: 'https://www.electrical-testing.co.uk/', sourceType: 'provider', checkedOn: eicrCheckedOn },
+    ], lastVerifiedDate: eicrCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
   },
 ]
 

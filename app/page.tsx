@@ -24,6 +24,7 @@ const serviceChoices = [
   { href: "/tm44", label: "TM44", question: "Does the air-conditioning system cross the 12 kW inspection threshold?", status: "England and Wales" },
   { href: "/workplace-noise", label: "Workplace noise", question: "Does employee noise exposure need assessing?", status: "Great Britain" },
   { href: "/hand-arm-vibration", label: "Hand-arm vibration", question: "Do powered tools create an exposure-assessment duty?", status: "Great Britain" },
+  { href: "/commercial-eicr", label: "Commercial EICR", question: "Does fixed wiring need competent inspection and testing?", status: "Great Britain" },
 ];
 
 export default function Home() {

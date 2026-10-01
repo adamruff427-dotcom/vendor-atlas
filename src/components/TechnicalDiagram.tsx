@@ -22,6 +22,17 @@ type IndustrialServiceId = Exclude<ServiceId, 'dsear'>
 type Node = { title: string; detail: string; icon: LucideIcon }
 
 const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; intro: string; nodes: Node[]; evidence: string[]; source: string; sourceLabel: string }> = {
+  'commercial-eicr': {
+    eyebrow: 'Inspection sequence', title: 'An EICR starts with the installation boundary', intro: 'Board and circuit counts set the quote scope. A competent inspector then plans isolation, tests the agreed installation and records findings.',
+    nodes: [
+      { title: 'Map', detail: 'Premises, boards, circuits and responsibility', icon: PackageCheck },
+      { title: 'Plan', detail: 'Access, safe isolation and agreed limitations', icon: ShieldCheck },
+      { title: 'Inspect', detail: 'Visual condition and appropriate electrical tests', icon: SearchCheck },
+      { title: 'Report', detail: 'Circuit results, codes and overall condition', icon: FileCheck2 },
+      { title: 'Act', detail: 'Make-safe, remedial work and next review', icon: Wrench },
+    ],
+    evidence: ['Board and circuit schedule', 'Inspector and test method', 'Coded defects and limitations', 'Separate remedial actions'], source: 'https://www.hse.gov.uk/electricity/introduction.htm', sourceLabel: 'HSE electrical safety guidance',
+  },
   lev: {
     eyebrow: 'System map', title: 'What a complete LEV examination follows', intro: 'A TExT follows the contaminant from capture to discharge and tests whether the complete control chain still performs as intended.',
     nodes: [

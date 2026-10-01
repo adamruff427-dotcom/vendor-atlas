@@ -1,6 +1,6 @@
 # Vendor Atlas
 
-Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The live service directory covers DSEAR, LEV, pressure systems under PSSR, LOLER, asbestos surveys, fire risk assessment, legionella risk assessment, risk-based portable electrical equipment inspection and testing, TM44 air-conditioning inspections in England and Wales, plus workplace noise and hand-arm vibration risk assessment in Great Britain.
+Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The live service directory covers DSEAR, LEV, pressure systems under PSSR, LOLER, asbestos surveys, fire risk assessment, legionella risk assessment, risk-based portable electrical equipment inspection and testing, TM44 air-conditioning inspections in England and Wales, plus workplace noise, hand-arm vibration and commercial fixed-wiring inspection in Great Britain.
 
 Public site: `https://vendoratlas.artificiallyconfident.com/`
 
@@ -33,7 +33,7 @@ Every added service vertical follows the same product standard:
 8. durable quote-intent capture through the same D1 enquiry workflow; and
 9. substantive overview, decision, cost, supplier and comparison guides based on HSE and legislation.
 
-Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos`, `/fire-risk-assessment`, `/legionella`, `/pat-testing`, `/tm44`, `/workplace-noise` and `/hand-arm-vibration`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
+Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos`, `/fire-risk-assessment`, `/legionella`, `/pat-testing`, `/tm44`, `/workplace-noise`, `/hand-arm-vibration` and `/commercial-eicr`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
 
 ## Architecture
 
@@ -105,6 +105,9 @@ The other models are also deterministic and versioned:
 - Fire risk assessment: assessment setup + floors + separate occupancies + sleeping or vulnerable occupants + premises complexity + additional sites. Calibration uses provider-published price schedules and remains planning guidance.
 - Legionella: assessment setup + water outlets + tanks or calorifiers + higher-risk systems or susceptible people + system complexity + additional sites. Calibration uses provider-published commercial examples and starting prices.
 - PAT testing: minimum attendance and register + ordinary items + fixed, specialist or shutdown-sensitive items + site complexity + additional sites. Calibration uses published item-count and minimum-charge schedules from three regional providers.
+- Workplace noise: survey attendance + task areas + worker groups + variable-exposure allowance + missing records + sites, calibrated against source-linked provider examples.
+- Hand-arm vibration: tool-inventory and exposure-assessment baseline + tool and worker groups + complex-measurement allowance + missing records + sites, with a single-provider numeric anchor.
+- Commercial EICR: two published provider tariff formulas are evaluated against the entered board, circuit and site counts. The displayed lower and upper values are those two formula outputs, not a national price distribution. Hexo's published weekday tariff applies to London and the South East; District Group Services' 2024/25 schedule is historical. Complex work needs a bespoke quote. No unsourced complexity surcharge is added.
 
 Every result shows the arithmetic, assumptions, excluded work and exact provider-price sources. All models exclude VAT, repairs, replacement parts, unusual access and specialist testing unless stated. The priority calibration input is scope-normalised awarded quote data collected through real projects.
 

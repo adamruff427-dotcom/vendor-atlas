@@ -180,8 +180,31 @@ describe('hand-arm vibration qualification and pricing', () => {
   })
 })
 
+describe('commercial fixed-wiring qualification and pricing', () => {
+  it('flags a damaged known installation and scopes safe inspection', () => {
+    const answers = { ...defaultServiceAnswers('commercial-eicr'), workTypes: ['industrial'], riskSignals: ['damage-fault'], assetCount: 2, secondaryCount: 20 }
+    const result = qualifyService(answers)
+    expect(result.status).toBe('likely-relevant')
+    expect(result.scope.join(' ')).toMatch(/isolation|EICR/i)
+    const estimate = estimateServicePrice(answers, result)
+    expect(estimate.low).toBe(269)
+    expect(estimate.high).toBe(480)
+    expect(estimate.assumptions.join(' ')).toMatch(/published|bespoke/i)
+  })
+
+  it('keeps unknown or Northern Ireland duties non-definitive and avoids a false certificate mandate', () => {
+    expect(qualifyService({ ...defaultServiceAnswers('commercial-eicr'), workTypes: ['unknown-installation'], riskSignals: ['unknown-condition'] }).status).toBe('may-be-relevant')
+    expect(qualifyService({ ...defaultServiceAnswers('commercial-eicr'), workTypes: ['none-fixed'], riskSignals: ['damage-fault'] }).status).toBe('may-be-relevant')
+    expect(qualifyService({ ...defaultServiceAnswers('commercial-eicr'), workTypes: ['none-fixed'], riskSignals: ['no-electrical-signal'], documentationStatus: 'available', inspectionStatus: 'in-date' }).status).toBe('no-obvious-trigger')
+    const ni = qualifyService({ ...defaultServiceAnswers('commercial-eicr'), workTypes: ['office-retail'], riskSignals: ['damage-fault'], region: 'northern-ireland' })
+    expect(ni.status).toBe('may-be-relevant')
+    expect(ni.caveats.join(' ')).toMatch(/Northern Ireland/)
+    expect(serviceDefinitions['commercial-eicr'].legalBasis).toMatch(/do not impose a universal five-year/)
+  })
+})
+
 describe('generic industrial service invariants', () => {
-  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44', 'workplace-noise', 'hand-arm-vibration'] as const) {
+  for (const serviceId of ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44', 'workplace-noise', 'hand-arm-vibration', 'commercial-eicr'] as const) {
     it(`${serviceId} stays deterministic, positive and evidence-linked`, () => {
       const definition = serviceDefinitions[serviceId]
       const answers = { ...defaultServiceAnswers(serviceId), workTypes: [definition.workOptions[0].value], riskSignals: [definition.signalOptions[0].value], assetCount: 4, secondaryCount: 8, sites: 2 }
@@ -206,7 +229,7 @@ describe('generic industrial service invariants', () => {
   }
 
   it('retains source URLs and explicit evidence status for every new supplier', () => {
-    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44', 'workplace-noise', 'hand-arm-vibration'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment' | 'legionella' | 'pat-testing' | 'tm44' | 'workplace-noise' | 'hand-arm-vibration'))
+    const suppliers = ['lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44', 'workplace-noise', 'hand-arm-vibration', 'commercial-eicr'].flatMap((serviceId) => suppliersForService(serviceId as 'lev' | 'pressure-systems' | 'loler' | 'asbestos' | 'fire-risk-assessment' | 'legionella' | 'pat-testing' | 'tm44' | 'workplace-noise' | 'hand-arm-vibration' | 'commercial-eicr'))
     for (const supplier of suppliers) {
       expect(supplier.evidence.length).toBeGreaterThan(0)
       expect(supplier.evidence.every((item) => item.sourceUrl.startsWith('https://') && item.checkedOn === supplier.lastVerifiedDate)).toBe(true)
