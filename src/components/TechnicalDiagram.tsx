@@ -22,6 +22,17 @@ type IndustrialServiceId = Exclude<ServiceId, 'dsear'>
 type Node = { title: string; detail: string; icon: LucideIcon }
 
 const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; intro: string; nodes: Node[]; evidence: string[]; source: string; sourceLabel: string }> = {
+  'emergency-lighting': {
+    eyebrow: 'Testing sequence', title: 'Test the installed system without losing the escape plan', intro: 'Start with the fire-risk decision and fitting schedule, then agree the test, recharge precautions and failure response.',
+    nodes: [
+      { title: 'Routes', detail: 'Fire-risk decision and escape paths', icon: SearchCheck },
+      { title: 'Inventory', detail: 'Fittings, signs, test points and rated duration', icon: PackageCheck },
+      { title: 'Test', detail: 'Function or full-duration method', icon: Gauge },
+      { title: 'Restore', detail: 'Supply, charging and temporary precautions', icon: ShieldCheck },
+      { title: 'Record', detail: 'Results, defects and logbook actions', icon: FileCheck2 },
+    ],
+    evidence: ['Fire risk assessment', 'Fitting schedule', 'Rated-duration results', 'Defect and recharge actions'], source: 'https://www.gov.uk/government/publications/fire-safety-risk-assessment-offices-and-shops/fire-safety-risk-assessment-offices-and-shops-accessible', sourceLabel: 'Home Office fire safety guide',
+  },
   'commercial-eicr': {
     eyebrow: 'Inspection sequence', title: 'An EICR starts with the installation boundary', intro: 'Board and circuit counts set the quote scope. A competent inspector then plans isolation, tests the agreed installation and records findings.',
     nodes: [

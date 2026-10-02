@@ -6,6 +6,28 @@ import { ServiceAssessmentWizard } from '../components/ServiceAssessmentWizard'
 afterEach(cleanup)
 
 describe('industrial service wizard', () => {
+  it('completes the emergency-lighting path through result and quote intent', async () => {
+    const user = userEvent.setup()
+    render(<ServiceAssessmentWizard serviceId="emergency-lighting" />)
+    await user.selectOptions(screen.getByLabelText('Business or industry'), 'manufacturing')
+    await user.click(screen.getByText('Self-contained emergency luminaires'))
+    await user.click(screen.getByRole('button', { name: 'Continue' }))
+    await user.click(screen.getByText('A scheduled function or duration test is due'))
+    await user.click(screen.getByRole('button', { name: 'Continue' }))
+    await user.selectOptions(screen.getByLabelText('Approximate site size'), 'small')
+    await user.selectOptions(screen.getByLabelText('Fire risk assessment, asset schedule and test log'), 'partial')
+    await user.selectOptions(screen.getByLabelText('Current emergency-lighting testing position'), 'overdue-or-unknown')
+    await user.selectOptions(screen.getByLabelText('Reason for commissioning'), 'first-examination')
+    await user.selectOptions(screen.getByLabelText('Region'), 'london')
+    await user.selectOptions(screen.getByLabelText('Desired timescale'), 'one-month')
+    await user.click(screen.getByRole('button', { name: 'See my result' }))
+    expect(screen.getByRole('heading', { name: /Emergency lighting testing is likely to be relevant/i })).toBeInTheDocument()
+    expect(screen.getByText(/not a fire risk assessment, emergency-lighting test or legal decision/i)).toBeInTheDocument()
+    expect(screen.getAllByText(/Evidence found/i)).toHaveLength(3)
+    await user.click(screen.getByRole('button', { name: 'Continue with my project brief' }))
+    expect(screen.getByRole('heading', { name: 'Who should we contact about this project?' })).toBeInTheDocument()
+  })
+
   it('completes the LEV journey and shows an explainable result, price and shortlist', async () => {
     const user = userEvent.setup()
     render(<ServiceAssessmentWizard serviceId="lev" />)

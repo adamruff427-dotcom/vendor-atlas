@@ -76,6 +76,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/workplace-noise">Noise</Link>
               <Link href="/hand-arm-vibration">Vibration</Link>
               <Link href="/commercial-eicr">Fixed wiring</Link>
+              <Link href="/emergency-lighting">Escape lighting</Link>
             </nav>
           </div>
           <div className="analytics-notice" role="note">

@@ -70,6 +70,8 @@ export function matchServiceSuppliers(
                     ? 'portable appliance testing'
                     : answers.serviceId === 'tm44'
                       ? 'TM44 inspection'
+                      : answers.serviceId === 'emergency-lighting'
+                        ? 'emergency lighting testing'
                       : answers.serviceId === 'workplace-noise'
                         ? 'workplace noise risk assessment'
                         : answers.serviceId === 'hand-arm-vibration'

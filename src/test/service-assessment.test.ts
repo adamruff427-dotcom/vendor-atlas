@@ -3,6 +3,34 @@ import { suppliersForService } from '../data/service-suppliers'
 import { defaultServiceAnswers, estimateServicePrice, qualifyService, SERVICE_PRICE_MODELS, serviceDefinitions } from '../domain/service-assessment'
 import { matchServiceSuppliers } from '../domain/service-matching'
 
+describe('emergency escape lighting qualification, pricing and matching', () => {
+  it('recognises a due installed system and scopes a full-duration test without declaring the design adequate', () => {
+    const answers = { ...defaultServiceAnswers('emergency-lighting'), workTypes: ['self-contained'], riskSignals: ['test-due'], assetCount: 30, inspectionStatus: 'overdue-or-unknown' as const }
+    const result = qualifyService(answers)
+    const price = estimateServicePrice(answers, result)
+    expect(result.status).toBe('likely-relevant')
+    expect(result.scope.join(' ')).toMatch(/full-duration|recharge/)
+    expect(price.factors.map((factor) => factor.amount)).toEqual([160, 30])
+    expect(price.low).toBeLessThan(price.high)
+    expect(matchServiceSuppliers(suppliersForService('emergency-lighting'), answers, result)).toHaveLength(3)
+  })
+
+  it('routes a dark unlit escape path to fire-risk review rather than a fictional installed-system test', () => {
+    const answers = { ...defaultServiceAnswers('emergency-lighting'), workTypes: ['no-installed'], riskSignals: ['dark-route'], inspectionStatus: 'in-date' as const }
+    expect(qualifyService(answers).status).toBe('may-be-relevant')
+  })
+
+  it('does not imply a testing duty from no installed system and no identified route issue', () => {
+    const answers = { ...defaultServiceAnswers('emergency-lighting'), workTypes: ['no-installed'], riskSignals: ['no-concern'], inspectionStatus: 'in-date' as const, documentationStatus: 'available' as const }
+    expect(qualifyService(answers).status).toBe('no-obvious-trigger')
+  })
+
+  it('does not apply the England and Wales legal conclusion to Scotland', () => {
+    const answers = { ...defaultServiceAnswers('emergency-lighting'), workTypes: ['self-contained'], riskSignals: ['test-due'], region: 'scotland' as const }
+    expect(qualifyService(answers).status).toBe('may-be-relevant')
+  })
+})
+
 describe('LEV qualification and pricing', () => {
   it('identifies source-capture extraction as likely relevant and scopes a real TExT', () => {
     const answers = { ...defaultServiceAnswers('lev'), workTypes: ['welding-fume'], riskSignals: ['on-tool'], documentationStatus: 'partial' as const }

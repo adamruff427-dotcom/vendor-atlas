@@ -11,8 +11,56 @@ const tm44CheckedOn = '2026-09-14'
 const noiseCheckedOn = '2026-09-29'
 const vibrationCheckedOn = '2026-09-30'
 const eicrCheckedOn = '2026-10-01'
+const emergencyLightingCheckedOn = '2026-10-02'
 
 export const serviceSuppliers: ServiceSupplier[] = [
+  {
+    id: 'hawkesworth-emergency-lighting', name: 'Hawkesworth', website: 'https://hawkesworth.co.uk/emergency-lighting-testing/',
+    serviceIds: ['emergency-lighting'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'other'],
+    serviceCategories: ['emergency-lighting-testing'],
+    capabilities: ['emergency lighting testing', 'monthly functional test', 'annual full-duration test', 'electronic test records'],
+    specialisms: ['self-contained', 'multi-building', 'test-due', 'failed-fitting'], qualificationsAndMemberships: [],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes emergency-lighting testing across the UK and Ireland for offices, warehouses, public-sector and multi-site premises.', sourceUrl: 'https://hawkesworth.co.uk/emergency-lighting-testing/', sourceType: 'provider', checkedOn: emergencyLightingCheckedOn },
+      { claim: 'Provider describes monthly functional and annual rated-duration tests, fault records and electronic service reporting.', sourceUrl: 'https://hawkesworth.co.uk/emergency-lighting-testing/', sourceType: 'provider', checkedOn: emergencyLightingCheckedOn },
+    ], lastVerifiedDate: emergencyLightingCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'ets-emergency-lighting', name: 'Electrical Testing Surveyors', website: 'https://www.electrical-testing.co.uk/services/emergency-lighting-testing/',
+    serviceIds: ['emergency-lighting'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'automotive', 'food-drink', 'other'],
+    serviceCategories: ['emergency-lighting-testing'],
+    capabilities: ['emergency lighting testing', 'duration test', 'asset register and report'],
+    specialisms: ['self-contained', 'central-battery', 'multi-building', 'test-due'], qualificationsAndMemberships: [],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states emergency-lighting testing coverage throughout the UK and Ireland for single-site and multi-site organisations.', sourceUrl: 'https://www.electrical-testing.co.uk/services/emergency-lighting-testing/', sourceType: 'provider', checkedOn: emergencyLightingCheckedOn },
+      { claim: 'Provider describes functional and duration checks, detailed reports, test results and asset registers.', sourceUrl: 'https://www.electrical-testing.co.uk/services/emergency-lighting-testing/', sourceType: 'provider', checkedOn: emergencyLightingCheckedOn },
+    ], lastVerifiedDate: emergencyLightingCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'phs-emergency-lighting', name: 'phs Compliance', website: 'https://www.phscompliance.co.uk/services/statutory-and-inspection-test/emergency-lighting-testing/',
+    serviceIds: ['emergency-lighting'], geographicalCoverage: ['uk-wide'], sectors: [],
+    serviceCategories: ['emergency-lighting-testing', 'emergency-lighting-maintenance'],
+    capabilities: ['emergency lighting testing', 'emergency lighting maintenance'],
+    specialisms: ['self-contained', 'multi-building', 'test-due'], qualificationsAndMemberships: [],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes nationwide emergency-lighting inspection and testing.', sourceUrl: 'https://www.phscompliance.co.uk/services/statutory-and-inspection-test/emergency-lighting-testing/', sourceType: 'provider', checkedOn: emergencyLightingCheckedOn },
+      { claim: 'Provider describes electrical-engineer coverage and maintenance support; assigned-person competence and current evidence require confirmation.', sourceUrl: 'https://www.phscompliance.co.uk/services/statutory-and-inspection-test/emergency-lighting-testing/', sourceType: 'provider', checkedOn: emergencyLightingCheckedOn },
+    ], lastVerifiedDate: emergencyLightingCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'hexo-emergency-lighting', name: 'Hexo Electrical Testing', website: 'https://hexoelectricaltesting.co.uk/prices/emergency-light-testing-prices/',
+    serviceIds: ['emergency-lighting'], geographicalCoverage: ['london', 'south-east'], sectors: [],
+    serviceCategories: ['emergency-lighting-testing'], capabilities: ['emergency lighting testing', 'annual three-hour test', 'monthly functional test'],
+    specialisms: ['self-contained', 'test-due'], qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance,
+    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Published annual three-hour test starts at £199 ex VAT; larger and multi-site work requires a quote.',
+    evidence: [
+      { claim: 'Provider lists monthly function and annual three-hour testing in London and the South East.', sourceUrl: 'https://hexoelectricaltesting.co.uk/prices/emergency-light-testing-prices/', sourceType: 'provider', checkedOn: emergencyLightingCheckedOn },
+      { claim: 'Provider publishes annual testing from £199 ex VAT and requests bespoke quotes for medium, large or multi-site premises.', sourceUrl: 'https://hexoelectricaltesting.co.uk/prices/emergency-light-testing-prices/', sourceType: 'provider', checkedOn: emergencyLightingCheckedOn },
+    ], lastVerifiedDate: emergencyLightingCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
   {
     id: 'rayalon-filter-services', name: 'Rayalon Filter Services UK', website: 'https://www.lev-testing.co.uk/',
     serviceIds: ['lev'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'other'],

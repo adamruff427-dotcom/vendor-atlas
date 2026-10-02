@@ -8,7 +8,7 @@ import { suppliers } from "../src/data/suppliers";
 
 export const metadata: Metadata = {
   title: "UK industrial compliance service finder",
-  description: "Check eleven UK compliance duties, estimate likely costs and compare sourced specialists without paid ranking.",
+  description: "Check UK compliance-service duties, estimate likely costs and compare sourced specialists without paid ranking.",
   alternates: { canonical: "/" },
 };
 
@@ -25,6 +25,7 @@ const serviceChoices = [
   { href: "/workplace-noise", label: "Workplace noise", question: "Does employee noise exposure need assessing?", status: "Great Britain" },
   { href: "/hand-arm-vibration", label: "Hand-arm vibration", question: "Do powered tools create an exposure-assessment duty?", status: "Great Britain" },
   { href: "/commercial-eicr", label: "Commercial EICR", question: "Does fixed wiring need competent inspection and testing?", status: "Great Britain" },
+  { href: "/emergency-lighting", label: "Emergency lighting", question: "Does an installed escape-lighting system need testing?", status: "England and Wales duty" },
 ];
 
 export default function Home() {
@@ -52,7 +53,7 @@ export default function Home() {
       <div className="shell">
         <AssessmentWizard />
         <section className="service-estate" aria-labelledby="service-estate-heading">
-          <div className="section-head"><div><span className="eyebrow">Compliance service directory</span><h2 id="service-estate-heading">Eleven compliance decisions, one buying standard</h2></div><p>Each route gives you a source-backed indication, transparent planning range, evidence-led shortlist and comparable quote brief.</p></div>
+          <div className="section-head"><div><span className="eyebrow">Compliance service directory</span><h2 id="service-estate-heading">Compliance decisions, one buying standard</h2></div><p>Each route gives you a source-backed indication, transparent planning range, evidence-led shortlist and comparable quote brief.</p></div>
           <div className="service-estate-grid">{serviceChoices.map((service) => <Link href={service.href} key={service.label}><span className="service-status">{service.status}</span><strong>{service.label}</strong><span>{service.question}</span><small>Open the decision tool →</small></Link>)}</div>
         </section>
         <section className="explainer">
