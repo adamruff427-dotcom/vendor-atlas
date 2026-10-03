@@ -3,6 +3,50 @@ import { suppliersForService } from '../data/service-suppliers'
 import { defaultServiceAnswers, estimateServicePrice, qualifyService, SERVICE_PRICE_MODELS, serviceDefinitions } from '../domain/service-assessment'
 import { matchServiceSuppliers } from '../domain/service-matching'
 
+describe('fire alarm servicing qualification, pricing and matching', () => {
+  it('identifies an overdue installed system and returns an evidenced shortlist', () => {
+    const answers = { ...defaultServiceAnswers('fire-alarm-servicing'), workTypes: ['conventional-panel'], riskSignals: ['service-due'], assetCount: 20, inspectionStatus: 'overdue-or-unknown' as const }
+    const result = qualifyService(answers)
+    const price = estimateServicePrice(answers, result)
+    expect(result.status).toBe('likely-relevant')
+    expect(result.scope.join(' ')).toMatch(/panel|device|logbook/i)
+    expect(price.factors[0].amount).toBe(170)
+    expect(price.low).toBeLessThan(price.high)
+    expect(matchServiceSuppliers(suppliersForService('fire-alarm-servicing'), answers, result)).toHaveLength(3)
+  })
+
+  it('routes a premises without an installed system to a fire-risk decision, not a service quote', () => {
+    const answers = { ...defaultServiceAnswers('fire-alarm-servicing'), workTypes: ['no-installed'], riskSignals: ['changed-layout'], inspectionStatus: 'in-date' as const }
+    const result = qualifyService(answers)
+    expect(result.status).toBe('may-be-relevant')
+    expect(result.scope.join(' ')).toMatch(/fire risk assessment/i)
+    expect(result.scope.join(' ')).not.toMatch(/service installed devices/i)
+  })
+
+  it('does not manufacture a maintenance trigger without an installed system or concern', () => {
+    const answers = { ...defaultServiceAnswers('fire-alarm-servicing'), workTypes: ['no-installed'], riskSignals: ['no-concern'], inspectionStatus: 'in-date' as const, documentationStatus: 'available' as const }
+    expect(qualifyService(answers).status).toBe('no-obvious-trigger')
+  })
+
+  it('keeps the England and Wales duty conclusion out of Scotland', () => {
+    const answers = { ...defaultServiceAnswers('fire-alarm-servicing'), workTypes: ['conventional-panel'], riskSignals: ['service-due'], region: 'scotland' as const }
+    expect(qualifyService(answers).status).toBe('may-be-relevant')
+  })
+
+  it('uses published point bands and demands bespoke pricing outside them', () => {
+    const base = { ...defaultServiceAnswers('fire-alarm-servicing'), workTypes: ['conventional-panel'], riskSignals: ['service-due'] }
+    for (const [count, expected] of [[20, 170], [21, 220], [40, 220], [41, 270], [60, 270]]) {
+      expect(estimateServicePrice({ ...base, assetCount: count }).factors[0].amount).toBe(expected)
+    }
+    for (const answers of [{ ...base, assetCount: 61 }, { ...base, sites: 2 }]) {
+      const price = estimateServicePrice(answers)
+      expect(price.low).toBe(0)
+      expect(price.high).toBe(0)
+      expect(price.assumptions.join(' ')).toMatch(/bespoke quote/i)
+    }
+  })
+})
+
 describe('emergency escape lighting qualification, pricing and matching', () => {
   it('recognises a due installed system and scopes a full-duration test without declaring the design adequate', () => {
     const answers = { ...defaultServiceAnswers('emergency-lighting'), workTypes: ['self-contained'], riskSignals: ['test-due'], assetCount: 30, inspectionStatus: 'overdue-or-unknown' as const }

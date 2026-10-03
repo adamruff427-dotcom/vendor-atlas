@@ -12,8 +12,56 @@ const noiseCheckedOn = '2026-09-29'
 const vibrationCheckedOn = '2026-09-30'
 const eicrCheckedOn = '2026-10-01'
 const emergencyLightingCheckedOn = '2026-10-02'
+const fireAlarmCheckedOn = '2026-10-03'
 
 export const serviceSuppliers: ServiceSupplier[] = [
+  {
+    id: 'hawkesworth-fire-alarm', name: 'Hawkesworth', website: 'https://hawkesworth.co.uk/commercial-fire-alarm-testing-servicing/',
+    serviceIds: ['fire-alarm-servicing'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'other'],
+    serviceCategories: ['fire-alarm-inspection', 'fire-alarm-servicing'],
+    capabilities: ['fire alarm servicing', 'panel and device testing', 'electronic service records'],
+    specialisms: ['conventional-panel', 'addressable-panel', 'monitored-system', 'multi-building', 'panel-fault'],
+    qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes planned commercial fire alarm testing and servicing across the UK and Ireland.', sourceUrl: 'https://hawkesworth.co.uk/commercial-fire-alarm-testing-servicing/', sourceType: 'provider', checkedOn: fireAlarmCheckedOn },
+      { claim: 'Provider describes panel, detector, call-point, sounder and visual-alarm checks, monitored-system coordination and electronic fault records.', sourceUrl: 'https://hawkesworth.co.uk/commercial-fire-alarm-testing-servicing/', sourceType: 'provider', checkedOn: fireAlarmCheckedOn },
+    ], lastVerifiedDate: fireAlarmCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'britannia-fire-alarm', name: 'Britannia Fire & Security', website: 'https://britanniaalarms.co.uk/fire-services/commercial-fire-alarm-maintenance/',
+    serviceIds: ['fire-alarm-servicing'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'other'],
+    serviceCategories: ['fire-alarm-inspection', 'fire-alarm-servicing'],
+    capabilities: ['fire alarm servicing', 'planned maintenance contracts', 'fault and repair support'],
+    specialisms: ['conventional-panel', 'addressable-panel', 'wireless-system', 'multi-building', 'panel-fault'],
+    qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states commercial fire-alarm maintenance coverage across the UK and describes scheduled inspection contracts.', sourceUrl: 'https://britanniaalarms.co.uk/fire-services/commercial-fire-alarm-maintenance/', sourceType: 'provider', checkedOn: fireAlarmCheckedOn },
+      { claim: 'Provider describes conventional, addressable and wireless industrial systems and panel, detector, call-point and sounder work.', sourceUrl: 'https://britanniaalarms.co.uk/fire-services/commercial-fire-alarm-maintenance/', sourceType: 'provider', checkedOn: fireAlarmCheckedOn },
+    ], lastVerifiedDate: fireAlarmCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'touchstar-fire-alarm', name: 'Touchstar', website: 'https://touchstar.co.uk/products/fire-and-security/commercial-fire-alarm/fire-alarm-maintenance-support/',
+    serviceIds: ['fire-alarm-servicing'], geographicalCoverage: ['uk-wide'], sectors: [],
+    serviceCategories: ['fire-alarm-inspection', 'fire-alarm-servicing'],
+    capabilities: ['fire alarm servicing', 'planned preventative maintenance', 'device and panel inspection'],
+    specialisms: ['conventional-panel', 'addressable-panel', 'wireless-system', 'multi-building', 'monitoring-link'],
+    qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes nationwide fire-alarm maintenance for multi-site businesses.', sourceUrl: 'https://touchstar.co.uk/products/fire-and-security/commercial-fire-alarm/fire-alarm-maintenance-support/', sourceType: 'provider', checkedOn: fireAlarmCheckedOn },
+      { claim: 'Provider describes planned servicing for conventional, addressable, wireless and hybrid systems, with panel, power, device and logbook checks.', sourceUrl: 'https://touchstar.co.uk/products/fire-and-security/commercial-fire-alarm/fire-alarm-maintenance-support/', sourceType: 'provider', checkedOn: fireAlarmCheckedOn },
+    ], lastVerifiedDate: fireAlarmCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'safetec-fire-alarm', name: 'Safetec Protection', website: 'https://safetecprotection.co.uk/fire-alarm-service/',
+    serviceIds: ['fire-alarm-servicing'], geographicalCoverage: ['south-west'], sectors: ['other'],
+    serviceCategories: ['fire-alarm-servicing'], capabilities: ['fire alarm servicing', 'panel and battery inspection', 'detector and call-point testing'],
+    specialisms: ['conventional-panel', 'service-due', 'missing-logbook'], qualificationsAndMemberships: [],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider advertises servicing from £125 for its Dorset and Hampshire area; confirm scope and current quote.',
+    evidence: [
+      { claim: 'Provider advertises fire-alarm servicing across Dorset and Hampshire with a starting price of £125.', sourceUrl: 'https://safetecprotection.co.uk/fire-alarm-service/', sourceType: 'provider', checkedOn: fireAlarmCheckedOn },
+      { claim: 'Provider describes panel, battery, detector, call-point and sounder checks with a service certificate and fault report.', sourceUrl: 'https://safetecprotection.co.uk/fire-alarm-service/', sourceType: 'provider', checkedOn: fireAlarmCheckedOn },
+    ], lastVerifiedDate: fireAlarmCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
   {
     id: 'hawkesworth-emergency-lighting', name: 'Hawkesworth', website: 'https://hawkesworth.co.uk/emergency-lighting-testing/',
     serviceIds: ['emergency-lighting'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'other'],

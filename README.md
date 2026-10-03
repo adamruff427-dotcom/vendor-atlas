@@ -33,7 +33,7 @@ Every added service vertical follows the same product standard:
 8. durable quote-intent capture through the same D1 enquiry workflow; and
 9. substantive overview, decision, cost, supplier and comparison guides based on HSE and legislation.
 
-Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos`, `/fire-risk-assessment`, `/legionella`, `/pat-testing`, `/tm44`, `/workplace-noise`, `/hand-arm-vibration`, `/commercial-eicr` and `/emergency-lighting`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
+Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos`, `/fire-risk-assessment`, `/legionella`, `/pat-testing`, `/tm44`, `/workplace-noise`, `/hand-arm-vibration`, `/commercial-eicr`, `/emergency-lighting` and `/fire-alarm-servicing`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
 
 ## Architecture
 
@@ -109,6 +109,7 @@ The other models are also deterministic and versioned:
 - Hand-arm vibration: tool-inventory and exposure-assessment baseline + tool and worker groups + complex-measurement allowance + missing records + sites, with a single-provider numeric anchor.
 - Commercial EICR: two published provider tariff formulas are evaluated against the entered board, circuit and site counts. The displayed lower and upper values are those two formula outputs, not a national price distribution. Hexo's published weekday tariff applies to London and the South East; District Group Services' 2024/25 schedule is historical. Complex work needs a bespoke quote. No unsourced complexity surcharge is added.
 - Emergency lighting: a routine installed-system test uses Dale Montague Electrical's published £160 ex-VAT up-to-25-points price and £6 per additional point, per site, with an explicit 25% Vendor Atlas planning buffer. This is not a national tariff, a quotation or a price for design, installation or repairs. Hexo and Wire Now publish separate starting prices for their stated regions. The finder separates testing of installed systems from the fire-risk decision about whether emergency lighting provision is adequate.
+- Fire alarm servicing: a single-site inspection of up to 60 points uses Dale Montague Electrical's published £170/£220/£270 ex-VAT device tiers, with an explicit 25% Vendor Atlas planning buffer. More than 60 points or multiple sites return no numeric estimate and require a scoped quote. The source labels its service as testing and inspection; confirm that a proposed fee includes the competent-person servicing needed for the actual system. Weekly user tests, repair, monitoring and installation are separate decisions.
 
 Every result shows the arithmetic, assumptions, excluded work and exact provider-price sources. All models exclude VAT, repairs, replacement parts, unusual access and specialist testing unless stated. The priority calibration input is scope-normalised awarded quote data collected through real projects.
 

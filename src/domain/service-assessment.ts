@@ -53,6 +53,55 @@ const sharedDocumentation = [
 ] as ServiceDefinition['documentationOptions']
 
 export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> = {
+  'fire-alarm-servicing': {
+    id: 'fire-alarm-servicing', name: 'fire detection and alarm inspection and servicing', shortName: 'Fire alarm servicing', eyebrow: 'Fire alarm maintenance finder',
+    question: 'Does my fire alarm need a service?',
+    promise: 'Check the maintenance signals and prepare a comparable service brief in about 2 minutes.',
+    description: 'Identify the system and responsible person, separate weekly user checks from competent servicing, estimate a planning cost and compare evidenced providers.',
+    legalBasis: 'For England and Wales, Fire Safety Order article 17 requires a suitable maintenance system for fire precautions where necessary. Home Office guidance describes weekly user tests and periodic competent-person servicing for installed fire-warning systems; it does not make one service contract or fixed certificate price universally mandatory.',
+    legalSource: 'https://www.legislation.gov.uk/uksi/2005/1541/article/17',
+    guidePath: '/fire-alarm-servicing/do-i-need-fire-alarm-servicing', costPath: '/fire-alarm-servicing/cost', supplierPath: '/fire-alarm-servicing/suppliers', toolkitPath: '/fire-alarm-servicing/buying-toolkit',
+    workHeading: 'What fire-warning system is installed?',
+    workHelp: 'Select the actual system. If no system is installed, a fire risk assessment must settle the warning method before a service can be priced.',
+    workOptions: [
+      { value: 'conventional-panel', label: 'Conventional panel and zones', detail: 'Wired panel with zoned detectors, call points or sounders' },
+      { value: 'addressable-panel', label: 'Addressable panel', detail: 'Individual device addresses and an event log' },
+      { value: 'wireless-system', label: 'Wireless fire alarm', detail: 'Radio-linked devices with batteries or wireless interfaces' },
+      { value: 'monitored-system', label: 'Alarm receiving centre connection', detail: 'Monitoring provider needs notification before and after testing' },
+      { value: 'multi-building', label: 'Several premises or panels', detail: 'An inventory and service schedule are needed for each site' },
+      { value: 'no-installed', label: 'No installed alarm system', detail: 'A risk assessment must confirm whether warning arrangements are adequate' },
+      { value: 'unknown-system', label: 'System type unknown', detail: 'Panel and device inventory need confirmation' },
+    ],
+    signalHeading: 'Why is a service being considered?',
+    signalHelp: 'A weekly call-point check is not the same as a competent-person inspection and service.',
+    signalOptions: [
+      { value: 'service-due', label: 'Periodic service is due or overdue', detail: 'The logbook, provider or site plan calls for a visit' },
+      { value: 'panel-fault', label: 'Panel shows a fault or disabled zone', detail: 'An impaired warning system needs prompt competent attention' },
+      { value: 'false-alarms', label: 'False alarms or detector problems', detail: 'Review event logs and device causes' },
+      { value: 'missing-logbook', label: 'Test and service records are incomplete', detail: 'The maintenance position cannot be evidenced' },
+      { value: 'changed-layout', label: 'Premises layout or use changed', detail: 'System design and fire-risk assumptions may need a separate review' },
+      { value: 'monitoring-link', label: 'Monitoring or interface needs coordination', detail: 'Avoid unwanted call-outs and verify connected functions' },
+      { value: 'no-concern', label: 'No listed issue', detail: 'A clear panel alone does not prove the system is maintained' },
+    ],
+    assetLabel: 'Detectors, call points and sounders', secondaryLabel: 'Control panels',
+    documentationLabel: 'Fire risk assessment, logbook and previous service records', documentationOptions: sharedDocumentation,
+    inspectionLabel: 'Current alarm service position', inspectionOptions: [
+      { value: 'none', label: 'No service record found' }, { value: 'in-date', label: 'Service programme and actions appear current' },
+      { value: 'overdue-or-unknown', label: 'Due date or condition uncertain' }, { value: 'new-system', label: 'New or materially altered system' },
+    ],
+    resultResourceHeading: 'Weekly checks and specialist servicing do different jobs',
+    resultResourceBody: 'A weekly call-point test checks the warning path used that day. A competent service examines the panel, power, devices, interfaces, records and defects under an agreed programme. Home Office guidance gives examples, not a universal statutory visit price or a substitute for the fire risk assessment.',
+    primaryLinks: [
+      { label: 'Fire Safety Order article 17', detail: 'Legal maintenance duty for fire precautions', url: 'https://www.legislation.gov.uk/uksi/2005/1541/article/17' },
+      { label: 'Home Office offices and shops guide', detail: 'Weekly user checks, competent servicing and records', url: 'https://www.gov.uk/government/publications/fire-safety-risk-assessment-offices-and-shops/fire-safety-risk-assessment-offices-and-shops-accessible' },
+      { label: 'Home Office small premises guide', detail: 'Risk-based warning arrangements and maintenance', url: 'https://www.gov.uk/government/publications/making-your-small-non-domestic-premises-safe-from-fire/a-guide-to-making-your-small-non-domestic-premises-safe-from-fire-accesible' },
+    ],
+    priceEvidence: [
+      { label: 'Dale Montague Electrical', url: 'https://www.dme-ltd.co.uk/pricing-structure', note: 'Published fire alarm testing and inspection prices: £170 ex VAT up to 20 points, £220 for 21–40, £270 for 41–60; more than 60 needs a quote. Confirm service depth.' },
+      { label: 'Safetec Protection', url: 'https://safetecprotection.co.uk/fire-alarm-service/', note: 'Provider advertises six-monthly servicing from £125 for its Dorset and Hampshire area; starting price, not an upper limit.' },
+      { label: 'Paragon Fire and Security', url: 'https://www.paragonfire.co.uk/fire-alarm-maintenance/', note: 'Provider advertises fire alarm servicing from £60 per visit and a combined alarm and emergency-lighting plan from £75 per visit. These are starting prices with different scope.' },
+    ],
+  },
   'emergency-lighting': {
     id: 'emergency-lighting', name: 'emergency escape lighting inspection and testing', shortName: 'Emergency lighting testing', eyebrow: 'Escape lighting decision aid',
     question: 'Does my emergency lighting need testing?',
@@ -774,9 +823,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
 
   positiveWork.forEach((value) => factors.push(`${labelFor(definition, value)} was selected`))
   positiveSignals.forEach((value) => factors.push(`${labelFor(definition, value)} affects the assessment or service scope`))
-  if (answers.inspectionStatus === 'none') factors.push(answers.serviceId === 'emergency-lighting' ? 'No emergency-lighting test record was identified' : answers.serviceId === 'pat-testing' ? 'No recorded electrical-equipment inspection or maintenance regime was identified' : answers.serviceId === 'commercial-eicr' ? 'No previous fixed-installation condition report was identified' : answers.serviceId === 'workplace-noise' ? 'No current workplace noise assessment was identified' : answers.serviceId === 'hand-arm-vibration' ? 'No current hand-arm vibration assessment was identified' : 'No previous statutory examination record was identified')
-  if (answers.inspectionStatus === 'overdue-or-unknown') factors.push(answers.serviceId === 'emergency-lighting' ? 'The emergency-lighting test position is overdue or uncertain' : answers.serviceId === 'pat-testing' ? 'The inspection and maintenance position is uncertain' : answers.serviceId === 'commercial-eicr' ? 'The fixed-wiring inspection and maintenance position is uncertain' : answers.serviceId === 'workplace-noise' ? 'The existing noise assessment may not reflect current work' : answers.serviceId === 'hand-arm-vibration' ? 'The existing vibration assessment may not reflect current tool use' : 'The examination position is overdue or uncertain')
-  if (answers.inspectionStatus === 'new-system') factors.push(answers.serviceId === 'emergency-lighting' ? 'New or changed escape-lighting provision needs commissioning and a testing plan' : answers.serviceId === 'pat-testing' ? 'New equipment or a new site needs visual checking and a maintenance decision' : answers.serviceId === 'commercial-eicr' ? 'A new or changed installation needs its certification and inspection plan checked' : answers.serviceId === 'workplace-noise' ? 'New or changed work patterns need noise-exposure consideration' : answers.serviceId === 'hand-arm-vibration' ? 'New tools or changed trigger times need vibration-exposure consideration' : 'New, installed or assembled equipment needs pre-use consideration')
+  if (answers.inspectionStatus === 'none') factors.push(answers.serviceId === 'fire-alarm-servicing' ? 'No fire-alarm service record was identified' : answers.serviceId === 'emergency-lighting' ? 'No emergency-lighting test record was identified' : answers.serviceId === 'pat-testing' ? 'No recorded electrical-equipment inspection or maintenance regime was identified' : answers.serviceId === 'commercial-eicr' ? 'No previous fixed-installation condition report was identified' : answers.serviceId === 'workplace-noise' ? 'No current workplace noise assessment was identified' : answers.serviceId === 'hand-arm-vibration' ? 'No current hand-arm vibration assessment was identified' : 'No previous statutory examination record was identified')
+  if (answers.inspectionStatus === 'overdue-or-unknown') factors.push(answers.serviceId === 'fire-alarm-servicing' ? 'The fire-alarm service position is overdue or uncertain' : answers.serviceId === 'emergency-lighting' ? 'The emergency-lighting test position is overdue or uncertain' : answers.serviceId === 'pat-testing' ? 'The inspection and maintenance position is uncertain' : answers.serviceId === 'commercial-eicr' ? 'The fixed-wiring inspection and maintenance position is uncertain' : answers.serviceId === 'workplace-noise' ? 'The existing noise assessment may not reflect current work' : answers.serviceId === 'hand-arm-vibration' ? 'The existing vibration assessment may not reflect current tool use' : 'The examination position is overdue or uncertain')
+  if (answers.inspectionStatus === 'new-system') factors.push(answers.serviceId === 'fire-alarm-servicing' ? 'A new or altered alarm needs commissioning records and a maintenance plan' : answers.serviceId === 'emergency-lighting' ? 'New or changed escape-lighting provision needs commissioning and a testing plan' : answers.serviceId === 'pat-testing' ? 'New equipment or a new site needs visual checking and a maintenance decision' : answers.serviceId === 'commercial-eicr' ? 'A new or changed installation needs its certification and inspection plan checked' : answers.serviceId === 'workplace-noise' ? 'New or changed work patterns need noise-exposure consideration' : answers.serviceId === 'hand-arm-vibration' ? 'New tools or changed trigger times need vibration-exposure consideration' : 'New, installed or assembled equipment needs pre-use consideration')
   if (answers.projectReason === 'change') factors.push('A material change, repair or relocation was identified')
   if (answers.documentationStatus !== 'available') factors.push('Supporting records are missing, incomplete or uncertain')
 
@@ -853,6 +902,13 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
     else if (installed || provisionConcern || answers.workTypes.includes('unknown-system') || answers.riskSignals.includes('unknown-duration')) status = 'may-be-relevant'
     if (['scotland', 'northern-ireland'].includes(answers.region) && status === 'likely-relevant') status = 'may-be-relevant'
   }
+  if (answers.serviceId === 'fire-alarm-servicing') {
+    const installed = answers.workTypes.some((value) => ['conventional-panel', 'addressable-panel', 'wireless-system', 'monitored-system', 'multi-building'].includes(value))
+    const maintenanceClue = ['service-due', 'panel-fault', 'false-alarms', 'missing-logbook'].some((value) => answers.riskSignals.includes(value))
+    if (installed && (maintenanceClue || answers.inspectionStatus === 'none' || answers.inspectionStatus === 'overdue-or-unknown')) status = 'likely-relevant'
+    else if (installed || answers.workTypes.includes('unknown-system') || answers.riskSignals.includes('changed-layout')) status = 'may-be-relevant'
+    if (['scotland', 'northern-ireland'].includes(answers.region) && status === 'likely-relevant') status = 'may-be-relevant'
+  }
 
   const complexWork = answers.serviceId === 'lev'
     ? ['spray-booth', 'recirculating', 'laboratory-fume'].some((value) => answers.workTypes.includes(value) || answers.riskSignals.includes(value))
@@ -870,6 +926,8 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
                 ? ['tools-construction', 'hire-equipment', 'care-education', 'fixed-stationary'].some((value) => answers.workTypes.includes(value)) || ['harsh-environment', 'visible-damage', 'public-or-hired', 'cannot-disconnect'].some((value) => answers.riskSignals.includes(value))
                 : answers.serviceId === 'tm44'
                   ? ['vrf-vrv', 'chiller-ahu', 'mixed-comfort-cooling', 'process-cooling', 'multiple-buildings'].some((value) => answers.workTypes.includes(value))
+                  : answers.serviceId === 'fire-alarm-servicing'
+                    ? ['addressable-panel', 'wireless-system', 'monitored-system', 'multi-building'].some((value) => answers.workTypes.includes(value)) || answers.riskSignals.includes('panel-fault')
                   : answers.serviceId === 'emergency-lighting'
                     ? ['central-battery', 'self-test', 'multi-building'].some((value) => answers.workTypes.includes(value)) || answers.riskSignals.includes('failed-fitting')
                   : answers.serviceId === 'commercial-eicr'
@@ -940,6 +998,13 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
           'Assess sizing, operating efficiency and opportunities to reduce energy use',
           'Record faults, recommendations, limitations and supporting evidence in the inspection report',
           'Lodge the report and keep its reference, inspection date and next due date available',
+        ] : answers.serviceId === 'fire-alarm-servicing' ? [
+          'Confirm the responsible person, fire risk assessment, panel type and system boundary',
+          'List panels, detectors, call points, sounders, visual alarms and monitored or controlled interfaces',
+          'Review logbook, weekly user tests, previous service reports, false alarms and open defects',
+          'Agree safe test timing and notify the alarm receiving centre before and after testing where connected',
+          'Inspect panel, power and representative devices under the agreed competent-person service plan',
+          'Reset and restore the system; report tests, limitations, faults and separate remedial actions',
         ] : answers.serviceId === 'emergency-lighting' ? [
           'Confirm the fire risk assessment, responsible person, escape routes and installed system boundary',
           'List each luminaire, exit sign, central unit, test facility and designed rated duration',
@@ -971,12 +1036,17 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
         ]
 
   const lightingInstalled = answers.serviceId === 'emergency-lighting' && answers.workTypes.some((value) => ['self-contained', 'central-battery', 'self-test', 'multi-building'].includes(value))
+  const alarmInstalled = answers.serviceId === 'fire-alarm-servicing' && answers.workTypes.some((value) => ['conventional-panel', 'addressable-panel', 'wireless-system', 'monitored-system', 'multi-building'].includes(value))
+  if (answers.serviceId === 'fire-alarm-servicing' && !alarmInstalled) scope.splice(0, scope.length,
+    'Confirm the responsible person, fire risk assessment, premises and warning arrangements',
+    'Ask a competent fire-risk or alarm designer whether an installed system is needed',
+    'Scope design and installation separately from routine service of any future system')
   if (answers.serviceId === 'emergency-lighting' && !lightingInstalled) scope.splice(0, scope.length,
     'Confirm the responsible person, fire risk assessment and escape-route layout',
     'Identify routes that may lack adequate illumination if normal lighting fails',
     'Ask a competent fire-risk or lighting specialist whether installed provision is needed',
     'Scope design and installation separately from testing of any future system')
-  if (answers.documentationStatus !== 'available') scope.unshift(answers.serviceId === 'emergency-lighting' ? lightingInstalled ? 'Reconstruct the luminaire schedule, fire-risk decision and test log before agreeing the testing boundary' : 'Find or update the fire risk assessment before deciding on installation' : answers.serviceId === 'commercial-eicr' ? 'Confirm board and circuit counts and recover missing installation records before agreeing the testing boundary' : answers.serviceId === 'workplace-noise' ? 'Reconstruct task durations, worker groups and available noise information before estimating exposure' : answers.serviceId === 'hand-arm-vibration' ? 'Reconstruct tool data and trigger times before estimating exposure' : 'Reconstruct or verify missing equipment and baseline information before examination')
+  if (answers.documentationStatus !== 'available') scope.unshift(answers.serviceId === 'fire-alarm-servicing' ? alarmInstalled ? 'Reconstruct the device schedule and logbook before agreeing service coverage' : 'Find or update the fire risk assessment before buying alarm installation' : answers.serviceId === 'emergency-lighting' ? lightingInstalled ? 'Reconstruct the luminaire schedule, fire-risk decision and test log before agreeing the testing boundary' : 'Find or update the fire risk assessment before deciding on installation' : answers.serviceId === 'commercial-eicr' ? 'Confirm board and circuit counts and recover missing installation records before agreeing the testing boundary' : answers.serviceId === 'workplace-noise' ? 'Reconstruct task durations, worker groups and available noise information before estimating exposure' : answers.serviceId === 'hand-arm-vibration' ? 'Reconstruct tool data and trigger times before estimating exposure' : 'Reconstruct or verify missing equipment and baseline information before examination')
 
   return {
     status,
@@ -994,6 +1064,8 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
               ? 'A competent person must confirm the equipment boundary and decide which user checks, visual inspections and electrical tests are proportionate to risk.'
               : answers.serviceId === 'tm44'
                 ? 'This finder covers the England and Wales TM44 rules. An accredited energy assessor must confirm the system boundary, rated output and inspection requirement.'
+                : answers.serviceId === 'fire-alarm-servicing'
+                  ? ['scotland', 'northern-ireland'].includes(answers.region) ? 'This finder cites the Fire Safety Order for England and Wales. Confirm the applicable local duty and servicing plan with a competent fire-safety adviser.' : 'The fire risk assessment decides the appropriate warning system. A competent service engineer must confirm the installed system, scope, test coverage and defect response.'
                 : answers.serviceId === 'emergency-lighting'
                   ? ['scotland', 'northern-ireland'].includes(answers.region) ? 'This finder cites the Fire Safety Order for England and Wales. Confirm the applicable local fire-safety duty and test programme with a competent person.' : 'The fire risk assessment determines where emergency lighting is needed; a competent person must confirm system design, test method, rated duration and remedial action.'
                 : answers.serviceId === 'commercial-eicr'
@@ -1056,6 +1128,9 @@ export const SERVICE_PRICE_MODELS = {
   },
   'emergency-lighting': {
     version: 'published-provider-anchor-2026-10-02', firstTwentyFivePoints: 160, extraPoint: 6, spread: 0.25,
+  },
+  'fire-alarm-servicing': {
+    version: 'published-provider-device-tiers-2026-10-03', upToTwenty: 170, upToForty: 220, upToSixty: 270, spread: 0.25,
   },
 } as const
 
@@ -1127,6 +1202,12 @@ export function estimateServicePrice(
     if (result.complexity === 'complex') factors.push({ label: 'Complex system or controls allowance', amount: model.complexSystem })
     if (answers.documentationStatus !== 'available') factors.push({ label: 'Missing plant or control records allowance', amount: model.missingRecords })
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
+  } else if (answers.serviceId === 'fire-alarm-servicing') {
+    const model = SERVICE_PRICE_MODELS['fire-alarm-servicing']
+    if (answers.sites === 1 && answers.assetCount <= 60) {
+      const tier = answers.assetCount <= 20 ? model.upToTwenty : answers.assetCount <= 40 ? model.upToForty : model.upToSixty
+      factors.push({ label: `DME published inspection tier for ${answers.assetCount} alarm point${answers.assetCount === 1 ? '' : 's'}`, amount: tier })
+    }
   } else if (answers.serviceId === 'emergency-lighting') {
     const model = SERVICE_PRICE_MODELS['emergency-lighting']
     factors.push({ label: `${Math.max(1, answers.sites)} site test visit${answers.sites === 1 ? '' : 's'}, up to 25 fittings per site`, amount: Math.max(1, answers.sites) * model.firstTwentyFivePoints })
@@ -1157,6 +1238,10 @@ export function estimateServicePrice(
     if (answers.sites > 1) factors.push({ label: `${answers.sites - 1} additional site attendance allowance`, amount: (answers.sites - 1) * model.additionalSite })
   }
 
+  if (answers.serviceId === 'fire-alarm-servicing' && (answers.assetCount > 60 || answers.sites > 1)) return {
+    low: 0, high: 0, currency: 'GBP', factors: [],
+    assumptions: ['Bespoke quote required: the published device tiers stop at 60 points and do not cover a multi-site programme.', 'Record device counts, panels, monitoring links, site access and the service depth for comparable quotations.'],
+  }
   const midpoint = factors.reduce((total, factor) => total + factor.amount, 0)
   if (answers.serviceId === 'commercial-eicr') {
     return {
@@ -1181,7 +1266,7 @@ export function estimateServicePrice(
     factors,
     assumptions: [
       'One planned visit per site during normal working hours',
-      answers.serviceId === 'emergency-lighting' ? 'This models a routine test of an installed system; no new design, installation or remediation is included. Confirm rated duration and test type.' : answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : answers.serviceId === 'legionella' ? 'Water outlets, plant areas and available records are accessible during the assessment' : answers.serviceId === 'pat-testing' ? 'Equipment is available, identifiable, safely accessible and can be disconnected as agreed' : answers.serviceId === 'tm44' ? 'Air-conditioning equipment, controls and available plant records are safely accessible' : answers.serviceId === 'workplace-noise' ? 'Representative tasks and shifts are accessible; unusual, night or weekend work may need separate attendance' : answers.serviceId === 'hand-arm-vibration' ? 'Tool inventory, representative use and hands-on trigger times are available; measurement is separately scoped where needed' : 'Equipment is available, identifiable and safely accessible for examination',
+      answers.serviceId === 'fire-alarm-servicing' ? 'The source price is DME’s fire alarm testing and inspection tier for one site. Confirm whether the scope includes the required competent-person service.' : answers.serviceId === 'emergency-lighting' ? 'This models a routine test of an installed system; no new design, installation or remediation is included. Confirm rated duration and test type.' : answers.serviceId === 'asbestos' ? 'Premises and agreed survey areas are safely accessible' : answers.serviceId === 'fire-risk-assessment' ? 'Premises, records and agreed areas are accessible during the assessment' : answers.serviceId === 'legionella' ? 'Water outlets, plant areas and available records are accessible during the assessment' : answers.serviceId === 'pat-testing' ? 'Equipment is available, identifiable, safely accessible and can be disconnected as agreed' : answers.serviceId === 'tm44' ? 'Air-conditioning equipment, controls and available plant records are safely accessible' : answers.serviceId === 'workplace-noise' ? 'Representative tasks and shifts are accessible; unusual, night or weekend work may need separate attendance' : answers.serviceId === 'hand-arm-vibration' ? 'Tool inventory, representative use and hands-on trigger times are available; measurement is separately scoped where needed' : 'Equipment is available, identifiable and safely accessible for examination',
       'VAT, repairs, replacement parts, specialist access and intrusive testing are excluded',
       'Calibration sources cover only some simple/common jobs and are not an awarded-quote market benchmark',
       'This is deterministic Vendor Atlas planning guidance, not a supplier quotation',

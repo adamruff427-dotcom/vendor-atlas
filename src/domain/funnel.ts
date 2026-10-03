@@ -26,10 +26,7 @@ export function isProductAnalyticsEvent(value: unknown): value is ProductAnalyti
 
 export function analyticsServiceForPath(path: string) {
   if (path === '/' || path.startsWith('/dsear')) return 'dsear'
-  if (path.startsWith('/lev')) return 'lev'
-  if (path.startsWith('/pressure-systems')) return 'pressure-systems'
-  if (path.startsWith('/loler')) return 'loler'
-  return 'site'
+  return serviceIds.find((id) => path === `/${id}` || path.startsWith(`/${id}/`)) || 'site'
 }
 
 export function sanitiseAnalyticsPayload(value: unknown): AnalyticsPayload {
@@ -40,3 +37,4 @@ export function sanitiseAnalyticsPayload(value: unknown): AnalyticsPayload {
       .map(([key, item]) => [key, typeof item === 'string' ? item.slice(0, 80) : item]),
   ) as AnalyticsPayload
 }
+import { serviceIds } from './types'

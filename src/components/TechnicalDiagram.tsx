@@ -22,6 +22,17 @@ type IndustrialServiceId = Exclude<ServiceId, 'dsear'>
 type Node = { title: string; detail: string; icon: LucideIcon }
 
 const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; intro: string; nodes: Node[]; evidence: string[]; source: string; sourceLabel: string }> = {
+  'fire-alarm-servicing': {
+    eyebrow: 'Service sequence', title: 'Follow the warning path from device to occupants', intro: 'A service brief connects panel and power checks to field devices, monitored links and a traceable fault record.',
+    nodes: [
+      { title: 'Panel', detail: 'System identity, zones, event log and power', icon: Gauge },
+      { title: 'Inputs', detail: 'Detectors and manual call points', icon: SearchCheck },
+      { title: 'Outputs', detail: 'Sounders, visual alarms and controls', icon: Fan },
+      { title: 'Links', detail: 'Monitoring and connected functions', icon: Link2 },
+      { title: 'Record', detail: 'Faults, restoration and actions', icon: FileCheck2 },
+    ],
+    evidence: ['Panel and point schedule', 'User test log', 'Service results', 'Defect and restoration record'], source: 'https://www.gov.uk/government/publications/fire-safety-risk-assessment-offices-and-shops/fire-safety-risk-assessment-offices-and-shops-accessible', sourceLabel: 'Home Office fire-safety guide',
+  },
   'emergency-lighting': {
     eyebrow: 'Testing sequence', title: 'Test the installed system without losing the escape plan', intro: 'Start with the fire-risk decision and fitting schedule, then agree the test, recharge precautions and failure response.',
     nodes: [

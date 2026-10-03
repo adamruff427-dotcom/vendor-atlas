@@ -6,6 +6,27 @@ import { ServiceAssessmentWizard } from '../components/ServiceAssessmentWizard'
 afterEach(cleanup)
 
 describe('industrial service wizard', () => {
+  it('completes an installed fire alarm path through result and quote intent', async () => {
+    const user = userEvent.setup()
+    render(<ServiceAssessmentWizard serviceId="fire-alarm-servicing" />)
+    await user.selectOptions(screen.getByLabelText('Business or industry'), 'manufacturing')
+    await user.click(screen.getByText('Conventional panel and zones'))
+    await user.click(screen.getByRole('button', { name: 'Continue' }))
+    await user.click(screen.getByText('Periodic service is due or overdue'))
+    await user.click(screen.getByRole('button', { name: 'Continue' }))
+    await user.selectOptions(screen.getByLabelText('Approximate site size'), 'small')
+    await user.selectOptions(screen.getByLabelText('Fire risk assessment, logbook and previous service records'), 'partial')
+    await user.selectOptions(screen.getByLabelText('Current alarm service position'), 'overdue-or-unknown')
+    await user.selectOptions(screen.getByLabelText('Reason for commissioning'), 'first-examination')
+    await user.selectOptions(screen.getByLabelText('Region'), 'london')
+    await user.selectOptions(screen.getByLabelText('Desired timescale'), 'one-month')
+    await user.click(screen.getByRole('button', { name: 'See my result' }))
+    expect(screen.getByRole('heading', { name: /Fire alarm servicing is likely to be relevant/i })).toBeInTheDocument()
+    expect(screen.getAllByText(/Evidence found/i)).toHaveLength(3)
+    await user.click(screen.getByRole('button', { name: 'Continue with my project brief' }))
+    expect(screen.getByRole('heading', { name: 'Who should we contact about this project?' })).toBeInTheDocument()
+  })
+
   it('completes the emergency-lighting path through result and quote intent', async () => {
     const user = userEvent.setup()
     render(<ServiceAssessmentWizard serviceId="emergency-lighting" />)

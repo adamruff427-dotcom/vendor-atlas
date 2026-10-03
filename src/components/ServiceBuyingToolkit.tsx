@@ -8,6 +8,15 @@ type IndustrialServiceId = Exclude<ServiceId, 'dsear'>
 const Check = ({ children }: { children: ReactNode }) => <li><span className="print-checkbox" aria-hidden="true">□</span>{children}</li>
 
 const toolkitData = {
+  'fire-alarm-servicing': {
+    title: 'Buy fire alarm servicing on comparable terms', lead: 'Send the same panel and device inventory to each provider. Compare test coverage, competent-person evidence, reporting and defect response.',
+    standard: ['Who is the assigned engineer and what comparable system experience can they show?', 'Which panels, detectors, call points, sounders, interfaces and sites are included?', 'How often will competent service visits occur, and what is checked on each?', 'How are monitoring centres, occupants, faults and restoration handled?', 'What call-outs, parts, VAT, travel and out-of-hours work are excluded?'],
+    assemble: ['Responsible person and fire risk assessment', 'Site, panel and zone schedule', 'System type and manufacturer', 'Counts of detectors, call points, sounders and visual alarms', 'Monitoring and door-control interfaces', 'Weekly user-test log and previous service records', 'Faults, disabled zones and false-alarm history', 'Access, occupancy and desired service dates'],
+    competence: ['Who is the named engineer?', 'What system-specific experience and training applies?', 'How will monitoring be placed on test and restored?', 'What panel, power, device and interface checks are proposed?', 'Can the provider show a redacted report?', 'How are urgent defects escalated?', 'What current insurance covers the work?'],
+    comparison: ['Named engineer and system competence', 'System and site boundary', 'Panel and device inventory', 'Visit frequency and point coverage', 'Monitoring and interface coordination', 'Weekly user checks kept separate', 'Service report and logbook updates', 'Fault priority and restoration', 'Call-out and repair terms', 'VAT, travel and access exclusions', 'Total fee by visit and year'],
+    acceptance: ['Panel and site identity are correct', 'Devices tested are traceable', 'Power and relevant interfaces are addressed', 'Faults and disabled zones are explicit', 'Monitoring is restored after testing', 'System is returned to normal state', 'Logbook and responsible-person action list are updated', 'Repairs and redesign are not hidden in a pass certificate'],
+    source: 'https://www.gov.uk/government/publications/fire-safety-risk-assessment-offices-and-shops/fire-safety-risk-assessment-offices-and-shops-accessible', sourceLabel: 'Home Office fire-safety guide',
+  },
   'emergency-lighting': {
     title: 'Buy emergency lighting testing on comparable terms', lead: 'Give each provider the same fitting schedule and test type. Compare competence, safe timing, asset-level reporting and exclusions.',
     standard: ['Who will test and what comparable system experience can they evidence?', 'Which fittings, signs, central units and sites are included?', 'Is this a function test, full rated-duration test or both?', 'How will occupation, recharge time and failures be managed?', 'What VAT, travel, access, repairs and return visits are excluded?'],

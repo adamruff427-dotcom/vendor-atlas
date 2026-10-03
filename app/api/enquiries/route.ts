@@ -2,10 +2,9 @@ import { eq } from 'drizzle-orm'
 import { getDb } from '../../../db'
 import { enquiries, leadEvents } from '../../../db/schema'
 import { leadEventRow } from '../../../src/domain/lead-lifecycle'
-import type { ServiceId } from '../../../src/domain/types'
+import { isServiceId, type ServiceId } from '../../../src/domain/types'
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const serviceIds = new Set(['dsear', 'lev', 'pressure-systems', 'loler'])
 const noStore = { 'cache-control': 'no-store' }
 function text(value: unknown, max: number) { return typeof value === 'string' ? value.trim().slice(0, max) : '' }
 
@@ -15,7 +14,7 @@ export async function POST(request: Request) {
   if (text(input.website, 200)) return Response.json({ ok: true }, { headers: noStore })
   const id = text(input.id, 80), companyName = text(input.companyName, 120), contactName = text(input.contactName, 120), businessEmail = text(input.businessEmail, 200).toLowerCase(), phone = text(input.phone, 40)
   const serviceId = text(input.serviceId, 40)
-  if (!id || !companyName || !contactName || !emailPattern.test(businessEmail) || input.consent !== true || !serviceIds.has(serviceId)) return Response.json({ error: 'Required enquiry fields are invalid' }, { status: 422, headers: noStore })
+  if (!id || !companyName || !contactName || !emailPattern.test(businessEmail) || input.consent !== true || !isServiceId(serviceId)) return Response.json({ error: 'Required enquiry fields are invalid' }, { status: 422, headers: noStore })
   if (JSON.stringify(input).length > 50_000) return Response.json({ error: 'Enquiry is too large' }, { status: 413, headers: noStore })
   const db = getDb()
   const existing = await db.select({ id: enquiries.id }).from(enquiries).where(eq(enquiries.id, id)).limit(1)

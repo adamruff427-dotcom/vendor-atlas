@@ -20,6 +20,8 @@ describe('first-party funnel event boundary', () => {
     expect(analyticsServiceForPath('/lev/suppliers')).toBe('lev')
     expect(analyticsServiceForPath('/pressure-systems')).toBe('pressure-systems')
     expect(analyticsServiceForPath('/loler/cost')).toBe('loler')
+    expect(analyticsServiceForPath('/emergency-lighting/cost')).toBe('emergency-lighting')
+    expect(analyticsServiceForPath('/fire-alarm-servicing/cost')).toBe('fire-alarm-servicing')
     expect(analyticsServiceForPath('/privacy')).toBe('site')
   })
 
