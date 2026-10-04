@@ -11,5 +11,13 @@
   "excludedEnquiryIds": ["qa-launch-20260830"],
   "excludedEnquiryReason": "Synthetic launch record with example.invalid email; only a duplicate lifecycle event exists.",
   "latestCredibleEventDate": "2026-08-31",
-  "consecutiveExpansionBlockerRuns": 0
+  "consecutiveExpansionBlockerRuns": 0,
+  "lastDeployment": {
+    "date": "2026-10-04",
+    "route": "/fire-extinguisher-servicing",
+    "sourceCommit": "8cbf68c395418bdf975328e0d53ae5800ef9c808",
+    "versionNumber": 24,
+    "deploymentId": "appgdep_6ac20b5052408191b50f86b7b9200d3d",
+    "status": "succeeded"
+  }
 }
