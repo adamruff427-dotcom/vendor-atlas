@@ -1,4 +1,4 @@
-export const serviceIds = ['dsear', 'lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44', 'workplace-noise', 'hand-arm-vibration', 'commercial-eicr', 'emergency-lighting', 'fire-alarm-servicing'] as const
+export const serviceIds = ['dsear', 'lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44', 'workplace-noise', 'hand-arm-vibration', 'commercial-eicr', 'emergency-lighting', 'fire-alarm-servicing', 'fire-extinguisher-servicing'] as const
 export type ServiceId = (typeof serviceIds)[number]
 export function isServiceId(value: string): value is ServiceId { return (serviceIds as readonly string[]).includes(value) }
 export type ServiceCategory =
@@ -38,6 +38,8 @@ export type ServiceCategory =
   | 'emergency-lighting-maintenance'
   | 'fire-alarm-inspection'
   | 'fire-alarm-servicing'
+  | 'fire-extinguisher-servicing'
+  | 'fire-extinguisher-inspection'
 export type Hazard = 'flammable-liquids' | 'solvents-paints' | 'lpg-gases' | 'combustible-dust' | 'fuels' | 'batteries' | 'pressurised-gases'
 export type Sector = 'manufacturing' | 'food-drink' | 'woodworking' | 'automotive' | 'chemicals' | 'energy-waste' | 'laboratory' | 'other'
 export type Region = 'scotland' | 'north' | 'midlands' | 'wales' | 'south-west' | 'south-east' | 'london' | 'northern-ireland' | 'great-britain' | 'uk-wide'

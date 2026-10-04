@@ -27,6 +27,7 @@ const serviceChoices = [
   { href: "/commercial-eicr", label: "Commercial EICR", question: "Does fixed wiring need competent inspection and testing?", status: "Great Britain" },
   { href: "/emergency-lighting", label: "Emergency lighting", question: "Does an installed escape-lighting system need testing?", status: "England and Wales duty" },
   { href: "/fire-alarm-servicing", label: "Fire alarm servicing", question: "Is the installed warning system due for competent servicing?", status: "England and Wales duty" },
+  { href: "/fire-extinguisher-servicing", label: "Fire extinguisher servicing", question: "Which portable units need basic or specialist maintenance?", status: "England and Wales duty" },
 ];
 
 export default function Home() {

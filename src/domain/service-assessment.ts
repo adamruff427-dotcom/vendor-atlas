@@ -53,6 +53,53 @@ const sharedDocumentation = [
 ] as ServiceDefinition['documentationOptions']
 
 export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> = {
+  'fire-extinguisher-servicing': {
+    id: 'fire-extinguisher-servicing', name: 'portable fire extinguisher inspection and servicing', shortName: 'Fire extinguisher servicing', eyebrow: 'Extinguisher maintenance finder',
+    question: 'Do my fire extinguishers need servicing?', promise: 'Check the maintenance signals and prepare a service brief in about 2 minutes.',
+    description: 'Identify portable units, their condition and service history, see an explained cost example and compare providers with public evidence.',
+    legalBasis: 'In England and Wales, Fire Safety Order articles 13 and 17 cover appropriate firefighting equipment and its maintenance where necessary to safeguard people. Home Office offices and shops guidance describes monthly visual checks and annual competent maintenance. The manufacturer and actual equipment determine the programme.',
+    legalSource: 'https://www.legislation.gov.uk/uksi/2005/1541/article/17',
+    guidePath: '/fire-extinguisher-servicing/do-i-need-fire-extinguisher-servicing', costPath: '/fire-extinguisher-servicing/cost', supplierPath: '/fire-extinguisher-servicing/suppliers', toolkitPath: '/fire-extinguisher-servicing/buying-toolkit',
+    workHeading: 'Which portable extinguishers are present?', workHelp: 'Read the label or previous inventory. This finder covers servicing existing units; a competent person decides which types and positions suit the fire risk.',
+    workOptions: [
+      { value: 'water-foam', label: 'Traditional water or foam units', detail: 'Portable metal-bodied water or foam extinguishers' },
+      { value: 'co2', label: 'Carbon dioxide units', detail: 'CO2 units with a weight check and manufacturer-specific maintenance' },
+      { value: 'powder', label: 'Dry powder units', detail: 'Record the agent, capacity and site restrictions' },
+      { value: 'wet-chemical', label: 'Wet chemical units', detail: 'Record the kitchen or other location and capacity' },
+      { value: 'service-free', label: 'P50 or other service-free units', detail: 'Follow the exact manufacturer inspection programme' },
+      { value: 'unknown-units', label: 'Types or inventory unknown', detail: 'A competent survey must establish the unit schedule' },
+      { value: 'no-installed', label: 'No portable extinguishers present', detail: 'Review provision in the fire risk assessment before buying a service' },
+    ],
+    signalHeading: 'What is prompting the appointment?', signalHelp: 'Routine visual checks, a basic service and discharge or overhaul work have different scope and costs.',
+    signalOptions: [
+      { value: 'service-due', label: 'Basic service due or overdue', detail: 'The label or maintenance plan calls for an appointment' },
+      { value: 'missing-records', label: 'Service labels or records missing', detail: 'The maintenance history needs confirmation' },
+      { value: 'used-damaged', label: 'Used, damaged or pressure concern', detail: 'Ask the responsible person for prompt competent attention' },
+      { value: 'extended-due', label: 'Discharge, refill or overhaul may be due', detail: 'Age, type and manufacturer determine the work' },
+      { value: 'changed-risk', label: 'Layout or fire hazards changed', detail: 'Selection and siting need a separate risk review' },
+      { value: 'unknown-history', label: 'Service position unknown', detail: 'Inventory and labels need checking' },
+      { value: 'no-concern', label: 'No listed issue', detail: 'Keep the existing inspection and maintenance programme' },
+    ],
+    assetLabel: 'Portable extinguishers in total', secondaryLabel: 'Fire blankets requiring a separate quote',
+    documentationLabel: 'Fire risk assessment, inventory and service records', documentationOptions: sharedDocumentation,
+    inspectionLabel: 'Current extinguisher service position', inspectionOptions: [
+      { value: 'none', label: 'No service record found' }, { value: 'in-date', label: 'Programme and recorded actions appear current' },
+      { value: 'overdue-or-unknown', label: 'Service date or condition uncertain' }, { value: 'new-system', label: 'New units or changed provision' },
+    ],
+    resultResourceHeading: 'Use the programme for the actual units',
+    resultResourceBody: 'The responsible person owns the maintenance arrangements. Ask the technician to confirm unit type, condition, service stage and manufacturer instructions. A service label records work on an item; it does not settle the adequacy of the premises fire precautions.',
+    primaryLinks: [
+      { label: 'Fire Safety Order article 17', detail: 'England and Wales maintenance duty', url: 'https://www.legislation.gov.uk/uksi/2005/1541/article/17' },
+      { label: 'Home Office offices and shops guide', detail: 'Visual checks and competent maintenance guidance for England', url: 'https://www.gov.uk/government/publications/fire-safety-risk-assessment-offices-and-shops/fire-safety-risk-assessment-offices-and-shops-accessible' },
+      { label: 'BAFE extinguisher service guidance', detail: 'Check the organisation scheme and attending technician evidence', url: 'https://www.bafe.org.uk/bafe-fire-safety-services/fire-extinguisher-service-and-maintenance' },
+      { label: 'Safelincs P50 guidance', detail: 'Provider explanation of the manufacturer-specific inspection exception', url: 'https://www.safelincs.co.uk/category/p50-service-free-fire-extinguishers' },
+    ],
+    priceEvidence: [
+      { label: 'Fire Plus / RCR Services', url: 'https://www.rcr-services.co.uk/price-list', note: '£15 standard attendance plus £7.50 per annual basic service, excluding VAT. Basic consumables included. Travel beyond 50 miles from its Suffolk base costs extra. This formula is the model anchor.' },
+      { label: 'PTS Compliance', url: 'https://www.ptscompliance.co.uk/fire-extinguisher-servicing/', note: '£149 for up to ten units outside London or £169 in London, then £3.95 per additional unit. Confirm VAT and contract terms. A comparison example only, not used in our calculation.' },
+      { label: 'Safelincs', url: 'https://www.safelincs.co.uk/service/fire-extinguisher-servicing', note: 'Prices depend on site attendance and unit or blanket count. Basic spare parts are described as included. Obtain an itemised quotation.' },
+    ],
+  },
   'fire-alarm-servicing': {
     id: 'fire-alarm-servicing', name: 'fire detection and alarm inspection and servicing', shortName: 'Fire alarm servicing', eyebrow: 'Fire alarm maintenance finder',
     question: 'Does my fire alarm need a service?',
@@ -815,7 +862,47 @@ export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> 
 const labelFor = (definition: ServiceDefinition, value: string) =>
   [...definition.workOptions, ...definition.signalOptions].find((option) => option.value === value)?.label ?? value
 
+const routineExtinguisherTypes = ['water-foam', 'co2', 'powder', 'wet-chemical']
+export function isRoutineExtinguisherBrief(answers: ServiceAssessmentAnswers): boolean {
+  return answers.serviceId === 'fire-extinguisher-servicing' && answers.sites === 1 && answers.secondaryCount === 0
+    && Number.isInteger(answers.assetCount) && answers.assetCount >= 1
+    && answers.workTypes.length > 0 && answers.workTypes.every((type) => routineExtinguisherTypes.includes(type))
+    && !answers.riskSignals.some((signal) => ['used-damaged', 'extended-due', 'unknown-history', 'changed-risk'].includes(signal))
+    && answers.inspectionStatus !== 'new-system'
+}
+
+function qualifyExtinguisherServicing(answers: ServiceAssessmentAnswers): QualificationResult {
+  const definition = serviceDefinitions['fire-extinguisher-servicing']
+  const traditional = answers.workTypes.some((type) => routineExtinguisherTypes.includes(type))
+  const installed = traditional || answers.workTypes.includes('service-free')
+  const serviceConcern = answers.riskSignals.some((signal) => ['service-due', 'missing-records', 'used-damaged', 'extended-due', 'unknown-history'].includes(signal))
+  let status: QualificationResult['status'] = 'no-obvious-trigger'
+  if (traditional && (serviceConcern || ['none', 'overdue-or-unknown'].includes(answers.inspectionStatus))) status = 'likely-relevant'
+  else if (installed || answers.workTypes.includes('unknown-units') || answers.riskSignals.includes('changed-risk')) status = 'may-be-relevant'
+  if (answers.workTypes.includes('service-free') && answers.riskSignals.includes('used-damaged')) status = 'likely-relevant'
+  if (['scotland', 'northern-ireland'].includes(answers.region) && status === 'likely-relevant') status = 'may-be-relevant'
+  const scope = installed || answers.workTypes.includes('unknown-units') ? [
+    'Confirm unit identity, type, capacity, location and manufacturer maintenance programme',
+    'Agree basic service, extended work or inspection scope for each unit',
+    'Inspect condition and relevant pressure or weight indicators with a competent technician',
+    'Identify faults, missing units and selection or siting concerns for the responsible person',
+    'Record item-level work, labels, limitations and next maintenance actions',
+    'Price recharge, overhaul, replacement and disposal separately before authorising work',
+  ] : ['Review firefighting provision in the fire risk assessment', 'Ask a competent person to decide equipment selection, positioning and commissioning before requesting routine service prices']
+  const caveats = [
+    'This questionnaire is a procurement indication; it does not inspect equipment or establish legal compliance.',
+    'The statutory duty described here is for England and Wales. Scotland and Northern Ireland have separate fire-safety law.',
+    'Home Office offices and shops maintenance intervals are guidance for England; confirm the actual manufacturer programme.',
+  ]
+  if (answers.workTypes.includes('service-free')) caveats.push('P50 and other service-free units need their specific inspection programme checked. Do not assume they require a traditional annual contractor service.')
+  if (answers.riskSignals.includes('used-damaged')) caveats.push('A used, damaged or suspect unit needs prompt competent attention and suitable interim provision arranged by the responsible person. Do not attempt pressure work yourself.')
+  const factors = [...answers.workTypes, ...answers.riskSignals.filter((signal) => signal !== 'no-concern')].map((value) => `${labelFor(definition, value)} was selected`)
+  factors.push(`Service record position: ${definition.inspectionOptions.find((option) => option.value === answers.inspectionStatus)?.label ?? answers.inspectionStatus}`)
+  return { status, score: factors.length, triggeredFactors: factors, scope, caveats, complexity: answers.sites > 1 || answers.riskSignals.some((signal) => ['used-damaged', 'extended-due'].includes(signal)) ? 'complex' : 'standard' }
+}
+
 export function qualifyService(answers: ServiceAssessmentAnswers): QualificationResult {
+  if (answers.serviceId === 'fire-extinguisher-servicing') return qualifyExtinguisherServicing(answers)
   const definition = serviceDefinitions[answers.serviceId]
   const factors: string[] = []
   const positiveWork = answers.workTypes.filter((value) => !value.startsWith('none-'))
@@ -1082,6 +1169,9 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
 }
 
 export const SERVICE_PRICE_MODELS = {
+  'fire-extinguisher-servicing': {
+    version: 'rcr-published-basic-service-2026-10-04', attendance: 15, perUnit: 7.5, spread: 0.25,
+  },
   lev: {
     version: 'published-provider-calibration-2026-08-31', baseVisit: 225, perSystem: 185, perExtraPoint: 28,
     complexSystem: 220, missingBaseline: 90, additionalSite: 190, spread: 0.24,
@@ -1139,6 +1229,17 @@ export function estimateServicePrice(
   result = qualifyService(answers),
 ): PriceEstimate {
   const factors: PriceEstimate['factors'] = []
+  if (answers.serviceId === 'fire-extinguisher-servicing') {
+    const model = SERVICE_PRICE_MODELS['fire-extinguisher-servicing']
+    if (!isRoutineExtinguisherBrief(answers)) return {
+      low: 0, high: 0, currency: 'GBP', factors: [],
+      assumptions: ['An itemised quotation is required for unknown, service-free, used or damaged units, extended servicing, fire blankets or several sites.', 'No zero-cost service is implied. Confirm the inventory, manufacturer programme and required work.'],
+    }
+    factors.push({ label: 'RCR published standard attendance', amount: model.attendance }, { label: `${answers.assetCount} basic services at the RCR published unit rate`, amount: answers.assetCount * model.perUnit })
+    const anchor = model.attendance + answers.assetCount * model.perUnit
+    return { low: Math.floor(anchor * (1 - model.spread)), high: Math.ceil(anchor * (1 + model.spread)), currency: 'GBP', factors,
+      assumptions: ['One planned basic-service visit at one site; exact unit count is correct.', 'The anchor is one local provider tariff, excluding VAT, checked on 4 October 2026. It is not a national market rate or a quote from the matched providers.', 'The 25% planning margin is a Vendor Atlas configuration choice, not measured quote variation.', 'RCR travel beyond 50 miles from its Suffolk base costs extra; that charge is not modelled. Obtain a local quotation.', 'Refills, discharge tests, overhaul, replacement units, disposal, fire blankets, access equipment and urgent attendance are excluded.'] }
+  }
   if (answers.serviceId === 'lev') {
     const model = SERVICE_PRICE_MODELS.lev
     factors.push({ label: 'Site attendance and report setup', amount: model.baseVisit })

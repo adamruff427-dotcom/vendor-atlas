@@ -13,8 +13,47 @@ const vibrationCheckedOn = '2026-09-30'
 const eicrCheckedOn = '2026-10-01'
 const emergencyLightingCheckedOn = '2026-10-02'
 const fireAlarmCheckedOn = '2026-10-03'
+const extinguisherCheckedOn = '2026-10-04'
 
 export const serviceSuppliers: ServiceSupplier[] = [
+  {
+    id: 'pts-extinguishers', name: 'PTS Compliance', website: 'https://www.ptscompliance.co.uk/fire-extinguisher-servicing/',
+    serviceIds: ['fire-extinguisher-servicing'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'laboratory', 'other'],
+    serviceCategories: ['fire-extinguisher-servicing', 'fire-extinguisher-inspection'],
+    capabilities: ['fire extinguisher servicing', 'unit condition checks', 'digital service records'],
+    specialisms: ['water-foam', 'co2', 'powder', 'wet-chemical', 'missing-records'],
+    qualificationsAndMemberships: [], insuranceEvidence: 'Provider states engineers are insured. Request the current certificate and limits for this work.', deliveryModes: ['on-site'],
+    pricingEvidence: 'Provider publishes £149 for up to ten units outside London, £169 in London, then £3.95 per extra unit. Confirm VAT, parts and contract scope.',
+    evidence: [
+      { claim: 'Provider describes UK-wide portable extinguisher servicing for industrial premises, hospitality, education, healthcare and other commercial sites.', sourceUrl: 'https://www.ptscompliance.co.uk/fire-extinguisher-servicing/', sourceType: 'provider', checkedOn: extinguisherCheckedOn },
+      { claim: 'Provider lists pressure, weight and condition checks, location and signage checks, digital records and replacement recommendations for major extinguisher types.', sourceUrl: 'https://www.ptscompliance.co.uk/fire-extinguisher-servicing/', sourceType: 'provider', checkedOn: extinguisherCheckedOn },
+      { claim: 'Provider publishes the first-ten-unit tariff and states its engineers are insured; project-specific policy evidence must be requested.', sourceUrl: 'https://www.ptscompliance.co.uk/fire-extinguisher-servicing/', sourceType: 'provider', checkedOn: extinguisherCheckedOn },
+    ], lastVerifiedDate: extinguisherCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'safelincs-extinguishers', name: 'Safelincs', website: 'https://www.safelincs.co.uk/service/fire-extinguisher-servicing',
+    serviceIds: ['fire-extinguisher-servicing'], geographicalCoverage: ['uk-wide'], sectors: ['other'],
+    serviceCategories: ['fire-extinguisher-servicing', 'fire-extinguisher-inspection'],
+    capabilities: ['fire extinguisher servicing', 'basic consumables', 'service paperwork'],
+    specialisms: ['service-due', 'missing-records', 'service-free'], qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site'],
+    pricingEvidence: 'Provider describes site attendance plus unit or blanket pricing, including basic spare parts. Request a count-specific quote.',
+    evidence: [
+      { claim: 'Provider states UK-wide engineer coverage and provides servicing paperwork and basic spare parts.', sourceUrl: 'https://www.safelincs.co.uk/service/fire-extinguisher-servicing', sourceType: 'provider', checkedOn: extinguisherCheckedOn },
+      { claim: 'Provider describes trained staff inspection arrangements for P50 service-free units rather than traditional annual contractor servicing.', sourceUrl: 'https://www.safelincs.co.uk/category/p50-service-free-fire-extinguishers', sourceType: 'provider', checkedOn: extinguisherCheckedOn },
+    ], lastVerifiedDate: extinguisherCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
+    id: 'urisk-extinguishers', name: 'uRisk', website: 'https://www.urisk.co.uk/fire-safety-services/fire-extinguisher-servicing/',
+    serviceIds: ['fire-extinguisher-servicing'], geographicalCoverage: ['uk-wide'], sectors: ['other'],
+    serviceCategories: ['fire-extinguisher-servicing', 'fire-extinguisher-inspection'],
+    capabilities: ['fire extinguisher servicing', 'extended service', 'unit job reports'],
+    specialisms: ['extended-due', 'used-damaged', 'missing-records', 'co2'], qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site'],
+    pricingEvidence: 'Provider discusses a £10 to £30 per-unit cost with count, type, call-out and remedial-work caveats. This is provider guidance, not a fixed tariff.',
+    evidence: [
+      { claim: 'Provider states nationwide coverage for one or several properties and describes annual and extended extinguisher work.', sourceUrl: 'https://www.urisk.co.uk/fire-safety-services/fire-extinguisher-servicing/', sourceType: 'provider', checkedOn: extinguisherCheckedOn },
+      { claim: 'Provider describes gauge, pin, hose and tag checks, item labels and written job reports, with refilling or replacement separately considered.', sourceUrl: 'https://www.urisk.co.uk/fire-safety-services/fire-extinguisher-servicing/', sourceType: 'provider', checkedOn: extinguisherCheckedOn },
+    ], lastVerifiedDate: extinguisherCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
   {
     id: 'hawkesworth-fire-alarm', name: 'Hawkesworth', website: 'https://hawkesworth.co.uk/commercial-fire-alarm-testing-servicing/',
     serviceIds: ['fire-alarm-servicing'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'other'],

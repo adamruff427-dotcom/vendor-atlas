@@ -72,6 +72,8 @@ export function matchServiceSuppliers(
                       ? 'TM44 inspection'
                       : answers.serviceId === 'fire-alarm-servicing'
                         ? 'fire alarm servicing'
+                      : answers.serviceId === 'fire-extinguisher-servicing'
+                        ? 'fire extinguisher servicing'
                       : answers.serviceId === 'emergency-lighting'
                         ? 'emergency lighting testing'
                       : answers.serviceId === 'workplace-noise'

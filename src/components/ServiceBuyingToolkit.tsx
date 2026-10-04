@@ -8,6 +8,15 @@ type IndustrialServiceId = Exclude<ServiceId, 'dsear'>
 const Check = ({ children }: { children: ReactNode }) => <li><span className="print-checkbox" aria-hidden="true">□</span>{children}</li>
 
 const toolkitData = {
+  'fire-extinguisher-servicing': {
+    title: 'Buy portable extinguisher servicing on comparable terms', lead: 'Give every provider the same unit inventory. Compare basic service, additional work, technician evidence and the total site charge.',
+    standard: ['Who attends and what competence covers these units?', 'Which units and service stages are included?', 'What attendance, consumables and report charges apply?', 'How are defects and extra work authorised?', 'What travel, VAT, refill, disposal and replacement charges are excluded?'],
+    assemble: ['Responsible person and premises details', 'Unit type, manufacturer, capacity, identity and location', 'Count by site and service stage', 'Previous labels, inventory and reports', 'Used, damaged, missing or suspect units', 'Manufacturer instructions for service-free products', 'Access, parking and occupancy restrictions', 'Desired visit and report dates'],
+    competence: ['Who is the attending technician?', 'What training and comparable unit experience applies?', 'Can any claimed BAFE SP101 organisation and technician status be checked?', 'Will any work be subcontracted and to whom?', 'Can a redacted item-level report be supplied?', 'How are defects and urgent provision needs escalated?', 'What current insurance covers the proposed work?'],
+    comparison: ['Attendance charge and visit minimum', 'Unit schedule and basic-service rate', 'Extended work itemised', 'Consumables and certification', 'Technician and subcontractor evidence', 'Defect communication', 'Refill and replacement authorisation', 'Disposal and interim provision', 'Travel, parking and VAT', 'Total site price and exclusions'],
+    acceptance: ['Every unit has a location and identifier', 'Type and manufacturer programme are recorded', 'Work and limitations are itemised', 'Faults and missing units have assigned actions', 'Labels correspond to the report', 'Extra work was authorised', 'Selection and siting concerns are reported', 'Next maintenance actions are recorded'],
+    source: 'https://www.bafe.org.uk/bafe-fire-safety-services/fire-extinguisher-service-and-maintenance', sourceLabel: 'BAFE extinguisher service guidance',
+  },
   'fire-alarm-servicing': {
     title: 'Buy fire alarm servicing on comparable terms', lead: 'Send the same panel and device inventory to each provider. Compare test coverage, competent-person evidence, reporting and defect response.',
     standard: ['Who is the assigned engineer and what comparable system experience can they show?', 'Which panels, detectors, call points, sounders, interfaces and sites are included?', 'How often will competent service visits occur, and what is checked on each?', 'How are monitoring centres, occupants, faults and restoration handled?', 'What call-outs, parts, VAT, travel and out-of-hours work are excluded?'],

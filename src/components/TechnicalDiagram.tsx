@@ -22,6 +22,16 @@ type IndustrialServiceId = Exclude<ServiceId, 'dsear'>
 type Node = { title: string; detail: string; icon: LucideIcon }
 
 const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; intro: string; nodes: Node[]; evidence: string[]; source: string; sourceLabel: string }> = {
+  'fire-extinguisher-servicing': {
+    eyebrow: 'Maintenance sequence', title: 'Trace each unit from inventory to recorded action', intro: 'The quote should follow the unit schedule and distinguish basic service from additional work.',
+    nodes: [
+      { title: 'Inventory', detail: 'Type, capacity, identity and location', icon: PackageCheck },
+      { title: 'Programme', detail: 'Manufacturer instructions and service history', icon: FileCheck2 },
+      { title: 'Inspect', detail: 'Condition and applicable pressure or weight checks', icon: Gauge },
+      { title: 'Act', detail: 'Authorised service, replacement or siting review', icon: Wrench },
+      { title: 'Record', detail: 'Item-level work, defects and next actions', icon: FileCheck2 },
+    ], evidence: ['Unit schedule', 'Technician competence', 'Service-stage scope', 'Defects and authorised work'], source: 'https://www.bafe.org.uk/bafe-fire-safety-services/fire-extinguisher-service-and-maintenance', sourceLabel: 'BAFE extinguisher service guidance',
+  },
   'fire-alarm-servicing': {
     eyebrow: 'Service sequence', title: 'Follow the warning path from device to occupants', intro: 'A service brief connects panel and power checks to field devices, monitored links and a traceable fault record.',
     nodes: [

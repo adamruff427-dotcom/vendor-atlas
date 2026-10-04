@@ -17,11 +17,11 @@ describe('industrial service decision content', () => {
     }
   })
 
-  it('uses unique routes and only authoritative guide sources', () => {
+  it('uses unique routes and primary regulatory, scheme or product sources', () => {
     expect(new Set(allServicePages.map((page) => page.path)).size).toBe(allServicePages.length)
     for (const page of allServicePages) {
       expect(new Set(page.sources.map((item) => item.url)).size).toBe(page.sources.length)
-      expect(page.sources.every((item) => ['www.hse.gov.uk', 'books.hse.gov.uk', 'www.legislation.gov.uk', 'www.gov.uk'].includes(new URL(item.url).hostname))).toBe(true)
+      expect(page.sources.every((item) => ['www.hse.gov.uk', 'books.hse.gov.uk', 'www.legislation.gov.uk', 'www.gov.uk', 'www.bafe.org.uk', 'www.safelincs.co.uk'].includes(new URL(item.url).hostname))).toBe(true)
     }
   })
 })

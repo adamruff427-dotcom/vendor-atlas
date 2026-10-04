@@ -33,7 +33,9 @@ Every added service vertical follows the same product standard:
 8. durable quote-intent capture through the same D1 enquiry workflow; and
 9. substantive overview, decision, cost, supplier and comparison guides based on HSE and legislation.
 
-Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos`, `/fire-risk-assessment`, `/legionella`, `/pat-testing`, `/tm44`, `/workplace-noise`, `/hand-arm-vibration`, `/commercial-eicr`, `/emergency-lighting` and `/fire-alarm-servicing`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
+Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos`, `/fire-risk-assessment`, `/legionella`, `/pat-testing`, `/tm44`, `/workplace-noise`, `/hand-arm-vibration`, `/commercial-eicr`, `/emergency-lighting`, `/fire-alarm-servicing` and `/fire-extinguisher-servicing`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
+
+Portable extinguisher servicing covers existing units and the England/Wales duty context. Its routine one-site budget uses [RCR's published tariff](https://www.rcr-services.co.uk/price-list): £15 attendance plus £7.50 per basic service excluding VAT, with a 25% configuration margin rounded outward to pounds. This is one Suffolk provider's local tariff, with travel beyond 50 miles excluded, not a national market range. Special products, unknown inventory, changed risk, new provision, extended work, damage/use, blankets and multiple sites withhold a numeric estimate and request an itemised quote. A stored zero/zero estimate in those cases means bespoke pricing required, not a free service; its assumptions state this explicitly.
 
 ## Architecture
 
