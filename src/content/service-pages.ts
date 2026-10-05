@@ -1,4 +1,5 @@
 import type { DecisionPage, DecisionSource } from './pages'
+import { fireDoorPages } from './fire-door-pages'
 import type { ServiceId } from '../domain/types'
 
 type IndustrialServiceId = Exclude<ServiceId, 'dsear'>
@@ -77,6 +78,7 @@ const extinguisherBafe = source('BAFE: Portable extinguisher service and mainten
 const extinguisherP50 = source('Safelincs: P50 inspection programme', 'https://www.safelincs.co.uk/category/p50-service-free-fire-extinguishers', 'Provider explanation of P50 manufacturer-specific inspection arrangements; product claims are not legislation.')
 
 export const servicePages: Record<IndustrialServiceId, DecisionPage[]> = {
+  'fire-door-inspection': fireDoorPages,
   'fire-extinguisher-servicing': [
     {
       path: '/fire-extinguisher-servicing', title: 'Fire extinguisher servicing finder', description: 'Check portable extinguisher maintenance signals, an explained basic-service budget and sourced UK providers.', cardPrompt: 'Start with unit labels, condition and the service record.', eyebrow: 'Extinguisher maintenance overview',

@@ -79,6 +79,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               <Link href="/emergency-lighting">Escape lighting</Link>
               <Link href="/fire-alarm-servicing">Fire alarms</Link>
               <Link href="/fire-extinguisher-servicing">Extinguishers</Link>
+              <Link href="/fire-door-inspection">Fire doors</Link>
             </nav>
           </div>
           <div className="analytics-notice" role="note">

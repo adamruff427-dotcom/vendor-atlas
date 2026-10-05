@@ -14,7 +14,9 @@ export function ServiceLanding({ serviceId }: { serviceId: IndustrialServiceId }
   const definition = serviceDefinitions[serviceId]
   const pages = servicePages[serviceId]
   const suppliers = suppliersForService(serviceId)
-  const mapCopy = serviceId === 'fire-extinguisher-servicing'
+  const mapCopy = serviceId === 'fire-door-inspection'
+    ? { firstTitle: 'Building and door schedule', firstDetail: 'Which premises, locations and door types?', signalDetail: 'Routine checks, defects or a specialist survey action?' }
+    : serviceId === 'fire-extinguisher-servicing'
     ? { firstTitle: 'Units and maintenance history', firstDetail: 'Which types, counts and service stages are present?', signalDetail: 'Which dates, faults or records point to competent maintenance?' }
     : serviceId === 'lev'
     ? { firstTitle: 'Contaminant and extraction', firstDetail: 'What is captured, by which systems and hoods?', signalDetail: 'Which facts point to a COSHH TExT duty?' }

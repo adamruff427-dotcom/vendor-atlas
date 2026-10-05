@@ -8,6 +8,15 @@ type IndustrialServiceId = Exclude<ServiceId, 'dsear'>
 const Check = ({ children }: { children: ReactNode }) => <li><span className="print-checkbox" aria-hidden="true">□</span>{children}</li>
 
 const toolkitData = {
+  'fire-door-inspection': {
+    title: 'Compare fire door inspection scope before comparing prices', lead: 'A basic regulation 10 check, detailed visible condition survey and intrusive investigation are different purchases. Give each provider the same door schedule and scope.',
+    standard: ['Is this routine checking or a specialist condition inspection?', 'Which doors, leaves and locations are included?', 'Is the inspection non-intrusive and what remains unverified?', 'What door-level report and defect priorities are delivered?', 'What minimum, travel, VAT, repeat access and repair charges apply?'],
+    assemble: ['Responsible person and premises use', 'Jurisdiction and residential top-storey height where relevant', 'Fire risk assessment and specific door actions', 'Door identifiers, locations and single/double counts', 'Flat entrance access appointments', 'Existing specification and installation records', 'Visible faults and prior reports', 'Desired inspection and reporting dates'],
+    competence: ['Who will inspect these doors?', 'What relevant door-type experience and training can be evidenced?', 'Can any claimed scheme registration be checked independently?', 'How are adequacy questions distinguished from visible condition?', 'Can a redacted door-level report be supplied?', 'How are urgent defects escalated?', 'What current insurance covers the agreed work?'],
+    comparison: ['Door schedule and count basis', 'Routine or specialist scope', 'Non-intrusive limitations', 'Access and failed appointment costs', 'Named inspector and evidence', 'Photographs and door-level findings', 'Defect priorities and report date', 'Repairs and investigation separate', 'Visit minimum, travel and VAT', 'Total site cost'],
+    acceptance: ['Every included door is identified', 'Access exclusions are explicit', 'Condition and closing findings are recorded', 'Photographs support defects', 'Hidden construction is not claimed as verified', 'Urgent concerns have been escalated', 'Actions have responsible contacts', 'Report does not replace the fire risk assessment'],
+    source: 'https://www.gov.uk/government/publications/fire-safety-england-regulations-2022-fire-door-guidance/fire-safety-england-regulations-2022-fire-door-guidance', sourceLabel: 'Home Office fire door guidance',
+  },
   'fire-extinguisher-servicing': {
     title: 'Buy portable extinguisher servicing on comparable terms', lead: 'Give every provider the same unit inventory. Compare basic service, additional work, technician evidence and the total site charge.',
     standard: ['Who attends and what competence covers these units?', 'Which units and service stages are included?', 'What attendance, consumables and report charges apply?', 'How are defects and extra work authorised?', 'What travel, VAT, refill, disposal and replacement charges are excluded?'],

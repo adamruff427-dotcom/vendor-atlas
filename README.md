@@ -39,6 +39,8 @@ Portable extinguisher servicing covers existing units and the England/Wales duty
 
 ## Architecture
 
+Fire door inspection is available at `/fire-door-inspection` with four decision guides, a supplier directory and a buying toolkit. The finder separates England regulation 10 routine checks from specialist condition work. A routine-only result does not promote a paid survey. Non-intrusive pricing uses a linked local provider tariff with an explicit minimum/call-out scenario; uncertain scope and access require a bespoke quote. Door condition is not proof of fire resistance or hidden installation adequacy. No scheme approval is inferred from a provider source.
+
 - React 19 and TypeScript
 - Vinext/Vite application and server routes
 - Cloudflare Worker-compatible Sites deployment

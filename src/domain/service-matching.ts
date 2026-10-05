@@ -74,6 +74,8 @@ export function matchServiceSuppliers(
                         ? 'fire alarm servicing'
                       : answers.serviceId === 'fire-extinguisher-servicing'
                         ? 'fire extinguisher servicing'
+                      : answers.serviceId === 'fire-door-inspection'
+                        ? 'fire door inspection'
                       : answers.serviceId === 'emergency-lighting'
                         ? 'emergency lighting testing'
                       : answers.serviceId === 'workplace-noise'

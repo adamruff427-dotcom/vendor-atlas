@@ -22,6 +22,16 @@ type IndustrialServiceId = Exclude<ServiceId, 'dsear'>
 type Node = { title: string; detail: string; icon: LucideIcon }
 
 const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; intro: string; nodes: Node[]; evidence: string[]; source: string; sourceLabel: string }> = {
+  'fire-door-inspection': {
+    eyebrow: 'Check, inspect, act', title: 'Keep routine checks and specialist inspection distinct', intro: 'A visible condition check does not prove hidden construction or fire resistance. Establish the existing fire-safety basis, record defects and agree what specialist work is needed.',
+    nodes: [
+      { title: 'Basis', detail: 'Fire risk assessment and door schedule', icon: FileCheck2 },
+      { title: 'Check', detail: 'Condition and self-closing checks', icon: SearchCheck },
+      { title: 'Escalate', detail: 'Defects, uncertain adequacy or survey action', icon: ShieldCheck },
+      { title: 'Inspect', detail: 'Agreed non-intrusive or separate intrusive scope', icon: Gauge },
+      { title: 'Act', detail: 'Door-level actions and responsible contact', icon: Wrench },
+    ], evidence: ['Door identifiers', 'Access limitations', 'Photographed defects', 'Follow-up responsibility'], source: 'https://www.gov.uk/government/publications/fire-safety-england-regulations-2022/fact-sheet-fire-doors-regulation-10', sourceLabel: 'Home Office fire door fact sheet',
+  },
   'fire-extinguisher-servicing': {
     eyebrow: 'Maintenance sequence', title: 'Trace each unit from inventory to recorded action', intro: 'The quote should follow the unit schedule and distinguish basic service from additional work.',
     nodes: [

@@ -19,6 +19,18 @@ This record prevents repeat assessment and separates evidence-gate decisions fro
 
 No entry in this table is evidence of buyer demand. Traffic and enquiry evidence is measured separately in `analytics_events`, `enquiries` and `lead_events`.
 
+## 5 October 2026: fire door inspection
+
+Decision: passed evidence gates and release validation; publication pending. Route: `/fire-door-inspection`. Typecheck, all 137 tests across 13 files, the production build and diff whitespace checks passed. Tests use mocked enquiry submission and create no production traffic.
+
+- Duty: [Home Office regulation 10 fact sheet](https://www.gov.uk/government/publications/fire-safety-england-regulations-2022/fact-sheet-fire-doors-regulation-10), [detailed guidance](https://www.gov.uk/government/publications/fire-safety-england-regulations-2022-fire-door-guidance/fire-safety-england-regulations-2022-fire-door-guidance), [regulation 10](https://www.legislation.gov.uk/uksi/2022/547/regulation/10) and [Fire Safety Order article 17](https://www.legislation.gov.uk/uksi/2005/1541/article/17). The specific residential checking threshold applies in England only and does not automatically require a paid specialist.
+- Bounded questionnaire and scope: premises, known door types, residential height signal, faults, FRA action, door counts, records, jurisdiction, access-related flat-entrance scope and timing. Routine-only results route to guidance rather than a paid survey. Visible condition does not establish hidden construction or fire resistance.
+- Independently sourced providers: [uRisk](https://www.urisk.co.uk/fire-safety-services/fire-door-inspection/), [Inspect Fire Doors](https://inspectfiredoors.co.uk/services) and [Gatwick Fire Doors and Joinery](https://www.gatwickfiredoorsandjoinery.co.uk/pricing). Each provider source retained with 5 October checking date. Gatwick coverage is regional and postcode confirmation remains necessary. No accreditation, approval or insurance verification is inferred.
+- Price anchor: [South Coast Fire Doors tariff](https://southcoastfiredoors.co.uk/guides/fire-door-cost/) and [inspection scope](https://southcoastfiredoors.co.uk/fire-door-inspections/). Calculation is a local non-intrusive tariff scenario, not a national rate. Routine checks, unclear scope, resident access, care premises, new doors and several sites withhold a numeric estimate.
+- Comparable quote: same door schedule, inspection method, access assumptions, report deliverable and exclusions. Inspection is separate from professional decisions about performance, repairs or replacement.
+
+Daily monitoring: 293 analytics rows, one excluded launch-test enquiry and its duplicate replay event. No new qualifying funnel use or genuine buyer enquiry found. No production test event or enquiry was created. Notification lists remain unchanged.
+
 The 4 October candidate passes the duty, bounded-scope, questionnaire, three-provider and normalised-quote gates. Basic servicing uses a published local attendance-plus-unit tariff with an explicit configuration margin and travel caveat. Service-free, unknown, used or damaged units, extended work, changed hazards, new provision, fire blankets and several sites require bespoke pricing. No installed units routes to fire-risk provision review. Daily check and notification state is retained in `MONITOR_STATE.json`.
 
 Release verification: source `8cbf68c395418bdf975328e0d53ae5800ef9c808`, Sites version 24, deployment `appgdep_6ac20b5052408191b50f86b7b9200d3d` returned `succeeded` on 4 October 2026. Typecheck, 114 tests across 12 files, production build and diff whitespace checks passed. Tests use mocked enquiry submission; no synthetic production lead or traffic event was created for this release.

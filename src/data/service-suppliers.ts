@@ -17,6 +17,30 @@ const extinguisherCheckedOn = '2026-10-04'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
+    id: 'urisk-fire-doors', name: 'uRisk', website: 'https://www.urisk.co.uk/fire-safety-services/fire-door-inspection/', serviceIds: ['fire-door-inspection'], geographicalCoverage: ['uk-wide'], sectors: ['other'], serviceCategories: ['fire-door-inspection'],
+    capabilities: ['fire door inspection', 'photographed door reports', 'logbook review'], specialisms: ['commercial', 'residential-common', 'communal-doors', 'defects', 'fra-action'], qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site'], pricingEvidence: 'Provider gives a £10–£30 per-door guide with possible call-out charges. Confirm scope, minimum and VAT; it is not used in our calculation.',
+    evidence: [
+      { claim: 'Provider states nationwide fire door inspection coverage for commercial, residential, school and healthcare premises, including several sites.', sourceUrl: 'https://www.urisk.co.uk/fire-safety-services/fire-door-inspection/', sourceType: 'provider', checkedOn: '2026-10-05' },
+      { claim: 'Provider describes visible leaf, frame, hardware, seal, gap and closing checks, photographs, a job report and record review. Confirm non-intrusive limitations.', sourceUrl: 'https://www.urisk.co.uk/fire-safety-services/fire-door-inspection/', sourceType: 'provider', checkedOn: '2026-10-05' },
+    ], lastVerifiedDate: '2026-10-05', verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'inspect-fire-doors', name: 'Inspect Fire Doors', website: 'https://inspectfiredoors.co.uk/services', serviceIds: ['fire-door-inspection'], geographicalCoverage: ['uk-wide'], sectors: ['other'], serviceCategories: ['fire-door-inspection'],
+    capabilities: ['fire door inspection', 'digital door reports', 'timber door maintenance'], specialisms: ['commercial', 'residential-common', 'communal-doors', 'defects'], qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes UK-wide internal timber fire door inspections for commercial, public-sector and residential premises, including multi-site portfolios.', sourceUrl: 'https://inspectfiredoors.co.uk/services', sourceType: 'provider', checkedOn: '2026-10-05' },
+      { claim: 'Provider describes leaf, frame, glazing, gaps, seals and hardware checks with digital photographed reports and separately available repairs.', sourceUrl: 'https://inspectfiredoors.co.uk/services', sourceType: 'provider', checkedOn: '2026-10-05' },
+    ], lastVerifiedDate: '2026-10-05', verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'gatwick-fire-doors', name: 'Gatwick Fire Doors and Joinery', website: 'https://www.gatwickfiredoorsandjoinery.co.uk/pricing', serviceIds: ['fire-door-inspection'], geographicalCoverage: ['south-east', 'london'], sectors: ['other'], serviceCategories: ['fire-door-inspection'],
+    capabilities: ['fire door inspection', 'door condition reports', 'door repairs'], specialisms: ['communal-doors', 'flat-entrance', 'defects'], qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance, deliveryModes: ['on-site'], pricingEvidence: 'Provider publishes separate internal-door volume bands and a flat-entrance-door fee, excluding VAT, with a Greater London surcharge. Ask which applies to your schedule.',
+    evidence: [
+      { claim: 'Provider advertises door inspection and maintenance in Surrey, Sussex and London. Confirm the precise postcode before appointment.', sourceUrl: 'https://www.gatwickfiredoorsandjoinery.co.uk/pricing', sourceType: 'provider', checkedOn: '2026-10-05' },
+      { claim: 'Provider describes inspection reports with outcomes and recommendations, separate flat-entrance inspections and separately charged maintenance.', sourceUrl: 'https://www.gatwickfiredoorsandjoinery.co.uk/pricing', sourceType: 'provider', checkedOn: '2026-10-05' },
+    ], lastVerifiedDate: '2026-10-05', verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
     id: 'pts-extinguishers', name: 'PTS Compliance', website: 'https://www.ptscompliance.co.uk/fire-extinguisher-servicing/',
     serviceIds: ['fire-extinguisher-servicing'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'laboratory', 'other'],
     serviceCategories: ['fire-extinguisher-servicing', 'fire-extinguisher-inspection'],

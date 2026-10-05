@@ -28,6 +28,7 @@ const serviceChoices = [
   { href: "/emergency-lighting", label: "Emergency lighting", question: "Does an installed escape-lighting system need testing?", status: "England and Wales duty" },
   { href: "/fire-alarm-servicing", label: "Fire alarm servicing", question: "Is the installed warning system due for competent servicing?", status: "England and Wales duty" },
   { href: "/fire-extinguisher-servicing", label: "Fire extinguisher servicing", question: "Which portable units need basic or specialist maintenance?", status: "England and Wales duty" },
+  { href: "/fire-door-inspection", label: "Fire door inspection", question: "Routine checks or a specialist condition survey?", status: "Jurisdiction-specific duty" },
 ];
 
 export default function Home() {
