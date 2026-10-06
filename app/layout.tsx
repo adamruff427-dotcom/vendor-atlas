@@ -9,12 +9,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://vendoratlas.artificiallyconfident.com"),
   title: { default: "Vendor Atlas | UK industrial compliance finder", template: "%s | Vendor Atlas" },
   description:
-    "Check eleven UK compliance duties, see itemised planning ranges and compare sourced specialists without paid ranking.",
+    "Check UK compliance duties, see itemised planning ranges and compare sourced specialists without paid ranking.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Vendor Atlas | UK industrial compliance finder",
     description:
-      "Decision support, itemised cost estimates and sourced UK specialists for eleven compliance services.",
+      "Decision support, itemised cost estimates and sourced UK specialists for compliance services.",
     url: "/",
     siteName: "Vendor Atlas",
     locale: "en_GB",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Vendor Atlas | UK industrial compliance finder",
-    description: "Decision support for eleven UK compliance-service buying decisions.",
+    description: "Decision support for UK compliance-service buying decisions.",
     images: ["/og.png"],
   },
   robots: { index: true, follow: true },
@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description:
-      "Decision support for procuring eleven UK compliance services, including DSEAR, statutory examinations, asbestos surveys, fire risk assessments, legionella, electrical equipment testing, TM44 inspections, workplace noise and hand-arm vibration assessments.",
+      "Decision support for procuring UK compliance services, including DSEAR, statutory examinations, asbestos surveys, fire risk assessments, legionella, electrical equipment testing, TM44 inspections, workplace noise and hand-arm vibration assessments.",
     url: "https://vendoratlas.artificiallyconfident.com/",
   };
   return (
@@ -64,22 +64,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               </span>
             </Link>
             <nav aria-label="Main navigation">
-              <Link href="/">DSEAR</Link>
-              <Link href="/lev">LEV</Link>
-              <Link href="/pressure-systems">Pressure systems</Link>
-              <Link href="/loler">LOLER</Link>
-              <Link href="/asbestos">Asbestos</Link>
-              <Link href="/fire-risk-assessment">Fire risk</Link>
-              <Link href="/legionella">Legionella</Link>
-              <Link href="/pat-testing">PAT testing</Link>
-              <Link href="/tm44">TM44</Link>
-              <Link href="/workplace-noise">Noise</Link>
-              <Link href="/hand-arm-vibration">Vibration</Link>
-              <Link href="/commercial-eicr">Fixed wiring</Link>
-              <Link href="/emergency-lighting">Escape lighting</Link>
-              <Link href="/fire-alarm-servicing">Fire alarms</Link>
-              <Link href="/fire-extinguisher-servicing">Extinguishers</Link>
-              <Link href="/fire-door-inspection">Fire doors</Link>
+              <Link href="/#finder">Find a service</Link>
+              <Link href="/#guidance">Guidance</Link>
             </nav>
           </div>
           <div className="analytics-notice" role="note">

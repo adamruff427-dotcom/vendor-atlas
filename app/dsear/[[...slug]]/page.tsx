@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { pages } from "../../../src/content/pages";
 import { DecisionMarker, GuideIcon } from "../../../src/components/VisualLanguage";
+import { ServiceLanding } from "../../../src/components/ServiceLanding";
 
 type Props = { params: Promise<{ slug?: string[] }> };
 function resolvePage(slug?: string[]) {
@@ -30,6 +31,7 @@ export default async function DsearPage({ params }: Props) {
   const { slug } = await params;
   const page = resolvePage(slug);
   if (!page) notFound();
+  if (page.path === "/dsear") return <ServiceLanding serviceId="dsear" />;
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",

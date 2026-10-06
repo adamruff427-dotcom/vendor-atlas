@@ -1,5 +1,11 @@
 # Vendor Atlas
 
+## Shared buyer interface
+
+The homepage and all service entry routes use one shared `ServiceLanding` / `ServiceFinder` template. A single selector chooses the service; the assessment, result, supplier matching and quote capture retain their service-specific rules. Existing service URLs preselect the relevant service and keep their metadata. DSEAR's guide routes remain available.
+
+Keep future verticals inside this selector. Do not grow the main navigation or append another homepage catalogue, hero, explainer or service-card grid. Buying tools and the evidence directory are contextual links; longer guides and technical diagrams sit behind a disclosure. Changing service deliberately resets the previous assessment and quote state. Selecting a service alone must not emit an assessment-start event.
+
 Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The live service directory covers DSEAR, LEV, pressure systems under PSSR, LOLER, asbestos surveys, fire risk assessment, legionella risk assessment, risk-based portable electrical equipment inspection and testing, TM44 air-conditioning inspections in England and Wales, plus workplace noise, hand-arm vibration and commercial fixed-wiring inspection in Great Britain.
 
 Public site: `https://vendoratlas.artificiallyconfident.com/`
