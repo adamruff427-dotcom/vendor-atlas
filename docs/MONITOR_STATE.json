@@ -20,11 +20,11 @@
     "recordPath": "docs/VERTICAL_CANDIDATES.md"
   },
   "lastDeployment": {
-    "date": "2026-10-05",
-    "route": "/fire-door-inspection",
-    "sourceCommit": "222855b9c99889779d7aa651db92ee697032f912",
-    "versionNumber": 25,
-    "deploymentId": "appgdep_6ac35e537f948191b9c50cf5d7bd00e4",
+    "date": "2026-10-06",
+    "route": "/",
+    "sourceCommit": "b81db12f0fd2694319794b8ca138791838ce735a",
+    "versionNumber": 26,
+    "deploymentId": "appgdep_6ac532a9e1648191ab34e8fffdbada66",
     "status": "succeeded"
   }
 }
