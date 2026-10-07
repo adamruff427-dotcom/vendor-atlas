@@ -5,7 +5,10 @@ import { ServiceFinder } from '../components/ServiceFinder'
 import { serviceIds, type ServiceId } from '../domain/types'
 import { serviceDefinitions } from '../domain/service-assessment'
 
-afterEach(cleanup)
+afterEach(() => {
+  cleanup()
+  window.history.replaceState({}, '', '/')
+})
 const guides = Object.fromEntries(serviceIds.map(id => [id, [{ path: '/' + id + '/cost', title: id + ' cost guide' }]])) as Record<ServiceId, Array<{ path: string; title: string }>>
 
 describe('one shared service finder', () => {
@@ -21,9 +24,14 @@ describe('one shared service finder', () => {
       for (const id of serviceIds) {
         await user.selectOptions(picker, id)
         expect(screen.getByRole('heading', { name: id === 'dsear' ? 'Do I need a DSEAR assessment?' : serviceDefinitions[id].question })).toBeInTheDocument()
-        expect(screen.getByRole('link', { name: 'Supplier evidence directory →' })).toHaveAttribute('href', id === 'dsear' ? '/dsear/suppliers' : serviceDefinitions[id].supplierPath)
+        if (id === 'kitchen-extract-cleaning') {
+          expect(screen.getByRole('link', { name: 'Sources and provider evidence' })).toHaveAttribute('href', '/?service=kitchen-extract-cleaning#guidance')
+        } else {
+          expect(screen.getByRole('link', { name: 'Supplier evidence directory →' })).toHaveAttribute('href', id === 'dsear' ? '/dsear/suppliers' : serviceDefinitions[id].supplierPath)
+        }
       }
-      expect(events).toEqual([])
+      expect(events).toContain('landing_page_view')
+      expect(events).not.toContain('assessment_started')
     } finally {
       window.removeEventListener('vendor-atlas:analytics', listener)
     }

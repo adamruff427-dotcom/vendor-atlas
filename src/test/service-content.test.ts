@@ -4,6 +4,10 @@ import { allServicePages, servicePages } from '../content/service-pages'
 describe('industrial service decision content', () => {
   it('gives every vertical a landing route and four substantive buying guides', () => {
     for (const [serviceId, pages] of Object.entries(servicePages)) {
+      if (serviceId === 'kitchen-extract-cleaning') {
+        expect(pages).toEqual([])
+        continue
+      }
       expect(pages).toHaveLength(5)
       expect(pages[0].path).toBe(`/${serviceId}`)
       for (const page of pages) {

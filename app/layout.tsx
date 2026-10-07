@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
     description:
-      "Decision support for procuring UK compliance services, including DSEAR, statutory examinations, asbestos surveys, fire risk assessments, legionella, electrical equipment testing, TM44 inspections, workplace noise and hand-arm vibration assessments.",
+      "Decision support for procuring UK compliance services, including DSEAR, statutory examinations, asbestos surveys, fire risk assessments, kitchen extract cleaning, legionella, electrical equipment testing, TM44 inspections, workplace noise and hand-arm vibration assessments.",
     url: "https://vendoratlas.artificiallyconfident.com/",
   };
   return (

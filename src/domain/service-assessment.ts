@@ -1,4 +1,5 @@
 import { fireDoorDefinition, qualifyFireDoors, estimateFireDoors, FIRE_DOOR_PRICE_MODEL } from './fire-doors'
+import { kitchenExtractDefinition, qualifyKitchenExtract, estimateKitchenExtract, KITCHEN_EXTRACT_PRICE_MODEL } from './kitchen-extract'
 import type {
   PriceEstimate,
   QualificationResult,
@@ -55,6 +56,7 @@ const sharedDocumentation = [
 
 export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> = {
   'fire-door-inspection': fireDoorDefinition,
+  'kitchen-extract-cleaning': kitchenExtractDefinition,
   'fire-extinguisher-servicing': {
     id: 'fire-extinguisher-servicing', name: 'portable fire extinguisher inspection and servicing', shortName: 'Fire extinguisher servicing', eyebrow: 'Extinguisher maintenance finder',
     question: 'Do my fire extinguishers need servicing?', promise: 'Check the maintenance signals and prepare a service brief in about 2 minutes.',
@@ -905,6 +907,7 @@ function qualifyExtinguisherServicing(answers: ServiceAssessmentAnswers): Qualif
 
 export function qualifyService(answers: ServiceAssessmentAnswers): QualificationResult {
   if (answers.serviceId === 'fire-door-inspection') return qualifyFireDoors(answers)
+  if (answers.serviceId === 'kitchen-extract-cleaning') return qualifyKitchenExtract(answers)
   if (answers.serviceId === 'fire-extinguisher-servicing') return qualifyExtinguisherServicing(answers)
   const definition = serviceDefinitions[answers.serviceId]
   const factors: string[] = []
@@ -1173,6 +1176,7 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
 
 export const SERVICE_PRICE_MODELS = {
   'fire-door-inspection': FIRE_DOOR_PRICE_MODEL,
+  'kitchen-extract-cleaning': { version: KITCHEN_EXTRACT_PRICE_MODEL.version, spread: 0 },
   'fire-extinguisher-servicing': {
     version: 'rcr-published-basic-service-2026-10-04', attendance: 15, perUnit: 7.5, spread: 0.25,
   },
@@ -1233,6 +1237,7 @@ export function estimateServicePrice(
   result = qualifyService(answers),
 ): PriceEstimate {
   if (answers.serviceId === 'fire-door-inspection') return estimateFireDoors(answers)
+  if (answers.serviceId === 'kitchen-extract-cleaning') return estimateKitchenExtract(answers, result)
   const factors: PriceEstimate['factors'] = []
   if (answers.serviceId === 'fire-extinguisher-servicing') {
     const model = SERVICE_PRICE_MODELS['fire-extinguisher-servicing']

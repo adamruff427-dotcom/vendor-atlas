@@ -32,6 +32,16 @@ const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; in
       { title: 'Act', detail: 'Door-level actions and responsible contact', icon: Wrench },
     ], evidence: ['Door identifiers', 'Access limitations', 'Photographed defects', 'Follow-up responsibility'], source: 'https://www.gov.uk/government/publications/fire-safety-england-regulations-2022/fact-sheet-fire-doors-regulation-10', sourceLabel: 'Home Office fire door fact sheet',
   },
+  'kitchen-extract-cleaning': {
+    eyebrow: 'Clean, verify, record', title: 'Compare the full grease-bearing path, not only the visible canopy', intro: 'Agree the complete system boundary and access before comparing cleaning prices. Hidden duct runs, risers and fans can change the work substantially.',
+    nodes: [
+      { title: 'Basis', detail: 'Fire-risk actions, system condition and any insurer terms', icon: FileCheck2 },
+      { title: 'Map', detail: 'Canopy, filters, plenum, duct route, riser and fan', icon: PackageCheck },
+      { title: 'Measure', detail: 'Record the agreed grease-condition evidence points', icon: Gauge },
+      { title: 'Clean', detail: 'State access, included sections and excluded work', icon: Wrench },
+      { title: 'Record', detail: 'Photos, readings, limitations and next review', icon: FileCheck2 },
+    ], evidence: ['System schedule and access points', 'Included and inaccessible sections', 'Before-and-after evidence', 'Repairs and access work separated'], source: 'https://publications.thebesa.com/products/grease-specification-fire-risk-management-kitchen-extraction', sourceLabel: 'BESA TR19 Grease specification',
+  },
   'fire-extinguisher-servicing': {
     eyebrow: 'Maintenance sequence', title: 'Trace each unit from inventory to recorded action', intro: 'The quote should follow the unit schedule and distinguish basic service from additional work.',
     nodes: [

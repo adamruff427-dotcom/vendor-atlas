@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import { suppliersForService } from '../data/service-suppliers'
 import { defaultServiceAnswers, estimateServicePrice, qualifyService, SERVICE_PRICE_MODELS, serviceDefinitions } from '../domain/service-assessment'
 import { matchServiceSuppliers } from '../domain/service-matching'
+import { KITCHEN_EXTRACT_PRICE_MODEL } from '../domain/kitchen-extract'
 
 describe('fire alarm servicing qualification, pricing and matching', () => {
   it('identifies an overdue installed system and returns an evidenced shortlist', () => {
@@ -116,6 +117,111 @@ describe('LOLER qualification and pricing', () => {
 
   it('returns a cautious state for unclassified lifting equipment', () => {
     expect(qualifyService({ ...defaultServiceAnswers('loler'), workTypes: ['unknown-lifting'], riskSignals: ['unknown-use'] }).status).toBe('may-be-relevant')
+  })
+})
+
+describe('commercial kitchen extract cleaning qualification, pricing and matching', () => {
+  it('flags a recorded due clean, explains the reason and returns a bounded scope', () => {
+    const answers = {
+      ...defaultServiceAnswers('kitchen-extract-cleaning'),
+      sector: 'food-drink' as const,
+      workTypes: ['one-system'],
+      riskSignals: ['clean-overdue'],
+      inspectionStatus: 'overdue-or-unknown' as const,
+      documentationStatus: 'partial' as const,
+    }
+    const result = qualifyService(answers)
+    expect(result.status).toBe('likely-relevant')
+    expect(result.triggeredFactors.join(' ')).toMatch(/due or overdue|uncertain/i)
+    expect(result.scope.join(' ')).toMatch(/canop|filters|duct|fan/i)
+    expect(result.caveats.join(' ')).toMatch(/not a legal determination|universal TR19/i)
+    expect(serviceDefinitions['kitchen-extract-cleaning'].legalBasis).toMatch(/does not prescribe one universal TR19 cleaning interval/i)
+  })
+
+  it('does not turn a current clean and no concern into a new cleaning trigger', () => {
+    const answers = {
+      ...defaultServiceAnswers('kitchen-extract-cleaning'),
+      workTypes: ['one-system'], riskSignals: ['no-clean-signal'],
+      inspectionStatus: 'in-date' as const, documentationStatus: 'available' as const,
+    }
+    expect(qualifyService(answers).status).toBe('no-obvious-trigger')
+    expect(estimateServicePrice(answers).low).toBe(0)
+  })
+
+  it('keeps absent-system and mixed no-concern answers from becoming a cleaning quote', () => {
+    const noSystem = {
+      ...defaultServiceAnswers('kitchen-extract-cleaning'),
+      workTypes: ['no-extract-system'], riskSignals: ['clean-overdue'],
+      assetCount: 0,
+    }
+    expect(qualifyService(noSystem).status).toBe('no-obvious-trigger')
+    expect(estimateServicePrice(noSystem).high).toBe(0)
+    const contradictorySignal = {
+      ...defaultServiceAnswers('kitchen-extract-cleaning'),
+      workTypes: ['one-system'], riskSignals: ['clean-overdue', 'no-clean-signal'],
+      inspectionStatus: 'in-date' as const, documentationStatus: 'available' as const,
+    }
+    expect(qualifyService(contradictorySignal).status).toBe('no-obvious-trigger')
+  })
+
+  it('does not apply an England and Wales indication to Scotland or Northern Ireland', () => {
+    for (const region of ['scotland', 'northern-ireland'] as const) {
+      const answers = {
+        ...defaultServiceAnswers('kitchen-extract-cleaning'), workTypes: ['one-system'],
+        riskSignals: ['clean-overdue'], region,
+      }
+      expect(qualifyService(answers).status).toBe('may-be-relevant')
+      expect(qualifyService(answers).caveats.join(' ')).toMatch(/separate fire-safety legislation/i)
+    }
+  })
+
+  it('shows only the one-provider price example for a simple job and withholds it for complex work', () => {
+    const simple = {
+      ...defaultServiceAnswers('kitchen-extract-cleaning'), workTypes: ['one-system'],
+      riskSignals: ['clean-overdue'], assetCount: 1, secondaryCount: 1, sites: 1,
+    }
+    const estimate = estimateServicePrice(simple)
+    expect(estimate.low).toBe(KITCHEN_EXTRACT_PRICE_MODEL.low)
+    expect(estimate.high).toBe(KITCHEN_EXTRACT_PRICE_MODEL.high)
+    expect(estimate.factors.map((factor) => factor.amount)).toEqual([300, 500])
+    expect(estimate.assumptions.join(' ')).toMatch(/not a national range|not additive|VAT/i)
+    for (const complex of [
+      { ...simple, sites: 2 }, { ...simple, assetCount: 2 },
+      { ...simple, workTypes: ['solid-fuel'] }, { ...simple, riskSignals: ['visible-grease'] },
+      { ...simple, workTypes: ['system-unknown'] },
+    ]) {
+      const bespoke = estimateServicePrice(complex)
+      expect(bespoke.low).toBe(0)
+      expect(bespoke.high).toBe(0)
+      expect(bespoke.assumptions.join(' ')).toMatch(/bespoke quote|scoped quotation/i)
+    }
+  })
+
+  it('returns three deterministic providers with region, sector and capability reasons', () => {
+    const answers = {
+      ...defaultServiceAnswers('kitchen-extract-cleaning'), sector: 'food-drink' as const,
+      workTypes: ['one-system'], riskSignals: ['clean-overdue'], sites: 2,
+    }
+    const result = qualifyService(answers)
+    const first = matchServiceSuppliers(suppliersForService('kitchen-extract-cleaning'), answers, result)
+    expect(first).toHaveLength(3)
+    expect(matchServiceSuppliers(suppliersForService('kitchen-extract-cleaning'), answers, result)).toEqual(first)
+    expect(first[0].score).toBeGreaterThanOrEqual(first[1].score)
+    expect(first.every((item) => item.reasons.some((reason) => /coverage/i.test(reason)))).toBe(true)
+    expect(first.every((item) => item.reasons.some((reason) => /food drink/i.test(reason)))).toBe(true)
+    expect(first.every((item) => item.reasons.some((reason) => /capability/i.test(reason) || /selected equipment/i.test(reason)))).toBe(true)
+    expect(first.filter((item) => item.reasons.some((reason) => /multi-site/i.test(reason))).length).toBeGreaterThanOrEqual(2)
+  })
+
+  it('retains provider claim sources, checked dates and explicit unverified qualifications', () => {
+    const suppliers = suppliersForService('kitchen-extract-cleaning')
+    expect(suppliers).toHaveLength(3)
+    for (const supplier of suppliers) {
+      expect(supplier.evidence.length).toBeGreaterThan(0)
+      expect(supplier.evidence.every((item) => item.sourceUrl.startsWith('https://') && item.checkedOn === supplier.lastVerifiedDate)).toBe(true)
+      expect(['provider-source-checked', 'partially-verified']).toContain(supplier.verificationStatus)
+    }
+    expect(suppliers[0].qualificationsAndMemberships.join(' ')).toMatch(/not independently checked/i)
   })
 })
 

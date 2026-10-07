@@ -17,6 +17,7 @@ This record prevents repeat assessment and separates evidence-gate decisions fro
 | 2026-10-04 | Portable fire extinguisher servicing in England and Wales | Published | [Fire Safety Order article 13](https://www.legislation.gov.uk/uksi/2005/1541/article/13), [article 17](https://www.legislation.gov.uk/uksi/2005/1541/article/17), [Home Office guidance](https://www.gov.uk/government/publications/fire-safety-risk-assessment-offices-and-shops/fire-safety-risk-assessment-offices-and-shops-accessible), [BAFE scheme guidance](https://www.bafe.org.uk/bafe-fire-safety-services/fire-extinguisher-service-and-maintenance) | [PTS Compliance](https://www.ptscompliance.co.uk/fire-extinguisher-servicing/), [Safelincs](https://www.safelincs.co.uk/service/fire-extinguisher-servicing), [uRisk](https://www.urisk.co.uk/fire-safety-services/fire-extinguisher-servicing/); tariff anchor [Fire Plus / RCR Services](https://www.rcr-services.co.uk/price-list) | `/fire-extinguisher-servicing` | 2026-10-04 |
 | 2026-10-05 | Fire door condition inspection | Published | Home Office regulation 10 guidance and Fire Safety Order article 17, sources detailed below | uRisk, Inspect Fire Doors and Gatwick Fire Doors and Joinery; South Coast tariff anchor | `/fire-door-inspection` | 2026-10-05 |
 | 2026-10-06 | Fire damper inspection and function testing | Hold: standalone pricing evidence | Home Office maintenance guide section 18 and Fire Safety Order article 17; jurisdiction and standards distinguished below | Nationwide Fire Damper Inspections, Essential Fire Services and Ingot Ventilation Services | Not deployed | Not deployed |
+| 2026-10-07 | Commercial kitchen extract system cleaning | Published in shared finder | Fire Safety Order article 17 and Home Office responsible-person guidance; no universal TR19 statutory interval | Duct Doctor, Swiftclean and Deduct Ltd; provider statements only, not approved or independently accredited | `/?service=kitchen-extract-cleaning` (same `/` finder) | 2026-10-07 |
 
 No entry in this table is evidence of buyer demand. Traffic and enquiry evidence is measured separately in `analytics_events`, `enquiries` and `lead_events`.
 
@@ -54,6 +55,36 @@ Three independently sourced provider candidates exist. They are retained here, n
 Release condition: a provider-source or attributable quote schedule defining the covered damper types, function test and reporting scope, attendance/minimum, VAT, region and access exclusions. Do not invent the missing visit minimum, turn product prices into testing prices, or extrapolate a contract rate into a national range. Until that condition is met, the requested deterministic total-price configuration is not evidence-ready.
 
 Daily monitoring: all pages of the three live DB tables were read without omitted rows or truncated values. There are 297 analytics events, one excluded launch-test enquiry and one duplicate replay event. All non-page-view events remain dated 31 August 2026; no added vertical has qualifying use and there is no new genuine enquiry. Notification records remain unchanged. Sites remains active/public at version 25; no application or build inputs changed and no deployment was attempted.
+
+## 7 October 2026: commercial kitchen extract cleaning
+
+Decision: published inside the existing shared finder only. No service landing-page set, directory route, location page, or duplicate route was added. Choose “Kitchen extract cleaning” from the selector on `/`, or link to `/?service=kitchen-extract-cleaning`; both render the same finder page. The selector preserves one service flow and one consistent page layout.
+
+### Duty and evidence boundaries
+
+The [Regulatory Reform (Fire Safety) Order 2005 article 17](https://www.legislation.gov.uk/uksi/2005/1541/article/17) sets a general duty in England and Wales to maintain fire precautions where necessary to safeguard relevant persons. The [Home Office guide for persons with fire-safety duties](https://www.gov.uk/government/publications/people-with-duties-under-fire-safety-laws/a-guide-for-persons-with-duties-under-fire-safety-legislation-accessible) explains maintenance of the measures identified for the premises. Neither source sets a universal cleaning date for all kitchen extract systems or requires every site to appoint an external cleaning contractor.
+
+[BESA describes TR19 Grease as its industry specification](https://publications.thebesa.com/products/grease-specification-fire-risk-management-kitchen-extraction); it is not legislation. Its [kitchen-extract guidance](https://www.thebesa.com/besa-blogs/kitchen-extract-system-cleaning) treats cleaning frequency and extent as system- and condition-dependent. The questionnaire therefore asks about cooking-system boundary, last-clean records, observed grease or ventilation concerns, fire-risk-assessment actions, insurer/contract conditions, sites and scope. Its outcome is a procurement indication only and does not decide whether the premises needs a system, set a statutory interval or replace the fire risk assessment. Scotland and Northern Ireland are shown as requiring a separate local-duty check.
+
+### Bounded quote brief and indicative price
+
+The proposed scope compares the same identified system components: canopy and filters, plenum, accessible duct route, access panels, fan, grease/deposit readings, photographs and report. Additional access panels, inaccessible or concealed duct, access equipment, heavy deposits, repairs, new system provision and out-of-hours work are separate or bespoke.
+
+The deterministic price card is restricted to one simple system, one site, one canopy and normal access. It displays **one provider’s published starting-price example of £300–£500**, not a national price range, formula, market average or matched-supplier quote. The endpoints are not additive. The cited page does not state VAT treatment, so the UI says “VAT not stated.” The example source is [Duct Doctor](https://www.ductdoctor.co.uk/), checked 7 October 2026. It is not extrapolated to complex or multi-site jobs.
+
+### Provider evidence checked 7 October 2026
+
+- [Duct Doctor](https://www.ductdoctor.co.uk/) states UK-wide coverage and describes cleaning canopies, filters, ductwork and fans, survey/fixed quotation and a photographic report. The provider’s TR19 and insurance statements remain provider claims; request current evidence and confirm scope, policy limits and VAT before appointment.
+- [Swiftclean](https://www.swiftclean.co.uk/kitchen-extract-cleaning/) states nationwide coverage and describes canopy, duct, riser and fan cleaning with readings and a photographic report. No qualification, insurance status or numeric price is inferred.
+- [Deduct Ltd](https://deductltd.co.uk/services/kitchen-extraction-cleaning) states UK-wide multi-site service and describes canopy, plenum, duct, riser and fan work with deposit readings, photos and schematic reporting. No qualification, insurance status or numeric price is inferred.
+
+These are three independently sourced provider websites, not endorsements. Matching uses published UK-wide coverage, food/drink sector evidence, selected system/signal specialisms, service capability and complexity. It gives no paid rank. All material provider statements retain source URLs and a 7 October 2026 check date.
+
+### Release record
+
+The shared page uses the existing three-step, service-neutral wizard and quote model. New category-specific deterministic rules cover result status, scope, limited price case, provider matching and no-system/no-trigger states. Seven domain checks and two wizard checks cover qualification, conservative jurisdiction handling, bounded pricing, source retention, matching, completed wizard and no impossible no-system quote state. Run all tests, typecheck and production build before saving/publishing; write the exact resulting source/version/deployment identifiers after publication.
+
+Daily monitoring on 7 October 2026: all rows were read from live D1 tables `analytics_events`, `enquiries` and `lead_events` (313, 1 and 1 respectively). The sole enquiry is the excluded `qa-launch-20260830` synthetic record (`example.invalid`) and its only lead lifecycle event is `enquiry_duplicate`. There are no new genuine enquiries. The 17 qualifying assessment/result/quote-intent analytics events are all dated 31 August 2026; they relate to DSEAR/LOLER-era records, not any recently added vertical. October traffic consists only of page and landing views, which may be crawlers or checks and is not reported as buyer use. No new candidate-vertical traffic is established.
 
 ## 5 October 2026: fire door inspection
 

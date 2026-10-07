@@ -78,6 +78,7 @@ const extinguisherBafe = source('BAFE: Portable extinguisher service and mainten
 const extinguisherP50 = source('Safelincs: P50 inspection programme', 'https://www.safelincs.co.uk/category/p50-service-free-fire-extinguishers', 'Provider explanation of P50 manufacturer-specific inspection arrangements; product claims are not legislation.')
 
 export const servicePages: Record<IndustrialServiceId, DecisionPage[]> = {
+  'kitchen-extract-cleaning': [],
   'fire-door-inspection': fireDoorPages,
   'fire-extinguisher-servicing': [
     {

@@ -44,6 +44,10 @@ export function matchServiceSuppliers(
       } else {
         gaps.push('No equipment-specific evidence matched the selected items')
       }
+      if (answers.serviceId === 'kitchen-extract-cleaning' && answers.sites > 1 && supplier.specialisms.includes('multi-site')) {
+        score += 2
+        reasons.push('Provider describes multi-site kitchen-extract delivery')
+      }
 
       if (supplier.complexity.includes(result.complexity)) {
         score += 3
@@ -80,8 +84,10 @@ export function matchServiceSuppliers(
                         ? 'emergency lighting testing'
                       : answers.serviceId === 'workplace-noise'
                         ? 'workplace noise risk assessment'
-                        : answers.serviceId === 'hand-arm-vibration'
-                          ? 'hand-arm vibration assessment'
+                      : answers.serviceId === 'hand-arm-vibration'
+                        ? 'hand-arm vibration assessment'
+                        : answers.serviceId === 'kitchen-extract-cleaning'
+                          ? 'kitchen extract cleaning'
                           : 'fixed wire testing'
       if (supplier.capabilities.some((item) => item.toLowerCase().includes(capabilityNeed.toLowerCase()))) {
         score += 2

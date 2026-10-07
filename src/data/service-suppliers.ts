@@ -759,6 +759,50 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider lists manufacturing, food production, retail, healthcare and automotive sectors and says it provides detailed reports.', sourceUrl: 'https://www.electrical-testing.co.uk/', sourceType: 'provider', checkedOn: eicrCheckedOn },
     ], lastVerifiedDate: eicrCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
   },
+  {
+    id: 'duct-doctor-kitchen-extract', name: 'Duct Doctor', website: 'https://www.ductdoctor.co.uk/',
+    serviceIds: ['kitchen-extract-cleaning'], geographicalCoverage: ['uk-wide'], sectors: ['food-drink', 'other'],
+    serviceCategories: ['kitchen-extract-cleaning'],
+    capabilities: ['kitchen extract cleaning', 'canopy, ductwork and fan cleaning', 'survey and fixed quotation', 'photographic report'],
+    specialisms: ['one-system', 'system-unknown', 'visible-grease', 'multi-site'],
+    qualificationsAndMemberships: ['Provider advertises BESA TR19® certification; Vendor Atlas has not independently checked its current scope or status.'],
+    insuranceEvidence: 'Provider describes itself as fully insured; request and verify a current certificate, limits and scope before appointment.',
+    deliveryModes: ['on-site', 'remote-scoping'],
+    pricingEvidence: 'Provider states most jobs start from £300–£500 and larger sites from £1,000+. VAT treatment is not stated on the cited page. This is one provider example, not a market rate.',
+    evidence: [
+      { claim: 'Provider states UK-wide coverage and describes work across restaurants, pubs, hotels, schools, hospitals, care premises and other commercial sites.', sourceUrl: 'https://www.ductdoctor.co.uk/', sourceType: 'provider', checkedOn: '2026-10-07' },
+      { claim: 'Provider describes cleaning canopies, ductwork, fans and filters, and says jobs are surveyed before it gives a fixed quotation.', sourceUrl: 'https://www.ductdoctor.co.uk/', sourceType: 'provider', checkedOn: '2026-10-07' },
+      { claim: 'Provider states most jobs start from £300–£500; its page also advertises TR19 and insurance claims, which require direct verification before appointment.', sourceUrl: 'https://www.ductdoctor.co.uk/', sourceType: 'provider', checkedOn: '2026-10-07' },
+    ], lastVerifiedDate: '2026-10-07', verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'swiftclean-kitchen-extract', name: 'Swiftclean', website: 'https://www.swiftclean.co.uk/kitchen-extract-cleaning/',
+    serviceIds: ['kitchen-extract-cleaning'], geographicalCoverage: ['uk-wide'], sectors: ['food-drink', 'laboratory', 'other'],
+    serviceCategories: ['kitchen-extract-cleaning'],
+    capabilities: ['kitchen extract fire-safety cleaning', 'canopy, ductwork, riser and fan cleaning', 'pre- and post-clean readings', 'photographic report'],
+    specialisms: ['one-system', 'visible-grease'],
+    qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance,
+    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states nationwide kitchen extract cleaning coverage and describes service to BESA TR19® Grease.', sourceUrl: 'https://www.swiftclean.co.uk/kitchen-extract-cleaning/', sourceType: 'provider', checkedOn: '2026-10-07' },
+      { claim: 'Provider describes cleaning the canopy, ductwork, fans and risers, with pre- and post-clean readings and a photographic report.', sourceUrl: 'https://www.swiftclean.co.uk/kitchen-extract-cleaning/', sourceType: 'provider', checkedOn: '2026-10-07' },
+      { claim: 'Provider states over four decades of specialist experience and offers nationwide quotations; Vendor Atlas has not independently verified the experience claim.', sourceUrl: 'https://www.swiftclean.co.uk/kitchen-extract-cleaning/', sourceType: 'provider', checkedOn: '2026-10-07' },
+    ], lastVerifiedDate: '2026-10-07', verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'deduct-kitchen-extract', name: 'Deduct Ltd', website: 'https://deductltd.co.uk/services/kitchen-extraction-cleaning',
+    serviceIds: ['kitchen-extract-cleaning'], geographicalCoverage: ['uk-wide'], sectors: ['food-drink', 'laboratory', 'other'],
+    serviceCategories: ['kitchen-extract-cleaning'],
+    capabilities: ['commercial kitchen extract cleaning', 'canopy, plenum, duct, riser and fan cleaning', 'deposit-thickness readings', 'photographic and schematic report'],
+    specialisms: ['one-system', 'system-unknown', 'visible-grease', 'multi-site'],
+    qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance,
+    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes UK-wide multi-site coverage for restaurants, hotels, hospitals, schools, staff canteens and stadia.', sourceUrl: 'https://deductltd.co.uk/services/kitchen-extraction-cleaning', sourceType: 'provider', checkedOn: '2026-10-07' },
+      { claim: 'Provider describes a full accessible-system clean including canopy, plenum, duct, riser and fan, with deposit-thickness readings before and after work.', sourceUrl: 'https://deductltd.co.uk/services/kitchen-extraction-cleaning', sourceType: 'provider', checkedOn: '2026-10-07' },
+      { claim: 'Provider states inaccessible areas are marked and may require separately priced access panels; ask for the exact inclusions in a written quote.', sourceUrl: 'https://deductltd.co.uk/services/kitchen-extraction-cleaning', sourceType: 'provider', checkedOn: '2026-10-07' },
+    ], lastVerifiedDate: '2026-10-07', verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
 ]
 
 export function suppliersForService(serviceId: ServiceSupplier['serviceIds'][number]) {

@@ -1,8 +1,8 @@
 {
-  "lastCheckedDate": "2026-10-06",
+  "lastCheckedDate": "2026-10-07",
   "projectId": "appgprj_6a947416e42c81918150b4b428a21a84",
   "binding": "DB",
-  "analyticsRowCount": 297,
+  "analyticsRowCount": 313,
   "enquiryRowCount": 1,
   "leadEventRowCount": 1,
   "reportedVerticals": [],
@@ -13,10 +13,10 @@
   "latestCredibleEventDate": "2026-08-31",
   "consecutiveExpansionBlockerRuns": 0,
   "lastCandidateAssessment": {
-    "date": "2026-10-06",
-    "candidateId": "fire-damper-testing",
-    "decision": "hold",
-    "reason": "Standalone visit pricing cannot be calibrated from the available unit guides and context-specific contract schedule without adding unsupported attendance or access assumptions.",
+    "date": "2026-10-07",
+    "candidateId": "kitchen-extract-cleaning",
+    "decision": "published",
+    "reason": "Passed legal/operational trigger, bounded scope, questionnaire, three provider-source records, deterministic matching, quote normalization and narrowly constrained provider-example pricing gates; implemented in the shared finder without adding a service-page set.",
     "recordPath": "docs/VERTICAL_CANDIDATES.md"
   },
   "lastDeployment": {

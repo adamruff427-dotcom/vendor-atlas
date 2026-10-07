@@ -1,4 +1,3 @@
-import { LandingAnalytics } from './LandingAnalytics'
 import { ServiceFinder } from './ServiceFinder'
 import { servicePages } from '../content/service-pages'
 import { pages } from '../content/pages'
@@ -12,7 +11,6 @@ export function ServiceLanding({ serviceId }: { serviceId: ServiceId }) {
   ])) as Record<ServiceId, Array<{ path: string; title: string }>>
 
   return <>
-    <LandingAnalytics service={serviceId} />
     <ServiceFinder key={serviceId} initialService={serviceId} guides={guides} />
   </>
 }
