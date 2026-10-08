@@ -18,8 +18,37 @@ This record prevents repeat assessment and separates evidence-gate decisions fro
 | 2026-10-05 | Fire door condition inspection | Published | Home Office regulation 10 guidance and Fire Safety Order article 17, sources detailed below | uRisk, Inspect Fire Doors and Gatwick Fire Doors and Joinery; South Coast tariff anchor | `/fire-door-inspection` | 2026-10-05 |
 | 2026-10-06 | Fire damper inspection and function testing | Hold: standalone pricing evidence | Home Office maintenance guide section 18 and Fire Safety Order article 17; jurisdiction and standards distinguished below | Nationwide Fire Damper Inspections, Essential Fire Services and Ingot Ventilation Services | Not deployed | Not deployed |
 | 2026-10-07 | Commercial kitchen extract system cleaning | Published in shared finder | Fire Safety Order article 17 and Home Office responsible-person guidance; no universal TR19 statutory interval | Duct Doctor, Swiftclean and Deduct Ltd; provider statements only, not approved or independently accredited | `/?service=kitchen-extract-cleaning` (same `/` finder) | 2026-10-07 |
+| 2026-10-08 | Workplace first-aid training procurement | Evidence gate passed; validation/release pending | HSE employer guide and First-Aid Regulations 1981 regulation 3 | British Red Cross, St John Ambulance, Safe Haven Training, St Andrew’s First Aid and St John Ambulance Cymru; provider evidence only | `/?service=workplace-first-aid-training` (same `/` finder) | Pending validation |
 
 No entry in this table is evidence of buyer demand. Traffic and enquiry evidence is measured separately in `analytics_events`, `enquiries` and `lead_events`.
+
+## 8 October 2026: workplace first-aid training
+
+Evidence decision: pass for a bounded shared-finder procurement flow. No additional homepage, path-based landing-page set, subdomain or location pages are being created. The URL `/?service=workplace-first-aid-training` only selects the first-aid option in the existing shared finder.
+
+### Duty and boundary evidence
+
+- [HSE employer guidance](https://www.hse.gov.uk/firstaid/what-employers-need-to-do.htm) says employers need adequate and appropriate first-aid equipment, facilities and personnel and should assess workplace and workforce needs. It identifies factors such as work hazards and nature, workforce size and patterns, absences, accidents, lone or remote work, site distribution and distance from emergency help. HSE does not set a universal first-aider ratio or course prescription.
+- [Health and Safety (First-Aid) Regulations 1981 regulation 3](https://www.legislation.gov.uk/uksi/1981/917/regulation/3/data.xht?view=snippet&wrap=true) is the primary GB duty source. The tool does not decide whether training is required, select EFAW/FAW/requalification, set learner numbers, or replace the employer’s needs assessment. Northern Ireland is not assessed by this GB flow.
+- [HSE GEIS3](https://www.hse.gov.uk/pubns/geis3.htm) explains employer provider-selection responsibilities and that HSE stopped approving first-aid training providers. Vendor Atlas uses “evidence found” wording and asks buyers to verify course, awarding or regulated-qualification, trainer and insurance evidence directly.
+
+### Comparable brief and pricing gate
+
+The minimum quote brief is the course already selected by the employer, learner count, number of classes/sessions, site count, region, records/certificate position and timescale. A course-not-decided answer, incomplete needs assessment or “no training recommended” result suppresses the price, matches and quote request. Contradictory direct data is downgraded to `may-be-relevant`, with no numeric price or shortlist.
+
+Numeric price is limited to one on-site class, one England site outside London, at most 12 learners, no additional session and a course selected by the employer. [Safe Haven Training publishes £450 EFAW, £1,200 FAW and £800 FAW requalification, plus VAT, for groups up to 12](https://www.safehaventraining.co.uk/in-house/). The calculator repeats the exact chosen fee; it adds no learner multiplier, spread or unsourced allowance. This is one provider’s published example, not a national rate or a quote from matched providers. London may carry an unpriced surcharge; Scotland, Wales, Northern Ireland, multi-site, multi-class and larger groups require a scoped quote.
+
+### Provider evidence checked 8 October 2026
+
+- [British Red Cross](https://www.redcross.org.uk/first-aid/book-a-first-aid-course) lists workplace EFAW, FAW and requalification, delivery at UK venues and on-site group training up to 12.
+- [St John Ambulance](https://shop.sja.org.uk/pages/training-at-your-premises) describes on-site workplace delivery and UK trainer coverage; its [workplace FAQ](https://shop.sja.org.uk/pages/faqs-workplace-training) lists the relevant course families.
+- [Safe Haven Training](https://www.safehaventraining.co.uk/in-house/) describes in-house delivery across England except London and publishes the course fees used only for the narrow price example.
+- [St Andrew’s First Aid](https://www.firstaid.org.uk/our-courses/on-your-premises/) describes on-site training in Scotland and lists relevant workplace courses on its [workplace course page](https://www.firstaid.org.uk/our-courses/first-aid-for-workplace/).
+- [St John Ambulance Cymru](https://www.sjacymru.org.uk/en/page/on-site-training) describes on-site delivery in Wales and a six-delegate minimum; its [workplace course listing](https://www.sjacymru.org.uk/en/courses/list/WC) lists the course families.
+
+These are provider-source records, not endorsements. No qualification, accreditation, current insurance or provider approval is inferred. Deterministic matching uses region, selected course and documented single-class delivery; it does not score sector. More than one site, more than 12 learners or additional sessions suppress automated matching. All still require confirmation directly with the provider.
+
+Release status: source, tests and build are being validated before publication. On completion, record the exact source commit, Sites version and deployment status here. A successful deployment is not evidence of buyer demand.
 
 ## 6 October 2026: fire damper testing
 

@@ -4,12 +4,43 @@ import type {
   ServiceSupplier,
   ServiceSupplierMatch,
 } from './types'
+import { isActionableFirstAidBrief, selectedFirstAidCourse } from './first-aid-training'
 
 export function matchServiceSuppliers(
   suppliers: ServiceSupplier[],
   answers: ServiceAssessmentAnswers,
   result: QualificationResult,
 ): ServiceSupplierMatch[] {
+  if (answers.serviceId === 'workplace-first-aid-training') {
+    const course = selectedFirstAidCourse(answers)
+    const simpleSingleClass = result.complexity === 'standard'
+      && answers.sites === 1
+      && answers.assetCount > 0
+      && answers.assetCount <= 12
+      && answers.secondaryCount === 0
+    if (!course || !simpleSingleClass || !isActionableFirstAidBrief(answers, result)) return []
+
+    return suppliers
+      .filter((supplier) => supplier.serviceIds.includes(answers.serviceId))
+      .filter((supplier) => supplier.specialisms.includes(course))
+      .filter((supplier) => supplier.geographicalCoverage.includes('uk-wide')
+        || supplier.geographicalCoverage.includes(answers.region)
+        || (supplier.geographicalCoverage.includes('great-britain') && answers.region !== 'northern-ireland'))
+      .filter((supplier) => supplier.id !== 'st-john-cymru-first-aid' || answers.assetCount >= 6)
+      .map((supplier) => ({
+        supplier,
+        score: 12,
+        reasons: [
+          'Provider-source evidence covers the selected course',
+          'Published coverage includes your region',
+          'Provider describes on-site workplace training for a single class',
+        ],
+        gaps: ['Confirm current course or awarding evidence, trainer competence, insurance, learner limit, dates and total price directly'],
+      }))
+      .sort((a, b) => a.supplier.name.localeCompare(b.supplier.name))
+      .slice(0, 3)
+  }
+
   return suppliers
     .filter((supplier) => supplier.serviceIds.includes(answers.serviceId))
     .map((supplier) => {

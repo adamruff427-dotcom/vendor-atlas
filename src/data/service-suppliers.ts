@@ -14,6 +14,7 @@ const eicrCheckedOn = '2026-10-01'
 const emergencyLightingCheckedOn = '2026-10-02'
 const fireAlarmCheckedOn = '2026-10-03'
 const extinguisherCheckedOn = '2026-10-04'
+const firstAidCheckedOn = '2026-10-08'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
@@ -802,6 +803,62 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider describes a full accessible-system clean including canopy, plenum, duct, riser and fan, with deposit-thickness readings before and after work.', sourceUrl: 'https://deductltd.co.uk/services/kitchen-extraction-cleaning', sourceType: 'provider', checkedOn: '2026-10-07' },
       { claim: 'Provider states inaccessible areas are marked and may require separately priced access panels; ask for the exact inclusions in a written quote.', sourceUrl: 'https://deductltd.co.uk/services/kitchen-extraction-cleaning', sourceType: 'provider', checkedOn: '2026-10-07' },
     ], lastVerifiedDate: '2026-10-07', verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'british-red-cross-first-aid', name: 'British Red Cross', website: 'https://www.redcross.org.uk/first-aid/book-a-first-aid-course',
+    serviceIds: ['workplace-first-aid-training'], geographicalCoverage: ['uk-wide'], sectors: ['other'],
+    serviceCategories: ['training'], capabilities: ['workplace first-aid training', 'EFAW', 'FAW', 'FAW requalification', 'on-site group training'],
+    specialisms: ['efaw', 'faw', 'faw-requalification'], qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance,
+    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider lists workplace EFAW, FAW and requalification courses and states that training is available across the UK.', sourceUrl: 'https://www.redcross.org.uk/first-aid/book-a-first-aid-course', sourceType: 'provider', checkedOn: firstAidCheckedOn },
+      { claim: 'Provider describes on-site workplace training for groups of up to 12; confirm the course, learner limit, dates and terms directly.', sourceUrl: 'https://www.redcross.org.uk/first-aid/book-a-first-aid-course', sourceType: 'provider', checkedOn: firstAidCheckedOn },
+    ], lastVerifiedDate: firstAidCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
+    id: 'st-john-ambulance-first-aid', name: 'St John Ambulance', website: 'https://shop.sja.org.uk/pages/training-at-your-premises',
+    serviceIds: ['workplace-first-aid-training'], geographicalCoverage: ['uk-wide'], sectors: ['other'],
+    serviceCategories: ['training'], capabilities: ['workplace first-aid training', 'EFAW', 'FAW', 'FAW requalification', 'on-site training at business premises'],
+    specialisms: ['efaw', 'faw', 'faw-requalification'], qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance,
+    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes on-site workplace first-aid training at business premises and states trainer availability across the UK.', sourceUrl: 'https://shop.sja.org.uk/pages/training-at-your-premises', sourceType: 'provider', checkedOn: firstAidCheckedOn },
+      { claim: 'Provider lists EFAW, FAW and requalification workplace courses; check the course specification and delivery terms for the selected brief.', sourceUrl: 'https://shop.sja.org.uk/pages/faqs-workplace-training', sourceType: 'provider', checkedOn: firstAidCheckedOn },
+    ], lastVerifiedDate: firstAidCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
+    id: 'safe-haven-first-aid', name: 'Safe Haven Training', website: 'https://www.safehaventraining.co.uk/in-house/',
+    serviceIds: ['workplace-first-aid-training'], geographicalCoverage: ['north', 'midlands', 'south-west', 'south-east'], sectors: ['other'],
+    serviceCategories: ['training'], capabilities: ['workplace first-aid training', 'EFAW', 'FAW', 'FAW requalification', 'on-site courses for up to 12 learners'],
+    specialisms: ['efaw', 'faw', 'faw-requalification'], qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance,
+    deliveryModes: ['on-site', 'remote-scoping'],
+    pricingEvidence: 'Provider publishes in-house course fees of £450 EFAW, £1,200 FAW and £800 FAW requalification, plus VAT, for up to 12 learners. It states delivery across England except London; London may carry a surcharge. Confirm course availability and all terms.',
+    evidence: [
+      { claim: 'Provider states it delivers in-house first-aid training anywhere in England except London; it describes a London-area surcharge.', sourceUrl: 'https://www.safehaventraining.co.uk/in-house/', sourceType: 'provider', checkedOn: firstAidCheckedOn },
+      { claim: 'Provider publishes EFAW, FAW and FAW requalification examples for groups of up to 12, plus VAT; verify the current fee, learner limit, scope and availability before purchase.', sourceUrl: 'https://www.safehaventraining.co.uk/in-house/', sourceType: 'provider', checkedOn: firstAidCheckedOn },
+    ], lastVerifiedDate: firstAidCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
+    id: 'st-andrews-first-aid', name: 'St Andrew’s First Aid', website: 'https://www.firstaid.org.uk/our-courses/on-your-premises/',
+    serviceIds: ['workplace-first-aid-training'], geographicalCoverage: ['scotland'], sectors: ['other'],
+    serviceCategories: ['training'], capabilities: ['workplace first-aid training', 'EFAW', 'FAW', 'FAW requalification', 'on-site training in Scotland'],
+    specialisms: ['efaw', 'faw', 'faw-requalification'], qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance,
+    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states it can deliver on-site first-aid training at customer premises in Scotland.', sourceUrl: 'https://www.firstaid.org.uk/our-courses/on-your-premises/', sourceType: 'provider', checkedOn: firstAidCheckedOn },
+      { claim: 'Provider lists workplace EFAW, FAW and requalification courses; confirm current course and certificate evidence directly.', sourceUrl: 'https://www.firstaid.org.uk/our-courses/first-aid-for-workplace/', sourceType: 'provider', checkedOn: firstAidCheckedOn },
+    ], lastVerifiedDate: firstAidCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
+    id: 'st-john-cymru-first-aid', name: 'St John Ambulance Cymru', website: 'https://www.sjacymru.org.uk/en/page/on-site-training',
+    serviceIds: ['workplace-first-aid-training'], geographicalCoverage: ['wales'], sectors: ['other'],
+    serviceCategories: ['training'], capabilities: ['workplace first-aid training', 'EFAW', 'FAW', 'FAW requalification', 'on-site training in Wales'],
+    specialisms: ['efaw', 'faw', 'faw-requalification'], qualificationsAndMemberships: [], insuranceEvidence: unknownInsurance,
+    deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes on-site workplace training at customer premises in Wales and states a minimum of six delegates for that delivery option.', sourceUrl: 'https://www.sjacymru.org.uk/en/page/on-site-training', sourceType: 'provider', checkedOn: firstAidCheckedOn },
+      { claim: 'Provider lists workplace EFAW, FAW and requalification course options in Wales.', sourceUrl: 'https://www.sjacymru.org.uk/en/courses/list/WC', sourceType: 'provider', checkedOn: firstAidCheckedOn },
+    ], lastVerifiedDate: firstAidCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
   },
 ]
 

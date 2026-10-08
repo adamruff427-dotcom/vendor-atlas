@@ -79,6 +79,7 @@ const extinguisherP50 = source('Safelincs: P50 inspection programme', 'https://w
 
 export const servicePages: Record<IndustrialServiceId, DecisionPage[]> = {
   'kitchen-extract-cleaning': [],
+  'workplace-first-aid-training': [],
   'fire-door-inspection': fireDoorPages,
   'fire-extinguisher-servicing': [
     {

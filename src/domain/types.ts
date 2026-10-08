@@ -1,4 +1,4 @@
-export const serviceIds = ['dsear', 'lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44', 'workplace-noise', 'hand-arm-vibration', 'commercial-eicr', 'emergency-lighting', 'fire-alarm-servicing', 'fire-extinguisher-servicing', 'fire-door-inspection', 'kitchen-extract-cleaning'] as const
+export const serviceIds = ['dsear', 'lev', 'pressure-systems', 'loler', 'asbestos', 'fire-risk-assessment', 'legionella', 'pat-testing', 'tm44', 'workplace-noise', 'hand-arm-vibration', 'commercial-eicr', 'emergency-lighting', 'fire-alarm-servicing', 'fire-extinguisher-servicing', 'fire-door-inspection', 'kitchen-extract-cleaning', 'workplace-first-aid-training'] as const
 export type ServiceId = (typeof serviceIds)[number]
 export function isServiceId(value: string): value is ServiceId { return (serviceIds as readonly string[]).includes(value) }
 export type ServiceCategory =

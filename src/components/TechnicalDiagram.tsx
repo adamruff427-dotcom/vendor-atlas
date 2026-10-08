@@ -42,6 +42,16 @@ const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; in
       { title: 'Record', detail: 'Photos, readings, limitations and next review', icon: FileCheck2 },
     ], evidence: ['System schedule and access points', 'Included and inaccessible sections', 'Before-and-after evidence', 'Repairs and access work separated'], source: 'https://publications.thebesa.com/products/grease-specification-fire-risk-management-kitchen-extraction', sourceLabel: 'BESA TR19 Grease specification',
   },
+  'workplace-first-aid-training': {
+    eyebrow: 'Assess, train, record', title: 'Turn the employer’s needs assessment into a traceable training brief', intro: 'The employer decides the suitable first-aid arrangements. Once a course and learner numbers are selected, compare the same delivery and record requirements with each provider.',
+    nodes: [
+      { title: 'Assess', detail: 'Workplace, workforce, hazards and work patterns', icon: FileCheck2 },
+      { title: 'Select', detail: 'Employer-chosen course and learner numbers', icon: UserRound },
+      { title: 'Book', detail: 'Class size, date, venue and prerequisites', icon: PackageCheck },
+      { title: 'Train', detail: 'Course delivery and assessment details', icon: HardHat },
+      { title: 'Record', detail: 'Attendance, certificates and review triggers', icon: ShieldCheck },
+    ], evidence: ['Current needs assessment', 'Selected course and cohort', 'Provider course and trainer evidence', 'Learner and certificate records'], source: 'https://www.hse.gov.uk/firstaid/what-employers-need-to-do.htm', sourceLabel: 'HSE first-aid employer guidance',
+  },
   'fire-extinguisher-servicing': {
     eyebrow: 'Maintenance sequence', title: 'Trace each unit from inventory to recorded action', intro: 'The quote should follow the unit schedule and distinguish basic service from additional work.',
     nodes: [

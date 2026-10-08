@@ -26,6 +26,8 @@ describe('one shared service finder', () => {
         expect(screen.getByRole('heading', { name: id === 'dsear' ? 'Do I need a DSEAR assessment?' : serviceDefinitions[id].question })).toBeInTheDocument()
         if (id === 'kitchen-extract-cleaning') {
           expect(screen.getByRole('link', { name: 'Sources and provider evidence' })).toHaveAttribute('href', '/?service=kitchen-extract-cleaning#guidance')
+        } else if (id === 'workplace-first-aid-training') {
+          expect(screen.getByRole('link', { name: 'HSE sources and provider evidence' })).toHaveAttribute('href', '/?service=workplace-first-aid-training#guidance')
         } else {
           expect(screen.getByRole('link', { name: 'Supplier evidence directory →' })).toHaveAttribute('href', id === 'dsear' ? '/dsear/suppliers' : serviceDefinitions[id].supplierPath)
         }

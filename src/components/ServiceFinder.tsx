@@ -63,7 +63,9 @@ export function ServiceFinder({ initialService, guides }: { initialService: Serv
     <section className="finder-resources" id="guidance" aria-labelledby="finder-guidance-heading">
       <h2 id="finder-guidance-heading">More help with {name}</h2>
       <p>Use these when you need more detail before appointing someone. This questionnaire is decision support, not a professional assessment or a legal determination.</p>
-      {service === 'kitchen-extract-cleaning'
+      {service === 'workplace-first-aid-training'
+        ? <div className="finder-resource-actions"><a href="#assessment">Start the shared training check</a><a href={activeDefinition.guidePath}>HSE sources and provider evidence</a></div>
+        : service === 'kitchen-extract-cleaning'
         ? <div className="finder-resource-actions"><a href="#assessment">Start the kitchen extract check</a><a href={activeDefinition.guidePath}>Sources and provider evidence</a></div>
         : <div className="finder-resource-actions"><a href={toolkit}>Buying toolkit and quote checklist →</a><a href={directory}>Supplier evidence directory →</a></div>}
       <details key={service}>
@@ -76,6 +78,7 @@ export function ServiceFinder({ initialService, guides }: { initialService: Serv
             <ul>{activeDefinition.primaryLinks.map(link => <li key={link.url}><a href={link.url} target="_blank" rel="noreferrer">{link.label}</a> — {link.detail}</li>)}</ul>
             {activeDefinition.priceEvidence.length > 0 && <><h3>Published price evidence</h3><ul>{activeDefinition.priceEvidence.map(item => <li key={item.url}><a href={item.url} target="_blank" rel="noreferrer">{item.label}</a> — {item.note}</li>)}</ul></>}
             {service === 'kitchen-extract-cleaning' && <><h3>Supplier evidence checked</h3><ul>{suppliersForService(service).map(supplier => <li key={supplier.id}><a href={supplier.website} target="_blank" rel="noreferrer">{supplier.name}</a> — {supplier.evidence[0]?.claim} Evidence found from provider source; not a Vendor Atlas approval.</li>)}</ul></>}
+            {service === 'workplace-first-aid-training' && <><h3>Provider evidence checked</h3><ul>{suppliersForService(service).map(supplier => <li key={supplier.id}><a href={supplier.website} target="_blank" rel="noreferrer">{supplier.name}</a> — {supplier.evidence[0]?.claim} Evidence found from provider source; not a Vendor Atlas approval.</li>)}</ul><p>HSE stopped approving first-aid training providers. Check current course and awarding evidence, trainer competence, insurance and terms directly before purchase.</p></>}
           </div>
           <TechnicalDiagram serviceId={service} />
         </>}

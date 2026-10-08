@@ -1,8 +1,8 @@
 {
-  "lastCheckedDate": "2026-10-07",
+  "lastCheckedDate": "2026-10-08",
   "projectId": "appgprj_6a947416e42c81918150b4b428a21a84",
   "binding": "DB",
-  "analyticsRowCount": 313,
+  "analyticsRowCount": 317,
   "enquiryRowCount": 1,
   "leadEventRowCount": 1,
   "reportedVerticals": [],
@@ -13,10 +13,10 @@
   "latestCredibleEventDate": "2026-08-31",
   "consecutiveExpansionBlockerRuns": 0,
   "lastCandidateAssessment": {
-    "date": "2026-10-07",
-    "candidateId": "kitchen-extract-cleaning",
-    "decision": "published",
-    "reason": "Passed legal/operational trigger, bounded scope, questionnaire, three provider-source records, deterministic matching, quote normalization and narrowly constrained provider-example pricing gates; implemented in the shared finder without adding a service-page set.",
+    "date": "2026-10-08",
+    "candidateId": "workplace-first-aid-training",
+    "decision": "passed-evidence-gate-pending-release",
+    "reason": "HSE and legislation support the employer duty; the flow only sources training already selected by the employer’s own needs assessment; five provider-source records were checked; exact single-provider examples are restricted to one England non-London class of up to 12; implementation stays in the shared finder.",
     "recordPath": "docs/VERTICAL_CANDIDATES.md"
   },
   "lastDeployment": {

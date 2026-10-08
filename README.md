@@ -6,7 +6,7 @@ The homepage and all service entry routes use one shared `ServiceLanding` / `Ser
 
 Keep future verticals inside this selector. Do not grow the main navigation or append another homepage catalogue, hero, explainer or service-card grid. Buying tools and the evidence directory are contextual links; longer guides and technical diagrams sit behind a disclosure. Changing service deliberately resets the previous assessment and quote state. Selecting a service alone must not emit an assessment-start event.
 
-Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The live service directory covers DSEAR, LEV, pressure systems under PSSR, LOLER, asbestos surveys, fire risk assessment, legionella risk assessment, risk-based portable electrical equipment inspection and testing, TM44 air-conditioning inspections in England and Wales, plus workplace noise, hand-arm vibration and commercial fixed-wiring inspection in Great Britain.
+Vendor Atlas is a lightweight UK procurement and compliance marketplace for compulsory B2B services. The shared finder covers DSEAR, LEV, pressure systems under PSSR, LOLER, asbestos surveys, fire risk assessment, legionella risk assessment, risk-based portable electrical equipment inspection and testing, TM44 air-conditioning inspections in England and Wales, workplace noise, hand-arm vibration and commercial fixed-wiring inspection in Great Britain, commercial kitchen extract cleaning, and workplace first-aid training procurement.
 
 Public site: `https://vendoratlas.artificiallyconfident.com/`
 
@@ -39,7 +39,9 @@ Every added service vertical follows the same product standard:
 8. durable quote-intent capture through the same D1 enquiry workflow; and
 9. substantive overview, decision, cost, supplier and comparison guides based on HSE and legislation.
 
-Public routes use one product hostname and path-based verticals: `/dsear`, `/lev`, `/pressure-systems`, `/loler`, `/asbestos`, `/fire-risk-assessment`, `/legionella`, `/pat-testing`, `/tm44`, `/workplace-noise`, `/hand-arm-vibration`, `/commercial-eicr`, `/emergency-lighting`, `/fire-alarm-servicing` and `/fire-extinguisher-servicing`. This keeps the Vendor Atlas evidence and buying standard together without coupling the qualification rules.
+The shared finder is `/`; `/?service=workplace-first-aid-training` preselects first-aid training without creating another page set or hostname. Existing routes for earlier verticals remain compatible. Future categories should use the same finder and must not add a new service landing-page set by default.
+
+Workplace first-aid training is a procurement route only after the employer’s own needs assessment selects a course. It covers EFAW, FAW and FAW requalification; uncertain or “no training recommended” answers suppress the supplier shortlist, numeric example and quote action. Northern Ireland is routed to local-rule confirmation. HSE says the employer must provide adequate and appropriate arrangements and makes clear there is no fixed first-aider ratio or universal course purchase. The finder never decides learner numbers or course suitability.
 
 Portable extinguisher servicing covers existing units and the England/Wales duty context. Its routine one-site budget uses [RCR's published tariff](https://www.rcr-services.co.uk/price-list): £15 attendance plus £7.50 per basic service excluding VAT, with a 25% configuration margin rounded outward to pounds. This is one Suffolk provider's local tariff, with travel beyond 50 miles excluded, not a national market range. Special products, unknown inventory, changed risk, new provision, extended work, damage/use, blankets and multiple sites withhold a numeric estimate and request an itemised quote. A stored zero/zero estimate in those cases means bespoke pricing required, not a free service; its assumptions state this explicitly.
 
@@ -120,6 +122,7 @@ The other models are also deterministic and versioned:
 - Commercial EICR: two published provider tariff formulas are evaluated against the entered board, circuit and site counts. The displayed lower and upper values are those two formula outputs, not a national price distribution. Hexo's published weekday tariff applies to London and the South East; District Group Services' 2024/25 schedule is historical. Complex work needs a bespoke quote. No unsourced complexity surcharge is added.
 - Emergency lighting: a routine installed-system test uses Dale Montague Electrical's published £160 ex-VAT up-to-25-points price and £6 per additional point, per site, with an explicit 25% Vendor Atlas planning buffer. This is not a national tariff, a quotation or a price for design, installation or repairs. Hexo and Wire Now publish separate starting prices for their stated regions. The finder separates testing of installed systems from the fire-risk decision about whether emergency lighting provision is adequate.
 - Fire alarm servicing: a single-site inspection of up to 60 points uses Dale Montague Electrical's published £170/£220/£270 ex-VAT device tiers, with an explicit 25% Vendor Atlas planning buffer. More than 60 points or multiple sites return no numeric estimate and require a scoped quote. The source labels its service as testing and inspection; confirm that a proposed fee includes the competent-person servicing needed for the actual system. Weekly user tests, repair, monitoring and installation are separate decisions.
+- Workplace first-aid training: no formula or market range is used. For one employer-selected EFAW, FAW or FAW requalification class, one site in England outside London and at most 12 learners, the result repeats the matching exact Safe Haven Training published fee (£450, £1,200 or £800 respectively, plus VAT). It does not scale the price by headcount or add a margin. Scotland, Wales, London, Northern Ireland, multiple sites, extra classes, larger cohorts and undecided courses withhold the numeric amount. This is one provider’s tariff example, not a national price or matched-provider quote.
 
 Every result shows the arithmetic, assumptions, excluded work and exact provider-price sources. All models exclude VAT, repairs, replacement parts, unusual access and specialist testing unless stated. The priority calibration input is scope-normalised awarded quote data collected through real projects.
 
@@ -145,6 +148,8 @@ The service-neutral verticals use a parallel deterministic model:
 
 The service is filtered before scoring. Missing region, sector or equipment evidence becomes a visible gap. Qualification wording, insurance statements, prices and paid placement do not influence ranking.
 
+Workplace first-aid matching uses only source-backed course capability and geographic coverage for a single class of up to 12 learners at one site. It does not use the selected business sector as a proxy for course competence. Complex or multi-session briefs are not automatically ranked; the buyer may still submit a normalised brief for human review. St John Ambulance Cymru’s source states a six-delegate minimum for on-site delivery, so it is omitted from smaller on-site groups.
+
 ## Supplier evidence
 
 The DSEAR evidence directory contains 12 real providers, checked against their own public pages on 31 August 2026:
@@ -165,6 +170,8 @@ The DSEAR evidence directory contains 12 real providers, checked against their o
 The app retains the individual provider page supporting each displayed coverage, sector, hazard, capability or published-price claim. Unsupported coverage is displayed as “not evidenced publicly”. Public qualification and insurance details that could not be verified are not invented; the buyer is told to request them during pre-qualification. Directory inclusion and “provider source checked” are not Vendor Atlas approval.
 
 The supplier directory includes provider-source-checked records for every vertical. PAT testing sources added on 13 September 2026 are Safety-PAT, PAT Checked, London PAT and Arnold Pat Testing.
+
+Workplace first-aid provider records were checked against [British Red Cross](https://www.redcross.org.uk/first-aid/book-a-first-aid-course), [St John Ambulance](https://shop.sja.org.uk/pages/training-at-your-premises), [Safe Haven Training](https://www.safehaventraining.co.uk/in-house/), [St Andrew’s First Aid](https://www.firstaid.org.uk/our-courses/on-your-premises/) and [St John Ambulance Cymru](https://www.sjacymru.org.uk/en/page/on-site-training) on 8 October 2026. These links support published service, course, coverage or fee claims only. The records do not claim HSE approval, current awarding status, trainer competence or verified insurance; the buyer is asked to check these directly.
 
 Some providers appear in more than one vertical only where a checked source supports each service. The directory records exact coverage wording, equipment or process capabilities, provider-stated qualifications or accreditation, price evidence, insurance gaps and the public URL supporting every material claim. Accreditation and competence statements remain provider evidence until the buyer verifies the current scope and named person.
 
@@ -196,6 +203,7 @@ Primary sources for the added services include:
 - [HSE HSG258](https://books.hse.gov.uk/gempdf/hsg258.pdf), [HSE LEV FAQs](https://www.hse.gov.uk/lev/faqs.htm) and [COSHH regulation 9](https://www.legislation.gov.uk/uksi/2002/2677/regulation/9);
 - [HSE PSSR overview](https://www.hse.gov.uk/pressure-systems/pssr.htm), [HSE written-scheme guidance](https://www.hse.gov.uk/pubns/indg178.htm) and [PSSR regulations 8–9](https://www.legislation.gov.uk/uksi/2000/128/part/II/crossheading/written-scheme-of-examination);
 - [HSE thorough-examination guidance](https://www.hse.gov.uk/work-equipment-machinery/thorough-examinations-lifting-equipment.htm), [HSE LOLER overview](https://www.hse.gov.uk/work-equipment-machinery/loler-overview.htm) and [LOLER regulation 9](https://www.legislation.gov.uk/uksi/1998/2307/regulation/9).
+- [HSE first-aid employer guidance](https://www.hse.gov.uk/firstaid/what-employers-need-to-do.htm), [Health and Safety (First-Aid) Regulations 1981 regulation 3](https://www.legislation.gov.uk/uksi/1981/917/regulation/3/data.xht?view=snippet&wrap=true) and [HSE GEIS3 provider-selection guide](https://www.hse.gov.uk/pubns/geis3.htm). The interface distinguishes the employer’s duty and assessment from the buyer’s optional decision to procure a course; HSE does not approve training providers.
 
 ## Analytics
 
