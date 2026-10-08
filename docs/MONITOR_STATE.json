@@ -2,7 +2,7 @@
   "lastCheckedDate": "2026-10-08",
   "projectId": "appgprj_6a947416e42c81918150b4b428a21a84",
   "binding": "DB",
-  "analyticsRowCount": 317,
+  "analyticsRowCount": 321,
   "enquiryRowCount": 1,
   "leadEventRowCount": 1,
   "reportedVerticals": [],
@@ -15,16 +15,16 @@
   "lastCandidateAssessment": {
     "date": "2026-10-08",
     "candidateId": "workplace-first-aid-training",
-    "decision": "passed-evidence-gate-pending-release",
-    "reason": "HSE and legislation support the employer duty; the flow only sources training already selected by the employer’s own needs assessment; five provider-source records were checked; exact single-provider examples are restricted to one England non-London class of up to 12; implementation stays in the shared finder.",
+    "decision": "published",
+    "reason": "HSE and legislation support the employer duty; the flow only sources training already selected by the employer’s own needs assessment; five provider-source records were checked; exact single-provider examples are restricted to one England non-London class of up to 12; implementation stays in the shared finder and was published after tests, typecheck and production build passed.",
     "recordPath": "docs/VERTICAL_CANDIDATES.md"
   },
   "lastDeployment": {
-    "date": "2026-10-07",
+    "date": "2026-10-08",
     "route": "/",
-    "sourceCommit": "d09a5f8f97d39c4d746fb890092eb3296c6c3f90",
-    "versionNumber": 27,
-    "deploymentId": "appgdep_6ac60431ff2c8191b62b432cfe1f228a",
+    "sourceCommit": "f0efe73d6b393361ef6cf912d61dcb5deda7177c",
+    "versionNumber": 28,
+    "deploymentId": "appgdep_6ac7514478348191999e884d504b7915",
     "status": "succeeded"
   }
 }
