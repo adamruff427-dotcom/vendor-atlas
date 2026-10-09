@@ -15,6 +15,7 @@ const emergencyLightingCheckedOn = '2026-10-02'
 const fireAlarmCheckedOn = '2026-10-03'
 const extinguisherCheckedOn = '2026-10-04'
 const firstAidCheckedOn = '2026-10-08'
+const faceFitCheckedOn = '2026-10-09'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
@@ -859,6 +860,55 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider describes on-site workplace training at customer premises in Wales and states a minimum of six delegates for that delivery option.', sourceUrl: 'https://www.sjacymru.org.uk/en/page/on-site-training', sourceType: 'provider', checkedOn: firstAidCheckedOn },
       { claim: 'Provider lists workplace EFAW, FAW and requalification course options in Wales.', sourceUrl: 'https://www.sjacymru.org.uk/en/courses/list/WC', sourceType: 'provider', checkedOn: firstAidCheckedOn },
     ], lastVerifiedDate: firstAidCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
+    id: 'we-fit-rpe', name: 'We Fit RPE', website: 'https://wefitrpe.co.uk/',
+    serviceIds: ['rpe-face-fit-testing'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'chemicals', 'laboratory'],
+    serviceCategories: ['rpe-face-fit-testing'], capabilities: ['qualitative face-fit testing', 'quantitative face-fit testing', 'on-site face-fit testing'],
+    specialisms: ['qualitative', 'quantitative'], qualificationsAndMemberships: ['Fit2Fit register lists Paul Chamberlain and Joao Pedro Cruz for qualitative and quantitative testing; confirm the named attendee and current scope before appointment.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'],
+    pricingEvidence: 'Provider publishes £375 ex VAT for an on-site half day up to 8 tests and £650 ex VAT for a full day up to 16 tests; travel is extra. Confirm site, test mix, availability and total charges directly.',
+    evidence: [
+      { claim: 'Provider describes qualitative and quantitative face-fit testing and states it can attend customer sites across the UK.', sourceUrl: 'https://wefitrpe.co.uk/testing/', sourceType: 'provider', checkedOn: faceFitCheckedOn },
+      { claim: 'Provider publishes £375 ex VAT for an on-site half day up to 8 tests and £650 ex VAT for a full day up to 16 tests; it states travel is extra.', sourceUrl: 'https://wefitrpe.co.uk/pricing/', sourceType: 'provider', checkedOn: faceFitCheckedOn },
+      { claim: 'Fit2Fit register checked on this date lists Paul Chamberlain and Joao Pedro Cruz for qualitative and quantitative face-fit testing; verify the attending individual and register entry at booking.', sourceUrl: 'https://www.fit2fit.org/f2f-register/', sourceType: 'other', checkedOn: faceFitCheckedOn },
+    ], lastVerifiedDate: faceFitCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
+    id: 'rpe-face-fit-solutions', name: 'RPE Face Fit Solutions Ltd', website: 'https://www.facefittesting.co.uk/face-fit-testing',
+    serviceIds: ['rpe-face-fit-testing'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'food-drink', 'woodworking', 'automotive', 'chemicals', 'energy-waste', 'laboratory', 'other'],
+    serviceCategories: ['rpe-face-fit-testing'], capabilities: ['qualitative face-fit testing', 'quantitative face-fit testing', 'on-site face-fit testing', 'digital test certificates'],
+    specialisms: ['qualitative', 'quantitative', 'all-industry-sectors'], qualificationsAndMemberships: ['Fit2Fit register lists John D Bowie for qualitative and quantitative testing; confirm the named attendee and current scope before appointment.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider states it offers qualitative and quantitative face-fit testing at customer sites across the UK and describes digital certificates and service to all industry sectors.', sourceUrl: 'https://www.facefittesting.co.uk/face-fit-testing', sourceType: 'provider', checkedOn: faceFitCheckedOn },
+      { claim: 'Fit2Fit register checked on this date lists John D Bowie for qualitative and quantitative face-fit testing; verify the attending individual and register entry at booking.', sourceUrl: 'https://www.fit2fit.org/f2f-register/', sourceType: 'other', checkedOn: faceFitCheckedOn },
+    ], lastVerifiedDate: faceFitCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
+    id: 'velocity-safety-rpe-fit-testing', name: 'Velocity Safety', website: 'https://velocitysafety.co.uk/services/face-fit-testing/',
+    serviceIds: ['rpe-face-fit-testing'], geographicalCoverage: ['uk-wide'], sectors: ['manufacturing', 'automotive', 'laboratory', 'other'],
+    serviceCategories: ['rpe-face-fit-testing'], capabilities: ['qualitative face-fit testing', 'quantitative face-fit testing', 'on-site face-fit testing', 'multi-site face-fit testing', 'digital records'],
+    specialisms: ['qualitative', 'quantitative', 'multi-site'], qualificationsAndMemberships: ['Provider states its face-fit service is Fit2Fit; the Fit2Fit register lists Ross Ciraolo for qualitative and quantitative testing. Confirm the named attendee and current scope before appointment.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'],
+    pricingEvidence: 'Provider publishes £450 plus VAT for 8–10 tests in a half day and £595 plus VAT for 10–18 tests in a full day; individual and multi-site pricing depends on location and method. It is not used in the estimate.',
+    evidence: [
+      { claim: 'Provider describes qualitative and quantitative face-fit testing, nationwide mobile attendance, multi-site delivery, and sectors including construction, healthcare, manufacturing and public services.', sourceUrl: 'https://velocitysafety.co.uk/services/face-fit-testing/', sourceType: 'provider', checkedOn: faceFitCheckedOn },
+      { claim: 'Provider publishes £450 plus VAT for 8–10 tests in a half day and £595 plus VAT for 10–18 tests in a full day; it says individual and multi-site prices depend on location and method.', sourceUrl: 'https://velocitysafety.co.uk/services/face-fit-testing/', sourceType: 'provider', checkedOn: faceFitCheckedOn },
+      { claim: 'Fit2Fit register checked on this date lists Ross Ciraolo for qualitative and quantitative face-fit testing; verify the attending individual and register entry at booking.', sourceUrl: 'https://www.fit2fit.org/f2f-register/', sourceType: 'other', checkedOn: faceFitCheckedOn },
+    ], lastVerifiedDate: faceFitCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'safety-inspectors-rpe-face-fit', name: 'Safety Inspectors UK', website: 'https://safetyinspectors.co.uk/face-fit-testing/',
+    serviceIds: ['rpe-face-fit-testing'], geographicalCoverage: ['north'], sectors: ['manufacturing', 'other'],
+    serviceCategories: ['rpe-face-fit-testing'], capabilities: ['qualitative face-fit testing', 'on-site face-fit testing'],
+    specialisms: ['qualitative', 'local-north-east'], qualificationsAndMemberships: ['Provider states that its tester is trained for qualitative fit tests. No Fit2Fit register evidence is recorded here; ask for person-specific competence evidence.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'],
+    pricingEvidence: 'Provider publishes local qualitative-testing fees including £225 plus VAT for 5 tests and £350 plus VAT for 10 in its North East service area; non-local and national multi-site scope requires a quotation.',
+    evidence: [
+      { claim: 'Provider describes qualitative face-fit testing in Teesside and the North East, with wider multi-site work quoted separately.', sourceUrl: 'https://safetyinspectors.co.uk/face-fit-testing/', sourceType: 'provider', checkedOn: faceFitCheckedOn },
+      { claim: 'Provider states its qualitative tester is trained and publishes local North East tariffs; Vendor Atlas has not independently verified the competence claim or the applicability of those prices elsewhere.', sourceUrl: 'https://safetyinspectors.co.uk/face-fit-testing/', sourceType: 'provider', checkedOn: faceFitCheckedOn },
+    ], lastVerifiedDate: faceFitCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard'],
   },
 ]
 

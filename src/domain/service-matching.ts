@@ -5,6 +5,7 @@ import type {
   ServiceSupplierMatch,
 } from './types'
 import { isActionableFirstAidBrief, selectedFirstAidCourse } from './first-aid-training'
+import { isActionableFaceFitBrief } from './rpe-face-fit-testing'
 
 export function matchServiceSuppliers(
   suppliers: ServiceSupplier[],
@@ -37,6 +38,38 @@ export function matchServiceSuppliers(
         ],
         gaps: ['Confirm current course or awarding evidence, trainer competence, insurance, learner limit, dates and total price directly'],
       }))
+      .sort((a, b) => a.supplier.name.localeCompare(b.supplier.name))
+      .slice(0, 3)
+  }
+
+  if (answers.serviceId === 'rpe-face-fit-testing') {
+    if (!isActionableFaceFitBrief(answers, result)) return []
+    const method = answers.riskSignals[0]
+    const methodCapability = method === 'qualitative' ? 'qualitative face-fit testing' : 'quantitative face-fit testing'
+    return suppliers
+      .filter((supplier) => supplier.serviceIds.includes(answers.serviceId))
+      .filter((supplier) => supplier.capabilities.includes(methodCapability))
+      .filter((supplier) => supplier.geographicalCoverage.includes('uk-wide')
+        || supplier.geographicalCoverage.includes(answers.region)
+        || (supplier.geographicalCoverage.includes('great-britain') && answers.region !== 'northern-ireland'))
+      .filter((supplier) => supplier.sectors.includes(answers.sector) || supplier.sectors.includes('other'))
+      .filter((supplier) => supplier.complexity.includes(result.complexity))
+      .map((supplier) => {
+        const reasons = [
+          `Provider-source evidence states it offers ${method} face-fit testing`,
+          'Published on-site or nationwide coverage includes your selected region',
+          `Provider-source evidence is relevant to ${answers.sector.replace('-', ' ')} work`,
+        ]
+        if (answers.sites > 1 && supplier.specialisms.includes('multi-site')) reasons.push('Provider describes multi-site delivery')
+        const gaps = [
+          'Confirm the named tester and exact facepiece make/model/size, protocol compatibility, adapters, group size, site logistics and quote directly',
+          'Insurance evidence was not verified from the checked provider source; request current certificates',
+        ]
+        if (!supplier.qualificationsAndMemberships.some((item) => /fit2fit/i.test(item))) {
+          gaps.push('No Fit2Fit register evidence was recorded for a named tester at the date checked; ask how competence is demonstrated')
+        }
+        return { supplier, score: 1, reasons, gaps }
+      })
       .sort((a, b) => a.supplier.name.localeCompare(b.supplier.name))
       .slice(0, 3)
   }

@@ -65,6 +65,8 @@ export function ServiceFinder({ initialService, guides }: { initialService: Serv
       <p>Use these when you need more detail before appointing someone. This questionnaire is decision support, not a professional assessment or a legal determination.</p>
       {service === 'workplace-first-aid-training'
         ? <div className="finder-resource-actions"><a href="#assessment">Start the shared training check</a><a href={activeDefinition.guidePath}>HSE sources and provider evidence</a></div>
+        : service === 'rpe-face-fit-testing'
+        ? <div className="finder-resource-actions"><a href="#assessment">Start the shared face-fit check</a><a href={activeDefinition.guidePath}>HSE, Fit2Fit and provider evidence</a></div>
         : service === 'kitchen-extract-cleaning'
         ? <div className="finder-resource-actions"><a href="#assessment">Start the kitchen extract check</a><a href={activeDefinition.guidePath}>Sources and provider evidence</a></div>
         : <div className="finder-resource-actions"><a href={toolkit}>Buying toolkit and quote checklist →</a><a href={directory}>Supplier evidence directory →</a></div>}
@@ -79,6 +81,7 @@ export function ServiceFinder({ initialService, guides }: { initialService: Serv
             {activeDefinition.priceEvidence.length > 0 && <><h3>Published price evidence</h3><ul>{activeDefinition.priceEvidence.map(item => <li key={item.url}><a href={item.url} target="_blank" rel="noreferrer">{item.label}</a> — {item.note}</li>)}</ul></>}
             {service === 'kitchen-extract-cleaning' && <><h3>Supplier evidence checked</h3><ul>{suppliersForService(service).map(supplier => <li key={supplier.id}><a href={supplier.website} target="_blank" rel="noreferrer">{supplier.name}</a> — {supplier.evidence[0]?.claim} Evidence found from provider source; not a Vendor Atlas approval.</li>)}</ul></>}
             {service === 'workplace-first-aid-training' && <><h3>Provider evidence checked</h3><ul>{suppliersForService(service).map(supplier => <li key={supplier.id}><a href={supplier.website} target="_blank" rel="noreferrer">{supplier.name}</a> — {supplier.evidence[0]?.claim} Evidence found from provider source; not a Vendor Atlas approval.</li>)}</ul><p>HSE stopped approving first-aid training providers. Check current course and awarding evidence, trainer competence, insurance and terms directly before purchase.</p></>}
+            {service === 'rpe-face-fit-testing' && <><h3>Provider evidence checked</h3><ul>{suppliersForService(service).map(supplier => <li key={supplier.id}><a href={supplier.website} target="_blank" rel="noreferrer">{supplier.name}</a> — {supplier.evidence[0]?.claim} Evidence found from provider source; not a Vendor Atlas approval.</li>)}</ul><p>We record provider and Fit2Fit directory evidence as found, not an approval. Confirm the exact facepiece, selected method, named tester, competence and current insurance before appointment.</p></>}
           </div>
           <TechnicalDiagram serviceId={service} />
         </>}

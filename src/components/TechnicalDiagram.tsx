@@ -52,6 +52,16 @@ const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; in
       { title: 'Record', detail: 'Attendance, certificates and review triggers', icon: ShieldCheck },
     ], evidence: ['Current needs assessment', 'Selected course and cohort', 'Provider course and trainer evidence', 'Learner and certificate records'], source: 'https://www.hse.gov.uk/firstaid/what-employers-need-to-do.htm', sourceLabel: 'HSE first-aid employer guidance',
   },
+  'rpe-face-fit-testing': {
+    eyebrow: 'Select, test, record', title: 'Keep RPE selection separate from fit testing', intro: 'The employer selects suitable RPE from its exposure assessment. A fit test then checks the seal of the selected tight-fitting facepiece on an individual wearer; it does not prove exposure is controlled.',
+    nodes: [
+      { title: 'Select', detail: 'Employer risk assessment and RPE plan', icon: FileCheck2 },
+      { title: 'Identify', detail: 'Wearer and exact make, model, type and size', icon: UserRound },
+      { title: 'Agree', detail: 'Employer-selected method and suitable protocol', icon: CircleGauge },
+      { title: 'Test', detail: 'Competent person tests each wearer and facepiece', icon: SearchCheck },
+      { title: 'Record', detail: 'Individual result, method, date and outcome', icon: ShieldCheck },
+    ], evidence: ['RPE selection and COSHH basis', 'Wearer/facepiece combinations', 'Named tester and method evidence', 'Individual reports and follow-up actions'], source: 'https://www.hse.gov.uk/respiratory-protective-equipment/fit-testing-basics.htm', sourceLabel: 'HSE fit testing basics',
+  },
   'fire-extinguisher-servicing': {
     eyebrow: 'Maintenance sequence', title: 'Trace each unit from inventory to recorded action', intro: 'The quote should follow the unit schedule and distinguish basic service from additional work.',
     nodes: [

@@ -19,6 +19,7 @@ This record prevents repeat assessment and separates evidence-gate decisions fro
 | 2026-10-06 | Fire damper inspection and function testing | Hold: standalone pricing evidence | Home Office maintenance guide section 18 and Fire Safety Order article 17; jurisdiction and standards distinguished below | Nationwide Fire Damper Inspections, Essential Fire Services and Ingot Ventilation Services | Not deployed | Not deployed |
 | 2026-10-07 | Commercial kitchen extract system cleaning | Published in shared finder | Fire Safety Order article 17 and Home Office responsible-person guidance; no universal TR19 statutory interval | Duct Doctor, Swiftclean and Deduct Ltd; provider statements only, not approved or independently accredited | `/?service=kitchen-extract-cleaning` (same `/` finder) | 2026-10-07 |
 | 2026-10-08 | Workplace first-aid training procurement | Published in shared finder | HSE employer guide and First-Aid Regulations 1981 regulation 3 | British Red Cross, St John Ambulance, Safe Haven Training, St Andrew’s First Aid and St John Ambulance Cymru; provider evidence only | `/?service=workplace-first-aid-training` (same `/` finder) | 2026-10-08 |
+| 2026-10-09 | Tight-fitting RPE face-fit testing procurement | Published in shared finder | COSHH regulation 7 and HSE fit-testing guidance; Northern Ireland sources separately identified | We Fit RPE, RPE Face Fit Solutions Ltd, Velocity Safety and Safety Inspectors UK; provider/Fit2Fit directory evidence only | `/?service=rpe-face-fit-testing` (same `/` finder) | 2026-10-09 |
 
 No entry in this table is evidence of buyer demand. Traffic and enquiry evidence is measured separately in `analytics_events`, `enquiries` and `lead_events`.
 
@@ -51,6 +52,36 @@ These are provider-source records, not endorsements. No qualification, accredita
 Release record: typecheck, all 154 tests across 15 files, production build and diff whitespace checks passed. Source `f0efe73d6b393361ef6cf912d61dcb5deda7177c`; Sites version 28; deployment `appgdep_6ac7514478348191999e884d504b7915` returned `succeeded` on 8 October 2026 at the production Site URL. The same shared finder page is used; this adds no separate category route. A successful deployment is not evidence of buyer demand.
 
 Daily monitoring on 8 October 2026: all rows were read from live D1 tables `analytics_events`, `enquiries` and `lead_events` (321, 1 and 1 respectively). The sole enquiry remains the excluded synthetic launch record `qa-launch-20260830` (`example.invalid`); its only lifecycle event is `enquiry_duplicate`. There is no genuine new enquiry. The five `assessment_started`, four `assessment_completed`, four `results_viewed` and four `quote_request_started` events are historical and predate this vertical. No credible funnel event is recorded for workplace first-aid training; page and landing views alone are not treated as proof of buyer use. No notification state changed. The deployment was confirmed successful, but traffic and commercial viability remain unproven.
+
+## 9 October 2026: tight-fitting RPE face-fit testing
+
+Decision: published inside the existing shared finder only. This adds an option and a three-step questionnaire to the same `/` page; `/?service=rpe-face-fit-testing` selects it. No additional content route, landing-page set, location route or subdomain is created.
+
+### Duty and decision boundary
+
+- [COSHH regulation 7](https://www.legislation.gov.uk/uksi/2002/2677/regulation/7) is the Great Britain legal source for prevention or adequate control of hazardous-substance exposure. It does not establish that every employer needs RPE or a paid fit test.
+- [HSE fit-testing basics](https://www.hse.gov.uk/respiratory-protective-equipment/fit-testing-basics.htm) says tight-fitting facepieces should be fit tested as part of selection. The test relates to the individual wearer and exact facepiece; where more than one type is used, each type needs testing. [HSE INDG479 revision 2](https://www.hse.gov.uk/pubns/indg479.htm) describes test methods and the information a report should contain.
+- [HSENI RPE guidance](https://www.hseni.gov.uk/topics/respiratory-protective-equipment-rpe) and the [Northern Ireland COSHH regulations](https://www.legislation.gov.uk/nisr/2003/34/contents/made) are linked separately. The finder does not treat Great Britain law as Northern Ireland law.
+- The questionnaire only prepares a buying brief after the employer has selected a tight-fitting facepiece and its test method. It does not select RPE, establish adequate exposure control, perform a fit test, select a method, decide legal compliance or create a universal re-test interval. Unknown or contradictory answers suppress matching and prices; no selected tight-fitting facepiece produces no fit-test quote prompt.
+
+### Bounded brief and pricing
+
+The buyer records sector, selected facepiece type, employer-selected qualitative or quantitative method, wearer-and-facepiece test count, distinct facepiece model/size count, site count and size, records and test status, reason, region/postcode and timing. The comparable brief asks providers to confirm named tester, exact make/model/type/size, compatible protocol and adapters, wearer preparation, result record, failures/retests, travel, VAT, insurance and exclusions. Alternative mask selection, RPE programme review, training, failed tests and wider COSHH work remain separate.
+
+The sole numeric example repeats [We Fit RPE’s exact published on-site package](https://wefitrpe.co.uk/pricing/): **£375 ex VAT for up to 8 tests in a half day**, or **£650 ex VAT for up to 16 in a full day**, at one site. Travel is extra. The deterministic model applies the selected count band only when there is one site, a standard brief, a known facepiece and method, no more than 16 tests, and a supported test count/model-count relationship. It does not average providers or call this a market price. Unknown, multi-site, complex, non-standard or over-16-test work receives no number and requires a scoped quote.
+
+### Provider evidence checked 9 October 2026
+
+- [We Fit RPE](https://wefitrpe.co.uk/testing/) describes qualitative and quantitative tests and UK-wide on-site attendance. Its [pricing page](https://wefitrpe.co.uk/pricing/) supplies the exact limited price anchor. The [Fit2Fit register](https://www.fit2fit.org/f2f-register/) lists named people for both test types on the check date; confirm the attending person's live entry and exact scope before appointment.
+- [RPE Face Fit Solutions Ltd](https://www.facefittesting.co.uk/face-fit-testing) describes qualitative and quantitative on-site testing, UK coverage, digital certificates and work across industry sectors. The [Fit2Fit register](https://www.fit2fit.org/f2f-register/) includes John D Bowie for qualitative and quantitative testing on the check date.
+- [Velocity Safety](https://velocitysafety.co.uk/services/face-fit-testing/) describes qualitative and quantitative testing, nationwide mobile and multi-site attendance, and lists service sectors. The provider publishes different small-group package rates on that same page; these are not averaged into the model. The [Fit2Fit register](https://www.fit2fit.org/f2f-register/) includes Ross Ciraolo for both methods on the check date.
+- [Safety Inspectors UK](https://safetyinspectors.co.uk/face-fit-testing/) describes qualitative testing in Teesside and the North East and publishes local rates for that scope. Its page says its tester is trained; no Fit2Fit evidence is recorded for this provider, and we do not upgrade that statement into an accreditation claim. Its local pricing is not used for the UK-wide estimate.
+
+Provider claims are stored with source URLs and the check date. `Evidence found` is not Vendor Atlas approval. No insurance was verified. Matching is deterministic by advertised method, region, documented sector and supported complexity, with equal ordering/no paid rank. Exact mask compatibility, the assigned person, competence, current insurance and commercial terms remain gaps to verify.
+
+Release record: typecheck, 160 tests across 17 files, production build and `git diff --check` passed. Tests cover the decision rules, exact price boundary, source-backed method matching, no-facepiece/no-quote state, unknown method, contradictory answers, shared selector and completed wizard. Deployment status and version are recorded below after confirmation.
+
+Daily monitoring on 9 October 2026: live D1 was checked before this publish. It contained 321 analytics rows, one excluded synthetic launch enquiry and one duplicate replay event. Historical credible funnel events predate this category. This is the pre-release baseline only; do not treat build or deployment views as buyer use. Traffic and commercial viability remain unproven.
 
 ## 6 October 2026: fire damper testing
 
