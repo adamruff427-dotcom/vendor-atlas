@@ -1,8 +1,8 @@
 {
-  "lastCheckedDate": "2026-10-08",
+  "lastCheckedDate": "2026-10-09",
   "projectId": "appgprj_6a947416e42c81918150b4b428a21a84",
   "binding": "DB",
-  "analyticsRowCount": 321,
+  "analyticsRowCount": 325,
   "enquiryRowCount": 1,
   "leadEventRowCount": 1,
   "reportedVerticals": [],
@@ -13,18 +13,18 @@
   "latestCredibleEventDate": "2026-08-31",
   "consecutiveExpansionBlockerRuns": 0,
   "lastCandidateAssessment": {
-    "date": "2026-10-08",
-    "candidateId": "workplace-first-aid-training",
+    "date": "2026-10-09",
+    "candidateId": "rpe-face-fit-testing",
     "decision": "published",
-    "reason": "HSE and legislation support the employer duty; the flow only sources training already selected by the employer’s own needs assessment; five provider-source records were checked; exact single-provider examples are restricted to one England non-London class of up to 12; implementation stays in the shared finder and was published after tests, typecheck and production build passed.",
+    "reason": "COSHH and HSE/HSENI sources support a bounded buyer brief for employer-selected tight-fitting RPE; four provider-source records plus Fit2Fit register entries were checked; one provider's exact package price is restricted to a single-site standard brief of up to 16 tests; implementation stays in the shared finder and passed tests, typecheck and production build before public deployment.",
     "recordPath": "docs/VERTICAL_CANDIDATES.md"
   },
   "lastDeployment": {
-    "date": "2026-10-08",
+    "date": "2026-10-09",
     "route": "/",
-    "sourceCommit": "f0efe73d6b393361ef6cf912d61dcb5deda7177c",
-    "versionNumber": 28,
-    "deploymentId": "appgdep_6ac7514478348191999e884d504b7915",
+    "sourceCommit": "7c12be31cd7b48d32513eea7c9b59979c68da2f0",
+    "versionNumber": 29,
+    "deploymentId": "appgdep_6ac8a235786c819198bf62e51bbd33cf",
     "status": "succeeded"
   }
 }
