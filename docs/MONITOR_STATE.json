@@ -2,7 +2,7 @@
   "lastCheckedDate": "2026-10-10",
   "projectId": "appgprj_6a947416e42c81918150b4b428a21a84",
   "binding": "DB",
-  "analyticsRowCount": 325,
+  "analyticsRowCount": 329,
   "enquiryRowCount": 1,
   "leadEventRowCount": 1,
   "reportedVerticals": [],
@@ -15,16 +15,16 @@
   "lastCandidateAssessment": {
     "date": "2026-10-10",
     "candidateId": "commercial-epc",
-    "decision": "validated-pending-publication",
-    "reason": "Energy Performance of Buildings Regulations 2012 and GOV.UK EPC guidance support a cautious England-and-Wales buyer flow; four independent provider pages and one bounded London tariff were checked; implementation stays in the shared finder and passed typecheck, all tests and production build before publication.",
+    "decision": "published",
+    "reason": "Energy Performance of Buildings Regulations 2012 and GOV.UK EPC guidance support a cautious England-and-Wales buyer flow; four independent provider pages and one bounded London tariff were checked; the shared finder implementation passed typecheck, 167 tests and production build, then Sites version 30 deployed successfully.",
     "recordPath": "docs/VERTICAL_CANDIDATES.md"
   },
   "lastDeployment": {
-    "date": "2026-10-09",
-    "route": "/",
-    "sourceCommit": "7c12be31cd7b48d32513eea7c9b59979c68da2f0",
-    "versionNumber": 29,
-    "deploymentId": "appgdep_6ac8a235786c819198bf62e51bbd33cf",
+    "date": "2026-10-10",
+    "route": "/?service=commercial-epc",
+    "sourceCommit": "7601728b13c083ed7101d3c8f6029be5b0982360",
+    "versionNumber": 30,
+    "deploymentId": "appgdep_6ac9f5b72e608191a038b70ad2eb3526",
     "status": "succeeded"
   }
 }
