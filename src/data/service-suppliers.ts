@@ -16,6 +16,7 @@ const fireAlarmCheckedOn = '2026-10-03'
 const extinguisherCheckedOn = '2026-10-04'
 const firstAidCheckedOn = '2026-10-08'
 const faceFitCheckedOn = '2026-10-09'
+const commercialEpcCheckedOn = '2026-10-10'
 
 export const serviceSuppliers: ServiceSupplier[] = [
   {
@@ -909,6 +910,54 @@ export const serviceSuppliers: ServiceSupplier[] = [
       { claim: 'Provider describes qualitative face-fit testing in Teesside and the North East, with wider multi-site work quoted separately.', sourceUrl: 'https://safetyinspectors.co.uk/face-fit-testing/', sourceType: 'provider', checkedOn: faceFitCheckedOn },
       { claim: 'Provider states its qualitative tester is trained and publishes local North East tariffs; Vendor Atlas has not independently verified the competence claim or the applicability of those prices elsewhere.', sourceUrl: 'https://safetyinspectors.co.uk/face-fit-testing/', sourceType: 'provider', checkedOn: faceFitCheckedOn },
     ], lastVerifiedDate: faceFitCheckedOn, verificationStatus: 'partially-verified', complexity: ['standard'],
+  },
+  {
+    id: 'landlord-compliance-london-commercial-epc', name: 'Landlord Compliance London Ltd', website: 'https://landlordcompliancelondon.uk/services/commercial-epc',
+    serviceIds: ['commercial-epc'], geographicalCoverage: ['london'], sectors: ['commercial-office', 'commercial-retail', 'commercial-other'],
+    serviceCategories: ['non-domestic-epc'], capabilities: ['commercial EPC assessment', 'non-domestic EPC lodgement', 'energy recommendations report'],
+    specialisms: ['non-domestic-epc'], qualificationsAndMemberships: ['Provider states that its commercial EPC assessors are accredited NDEAs; confirm the named assessor and current scheme entry before appointment.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'],
+    pricingEvidence: 'Provider publishes £260 inc VAT up to 50 m², £330 up to 100 m² and £409 up to 250 m². Above 250 m² and multi-let buildings require an individual quote. Its stated coverage is London boroughs and the M25 corridor; this record only matches the London region.',
+    evidence: [
+      { claim: 'Provider offers commercial EPC assessments and describes offices, shops and commercial units.', sourceUrl: 'https://landlordcompliancelondon.uk/services/commercial-epc', sourceType: 'provider', checkedOn: commercialEpcCheckedOn },
+      { claim: 'Provider states London-borough and M25-corridor coverage; Vendor Atlas conservatively maps this only to its London region.', sourceUrl: 'https://landlordcompliancelondon.uk/services/commercial-epc', sourceType: 'provider', checkedOn: commercialEpcCheckedOn },
+      { claim: 'Provider publishes floor-area tariffs including VAT and says larger and multi-let work requires an individual quote. The tariff is used only for a narrowly matched London example.', sourceUrl: 'https://landlordcompliancelondon.uk/services/commercial-epc', sourceType: 'provider', checkedOn: commercialEpcCheckedOn },
+    ], lastVerifiedDate: commercialEpcCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
+  },
+  {
+    id: 'team-epc-commercial', name: 'Team EPC', website: 'https://teamepc.co.uk/commercial-epc',
+    serviceIds: ['commercial-epc'], geographicalCoverage: ['london', 'south-east'], sectors: ['commercial-office', 'commercial-retail', 'commercial-warehouse', 'commercial-industrial', 'commercial-mixed', 'commercial-other'],
+    serviceCategories: ['non-domestic-epc'], capabilities: ['commercial EPC assessments', 'non-domestic assessor levels 3–5', 'commercial property energy assessment'],
+    specialisms: ['non-domestic-epc'], qualificationsAndMemberships: ['Provider states its assessors work at non-domestic levels 3–5; confirm the named assessor’s current accreditation and scope.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes commercial EPC work for offices, retail, warehouses, industrial and mixed-use buildings.', sourceUrl: 'https://teamepc.co.uk/commercial-epc', sourceType: 'provider', checkedOn: commercialEpcCheckedOn },
+      { claim: 'Provider lists London, Hertfordshire, Middlesex and Berkshire coverage and states assessor levels 3–5; coverage and the assigned assessor should be confirmed at enquiry.', sourceUrl: 'https://teamepc.co.uk/commercial-epc', sourceType: 'provider', checkedOn: commercialEpcCheckedOn },
+    ], lastVerifiedDate: commercialEpcCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'primecert-commercial-epc', name: 'Primecert', website: 'https://www.primecert.co.uk/',
+    serviceIds: ['commercial-epc'], geographicalCoverage: ['uk-wide'], sectors: [],
+    serviceCategories: ['non-domestic-epc'], capabilities: ['commercial EPC assessment', 'non-domestic EPC levels 3–5'],
+    specialisms: ['non-domestic-epc'], qualificationsAndMemberships: ['Provider describes commercial assessor levels 3–5 and lists commercial assessors on its team page; independently confirm the assigned assessor’s live scheme entry.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: quoteRequired,
+    evidence: [
+      { claim: 'Provider describes commercial Energy Performance Certificates at non-domestic levels 3–5.', sourceUrl: 'https://www.primecert.co.uk/', sourceType: 'provider', checkedOn: commercialEpcCheckedOn },
+      { claim: 'Provider states UK-wide postcode coverage; check availability for the exact address and required certificate type.', sourceUrl: 'https://www.primecert.co.uk/', sourceType: 'provider', checkedOn: commercialEpcCheckedOn },
+      { claim: 'Provider team page identifies its commercial assessors and displays provider-stated accreditation and insurance claims; confirm current personal and policy evidence directly.', sourceUrl: 'https://www.primecert.co.uk/team', sourceType: 'provider', checkedOn: commercialEpcCheckedOn },
+    ], lastVerifiedDate: commercialEpcCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard', 'complex'],
+  },
+  {
+    id: 'north-west-epcs-commercial', name: 'North West EPCs', website: 'https://nwepcs.com/pricing/',
+    serviceIds: ['commercial-epc'], geographicalCoverage: ['north'], sectors: ['commercial-office', 'commercial-retail', 'commercial-warehouse', 'commercial-industrial', 'commercial-other'],
+    serviceCategories: ['non-domestic-epc'], capabilities: ['commercial EPC assessments', 'office, retail and warehouse EPCs'],
+    specialisms: ['non-domestic-epc'], qualificationsAndMemberships: ['Provider states its commercial assessors are Elmhurst-accredited; confirm the named assessor and current scheme entry before appointment.'],
+    insuranceEvidence: unknownInsurance, deliveryModes: ['on-site', 'remote-scoping'], pricingEvidence: 'Provider page describes commercial EPC pricing from £150, subject to area and complexity. No numeric tariff is used in the Vendor Atlas calculation.',
+    evidence: [
+      { claim: 'Provider describes commercial EPC work for offices, retail and warehouse properties and publishes a starting-price statement.', sourceUrl: 'https://nwepcs.com/pricing/', sourceType: 'provider', checkedOn: commercialEpcCheckedOn },
+      { claim: 'Provider identifies a Warrington address and describes its Northern service area; Vendor Atlas only maps its provider-stated coverage to the North of England.', sourceUrl: 'https://nwepcs.com/pricing/', sourceType: 'provider', checkedOn: commercialEpcCheckedOn },
+      { claim: 'Provider states Elmhurst accreditation for its assessors; verify the assigned assessor and current register entry directly.', sourceUrl: 'https://nwepcs.com/pricing/', sourceType: 'provider', checkedOn: commercialEpcCheckedOn },
+    ], lastVerifiedDate: commercialEpcCheckedOn, verificationStatus: 'provider-source-checked', complexity: ['standard'],
   },
 ]
 

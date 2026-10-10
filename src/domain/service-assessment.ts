@@ -2,6 +2,7 @@ import { fireDoorDefinition, qualifyFireDoors, estimateFireDoors, FIRE_DOOR_PRIC
 import { kitchenExtractDefinition, qualifyKitchenExtract, estimateKitchenExtract, KITCHEN_EXTRACT_PRICE_MODEL } from './kitchen-extract'
 import { workplaceFirstAidDefinition, qualifyFirstAidTraining, estimateFirstAidTraining, FIRST_AID_TRAINING_PRICE_MODEL } from './first-aid-training'
 import { rpeFaceFitDefinition, qualifyRpeFaceFit, estimateRpeFaceFit, RPE_FACE_FIT_PRICE_MODEL } from './rpe-face-fit-testing'
+import { COMMERCIAL_EPC_PRICE_MODEL, estimateCommercialEpc, qualifyCommercialEpc } from './commercial-epc'
 import type {
   PriceEstimate,
   QualificationResult,
@@ -865,6 +866,58 @@ export const serviceDefinitions: Record<IndustrialServiceId, ServiceDefinition> 
       { label: 'Dale Montague Electrical', url: 'https://www.dme-ltd.co.uk/pricing-structure', note: 'Publishes a £168 minimum, £60 per board and £18 per circuit, excluding VAT. Confirm the date and local applicability.' },
     ],
   },
+  'commercial-epc': {
+    id: 'commercial-epc', name: 'commercial Energy Performance Certificate assessment', shortName: 'Commercial EPC', eyebrow: 'Commercial EPC finder',
+    question: 'Does this property transaction need a commercial EPC?',
+    promise: 'Check the property, transaction and certificate position before requesting quotes.',
+    description: 'A cautious England and Wales check for commercial property sales, lettings and related transactions, with a source-limited price example and provider evidence.',
+    legalBasis: 'In England and Wales, an EPC is generally required when a non-domestic building is constructed, sold or let, subject to the legal rules and exceptions. An existing certificate may remain valid for ten years unless a newer one is made. This finder cannot decide whether your particular property or transaction is in scope.',
+    legalSource: 'https://www.legislation.gov.uk/uksi/2012/3118',
+    guidePath: '/?service=commercial-epc', costPath: '/?service=commercial-epc', supplierPath: '/?service=commercial-epc', toolkitPath: '/?service=commercial-epc',
+    workHeading: 'What is happening with the property?',
+    workHelp: 'Choose the transaction that is actually planned. Occupation alone is not treated here as a trigger to buy a new EPC.',
+    workOptions: [
+      { value: 'commercial-sale', label: 'Sale of a commercial property', detail: 'A sale or agreed transaction is planned' },
+      { value: 'commercial-letting', label: 'New commercial letting', detail: 'A new lease or tenancy is planned' },
+      { value: 'commercial-assignment', label: 'Lease assignment or subletting', detail: 'A transfer or subletting event is planned; check the exact legal position' },
+      { value: 'commercial-new-build', label: 'New build or newly completed unit', detail: 'Completion-stage requirements need a separate scope' },
+      { value: 'commercial-occupancy-only', label: 'Existing occupier; no transaction planned', detail: 'This answer alone does not identify a new EPC appointment' },
+      { value: 'commercial-uncertain', label: 'Transaction or property position is uncertain', detail: 'Check the exact property and transaction before buying an assessment' },
+    ],
+    signalHeading: 'Which fixed building services are present?',
+    signalHelp: 'A non-domestic building generally needs a roof and walls and fixed services such as heating, mechanical ventilation or air conditioning. If unsure, choose unknown rather than guessing.',
+    signalOptions: [
+      { value: 'fixed-heating', label: 'Fixed heating', detail: 'Boiler, heat pump, electric or other fixed heating service' },
+      { value: 'mechanical-ventilation', label: 'Mechanical ventilation', detail: 'Fixed supply or extract ventilation' },
+      { value: 'air-conditioning', label: 'Air conditioning', detail: 'Fixed comfort-cooling or air-conditioning plant' },
+      { value: 'no-fixed-services', label: 'None of these services are present', detail: 'The building definition needs checking before assuming an EPC applies' },
+      { value: 'unknown-services', label: 'Not sure about the services', detail: 'Find plant records or ask an assessor to confirm scope' },
+      { value: 'multi-let', label: 'Multiple lettable units or a multi-let building', detail: 'The correct certificate boundary and price need individual review' },
+      { value: 'separate-unit', label: 'A separately occupied or separately assessed unit', detail: 'Confirm the legal and certificate boundary for this unit' },
+      { value: 'multiple-buildings', label: 'More than one building', detail: 'Keep each address and assessment boundary explicit' },
+      { value: 'public-display-over-500', label: 'Frequently visited public building over 500 m²', detail: 'May affect display of an EPC already produced; does not alone mean commission a new certificate' },
+    ],
+    assetLabel: 'Approximate floor area (m²)', secondaryLabel: 'Buildings or separately assessed parts',
+    documentationLabel: 'Floor plans, previous EPC and building-services records', documentationOptions: sharedDocumentation,
+    inspectionLabel: 'EPC register position', inspectionOptions: [
+      { value: 'none', label: 'No certificate found for this property' }, { value: 'in-date', label: 'A current certificate appears to be available' },
+      { value: 'overdue-or-unknown', label: 'No valid certificate, or validity is uncertain' }, { value: 'new-system', label: 'New build or material property change' },
+    ],
+    resultResourceHeading: 'Check the transaction and the exact property record',
+    resultResourceBody: 'The legal position depends on the building, its fixed services, the transaction and exceptions. Search the official register by the exact address and confirm whether a newer valid certificate exists. An EPC is an energy-performance document; it is not a building survey, operational energy bill or guarantee of actual energy use.',
+    primaryLinks: [
+      { label: 'Energy Performance of Buildings Regulations 2012', detail: 'Legislation for England and Wales, including construction, sale, letting and exceptions', url: 'https://www.legislation.gov.uk/uksi/2012/3118' },
+      { label: 'GOV.UK: commercial property EPC', detail: 'Transaction triggers, exemptions and accredited assessors', url: 'https://www.gov.uk/energy-performance-certificate-commercial-property' },
+      { label: 'GOV.UK: non-domestic EPC guide', detail: 'Building definition, validity, exemptions and display rules', url: 'https://www.gov.uk/government/publications/energy-performance-certificates-for-the-construction-sale-and-let-of-non-dwellings--2/a-guide-to-energy-performance-certificates-for-the-construction-sale-and-let-of-non-dwellings' },
+      { label: 'Search the official EPC register', detail: 'Check whether a valid certificate is already lodged for the exact address', url: 'https://find-energy-certificate.service.gov.uk/' },
+      { label: 'Elmhurst: Non-domestic energy assessor accreditation', detail: 'Provider scheme-owner explanation of NDEA accreditation', url: 'https://www.elmhurstenergy.co.uk/non-domestic-energy-assessor-ndea-accreditation/' },
+    ],
+    priceEvidence: [
+      { label: 'Landlord Compliance London Ltd', url: COMMERCIAL_EPC_PRICE_MODEL.source, note: 'Publishes £260 inc VAT up to 50 m², £330 to 100 m² and £409 to 250 m²; larger and multi-let properties need an individual quote. Used only as an exact London tariff example when the brief fits; not a national range.' },
+      { label: 'Team EPC', url: 'https://teamepc.co.uk/commercial-epc', note: 'Provider page describes commercial EPC service, regional coverage and assessor levels; no tariff from this page is used in the model.' },
+      { label: 'Primecert', url: 'https://www.primecert.co.uk/', note: 'Provider describes commercial EPC work at Levels 3–5 and nationwide coverage; confirm assigned assessor and current scheme evidence.' },
+    ],
+  },
 }
 
 const labelFor = (definition: ServiceDefinition, value: string) =>
@@ -914,6 +967,7 @@ export function qualifyService(answers: ServiceAssessmentAnswers): Qualification
   if (answers.serviceId === 'kitchen-extract-cleaning') return qualifyKitchenExtract(answers)
   if (answers.serviceId === 'workplace-first-aid-training') return qualifyFirstAidTraining(answers)
   if (answers.serviceId === 'rpe-face-fit-testing') return qualifyRpeFaceFit(answers)
+  if (answers.serviceId === 'commercial-epc') return qualifyCommercialEpc(answers)
   if (answers.serviceId === 'fire-extinguisher-servicing') return qualifyExtinguisherServicing(answers)
   const definition = serviceDefinitions[answers.serviceId]
   const factors: string[] = []
@@ -1185,6 +1239,7 @@ export const SERVICE_PRICE_MODELS = {
   'kitchen-extract-cleaning': { version: KITCHEN_EXTRACT_PRICE_MODEL.version, spread: 0 },
   'workplace-first-aid-training': FIRST_AID_TRAINING_PRICE_MODEL,
   'rpe-face-fit-testing': { ...RPE_FACE_FIT_PRICE_MODEL, spread: 0 },
+  'commercial-epc': { version: COMMERCIAL_EPC_PRICE_MODEL.version, spread: 0 },
   'fire-extinguisher-servicing': {
     version: 'rcr-published-basic-service-2026-10-04', attendance: 15, perUnit: 7.5, spread: 0.25,
   },
@@ -1248,6 +1303,7 @@ export function estimateServicePrice(
   if (answers.serviceId === 'kitchen-extract-cleaning') return estimateKitchenExtract(answers, result)
   if (answers.serviceId === 'workplace-first-aid-training') return estimateFirstAidTraining(answers, result)
   if (answers.serviceId === 'rpe-face-fit-testing') return estimateRpeFaceFit(answers, result)
+  if (answers.serviceId === 'commercial-epc') return estimateCommercialEpc(answers, result)
   const factors: PriceEstimate['factors'] = []
   if (answers.serviceId === 'fire-extinguisher-servicing') {
     const model = SERVICE_PRICE_MODELS['fire-extinguisher-servicing']
@@ -1398,13 +1454,13 @@ export function estimateServicePrice(
 export function defaultServiceAnswers(serviceId: IndustrialServiceId): ServiceAssessmentAnswers {
   return {
     serviceId,
-    sector: 'manufacturing',
+    sector: serviceId === 'commercial-epc' ? 'commercial-office' : 'manufacturing',
     workTypes: [],
     riskSignals: [],
-    assetCount: 1,
-    secondaryCount: serviceId === 'lev' ? 1 : serviceId === 'asbestos' ? 4 : serviceId === 'fire-risk-assessment' ? 1 : serviceId === 'legionella' ? 1 : serviceId === 'commercial-eicr' ? 10 : serviceId === 'rpe-face-fit-testing' ? 1 : 0,
+    assetCount: serviceId === 'commercial-epc' ? 100 : 1,
+    secondaryCount: serviceId === 'lev' ? 1 : serviceId === 'asbestos' ? 4 : serviceId === 'fire-risk-assessment' ? 1 : serviceId === 'legionella' ? 1 : serviceId === 'commercial-eicr' ? 10 : serviceId === 'rpe-face-fit-testing' || serviceId === 'commercial-epc' ? 1 : 0,
     sites: 1,
-    size: 'small',
+    size: serviceId === 'commercial-epc' ? 'micro' : 'small',
     documentationStatus: 'unknown',
     inspectionStatus: 'overdue-or-unknown',
     projectReason: 'first-examination',

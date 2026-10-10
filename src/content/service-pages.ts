@@ -81,6 +81,7 @@ export const servicePages: Record<IndustrialServiceId, DecisionPage[]> = {
   'kitchen-extract-cleaning': [],
   'workplace-first-aid-training': [],
   'rpe-face-fit-testing': [],
+  'commercial-epc': [],
   'fire-door-inspection': fireDoorPages,
   'fire-extinguisher-servicing': [
     {

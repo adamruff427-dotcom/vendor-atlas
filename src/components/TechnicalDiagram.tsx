@@ -105,6 +105,16 @@ const diagrams: Record<IndustrialServiceId, { eyebrow: string; title: string; in
     ],
     evidence: ['Board and circuit schedule', 'Inspector and test method', 'Coded defects and limitations', 'Separate remedial actions'], source: 'https://www.hse.gov.uk/electricity/introduction.htm', sourceLabel: 'HSE electrical safety guidance',
   },
+  'commercial-epc': {
+    eyebrow: 'Certificate sequence', title: 'Confirm the transaction before booking the survey', intro: 'An EPC appointment depends on the property, event and whether a valid certificate is already lodged. Keep the assessor brief and the legal check separate.',
+    nodes: [
+      { title: 'Transaction', detail: 'Sale, new letting, assignment or completion', icon: FileCheck2 },
+      { title: 'Register', detail: 'Exact address, current certificate and date', icon: SearchCheck },
+      { title: 'Property', detail: 'Area, fabric and fixed building services', icon: PackageCheck },
+      { title: 'Assess', detail: 'Site inspection and applicable approved method', icon: Gauge },
+      { title: 'Lodge', detail: 'Certificate, recommendations and limitations', icon: ShieldCheck },
+    ], evidence: ['Property and transaction boundary', 'Assessor and current scheme evidence', 'Area and fixed-services information', 'Lodged certificate and recommendations'], source: 'https://www.gov.uk/energy-performance-certificate-commercial-property', sourceLabel: 'GOV.UK commercial property EPC guidance',
+  },
   lev: {
     eyebrow: 'System map', title: 'What a complete LEV examination follows', intro: 'A TExT follows the contaminant from capture to discharge and tests whether the complete control chain still performs as intended.',
     nodes: [

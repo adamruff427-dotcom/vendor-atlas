@@ -6,12 +6,41 @@ import type {
 } from './types'
 import { isActionableFirstAidBrief, selectedFirstAidCourse } from './first-aid-training'
 import { isActionableFaceFitBrief } from './rpe-face-fit-testing'
+import { isActionableCommercialEpcBrief } from './commercial-epc'
 
 export function matchServiceSuppliers(
   suppliers: ServiceSupplier[],
   answers: ServiceAssessmentAnswers,
   result: QualificationResult,
 ): ServiceSupplierMatch[] {
+  if (answers.serviceId === 'commercial-epc') {
+    if (!isActionableCommercialEpcBrief(answers, result)) return []
+    return suppliers
+      .filter((supplier) => supplier.serviceIds.includes(answers.serviceId))
+      .filter((supplier) => supplier.geographicalCoverage.includes('uk-wide')
+        || supplier.geographicalCoverage.includes(answers.region)
+        || (supplier.geographicalCoverage.includes('great-britain') && answers.region !== 'northern-ireland'))
+      .filter((supplier) => supplier.complexity.includes(result.complexity))
+      .map((supplier) => {
+        const reasons = ['Provider-source evidence describes commercial non-domestic EPC assessments']
+        const gaps = [
+          'Confirm the exact property and transaction boundary, scope, price and availability directly',
+          'Confirm current accreditation for the named assessor and request current insurance evidence',
+        ]
+        if (supplier.sectors.includes(answers.sector)) {
+          reasons.push(`Provider evidence names ${answers.sector.replace('commercial-', '').replaceAll('-', ' ')} premises`)
+        } else {
+          gaps.push('The checked provider evidence did not name this specific building-use sector')
+        }
+        if (supplier.complexity.includes(result.complexity)) reasons.push(`Provider service record covers a ${result.complexity} brief`)
+        else gaps.push(`The checked evidence did not establish capacity for a ${result.complexity} brief`)
+        if (!supplier.specialisms.includes('non-domestic-epc')) gaps.push('The service-page evidence does not state the required non-domestic assessment category')
+        return { supplier, score: 1, reasons, gaps }
+      })
+      .sort((a, b) => a.supplier.name.localeCompare(b.supplier.name))
+      .slice(0, 3)
+  }
+
   if (answers.serviceId === 'workplace-first-aid-training') {
     const course = selectedFirstAidCourse(answers)
     const simpleSingleClass = result.complexity === 'standard'

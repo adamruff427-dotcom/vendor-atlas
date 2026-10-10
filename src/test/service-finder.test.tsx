@@ -30,6 +30,8 @@ describe('one shared service finder', () => {
           expect(screen.getByRole('link', { name: 'HSE sources and provider evidence' })).toHaveAttribute('href', '/?service=workplace-first-aid-training#guidance')
         } else if (id === 'rpe-face-fit-testing') {
           expect(screen.getByRole('link', { name: 'HSE, Fit2Fit and provider evidence' })).toHaveAttribute('href', '/?service=rpe-face-fit-testing#guidance')
+        } else if (id === 'commercial-epc') {
+          expect(screen.getByRole('link', { name: 'Review legislation, register and supplier evidence' })).toHaveAttribute('href', '#source-note')
         } else {
           expect(screen.getByRole('link', { name: 'Supplier evidence directory →' })).toHaveAttribute('href', id === 'dsear' ? '/dsear/suppliers' : serviceDefinitions[id].supplierPath)
         }

@@ -1,5 +1,5 @@
 {
-  "lastCheckedDate": "2026-10-09",
+  "lastCheckedDate": "2026-10-10",
   "projectId": "appgprj_6a947416e42c81918150b4b428a21a84",
   "binding": "DB",
   "analyticsRowCount": 325,
@@ -13,10 +13,10 @@
   "latestCredibleEventDate": "2026-08-31",
   "consecutiveExpansionBlockerRuns": 0,
   "lastCandidateAssessment": {
-    "date": "2026-10-09",
-    "candidateId": "rpe-face-fit-testing",
-    "decision": "published",
-    "reason": "COSHH and HSE/HSENI sources support a bounded buyer brief for employer-selected tight-fitting RPE; four provider-source records plus Fit2Fit register entries were checked; one provider's exact package price is restricted to a single-site standard brief of up to 16 tests; implementation stays in the shared finder and passed tests, typecheck and production build before public deployment.",
+    "date": "2026-10-10",
+    "candidateId": "commercial-epc",
+    "decision": "validated-pending-publication",
+    "reason": "Energy Performance of Buildings Regulations 2012 and GOV.UK EPC guidance support a cautious England-and-Wales buyer flow; four independent provider pages and one bounded London tariff were checked; implementation stays in the shared finder and passed typecheck, all tests and production build before publication.",
     "recordPath": "docs/VERTICAL_CANDIDATES.md"
   },
   "lastDeployment": {
